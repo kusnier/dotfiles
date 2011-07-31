@@ -12,6 +12,12 @@
   interactive = auto
   ui = auto
 
+[alias]
+  st = status
+  ci = commit
+  co = checkout
+  br = branch
+
 [merge]
   tool = vimdiff
 
