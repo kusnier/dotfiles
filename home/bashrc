@@ -121,7 +121,8 @@ if [ -f ~/dotfiles/bash/aliases ]; then
     . ~/dotfiles/bash/aliases
 fi
 
-export HOSTFILE=~/dotfiles/bash/hostfile
+# Disabled hostifle usage
+#export HOSTFILE=~/dotfiles/bash/hostfile
 
 # Tab-completion
 source ~/dotfiles/bash/complete
