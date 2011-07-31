@@ -121,7 +121,7 @@ if [ -f ~/dotfiles/bash/aliases ]; then
     . ~/dotfiles/bash/aliases
 fi
 
-export HOSTFILE=~/devel/gcode/conf/bash/hostfile
+export HOSTFILE=~/dotfiles/bash/hostfile
 
 # Tab-completion
 source ~/dotfiles/bash/complete
