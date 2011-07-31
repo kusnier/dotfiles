@@ -1,0 +1,21 @@
+§
+§ =============================================================
+§ ========== USER MACROS ======================================
+§ =============================================================
+§
+|AUTHOR|    = Sebastian Kusnier
+|AUTHORREF| = kuse
+|EMAIL|     = kuse@1und1.de
+|COMPANY|   = 1&1 Internet AG
+|COPYRIGHT| = Copyright (c) |YEAR|, |AUTHOR| or |COMPANY|
+§
+§ =============================================================
+§ ========== FILE INCLUDES ====================================
+§ =============================================================
+§
+|includefile| = comments.template
+|includefile| = statements.template
+|includefile| = idioms.template
+|includefile| = pod.template
+§
+§%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

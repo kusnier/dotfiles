@@ -1,0 +1,1234 @@
+" VIMRC
+" $Id: vimrc 1450 2011-07-31 16:50:31Z seek $
+" Last Change:  $Date: 2011-07-31 18:50:31 +0200 (So, 31 Jul 2011) $
+" Maintainer:   Sebastian <seek> Kusnier, seek /at/ matrixcode /dot/ de
+" License:      This file is placed in the public domain.
+"
+" USE :options
+"  for a linteractive list of all options
+"
+" URLS:
+"   VIM xdebug
+"   http://www.apaddedcell.com/easy-php-debugging-ubuntu-using-xdebug-and-vim
+"   http://tech.blog.box.net/2007/06/20/how-to-debug-php-with-vim-and-xdebug-on-linux/
+" Test plugins:
+"   Ack
+"   Snipmate
+"   Sparkup
+
+" -----------------------------------------------------------
+" Plugin: Pathogen
+" Url: http://www.vim.org/scripts/script.php?script_id=2332
+" -----------------------------------------------------------
+call pathogen#runtime_append_all_bundles() 
+
+" -----------------------------------------------------------
+" General setup
+" -----------------------------------------------------------
+
+" save on losing focus
+" This makes problems :D
+""au FocusLost * :wa
+
+" When vimrc is edited, reload it
+autocmd! bufwritepost .vimrc source $MYVIMRC
+" Fast editing of the .vimrc
+map <S-F5> :edit $MYVIMRC<CR>
+map <leader>ve :edit $MYVIMRC<cr>
+
+" Get efficient: shortcut mappings
+nnoremap ; :
+" remap j an k to jump to the rows in the smae line, if lines wraps
+nnoremap j gj
+nnoremap k gk
+
+" Tired of clearing highlighted searches by searching for ¿ldsfhjkhgakjks¿? Use this:
+" Test this later, mark has a mapping with ,/
+""nmap <silent> ,/ :let @/=""<CR>
+
+" The leader character is your own personal modifier key,
+" as g is Vim¿s modifier key (when compared to vi). The default
+" leader is \, but this is not located standardly on all
+" keyboards and requires a pinky stretch in any case. 
+let mapleader = ","
+
+" -----------------------------------------------------------
+" Leader mappings
+" -----------------------------------------------------------
+" strip all trailing whitespace in the current file
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+" HTML  ,ft mapped to a "fold tag"
+nnoremap <leader>ft Vatzf
+" re-hardwrap paragraphs of text
+nnoremap <leader>q gqip
+" mapping to reselect the text that was just pasted so I can perform commands (like indentation) on it
+nnoremap <leader>vv V`]
+" open a new vertical split and switch over to it
+nnoremap <leader>w <C-w>v<C-w>l
+" use ack
+""nnoremap <leader>a :Ack
+
+
+" Hide buffers when they are abandoned
+" set hidden makes problems with VCSVimdiff, Closing diff is not working right
+set nojoinspaces
+" enable backspace to delete anyting (includes \n) in insert mode
+set backspace=indent,eol,start
+set whichwrap+=<,>,h,l
+set nocompatible
+set number
+set cursorline
+
+if has("gui_running")
+  set t_Co=256
+else
+  set t_Co=16
+endif
+
+if has("autochdir")
+  set autochdir
+endif
+set scrolloff=5     "start scrolling 5 lines before edge of viewport
+set sidescrolloff=3 " same, but for columns
+
+" the following two settings assume that you know what you are doing
+"set autowrite " automatically save changes when executing critical commands
+set autoread " automatically detect changes and re-read the file
+set display=lastline " display as much as possible from the last line
+
+" -----------------------------------------------------------
+" Encoding
+" -----------------------------------------------------------
+"set encoding=utf8
+set encoding=latin1
+autocmd FileType php,html,htm,xsl,xml setlocal encoding=latin1
+
+" Store temporary files in a central spot
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set backupskip=/tmp/*,/private/tmp/*" 
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set backup
+
+" -----------------------------------------------------------
+" Strip trailing whitespace 
+" -----------------------------------------------------------
+function! <SID>StripTrailingWhitespaces()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\s\+$//e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+" Auto strip trailing white spaces sucks
+""autocmd BufWritePre *.php,*.js :call <SID>StripTrailingWhitespaces()
+
+
+"" TESTING
+set showfulltag
+set switchbuf=usetab
+" set switchbuf=split - Split always
+" set switchbuf=newtab - Like "split", but open a new tab page.
+
+" -----------------------------------------------------------
+" Vim 7.3 options
+" -----------------------------------------------------------
+if v:version > 702
+  " undo - set up persistent undo
+  set undofile
+  set undodir=~/.vim-undo
+  hi ColorColumn guibg=#2d2d2d
+
+  " make sure that max lines are displayed
+  " (80 and 120 are from ZF Coding standards)
+  set colorcolumn=80,120
+
+  " Relative line numbers
+  "set rnu
+endif
+
+" -----------------------------------------------------------
+" Special Features
+" -----------------------------------------------------------
+
+filetype plugin indent on
+
+" -----------------------------------------------------------
+" Spell
+" -----------------------------------------------------------
+set nospell
+set spelllang=de,en
+if filereadable("~/.vim/spell/spf.add")
+ set spellfile=~/.vim/spell/spf.add
+endif
+if filereadable("~/.vim/spell/de.latin1.spl")
+ set spellfile=~/.vim/spell/de.latin1.spl
+endif
+
+set dictionary+=/usr/share/dict/words
+"set dictionary+=/usr/share/dict/ngerman
+"set dictionary+=/usr/share/dict/polish
+set digraph
+
+" -----------------------------------------------------------
+" unused settings
+" -----------------------------------------------------------
+" runtime macros/matchit.vim
+" Zeilenumbruch
+" breakat
+" Automatically save before commands like :next and :make
+"set autowrite
+" cursorcolumn
+" cursorline
+" linebreak
+"set verbose=1
+" set clipboard
+" complete
+" completefunc
+" completeopt
+"set completeopt+=menu,longest,preview
+set completeopt+=menu,preview
+"
+" Remap ` to '
+" These are very similar keys. Typing 'a will jump to the line
+" in the current file marked with ma. However, `a will jump to
+" the line and column marked with ma.
+" It is more useful in any case I can imagine, but it is located
+" way off in the corner of the keyboard.
+" The best way to handle this is just to swap them:
+" nnoremap ' `
+" nnoremap ` '
+
+
+" -----------------------------------------------------------
+" Mouse setup
+" -----------------------------------------------------------
+
+set mousemodel=extend
+" Enable mouse usage (all modes) in terminals
+set mouse=a
+" focus follows mouse
+" set mousefocus
+
+" -----------------------------------------------------------
+" Bell setup
+" -----------------------------------------------------------
+" No bell or flash wanted
+set noerrorbells
+set novisualbell
+set t_vb=
+
+" -----------------------------------------------------------
+" Text-Formatting, Identing, Tabbing
+" -----------------------------------------------------------
+
+" Program for formating
+set formatprg=par
+" gq - use external format program
+" gw - use Vim's internal formatter
+" use: QGIP to format texts :)
+
+" autoindenting (local to buffer)
+set autoindent
+set copyindent
+"set indentexpr
+" smartindenting (clever autoindenting)
+set smartindent
+" number of spaces the tab stands for
+set tabstop=2
+set expandtab
+" Override expandtab vor xp:Changelog files
+autocmd FileType changelog setlocal expandtab
+" number of spaces used for (auto)indenting
+set shiftwidth=2
+" a <tab> in an indent insets 'shiftwidth' spaces (not tabstop)
+set smarttab
+" if non-zero, number of spaces to insert for a <tab>
+set softtabstop=2
+" enable specific indenting for c-code and others
+set cindent
+" and here some nice options for cindenting
+set cinoptions={.5s,+.5s,t0,n-2,p2s,(03s,=.5s,>1s,=1s,:1s
+" now real wrap during insert (enable/override this when using as mail-editor)
+set tw=0
+" use full featured format-options. see "help fo-table for help
+if v:version >= 600
+    set formatoptions=tcrqn2
+else
+    " vim 5 doesn't know r/n
+    set formatoptions=tcq2
+endif
+
+" define what are comments
+set com& " reset to default
+set com^=sr:*\ -,mb:*\ \ ,el:*/ com^=sr://\ -,mb://\ \ ,el:///
+" auto tw=78 when textmode
+if has("autocmd")
+    autocmd FileType text setlocal textwidth=78
+    autocmd FileType text setlocal lbr
+    autocmd FileType text set nocindent
+endif
+" shift-tab to unindent
+imap <S-Tab> <C-o><<
+
+
+" -----------------------------------------------------------
+" List chars - Show invisibles
+" -----------------------------------------------------------
+set list listchars=tab:»·,trail:·,eol:¬
+"set listchars=tab:¿\ ,eol:¬
+"set listchars=nbsp:¬,eol:¶,tab:>-,extends:»,precedes:«,trail:¿
+highlight NonText guifg=#2a2a2a
+highlight SpecialKey guifg=#ff2a2a
+
+" -----------------------------------------------------------
+" Folding
+" -----------------------------------------------------------
+set foldmethod=syntax
+"set foldclose
+set foldenable
+
+" -----------------------------------------------------------
+" Searching, Substituting
+" -----------------------------------------------------------
+
+" select case-insenitiv search
+set ignorecase
+" No ignorecase if Uppercase chars in search
+set smartcase
+" change the way backslashes are used in search patterns
+set magic
+" begin search at top when EOF reached
+set wrapscan
+" jump to matches during entering the pattern
+set showmatch
+set matchtime=3
+set matchpairs+=<:> " these tokens belong together
+" highlight all matches...
+set hlsearch
+" ...and also during entering the pattern
+set incsearch
+" If the search term highlighting gets annoying, set a key to switch it off temporarily:
+"nmap <silent> <leader>n :silent :nohlsearch<CR>
+" use 'g'-flag when substituting (subst. all matches in that line, not only first)
+" to turn off, use g (why is there no -g ?)
+set gdefault
+" turn off the fucking :s///gc toggling
+set noedcompatible
+"search+replace word under cursor
+nnoremap <C-S> :,$s/\<<C-R><C-W>\>/
+
+
+" -----------------------------------------------------------
+" Leader mappings
+" -----------------------------------------------------------
+" Use the arrows to something usefull
+" map <right> :bn<cr>
+" map <left> :bp<cr>
+" Overwrite alle Array keys with nothing
+inoremap  <Up>     <NOP>
+inoremap  <Down>   <NOP>
+inoremap  <Left>   <NOP>
+inoremap  <Right>  <NOP>
+noremap   <Up>     <NOP>
+noremap   <Down>   <NOP>
+noremap   <Left>   <NOP>
+noremap   <Right>  <NOP>
+
+" Tab configuration
+map <leader>tn :tabnew %<cr>
+map <leader>te :tabedit
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove 
+
+" When pressing <leader>cd switch to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>
+
+
+" -----------------------------------------------------------
+" tabline settings
+" -----------------------------------------------------------
+set showtabline=1
+nmap <leader>t <Esc>:tabnew<CR>
+
+
+" -----------------------------------------------------------
+" highlighting, colors, fonts
+" -----------------------------------------------------------
+
+set background=dark
+
+" when we have a colored terminal or gui...
+if &t_Co > 2 || has("gui_running")
+    " ...then use highlighting
+    syntax on
+endif
+
+if has("gui_running")
+  "Standartgroesse bei'm GUI-Fenster
+  "win 120 40
+  "columns    width of the display
+  ""set co=120
+  "lines      number of lines in the display
+  ""set lines=41
+  if has("win32")
+    set guifont=Bitstream_Vera_Sans_Mono:h8:cANSI
+  elseif has("gui_macvim")
+    set guifont=DejaVu\ Sans\ Mono:h12
+  else
+    "set guifont=Monospace\ 8
+    set guifont=DejaVu\ Sans\ Mono\ 8
+  endif
+
+  "colorscheme macvim
+
+endif
+" Custom highlights
+highlight Visual term=reverse cterm=reverse guibg=#051060
+highlight Normal      guifg=gray      guibg=black
+highlight Special     guifg=Red
+highlight Folded      guifg=DarkRed   guibg=LightGrey
+highlight FoldColumn  guifg=DarkGreen
+highlight TagListFileName guifg=Black guibg=Grey
+highlight Comment gui=italic
+highlight CursorLine guibg=Grey15
+highlight LineNr guibg=#000040 ctermbg=4
+highlight Folded guibg=Grey55
+highlight StatusLine guifg=#2b0036 guibg=white
+" Autochange color in insert mode
+autocmd InsertEnter * highlight StatusLine guifg=#8b0036
+autocmd InsertLeave * highlight StatusLine guifg=#2b0036
+highlight ModeMsg guibg=#8b0036
+highlight Pmenu guibg=#000050 ctermbg=12
+highlight PmenuSel guibg=#000099 guifg=yellow
+highlight DiffText guibg=DarkRed
+
+" how many lines to sync backwards
+syn sync minlines=10000 maxlines=10000
+" how many lines to search backward after a jump to check syntax
+let c_minlines = 200
+" aldo highlight some things in comments
+let c_comment_strings = 1
+
+" use css when converting syntax to html (2html.vim)
+let html_use_css = 1
+" and a nice command for makeing html-code
+command! Code2html :source $VIMRUNTIME/syntax/2html.vim|
+
+" -----------------------------------------------------------
+" Statusline, Menu
+" -----------------------------------------------------------
+
+" use tab for auto-expansion in menus
+set wildchar=<TAB>
+" show a list of all matches when tabbing a command
+set wildmenu
+" how command line completion works
+""set wildmode=list,full
+set wildmode=list:longest,list:full
+" ignore some files for filename completion
+set wildignore=*.o,*.r,*.so,*.sl,*.tar,*.tgz,*.svn
+" remember last 2000 typed commands
+set history=2000
+if has('cmdline_info')
+  " show cursor position below each window
+  set ruler
+  " a ruler on steroids
+  set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) 
+  " Show (partial) command in status line.
+  set showcmd
+endif
+" shows the current status (insert, visual, ...) in statusline
+set showmode
+" use shortest messages
+set shortmess=atI
+if has('statusline')
+  " show always statusline of last window
+  set laststatus=2
+" statusline
+" cf the default statusline: %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+" format markers:
+"   %< truncation point
+"   %n buffer number
+"   %f relative path to file
+"   %m modified flag [+] (modified), [-] (unmodifiable) or nothing
+"   %r readonly flag [RO]
+"   %y filetype [ruby]
+"   %w Preview window flag, text is "[Preview]"
+"   %= split point for left and right justification
+"   %-35. width specification
+"   %l current line number
+"   %L number of lines in buffer
+"   %c current column number
+"   %V current virtual column number (-n), if different from %c
+"   %P percentage through buffer
+"   %) end of width specification
+let &statusline='%< %n:%f %m%r%y%w%=%-35.(line: %l of %L, col: %c%V (%P)%)'
+" cfi#format has problem with eclim
+" let &statusline='%< %n:%f %m%r%y%w%{cfi#format("[%s()]", "")}%=%-35.(line: %l of %L, col: %c%V (%P)%)'
+endif
+
+" -----------------------------------------------------------
+" Insert-Mode Completion
+" -----------------------------------------------------------
+
+" order and what to complete. see ":help complete" for info
+set complete=.,w,b,u,t,i,k
+" enable dictionary (add k to complete to scan dict when completing)
+" set dict=<FILENAME>
+" adjust case of a keyword completion match
+set infercase
+" showfulltag when completing tags in Insert mode show only the name
+" not any arguments (when a c-funtion is inserted)
+set noshowfulltag
+set infercase " adjust the case of auto completed words
+
+
+" -----------------------------------------------------------
+" Eclim settings
+" -----------------------------------------------------------
+autocmd FileType php nnoremap <silent> <buffer> <cr> :PhpSearchContext<cr>
+let g:EclimProjectTreeAutoOpen=1
+let g:EclimProjectTreeExpandPathOnOpen=1
+let g:EclimProjectTreeSharedInstance=1
+
+" -----------------------------------------------------------
+" Php Development
+" -----------------------------------------------------------
+
+" http://phpslacker.com/2009/02/05/vim-tips-for-php-programmers/
+" highlights interpolated variables in sql strings and does sql-syntax highlighting. yay
+autocmd FileType php let php_sql_query=1
+" does exactly that. highlights html inside of php strings (sql, etc)
+autocmd FileType php let php_htmlInStrings=1
+" discourages use oh short tags. c'mon its deprecated remember
+autocmd FileType php let php_noShortTags=1
+" automagically folds functions & methods. this is getting IDE-like isn't it?
+autocmd FileType php let php_folding=1
+let php_minlines=300
+" for highlighting baselib functions
+autocmd FileType php let php_baselib = 1
+" syntax works out whether -> indicates a property or method.
+" Otherwise method colours may be used on properties, for
+autocmd FileType php let php_smart_members = 1
+" use a different color for '->' based on whether it is used
+" for property access, method access, or dynamic access (using
+" '->{...}')
+autocmd FileType php let php_alt_properties = 1
+" to colorize ( and ) around an array body, as well as '=>'
+" requires php_strict_blocks
+" Setting this to '2' will highlighting the commas as well.
+" Commas are not highlighted by default because it's too much
+" color.
+autocmd FileType php let php_alt_arrays = 2
+" ... to colorize the ( and ) around an if, while, foreach, or switch body.
+""autocmd FileType php let php_alt_construct_parents = 1
+" If a PHP script has more lines than this limit (e.g., more
+" than 3000 lines), some options are automatically turned off
+" to help it load faster.  These options are:
+autocmd FileType php let php_large_file = 0
+
+" set "make" command when editing php files
+set makeprg=php\ -l\ %
+set errorformat=%m\ in\ %f\ on\ line\ %l
+" Make opens error-list automatically
+command! Make :make %|:cw
+":au BufWritePost *.php :Make
+
+" autocomplete funcs and identifiers for languages
+" Basically, while in insert mode, you can type <C-x> <C-o> to have vim
+" attempt to autocomplete the current keyword
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+" Using now the eclim (eclipse) complete function
+"autocmd FileType php set omnifunc=xpcomplete#CompletePHP
+autocmd FileType c set omnifunc=ccomplete#Complete
+
+" ~/.profile content:
+" export XP_PUB_SKEL=~/devel/xp.public/trunk/skeleton
+" export XP_PRIV_SKEL=~/devel/xp.private/trunk/xp5/skeleton
+" export XP_PRIV_SRC=~/devel/xp.private/trunk/xp5/projects/**/src/
+" export XP_PRIV_LIB=$HOME/devel/xp.private/trunk/xp5/libs/**/src/
+" export XP_CTAGS_DIR=~/devel/xp.ctags/
+
+nmap <silent> <S-F4> :!~/devel/gcode/conf/ctags/ctags_gen.sh<CR>
+set tags=./tags,tags,$XP_CTAGS_DIR/tags
+
+" -----------------------------------------------------------
+" XP.Framework 
+" -----------------------------------------------------------
+
+"includeexp anpassungen, damit auch util.TimeZone verstanden wird
+autocmd FileType php setlocal include=^\\s\\+'\\(\\w\\+\\.\\)\\+\\w\\+'\\,\\?$
+set include=^\\s\\+'\\zs\\(\\w\\+\\.\\)\\+\\w\\+\\ze'\\,\\?$
+set includeexpr=substitute(v:fname,'\\.','/','g')
+set suffixesadd=.class.php
+" gf ueber der datei, goto file
+set path+=~/devel/xp.public/trunk/skeleton
+set path+=~/devel/xp.private/trunk/xp5/skeleton
+set path+=~/devel/xp.private/trunk/xp5/projects/pet/src
+
+" -----------------------------------------------------------
+" Vim Diff
+" -----------------------------------------------------------
+
+"Ignore changes in amount of white space.
+set diffopt+=iwhite
+
+
+" -----------------------------------------------------------
+" window handling
+" -----------------------------------------------------------
+
+" minimal number of lines used for the current window
+set wh=1
+" minimal number of lines used for any window
+set wmh=0
+" make all windows the same size when adding/removing windows
+set equalalways
+"a new window is put right the current one
+set splitright
+
+" -----------------------------------------------------------
+" GUI
+" -----------------------------------------------------------
+
+" get rid of menu
+set guioptions-=m
+:let g:toggleMenu = 0
+map <silent> <S-F1> :if g:toggleMenu == 1<CR>:set guioptions-=m<CR>:set lines+=1<CR>:let g:toggleMenu = 0<CR>:else<CR>:set guioptions+=m<CR>:let g:toggleMenu = 1<CR>:endif<CR>
+
+" get rid of toolbar
+set guioptions-=T
+:let g:toggleTool = 0
+map <silent> <S-F2> :if g:toggleTool == 1<CR>:set guioptions-=T<CR>:set lines+=3<CR>:let g:toggleTool = 0<CR>:else<CR>:set lines-=3<CR>:set guioptions+=T<CR>:let g:toggleTool = 1<CR>:endif<CR>
+
+
+" -----------------------------------------------------------
+" WIN-GUI Specials
+" -----------------------------------------------------------
+
+" first of all: we don't use "behave windows"
+" to try to get a better clipboard-handling
+" (we do it ourself)
+
+if has("win32")
+    if has("gui_running")
+        " alt jumps to menu
+        set winaltkeys=menu
+        " clipboard to autoselect
+        set guioptions+=a
+
+        " ---- Windows Like keys ----
+        " CTRL-Z is Undo; not in cmdline though
+        noremap <C-Z> u
+        inoremap <C-Z> <C-O>u
+        " CTRL-Y is Redo (although not repeat); not in cmdline though
+        "noremap <C-Y> <C-R>
+        "inoremap <C-Y> <C-O><C-R>
+        " CTRL-A is Select all
+        "noremap <C-A> gggH<C-O>G
+        "inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
+        "cnoremap <C-A> <C-C>gggH<C-O>G
+        " CTRL-F4 is Close window
+        noremap <C-F4> <C-W>c
+        inoremap <C-F4> <C-O><C-W>c
+        cnoremap <C-F4> <C-C><C-W>c
+        " CTRL-Tab is Next window
+        noremap <C-Tab> <C-W>w
+        inoremap <C-Tab> <C-O><C-W>w
+        cnoremap <C-Tab> <C-C><C-W>w
+        " ---- Windows Like Copy-Paste keys ----
+        " CTRL-v is paste
+        "inoremap <C-v> <esc>"*p<return>i
+        "noremap <C-v> "*p<return>
+        " CTRL-x is cut (in visual mode only)
+        "vnoremap <C-x> "*d
+        " CTRL-c is copy (in visual mode only)
+        "vnoremap <C-c> "*y
+        " ---- Restore some remapped things 
+        " make real <C-V> (visual block) as <C-Q> available
+        noremap <c-q> <c-v>
+        inoremap <C-Y> <C-Y>
+
+    endif
+endif
+
+" -----------------------------------------------------------
+" UNIX Specials
+" -----------------------------------------------------------
+
+if has("unix")
+  set clipboard=autoselect
+  set shell=/bin/bash
+endif
+
+" -----------------------------------------------------------
+" Windows Specials
+" -----------------------------------------------------------
+if has("win32")
+  set shell=C:\Windows\system32\cmd.exe
+endif
+
+" -----------------------------------------------------------
+" Addons Settings
+" -----------------------------------------------------------
+let Tlist_Auto_Open = 1
+let Tlist_WinWidth = 40
+"let Tlist_Ctags_Cmd = "/usr/bin/ctags"
+let Tlist_Inc_Winwidth = 1
+let Tlist_Exit_OnlyWindow = 1
+"let Tlist_File_Fold_Auto_Close = 1
+let Tlist_Process_File_Always = 1
+let Tlist_Enable_Fold_Column = 0
+let tlist_php_settings = 'php;c:class;d:constant;f:function'
+
+" -----------------------------------------------------------
+" SVN, SVN, GIT
+" -----------------------------------------------------------
+let VCSCommandSVKExec = 'no_svk'
+let VCSCommandDeleteOnHide = 'yes'
+" VCSCommandEnableBufferSetup is not working
+let VCSCommandEnableBufferSetup = 'yes'
+autocmd FileType svn setlocal spell
+autocmd FileType svn setlocal spelllang=en
+autocmd FileType vcscommit setlocal spell
+autocmd FileType vcscommit setlocal spelllang=en
+autocmd FileType sql setlocal spell
+
+" -----------------------------------------------------------
+" Quicksigns
+" -----------------------------------------------------------
+set lazyredraw
+
+" -----------------------------------------------------------
+" JQuery syntax
+" -----------------------------------------------------------
+au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+
+" -----------------------------------------------------------
+" Mappings
+" -----------------------------------------------------------
+
+" CTRL-A Selection
+" nunmap <C-A>
+
+map <F7> :set spell!<CR>
+map <S-F8> :TlistAddFilesRecursive ~/devel/xp.public/trunk/skeleton<CR>
+map <S-F9> :TlistAddFilesRecursive ~/devel/xp.private/trunk/xp5/projects/pet/src<CR>:TlistAddFilesRecursive ~/devel/xp.public/trunk/skeleton<CR>
+map <F10> :set invhls<CR>:let @/="<C-r><C-w>"<CR>/<BS>
+map <S-F11> :set autoindent!<CR>
+map <F11> :w! /tmp/vim_to_sqsh<CR>:silent !cat /tmp/vim_to_sqsh \| sql_dev_ipmt &> /tmp/vim_to_sqsh.out<CR>:split /tmp/vim_to_sqsh.out<CR>
+nmap <silent> <F12> :TlistToggle<CR>
+nmap <silent> <S-F12> :new ~/.vimrc.dbi_vars<CR>
+" autocheck map <F12> :Make<CR>
+map <M-E> :Ex<CR>
+
+" apache
+map <F8> :!gksudo "gvim -u /home/$USER/.vimrc /etc/apache2/sites-enabled/"<CR>
+map <F9> :!gksudo /etc/init.d/apache2 restart<CR>
+
+" Useful mappings to paste and reformat/reindent
+:nnoremap <Esc>P P'[v']=
+:nnoremap <Esc>p p'[v']=
+
+" Search current word in file and jump to a position
+:map <F5> [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+
+" Appends / insert current date
+nmap _d "=strftime("%d.%m.%Y")<CR>p
+nmap _D "=strftime("%d.%m.%Y")<CR>P
+
+" Changes directory to the one of the current file
+nmap _h :cd%:h<CR>
+
+" Suppresses all spaces at end/beginning of lines
+nmap _s :%s/\s\+$//<CR>
+nmap _S :%s/^\s\+//<CR>
+
+" cycle thru buffers ...
+nnoremap <Leader>d :bn<cr>
+nnoremap <Leader>f :bp<cr>
+"nmap <tab> :bn<cr>
+"nmap <s-tab> :bp<cr>
+
+" Command mode mappings
+" jump to start of command line
+cnoremap <C-a> <Home>
+" jump to end of command line
+cnoremap <C-e> <End>
+
+" Normal mode mappings
+nnoremap <C-h> <C-w>h " select window to left
+nnoremap <C-j> <C-w>j " select window below
+nnoremap <C-k> <C-w>k " select window above
+nnoremap <C-l> <C-w>l " select window to right
+
+" redraw window so search terms are centered
+nnoremap n nzz
+nnoremap N Nzz
+
+" view diff between current buffer and original file it was loaded from
+" url: http://www.reddit.com/r/vim/comments/ic48s/view_diff_of_a_modified_file_and_its_original/
+nnoremap <Leader>df :call DiffOrig()<CR>
+
+function! DiffOrig()
+    if !exists("b:diff_active") && &buftype == "nofile"
+        echoerr "E: Cannot diff a scratch buffer"
+        return -1
+    elseif expand("%") == ""
+        echoerr "E: Buffer doesn't exist on disk"
+        return -1
+    endif
+
+    if !exists("b:diff_active") || b:diff_active == 0
+        let b:diff_active = 1
+        let l:orig_filetype = &l:filetype
+
+        leftabove vnew
+        set buftype=nofile
+        read #
+        0delete_
+        let &l:filetype = l:orig_filetype
+        diffthis
+        wincmd p
+        diffthis
+    else
+        diffoff
+        wincmd p
+        bdelete
+        let b:diff_active = 0
+    endif
+  endfunction
+
+" -----------------------------------------------------------
+" Other Stuff
+" -----------------------------------------------------------
+
+" jump to the last position when reopening a file
+if has("autocmd")
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+" -----------------------------------------------------------
+" SQL Stuff
+" -----------------------------------------------------------
+let g:sql_type_default = 'mysql'
+let g:omni_sql_include_owner = 0
+
+" Enable file-type for using vi in sqsh and mysql-cl
+:au BufNewFile,BufRead sqsh-edit* setf sql
+:au BufNewFile,BufRead sqsh-edit* :TlistToggle
+:au BufNewFile,BufRead /tmp/sql* setf sql
+:au BufNewFile,BufRead /tmp/sql* :TlistToggle
+:au BufNewFile,BufRead /tmp/bash-fc* setf sh
+:au BufNewFile,BufRead /tmp/bash-fc* :TlistToggle
+:au BufNewFile,BufRead *.ddl setf sql
+
+
+" highlights crontabs
+:au! BufNewFile,BufRead *.tab
+:au BufNewFile,BufRead *.tab setf crontab
+" schlund configs
+:au BufNewFile,BufRead *.conf.tmpl set ft=apache
+:au BufNewFile,BufRead */sites-available/*.conf set ft=apache
+:au BufNewFile,BufRead */sites-enabled/*.conf set ft=apache
+
+
+" Hex to Dec function
+function! Hex2Dec()
+    let lstr = getline(".")
+    let hexstr = matchstr(lstr, '0x[a-fA-F0-9]\+')
+    while hexstr != ""
+        let hexstr = hexstr + 0
+        exe 's#0x[a-fA-F0-9]\+#'.hexstr."#"
+        let lstr = substitute(lstr, '0x[a-fA-F0-9]\+', hexstr, "")
+        let hexstr = matchstr(lstr, '0x[a-fA-F0-9]\+')
+    endwhile
+endfunction
+
+" -----------------------------------------------------------
+" Plugin: Conque Shell
+" -----------------------------------------------------------
+"
+let g:Conque_Syntax = 'conque'
+let g:Conque_TERM = 'xterm'
+
+" -----------------------------------------------------------
+" Plugin: SudoW
+" -----------------------------------------------------------
+"
+let g:sudoAuth="gksudo"
+
+" -----------------------------------------------------------
+" Plugin: SuperTab
+" -----------------------------------------------------------
+"
+let g:SuperTabDefaultCompletionType='context'
+let g:SuperTabRetainCompletionDuration='session'
+let g:SuperTabLongestHighlight=1
+let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
+
+" -----------------------------------------------------------
+" Plugin: YankRing
+" -----------------------------------------------------------
+"
+let g:yankring_window_height = 12
+map <leader>yr :YRShow<cr> 
+
+" -----------------------------------------------------------
+" Plugin: CommandT
+" -----------------------------------------------------------
+"
+let g:CommandTMaxFiles=50000
+let g:CommandTMaxDepth=20
+nmap <silent> <Leader>T :CommandT<CR>
+
+" -----------------------------------------------------------
+" Plugin: Ack
+" -----------------------------------------------------------
+"
+let g:ackprg="ack -H --nocolor --nogroup --column"
+
+" -----------------------------------------------------------
+" Plugin: CheckSyntax
+" -----------------------------------------------------------
+"
+"":au BufWritePost *.php :CheckSyntax
+"":au BufWritePost *.html :CheckSyntax
+"":au BufWritePost *.xml :CheckSyntax
+"":au BufWritePost *.xsl :CheckSyntax
+let g:checksyntax_auto_javascript = 1
+let g:checksyntax_compiler_javascript='jshint'
+let g:checksyntax_auto_php = 1
+let g:checksyntax_auto_html = 1
+let g:checksyntax_auto_xml = 1
+let g:checksyntax_compiler_xml='xmllint'
+let g:checksyntax_auto_xslt = 1
+let g:checksyntax_compiler_xslt='xmllint'
+
+
+" -----------------------------------------------------------
+" Cope
+" -----------------------------------------------------------
+map <leader>qc :botright cope<cr>
+map <leader>qn :cn<cr>
+map <leader>qp :cp<cr>
+
+" -----------------------------------------------------------
+" => bufExplorer plugin
+" -----------------------------------------------------------
+"let g:bufExplorerDefaultHelp=0
+"let g:bufExplorerShowRelativePath=1
+"let g:bufExplorerSortBy = "name"
+
+" -----------------------------------------------------------
+" => Minibuffer plugin
+" -----------------------------------------------------------
+"let g:miniBufExplModSelTarget = 1
+"let g:miniBufExplorerMoreThanOne = 2
+"let g:miniBufExplModSelTarget = 0
+"let g:miniBufExplUseSingleClick = 1
+"let g:miniBufExplMapWindowNavVim = 1
+"let g:miniBufExplVSplit = 25
+"let g:miniBufExplSplitBelow=1
+"autocmd BufRead,BufNew :call UMiniBufExplorer
+"map <leader>u :TMiniBufExplorer<cr>:TMiniBufExplorer<cr>
+
+" -----------------------------------------------------------
+" => Fuzzy finder
+" -----------------------------------------------------------
+"try
+"    call fuf#defineLaunchCommand('FufCWD', 'file', 'fnamemodify(getcwd(), ''%:p:h'')')
+"    map <leader>t :FufCWD **/<CR>
+"catch
+"endtry
+
+" -----------------------------------------------------------
+" => Vim grep
+" -----------------------------------------------------------
+let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
+set grepprg=grep\ -nH
+
+" -----------------------------------------------------------
+" Plugin: ZenCoding
+" http://code.google.com/p/zen-coding/
+" -----------------------------------------------------------
+" Plugin is installed. Learn it Bitch!!! :)
+let g:user_zen_leader_key = '<c-k>'
+let g:user_zen_settings = {
+\  'indentation' : '  ',
+\  'perl' : {
+\    'aliases' : {
+\      'req' : 'require '
+\    },
+\    'snippets' : {
+\      'use' : "use strict\nuse warnings\n\n",
+\      'warn' : "warn \"|\";",
+\    }
+\  }
+\}
+
+
+" -----------------------------------------------------------
+" ftPlugin: xml
+" -----------------------------------------------------------
+" update xml.vim: if (&filetype == 'xslt' || &filetype == 'html' || &filetype == 'xhtml') && (!exists ("g:xml_no_html"))
+let xml_jump_string = "`"
+let xml_tag_syntax_prefixes = 'html\|xml\|xsl\|docbk'
+let xml_use_xhtml = 1
+
+if !exists("*XmlAttribCallback")
+function XmlAttribCallback( xml_tag )
+    if a:xml_tag ==? "table"
+        return "cellpadding=\"0\" cellspacing=\"0\" border=\"0\""
+    elseif a:xml_tag ==? "link"
+        return "href=\"/site.css\" rel=\"StyleSheet\" type=\"text/css\""
+    elseif a:xml_tag ==? "body"
+        return "bgcolor=\"white\""
+    elseif a:xml_tag ==? "frame"
+        return "name=\"NAME\" src=\"/\" scrolling=\"auto\" noresize"
+    elseif a:xml_tag ==? "frameset"
+        return "rows=\"0,*\" cols=\"*,0\" border=\"0\""
+    elseif a:xml_tag ==? "img"
+        return "src=\"\" width=\"0\" height=\"0\" border=\"0\" alt=\"\""
+    elseif a:xml_tag ==? "a"
+        if has("browse")
+            " Look up a file to fill the href. Used in local relative file
+            " links. typeing your own href before closing the tag with `>'
+            " will override this.
+            let cwd = getcwd()
+            let cwd = substitute (cwd, "\\", "/", "g")
+            let href = browse (0, "Link to href...", getcwd(), "")
+            let href = substitute (href, cwd . "/", "", "")
+            let href = substitute (href, " ", "%20", "g")
+        else
+            let href = ""
+        endif
+        return "href=\"" . href . "\""
+    else
+        return 0
+    endif
+endfunction
+endif
+
+" -----------------------------------------------------------
+" Plugin: open_file_from_clip_board : open file path that is copied in clipboard 
+" Http: http://www.vim.org/scripts/script.php?script_id=3269
+" -----------------------------------------------------------
+map <LEADER>jc :call OpenFilesFromClipboard()<CR>
+
+" -----------------------------------------------------------
+" Plugin: Acp - AutocomplPop
+" -----------------------------------------------------------
+map <leader>nc :NeoComplCacheToggle<CR>
+
+" AutoComplPop like behavior.
+let g:neocomplcache_enable_auto_select = 0
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" This variable controls the number of the input completioning at the time of key input automatically.
+let g:neocomplcache_auto_completion_start_length = 3
+let g:neocomplcache_manual_completion_start_length = 3
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+
+" When you input _, this variable controls whether
+" neocomplcache takes an ambiguous searching as an end of the
+" words in it.  For example, neocomplcache come to match it
+" with 'public_html' when you input it with 'p_h'.
+let g:neocomplcache_enable_underbar_completion = 1
+
+" Set minimum syntax keyword length. - STANDARD VALUE
+let g:neocomplcache_min_syntax_length = 4
+" "For input-saving, use - to speed up completion
+let g:neocomplcache_enable_quick_match = 1
+" This variable controls whether neocomplcache use |CursorHoldI| event when complete candidates.
+""let g:neocomplcache_enable_cursor_hold_i =1
+
+" When you input a capital letter, this variable controls
+" whether neocomplcache takes an ambiguous searching as an end
+" of the words in it.  For example, neocomplcache come to
+" match it with ArgumentsException when you input it with AE.
+let g:neocomplcache_enable_camel_case_completion = 1
+
+if !exists('g:neocomplcache_keyword_patterns')
+  let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns['php'] = '</\?\%(\h[[:alnum:]_-]*\s*\)\?\%(/\?>\)\?\|\$\h\w*\|\%(\h\w*\)*\h\w*\%(()\?\)\?'
+
+" Initialize text mode filetypes.
+if !exists('g:neocomplcache_text_mode_filetypes')
+  let g:neocomplcache_text_mode_filetypes = {}
+endif
+let g:neocomplcache_text_mode_filetypes['vcscommit'] = 1
+let g:neocomplcache_text_mode_filetypes['svn'] = 1
+
+" Initialize member prefix patterns."
+if !exists('g:neocomplcache_member_prefix_patterns')
+  let g:neocomplcache_member_prefix_patterns = {}
+endif
+let g:neocomplcache_member_prefix_patterns['perl,php']= '->\|::'
+
+" Initialize complete function list."{{{
+if !exists('g:neocomplcache_vim_completefuncs')
+  let g:neocomplcache_vim_completefuncs = {}
+endif
+" Do not use tags file, i will use instead the eclim (eclipse completion)
+"autocmd FileType php let g:neocomplcache_caching_limit_file_size= 9999999999
+"}}}
+
+
+" TODO:
+" "g:neoc-omplcache_filetype_include_lists
+
+" Define dictionary.
+""let g:neocomplcache_dictionary_filetype_lists = {
+""    \ 'default' : '/usr/share/dict/words',
+""    \ 'php' : '/usr/share/dict/words',
+""    \ 'vcscommit' : '/usr/share/dict/words',
+""    \ 'skfiletype' : $HOME.'/.skcomp_completions'
+""    \ }
+
+" Plugin key-mappings.
+imap <C-l>     <Plug>(neocomplcache_snippets_expand)
+smap <C-l>     <Plug>(neocomplcache_snippets_expand)
+inoremap <expr><C-g>     neocomplcache#undo_completion()
+inoremap <expr><C-l>     neocomplcache#complete_common_string()
+inoremap <expr><C-x><C-f>  neocomplcache#manual_filename_complete()
+inoremap <expr><C-n>  pumvisible() ? "\<C-n>" : neocomplcache#manual_keyword_complete()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+""inoremap <expr><CR>  (pumvisible() ? "\<C-y>":'') . "\<C-f>\<CR>X\<BS>"
+" <TAB>: completion.
+""inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+""inoremap <expr><C-h> pumvisible() ? neocomplcache#close_popup()."\<C-h>" : "\<C-h>"
+""inoremap <expr><BS> pumvisible() ? neocomplcache#close_popup()."\<C-h>" : "\<C-h>"
+""inoremap <expr><C-y>  neocomplcache#close_popup()
+""inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
+" AutoComplPop like behavior.
+""inoremap <expr><CR>  (pumvisible() ? "\<C-e>":'') . (&indentexpr != '' ? "\<C-f>\<CR>X\<BS>":"\<CR>")
+""inoremap <expr><C-h> pumvisible() ? neocomplcache#cancel_popup()."\<C-h>" : "\<C-h>"
+""inoremap <expr><BS> pumvisible() ? neocomplcache#cancel_popup()."\<C-h>" : "\<C-h>"
+
+" -----------------------------------------------------------
+" Function: Google map in vim :)
+" -----------------------------------------------------------
+" Stick it somewhere (.vimrc?)
+" Works with Gvim and Macvim
+" Windows users should go back to their IE6
+" Usage:
+" :Maps Birmingham,UK
+
+function! s:Maps(search)
+  let search = a:search
+  let p1 = "http://maps.google.com/maps/api/staticmap?center="
+  let p2 = "&zoom=13&size=400x400&maptype=roadmap&sensor=true&format=png"
+  let url = p1.search.p2
+  if has('gui')
+      if has('gui_gnome')
+        let cmd = "xdg-open"
+      elseif has('gui_macvim')
+        let cmd = "qlmanage -p"
+      elseif has('gui_win32')
+        " WTF?
+      endif
+  endif
+  execute ' ! curl -L "'.url.'" > /tmp/vimgmap.png | '.cmd.' /tmp/vimgmap.png'
+endfunction
+command! -bar -nargs=* Maps call s:Maps("<args>")
+
+" -----------------------------------------------------------
+" Highlight rows longer than 80 characters
+" -----------------------------------------------------------
+function! ToggleOverLengthHi()
+    if exists("b:overlengthhi") && b:overlengthhi
+        highlight clear OverLength
+        let b:overlengthhi = 0
+        echo "overlength hilight off"
+    else
+        " adjust colors/styles as desired
+        highlight OverLength ctermbg=darkred gui=undercurl guisp=blue
+        " change '81' to be 1+(number of columns)
+        match OverLength /\%81v.\+/
+        let b:overlengthhi = 1
+        echo "overlength hilight on"
+    endif
+endfunction
+map <silent> <F1> <Esc>:call ToggleOverLengthHi()<CR>
+
+" -----------------------------------------------------------
+" Create an ':html' alias to writeout an HTML-ized version of the file
+" -----------------------------------------------------------
+cab createhtml so \$VIMRUNTIME/syntax/2html.vim
+
+" -----------------------------------------------------------
+" Load dbext connection profiles, this part is secret
+" -----------------------------------------------------------
+let g:dbext_default_buffer_lines = 10
+" each buffer uses its OWN Result buffer
+let g:dbext_default_use_sep_result_buffer = 1
+let g:dbext_default_DBI_split_on_pattern = ';'
+let g:dbext_default_dict_show_owner = 0
+:let  g:dbext_default_DBI_max_rows = 1000
+"let  g:dbext_default_DBI_column_delimiter = "|"
+" will be called automatically each time the Result buffer is updated
+function! DBextPostResult(db_type, buf_nr)
+  " If dealing with a MYSQL database
+  "if a:db_type == 'MYSQL'
+      " Assuming the first column is an integer
+      " highlight it using the WarningMsg color
+      "syn match logWarn '^\d\+'
+      "hi def link logWarn		WarningMsg
+      setlocal ft=dbi_result
+      setlocal nolist
+  "endif
+  set dictionary-=/usr/share/dict/words
+endfunction
+":au BufNewFile,BufRead Result setf dbi_result
+":au BufNewFile,BufRead Result set nolist
+
+so ~/.vimrc.sql_profiles
+
+" -----------------------------------------------------------
+" Spelling mistakes / abbreviations for Insert mode
+" -----------------------------------------------------------
+iab examlpe example
+iab persond_id person_id
+iab perosn_id person_id
+iab vdvars var_dump(xdebug_get_declared_vars());
+iab vdstack var_dump(xdebug_get_function_stack());
+iab skpid 21240455
+cab dbiall let dbext_default_DBI_max_rows=0
+iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
+iab cdate <c-r>=strftime("%y-%m-%d")<cr>
+iab @@p @param
+iab @@r @return
+
+" -----------------------------------------------------------
+" Special commands
+" -----------------------------------------------------------
+command! Ointernmail :o scp://internmail/~/httpd/
+command! Svp :VCSVimDiff prev
+
+" -----------------------------------------------------------
+" Vimpager
+" Url:http://www.vim.org/scripts/script.php?script_id=1723 
+" -----------------------------------------------------------
+let vimpager_use_gvim = 1
+
+" -----------------------------------------------------------
+" Learn it Bitch!!! :)
+" -----------------------------------------------------------
+imap jj <esc>
