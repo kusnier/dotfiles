@@ -4,7 +4,7 @@ case "$TERM" in
       echo -e '\033[01;33m$Id: bashrc 1441 2011-07-31 10:41:31Z seek $'
       let "rcolor=($RANDOM % 6)+31"
       echo -e "\033[01;${rcolor}m"
-      cat $HOME/devel/gcode/conf/bash/motd
+      cat $HOME/dotfiles/bash/motd
     ;;
 esac
 # ~/.bashrc: executed by bash(1) for non-login shells.
