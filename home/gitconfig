@@ -1,0 +1,10 @@
+[user]
+  name = Sebastian Kusnier
+  email = sebastian@kusnier.net
+
+[core]
+  editor = vim
+
+[github]
+  user = kusnier
+  token = Key Goes Here
