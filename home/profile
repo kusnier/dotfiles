@@ -1,0 +1,59 @@
+# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
+
+# the default umask is set in /etc/profile
+#umask 022
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+	. "$HOME/.bashrc"
+    fi
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+if [ `uname -s` == 'Darwin' ] ; then
+  if [ -d "$HOME/devel/gcode/scripts/bin/macosx" ] ; then
+      PATH="$HOME/devel/gcode/scripts/bin/macosx:$PATH"
+  fi
+fi
+
+if [ `uname -s` == 'Linux' ] ; then
+  if [ -d "$HOME/devel/gcode/scripts/bin/linux" ] ; then
+      PATH="$HOME/devel/gcode/scripts/bin/linux:$PATH"
+  fi
+fi
+
+if [ -d "$HOME/devel/gcode/scripts/bin/all" ] ; then
+    PATH="$HOME/devel/gcode/scripts/bin/all:$PATH"
+fi
+
+. "$HOME/dotfiles/bash/paths"
+
+# mysql client (macosx)
+if [ -d "/usr/local/mysql/bin" ] ; then
+    PATH="/usr/local/mysql/bin:$PATH"
+fi
+
+# xp on macosx
+if [ -d "/Users/seek/devel/xp.bin" ] ; then
+    PATH="/Users/seek/devel/xp.bin:$PATH"
+fi
+
+if [ -d "/usr/local/lib/node" ] ; then
+  NODE_PATH="/usr/local/lib/node"
+fi
+
+
+# MacPorts Installer addition on 2009-11-08_at_09:15:10: adding an appropriate PATH variable for use with MacPorts.
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# Finished adapting your PATH environment variable for use with MacPorts.
+

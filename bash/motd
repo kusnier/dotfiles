@@ -1,0 +1,29 @@
+                  \_/
+ muh! ( _ )      -(_)-
+   \  ~O o~__     / \ 
+      (._.) |\        
+________|_|_|_________
+
+sybase: case
+http://manuals.sybase.com/onlinebooks/group-as/asg1250e/sqlug/@Generic__BookTextView/39235;hf=0
+
+VimCasts
+=========
+http://vimcasts.org/
+
+Ctrl-O:  Another really useful trick is switching to normal mode for a single command. You can do this with Ctrl-O. For instance, say you¿re typing away and you want to quickly save your work, you can type Ctrl-O :w, which will write the file and put you back in insert mode.
+
+Ctrl-Y:  insert the character right above the cursor¿you can see how this can be useful¿
+Ctrl-U:  delete the current line from the cursor position.
+Ctrl-A:  re-insert the text inserted in the previous insert session.
+
+                                       ((((
+                                        {  '>
+                                        / ,\
+                                 ______/_/ /_____
+                                       // "
+                                      /
+
+zt - current line to top of window
+zb - current line to bottom of window
+zz - to the middle of the screen

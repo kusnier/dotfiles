@@ -1,0 +1,13 @@
+# info readline
+# or man bash
+set editing-mode vi
+set bell-style none
+set completion-ignore-case on
+set expand-tilde off
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+
+$if Mysql
+    set keymap vi
+    set editing-mode vi
+$endif
