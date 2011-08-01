@@ -1,0 +1,2 @@
+ANT_OPTS="-Dant.logger.defaults=/home/$USER/.ansicolorloggerrc"
+ANT_ARGS="-logger org.apache.tools.ant.listener.AnsiColorLogger"
