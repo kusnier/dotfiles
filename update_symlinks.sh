@@ -15,6 +15,6 @@ base=false
 
 for dotfile in ~/dotfiles/home/* ; do
   base=`basename $dotfile`
-  rm ~/.$base
-  ln -s $dotfile ~/.$base
+  rm -i ~/.$base
+  ln -v -s $dotfile ~/.$base
 done
