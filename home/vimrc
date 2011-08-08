@@ -570,9 +570,9 @@ set include=^\\s\\+'\\zs\\(\\w\\+\\.\\)\\+\\w\\+\\ze'\\,\\?$
 set includeexpr=substitute(v:fname,'\\.','/','g')
 set suffixesadd=.class.php
 " gf ueber der datei, goto file
-set path+=~/devel/xp.public/trunk/skeleton
-set path+=~/devel/xp.private/trunk/xp5/skeleton
-set path+=~/devel/xp.private/trunk/xp5/projects/pet/src
+set path-=/usr/include
+set path+=~/devel/xp-framework/core/src/main/php
+set path+=~/devel/xp-framework/tools/src/main/php
 
 " -----------------------------------------------------------
 " Vim Diff
