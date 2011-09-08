@@ -307,12 +307,13 @@ set wrapscan
 set showmatch
 set matchtime=3
 set matchpairs+=<:> " these tokens belong together
-" highlight all matches...
+
+" highlight all matches..., remove hl on esc
 set hlsearch
+nnoremap <silent> <esc> :nohlsearch<return><esc>
 " ...and also during entering the pattern
 set incsearch
-" If the search term highlighting gets annoying, set a key to switch it off temporarily:
-"nmap <silent> <leader>n :silent :nohlsearch<CR>
+
 " use 'g'-flag when substituting (subst. all matches in that line, not only first)
 " to turn off, use g (why is there no -g ?)
 set gdefault
