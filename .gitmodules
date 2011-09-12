@@ -13,3 +13,6 @@
 [submodule "home/vim/bundle/vcscommand"]
 	path = home/vim/bundle/vcscommand
 	url = git://repo.or.cz/vcscommand
+[submodule "home/vim/bundle/nerdtree"]
+	path = home/vim/bundle/nerdtree
+	url = git://github.com/scrooloose/nerdtree.git
