@@ -2,7 +2,7 @@
 " Description: Highlight several words in different colors simultaneously. 
 "
 " Copyright:   (C) 2005-2008 by Yuheng Xie
-"              (C) 2008-2009 by Ingo Karkat
+"              (C) 2008-2011 by Ingo Karkat
 "   The VIM LICENSE applies to this script; see ':help copyright'. 
 "
 " Maintainer:  Ingo Karkat <ingo@karkat.de> 
@@ -13,12 +13,36 @@
 "  - Requires Vim 7.1 with "matchadd()", or Vim 7.2 or higher. 
 "  - mark.vim autoload script. 
 " 
-" Version:     2.3.2
+" Version:     2.5.0
 " Changes:
+" 06-May-2011, Ingo Karkat
+" - By default, enable g:mwAutoSaveMarks, so that marks are always persisted,
+"   but disable g:mwAutoLoadMarks, so that persisted marks have to be explicitly
+"   loaded, if that is desired. I often wondered why I got unexpected mark
+"   highlightings in a new Vim session until I realized that I had used marks in
+"   a previous session and forgot to clear them. 
+"
+" 21-Apr-2011, Ingo Karkat
+" - Expose toggling of mark display (keeping the mark patterns) via new
+"   <Plug>MarkToggle mapping. Offer :MarkClear command as a replacement for the
+"   old argumentless :Mark command, which now just disables, but not clears all
+"   marks. 
+" - Implement lazy-loading of disabled persistent marks via g:mwDoDeferredLoad
+"   flag passing to autoload/mark.vim. 
+"
+" 19-Apr-2011, Ingo Karkat
+" - ENH: Add explicit mark persistence via :MarkLoad and :MarkSave commands and
+"   automatic persistence via the g:mwAutoLoadMarks and g:mwAutoSaveMarks
+"   configuration flags. 
+"
+" 15-Apr-2011, Ingo Karkat
+" - Avoid losing the mark highlightings on :syn on or :colorscheme commands.
+"   Thanks to Zhou YiChao for alerting me to this issue and suggesting a fix. 
+"
 " 17-Nov-2009, Ingo Karkat
-"   - Replaced the (overly) generic mark#GetVisualSelectionEscaped() with
-"     mark#GetVisualSelectionAsRegexp() and
-"     mark#GetVisualSelectionAsLiteralPattern(). 
+" - Replaced the (overly) generic mark#GetVisualSelectionEscaped() with
+"   mark#GetVisualSelectionAsRegexp() and
+"   mark#GetVisualSelectionAsLiteralPattern(). 
 "
 " 04-Jul-2009, Ingo Karkat
 " - A [count] before any mapping either caused "No range allowed" error or just
@@ -133,14 +157,32 @@ if exists('g:loaded_mark') || (v:version == 701 && ! exists('*matchadd')) || (v:
 endif
 let g:loaded_mark = 1
 
+"- configuration --------------------------------------------------------------
+if ! exists('g:mwHistAdd')
+	let g:mwHistAdd = '/@'
+endif
+
+if ! exists('g:mwAutoLoadMarks')
+	let g:mwAutoLoadMarks = 0
+endif
+
+if ! exists('g:mwAutoSaveMarks')
+	let g:mwAutoSaveMarks = 1
+endif
+
+
 "- default highlightings ------------------------------------------------------
-" You may define your own colors in your vimrc file, in the form as below:
-highlight def MarkWord1  ctermbg=Cyan     ctermfg=Black  guibg=#8CCBEA    guifg=Black
-highlight def MarkWord2  ctermbg=Green    ctermfg=Black  guibg=#A4E57E    guifg=Black
-highlight def MarkWord3  ctermbg=Yellow   ctermfg=Black  guibg=#FFDB72    guifg=Black
-highlight def MarkWord4  ctermbg=Red      ctermfg=Black  guibg=#FF7272    guifg=Black
-highlight def MarkWord5  ctermbg=Magenta  ctermfg=Black  guibg=#FFB3FF    guifg=Black
-highlight def MarkWord6  ctermbg=Blue     ctermfg=Black  guibg=#9999FF    guifg=Black
+function! s:DefaultHighlightings()
+	" You may define your own colors in your vimrc file, in the form as below:
+	highlight def MarkWord1  ctermbg=Cyan     ctermfg=Black  guibg=#8CCBEA    guifg=Black
+	highlight def MarkWord2  ctermbg=Green    ctermfg=Black  guibg=#A4E57E    guifg=Black
+	highlight def MarkWord3  ctermbg=Yellow   ctermfg=Black  guibg=#FFDB72    guifg=Black
+	highlight def MarkWord4  ctermbg=Red      ctermfg=Black  guibg=#FF7272    guifg=Black
+	highlight def MarkWord5  ctermbg=Magenta  ctermfg=Black  guibg=#FFB3FF    guifg=Black
+	highlight def MarkWord6  ctermbg=Blue     ctermfg=Black  guibg=#9999FF    guifg=Black
+endfunction
+call s:DefaultHighlightings()
+autocmd ColorScheme * call <SID>DefaultHighlightings()
 
 " Default highlighting for the special search type. 
 " You can override this by defining / linking the 'SearchSpecialSearchType'
@@ -154,7 +196,8 @@ vnoremap <silent> <Plug>MarkSet   <C-\><C-n>:call mark#DoMark(mark#GetVisualSele
 nnoremap <silent> <Plug>MarkRegex :<C-u>call mark#MarkRegex('')<CR>
 vnoremap <silent> <Plug>MarkRegex <C-\><C-n>:call mark#MarkRegex(mark#GetVisualSelectionAsRegexp())<CR>
 nnoremap <silent> <Plug>MarkClear :<C-u>call mark#DoMark(mark#CurrentMark()[0])<CR>
-nnoremap <silent> <Plug>MarkAllClear :<C-u>call mark#DoMark()<CR>
+nnoremap <silent> <Plug>MarkAllClear :<C-u>call mark#ClearAll()<CR>
+nnoremap <silent> <Plug>MarkToggle :<C-u>call mark#Toggle()<CR>
 
 nnoremap <silent> <Plug>MarkSearchCurrentNext :<C-u>call mark#SearchCurrentMark(0)<CR>
 nnoremap <silent> <Plug>MarkSearchCurrentPrev :<C-u>call mark#SearchCurrentMark(1)<CR>
@@ -182,6 +225,7 @@ if !hasmapto('<Plug>MarkClear', 'n')
 	nmap <unique> <silent> <Leader>n <Plug>MarkClear
 endif
 " No default mapping for <Plug>MarkAllClear. 
+" No default mapping for <Plug>MarkToggle. 
 
 if !hasmapto('<Plug>MarkSearchCurrentNext', 'n')
 	nmap <unique> <silent> <Leader>* <Plug>MarkSearchCurrentNext
@@ -205,5 +249,41 @@ endif
 
 "- commands -------------------------------------------------------------------
 command! -nargs=? Mark call mark#DoMark(<f-args>)
+command! -bar MarkClear call mark#ClearAll()
+
+command! -bar MarkLoad call mark#LoadCommand(1)
+command! -bar MarkSave call mark#SaveCommand()
+
+
+"- marks persistence ----------------------------------------------------------
+if g:mwAutoLoadMarks
+	" As the viminfo is only processed after sourcing of the runtime files, the
+	" persistent global variables are not yet available here. Defer this until Vim
+	" startup has completed. 
+	function! s:AutoLoadMarks()
+		if g:mwAutoLoadMarks && exists('g:MARK_MARKS') && g:MARK_MARKS !=# '[]'
+			if ! exists('g:MARK_ENABLED') || g:MARK_ENABLED
+				" There are persistent marks and they haven't been disabled; we need to
+				" show them right now. 
+				call mark#LoadCommand(0)
+			else
+				" Though there are persistent marks, they have been disabled. We avoid
+				" sourcing the autoload script and its invasive autocmds right now;
+				" maybe the marks are never turned on. We just inform the autoload
+				" script that it should do this once it is sourced on-demand by a
+				" mark mapping or command. 
+				let g:mwDoDeferredLoad = 1
+			endif
+		endif
+	endfunction
+
+	augroup MarkInitialization
+		autocmd!
+		" Note: Avoid triggering the autoload unless there actually are persistent
+		" marks. For that, we need to check that g:MARK_MARKS doesn't contain the
+		" empty list representation, and also :execute the :call. 
+		autocmd VimEnter * call <SID>AutoLoadMarks()
+	augroup END
+endif
 
 " vim: ts=2 sw=2
