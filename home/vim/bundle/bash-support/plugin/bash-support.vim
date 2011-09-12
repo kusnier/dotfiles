@@ -83,7 +83,7 @@ else
 	"
 	if match( s:sourced_script_file, expand("$HOME") ) == 0
 		" user installation assumed
-		let s:plugin_dir  						= $HOME.'/.vim/'
+		let s:plugin_dir  						= expand("<sfile>:p:h:h")
 	else
 		" system wide installation
 		let s:installation						= 'system'
@@ -92,9 +92,9 @@ else
 		let s:BASH_GlobalTemplateFile	= s:BASH_GlobalTemplateDir.'/Templates'
 	end
 	"
-	let s:BASH_LocalTemplateFile		= $HOME.'/.vim/bash-support/templates/Templates'
+	let s:BASH_LocalTemplateFile		= s:plugin_dir.'/bash-support/templates/Templates'
 	let s:BASH_LocalTemplateDir			= fnamemodify( s:BASH_LocalTemplateFile, ":p:h" ).'/'
-	let s:BASH_CodeSnippets  				= $HOME.'/.vim/bash-support/codesnippets/'
+	let s:BASH_CodeSnippets  				= s:plugin_dir.'/bash-support/codesnippets/'
 	let s:BASH_BASH									= $SHELL
 	let s:BASH_Man        					= 'man'
 	let s:BASH_OutputGvim						= 'vim'
