@@ -7,3 +7,6 @@
 [submodule "home/vim/bundle/vim-surround"]
 	path = home/vim/bundle/vim-surround
 	url = git://github.com/tpope/vim-surround.git
+[submodule "home/vim/bundle/vim-jade"]
+	path = home/vim/bundle/vim-jade
+	url = git://github.com/digitaltoad/vim-jade.git
