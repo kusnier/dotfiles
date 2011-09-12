@@ -31,3 +31,6 @@
 [submodule "home/vim/bundle/checksyntax_vim"]
 	path = home/vim/bundle/checksyntax_vim
 	url = git://github.com/tomtom/checksyntax_vim.git
+[submodule "home/vim/bundle/recover"]
+	path = home/vim/bundle/recover
+	url = https://github.com/chrisbra/Recover.vim
