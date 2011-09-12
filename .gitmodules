@@ -19,3 +19,6 @@
 [submodule "home/vim/bundle/nerdcommenter"]
 	path = home/vim/bundle/nerdcommenter
 	url = git://github.com/scrooloose/nerdcommenter.git
+[submodule "home/vim/bundle/supertab"]
+	path = home/vim/bundle/supertab
+	url = git://github.com/ervandew/supertab.git
