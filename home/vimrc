@@ -914,6 +914,23 @@ let g:checksyntax_compiler_xml='xmllint'
 let g:checksyntax_auto_xslt = 1
 let g:checksyntax_compiler_xslt='xmllint'
 
+" -----------------------------------------------------------
+" Plugin: NERDCommenter
+" -----------------------------------------------------------
+"
+let g:NERDCreateDefaultMappings = 0
+nmap <leader>ccc <plug>NERDCommenterComment
+nmap <leader>cc<space> <plug>NERDCommenterToggle
+nmap <leader>ccm <plug>NERDCommenterMinimal
+nmap <leader>ccs <plug>NERDCommenterSexy
+nmap <leader>cci <plug>NERDCommenterInvert
+nmap <leader>ccy <plug>NERDCommenterYank
+nmap <leader>ccl <plug>NERDCommenterAlignLeft
+nmap <leader>ccb <plug>NERDCommenterAlignBoth
+nmap <leader>ccn <plug>NERDCommenterNest
+nmap <leader>ccu <plug>NERDCommenterUncomment
+nmap <leader>cc$ <plug>NERDCommenterToEOL
+nmap <leader>ccA <plug>NERDCommenterAppend
 
 " -----------------------------------------------------------
 " Cope
