@@ -145,7 +145,6 @@
 'width'	css21.txt	/*'width'*
 'word-spacing'	css21.txt	/*'word-spacing'*
 'z-index'	css21.txt	/*'z-index'*
-:CheckSyntax	checksyntax.txt	/*:CheckSyntax*
 :CloseSession	session.txt	/*:CloseSession*
 :CommandT	command-t.txt	/*:CommandT*
 :CommandTBuffer	command-t.txt	/*:CommandTBuffer*
@@ -451,7 +450,6 @@ cfi-functions	cfi.txt	/*cfi-functions*
 cfi-interface	cfi.txt	/*cfi-interface*
 cfi-introduction	cfi.txt	/*cfi-introduction*
 cfi.txt	cfi.txt	/*cfi.txt*
-checksyntax.txt	checksyntax.txt	/*checksyntax.txt*
 command-t	command-t.txt	/*command-t*
 command-t-authors	command-t.txt	/*command-t-authors*
 command-t-commands	command-t.txt	/*command-t-commands*
