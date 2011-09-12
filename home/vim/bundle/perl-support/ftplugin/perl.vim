@@ -3,7 +3,7 @@
 "   Language :  Perl
 "     Plugin :  perl-support.vim
 " Maintainer :  Fritz Mehner <mehner@fh-swf.de>
-"   Revision :  $Id: perl.vim,v 1.65 2010/04/28 19:10:13 mehner Exp $
+"   Revision :  $Id: perl.vim,v 1.79 2011/08/19 13:42:26 mehner Exp $
 "
 " ----------------------------------------------------------------------------
 "
@@ -24,6 +24,9 @@ let s:MSWIN = has("win16") || has("win32")   || has("win64")    || has("win95")
 "
 setlocal  tabstop=4
 setlocal  shiftwidth=4
+if exists('g:Perl_Perltidy') && g:Perl_Perltidy == 'on' && executable("perltidy")
+	setlocal equalprg='perltidy'
+endif
 "
 " ---------- Add ':' to the keyword characters -------------------------------
 "            Tokens like 'File::Find' are recognized as
@@ -102,19 +105,25 @@ endif
 if !exists("g:Perl_NoKeyMappings") || ( exists("g:Perl_NoKeyMappings") && g:Perl_NoKeyMappings!=1 )
   " ---------- plugin help -----------------------------------------------------
   "
+   map    <buffer>  <silent>  <LocalLeader>rp         :call Perl_perldoc()<CR>
+   map    <buffer>  <silent>  <LocalLeader>h          :call Perl_perldoc()<CR>
    map    <buffer>  <silent>  <LocalLeader>hp         :call Perl_HelpPerlsupport()<CR>
+  "
+  imap    <buffer>  <silent>  <LocalLeader>rp    <C-C>:call Perl_perldoc()<CR>
+  imap    <buffer>  <silent>  <LocalLeader>h     <C-C>:call Perl_perldoc()<CR>
   imap    <buffer>  <silent>  <LocalLeader>hp    <C-C>:call Perl_HelpPerlsupport()<CR>
   "
   " ----------------------------------------------------------------------------
   " Comments
   " ----------------------------------------------------------------------------
   "
-  inoremap    <buffer>  <silent>  <LocalLeader>cj    <C-C>:call Perl_AlignLineEndComm("a")<CR>a
-  inoremap    <buffer>  <silent>  <LocalLeader>cl    <C-C>:call Perl_LineEndComment("")<CR>A
-  nnoremap    <buffer>  <silent>  <LocalLeader>cj         :call Perl_AlignLineEndComm("a")<CR>
-  nnoremap    <buffer>  <silent>  <LocalLeader>cl         :call Perl_LineEndComment("")<CR>A
-  vnoremap    <buffer>  <silent>  <LocalLeader>cj    <C-C>:call Perl_AlignLineEndComm("v")<CR>
-  vnoremap    <buffer>  <silent>  <LocalLeader>cl    <C-C>:call Perl_MultiLineEndComments()<CR>A
+  nnoremap    <buffer>  <silent>  <LocalLeader>cl         :call Perl_EndOfLineComment()<CR>
+  inoremap    <buffer>  <silent>  <LocalLeader>cl    <C-C>:call Perl_EndOfLineComment()<CR>
+  vnoremap    <buffer>  <silent>  <LocalLeader>cl    <C-C>:call Perl_MultiLineEndComments()<CR>a
+	"
+  nnoremap    <buffer>  <silent>  <LocalLeader>cj         :call Perl_AlignLineEndComm()<CR>
+  inoremap    <buffer>  <silent>  <LocalLeader>cj    <C-C>:call Perl_AlignLineEndComm()<CR>a
+  vnoremap    <buffer>  <silent>  <LocalLeader>cj         :call Perl_AlignLineEndComm()<CR>
 
   nnoremap    <buffer>  <silent>  <LocalLeader>cs         :call Perl_GetLineEndCommCol()<CR>
 
@@ -143,13 +152,12 @@ if !exists("g:Perl_NoKeyMappings") || ( exists("g:Perl_NoKeyMappings") && g:Perl
 
   inoremap    <buffer>  <silent>  <LocalLeader>ckb   <C-C>$:call Perl_InsertTemplate("comment.keyword-bug")<CR>
   inoremap    <buffer>  <silent>  <LocalLeader>ckt   <C-C>$:call Perl_InsertTemplate("comment.keyword-todo")<CR>
-  inoremap    <buffer>  <silent>  <LocalLeader>ckr   <C-C>$:call Perl_InsertTemplate("comment.keyword-tricky")<CR>
   inoremap    <buffer>  <silent>  <LocalLeader>ckw   <C-C>$:call Perl_InsertTemplate("comment.keyword-warning")<CR>
   inoremap    <buffer>  <silent>  <LocalLeader>cko   <C-C>$:call Perl_InsertTemplate("comment.keyword-workaround")<CR>
   inoremap    <buffer>  <silent>  <LocalLeader>ckn   <C-C>$:call Perl_InsertTemplate("comment.keyword-keyword")<CR>
 
   nnoremap    <buffer>  <silent>  <LocalLeader>cc         :call Perl_CommentToggle()<CR>j
-  vnoremap    <buffer>  <silent>  <LocalLeader>cc    <C-C>:call Perl_CommentToggleRange()<CR>j
+  vnoremap    <buffer>  <silent>  <LocalLeader>cc         :call Perl_CommentToggle()<CR>j
 
   nnoremap    <buffer>  <silent>  <LocalLeader>cd    <Esc>:call Perl_InsertDateAndTime("d")<CR>
   inoremap    <buffer>  <silent>  <LocalLeader>cd    <Esc>:call Perl_InsertDateAndTime("d")<CR>a
@@ -209,14 +217,23 @@ if !exists("g:Perl_NoKeyMappings") || ( exists("g:Perl_NoKeyMappings") && g:Perl
   " Snippets
   " ----------------------------------------------------------------------------
   "
-  nnoremap    <buffer>  <silent>  <LocalLeader>nr    <C-C>:call Perl_CodeSnippet("r")<CR>
-  nnoremap    <buffer>  <silent>  <LocalLeader>nw    <C-C>:call Perl_CodeSnippet("w")<CR>
-  vnoremap    <buffer>  <silent>  <LocalLeader>nw    <C-C>:call Perl_CodeSnippet("wv")<CR>
-  nnoremap    <buffer>  <silent>  <LocalLeader>ne    <C-C>:call Perl_CodeSnippet("e")<CR>
+  nnoremap    <buffer>  <silent>  <LocalLeader>nr         :call Perl_CodeSnippet("r")<CR>
+  nnoremap    <buffer>  <silent>  <LocalLeader>nw         :call Perl_CodeSnippet("w")<CR>
+  vnoremap    <buffer>  <silent>  <LocalLeader>nw    <Esc>:call Perl_CodeSnippet("wv")<CR>
+  nnoremap    <buffer>  <silent>  <LocalLeader>ne         :call Perl_CodeSnippet("e")<CR>
   "
-  noremap    <buffer>  <silent>  <LocalLeader>ntl        :call Perl_EditTemplates("local")<CR>
-  noremap    <buffer>  <silent>  <LocalLeader>ntg        :call Perl_EditTemplates("global")<CR>
-  noremap    <buffer>  <silent>  <LocalLeader>ntr        :call Perl_RereadTemplates()<CR>
+  inoremap    <buffer>  <silent>  <LocalLeader>nr    <Esc>:call Perl_CodeSnippet("r")<CR>
+  inoremap    <buffer>  <silent>  <LocalLeader>nw    <Esc>:call Perl_CodeSnippet("w")<CR>
+  inoremap    <buffer>  <silent>  <LocalLeader>ne    <Esc>:call Perl_CodeSnippet("e")<CR>
+  "
+  nnoremap    <buffer>  <silent>  <LocalLeader>ntl        :call Perl_BrowseTemplateFiles("Local")<CR>
+  inoremap    <buffer>  <silent>  <LocalLeader>ntl   <Esc>:call Perl_BrowseTemplateFiles("Local")<CR>
+	if g:Perl_Installation == 'system'
+		nnoremap    <buffer>  <silent>  <LocalLeader>ntg      :call Perl_BrowseTemplateFiles("Global")<CR>
+		inoremap    <buffer>  <silent>  <LocalLeader>ntg <Esc>:call Perl_BrowseTemplateFiles("Global")<CR>
+	endif
+  nnoremap    <buffer>  <silent>  <LocalLeader>ntr        :call Perl_RereadTemplates()<CR>
+  inoremap    <buffer>  <silent>  <LocalLeader>ntr   <Esc>:call Perl_RereadTemplates()<CR>
   "
   " ----------------------------------------------------------------------------
   " Idioms
@@ -342,19 +359,31 @@ if !exists("g:Perl_NoKeyMappings") || ( exists("g:Perl_NoKeyMappings") && g:Perl
   " POD
   " ----------------------------------------------------------------------------
   "
-   map    <buffer>  <silent>  <LocalLeader>pod         :call Perl_PodCheck()<CR>
-   map    <buffer>  <silent>  <LocalLeader>podh        :call Perl_POD('html')<CR>
-   map    <buffer>  <silent>  <LocalLeader>podm        :call Perl_POD('man')<CR>
-   map    <buffer>  <silent>  <LocalLeader>podt        :call Perl_POD('text')<CR>
+  nnoremap    <buffer>  <silent>  <LocalLeader>pod        :call Perl_PodCheck()<CR>
+  nnoremap    <buffer>  <silent>  <LocalLeader>podh       :call Perl_POD('html')<CR>
+  nnoremap    <buffer>  <silent>  <LocalLeader>podm       :call Perl_POD('man')<CR>
+  nnoremap    <buffer>  <silent>  <LocalLeader>podt       :call Perl_POD('text')<CR>
+  "
+  inoremap    <buffer>  <silent>  <LocalLeader>pod   <Esc>:call Perl_PodCheck()<CR>
+  inoremap    <buffer>  <silent>  <LocalLeader>podh  <Esc>:call Perl_POD('html')<CR>
+  inoremap    <buffer>  <silent>  <LocalLeader>podm  <Esc>:call Perl_POD('man')<CR>
+  inoremap    <buffer>  <silent>  <LocalLeader>podt  <Esc>:call Perl_POD('text')<CR>
   "
   " ----------------------------------------------------------------------------
   " Profiling
   " ----------------------------------------------------------------------------
   "
-   map    <buffer>  <silent>  <LocalLeader>rps         :call perlsupportprofiling#Perl_Smallprof()<CR>
-   map    <buffer>  <silent>  <LocalLeader>rpf         :call perlsupportprofiling#Perl_Fastprof()<CR>
-   map    <buffer>  <silent>  <LocalLeader>rpn         :call perlsupportprofiling#Perl_NYTprof()<CR>
-   map    <buffer>  <silent>  <LocalLeader>rpnc        :call perlsupportprofiling#Perl_NYTprofReadCSV("read","line")<CR>
+  nnoremap    <buffer>  <silent>  <LocalLeader>rps         :call perlsupportprofiling#Perl_Smallprof()<CR>
+  nnoremap    <buffer>  <silent>  <LocalLeader>rpf         :call perlsupportprofiling#Perl_Fastprof()<CR>
+  nnoremap    <buffer>  <silent>  <LocalLeader>rpn         :call perlsupportprofiling#Perl_NYTprof()<CR>
+  nnoremap    <buffer>  <silent>  <LocalLeader>rpnc        :call perlsupportprofiling#Perl_NYTprofReadCSV("read","line")<CR>
+  nnoremap    <buffer>  <silent>  <LocalLeader>rpnh        :call perlsupportprofiling#Perl_NYTprofReadHtml()<CR>
+  "
+  inoremap    <buffer>  <silent>  <LocalLeader>rps    <C-C>:call perlsupportprofiling#Perl_Smallprof()<CR>
+  inoremap    <buffer>  <silent>  <LocalLeader>rpf    <C-C>:call perlsupportprofiling#Perl_Fastprof()<CR>
+  inoremap    <buffer>  <silent>  <LocalLeader>rpn    <C-C>:call perlsupportprofiling#Perl_NYTprof()<CR>
+  inoremap    <buffer>  <silent>  <LocalLeader>rpnc   <C-C>:call perlsupportprofiling#Perl_NYTprofReadCSV("read","line")<CR>
+  inoremap    <buffer>  <silent>  <LocalLeader>rpnh   <C-C>:call perlsupportprofiling#Perl_NYTprofReadHtml()<CR>
   "
   " ----------------------------------------------------------------------------
   " Run
@@ -382,9 +411,6 @@ if !exists("g:Perl_NoKeyMappings") || ( exists("g:Perl_NoKeyMappings") && g:Perl
     inoremap    <buffer>  <silent>  <LocalLeader>re    <C-C>:call Perl_MakeScriptExecutable()<CR>
   endif
   "
-   map    <buffer>  <silent>  <LocalLeader>rp         :call Perl_perldoc()<CR>
-   map    <buffer>  <silent>  <LocalLeader>h          :call Perl_perldoc()<CR>
-  "
    map    <buffer>  <silent>  <LocalLeader>ri         :call Perl_perldoc_show_module_list()<CR>
    map    <buffer>  <silent>  <LocalLeader>rg         :call Perl_perldoc_generate_module_list()<CR>
   "
@@ -397,8 +423,18 @@ if !exists("g:Perl_NoKeyMappings") || ( exists("g:Perl_NoKeyMappings") && g:Perl
   vmap    <buffer>  <silent>  <LocalLeader>rh    <C-C>:call Perl_Hardcopy("v")<CR>
   "
    map    <buffer>  <silent>  <LocalLeader>rk    :call Perl_Settings()<CR>
+  "
+  imap    <buffer>  <silent>  <LocalLeader>ri    <C-C>:call Perl_perldoc_show_module_list()<CR>
+  imap    <buffer>  <silent>  <LocalLeader>rg    <C-C>:call Perl_perldoc_generate_module_list()<CR>
+  imap    <buffer>  <silent>  <LocalLeader>ry    <C-C>:call Perl_Perltidy("n")<CR>
+  imap    <buffer>  <silent>  <LocalLeader>rc    <C-C>:call Perl_Perlcritic()<CR>
+  imap    <buffer>  <silent>  <LocalLeader>rt    <C-C>:call Perl_SaveWithTimestamp()<CR>
+  imap    <buffer>  <silent>  <LocalLeader>rh    <C-C>:call Perl_Hardcopy("n")<CR>
+  imap    <buffer>  <silent>  <LocalLeader>rk    <C-C>:call Perl_Settings()<CR>
+	 "
   if has("gui_running") && s:UNIX
-     map    <buffer>  <silent>  <LocalLeader>rx    :call Perl_XtermSize()<CR>
+     map    <buffer>  <silent>  <LocalLeader>rx        :call Perl_XtermSize()<CR>
+    imap    <buffer>  <silent>  <LocalLeader>rx   <C-C>:call Perl_XtermSize()<CR>
   endif
   "
    map    <buffer>  <silent>  <LocalLeader>ro         :call Perl_Toggle_Gvim_Xterm()<CR>
@@ -411,13 +447,34 @@ endif
 "  Generate (possibly exuberant) Ctags style tags for Perl sourcecode.
 "  Controlled by g:Perl_PerlTags, enabled by default.
 " ----------------------------------------------------------------------------
-if has('perl') && g:Perl_PerlTags == 'enabled'
-  let g:Perl_PerlTagsTempfile = tempname()
-  if getfsize( expand('%') ) > 0
-    call Perl_do_tags( expand('%'), g:Perl_PerlTagsTempfile )
-  endif
+if has('perl') && exists("g:Perl_PerlTags") && g:Perl_PerlTags == 'on'
+
+	if ! exists("s:defined_functions")
+		function s:init_tags()
+			perl <<EOF
+			require Perl::Tags;
+			$naive_tagger = Perl::Tags::Naive->new( max_level=>2 );
+			# only go one level down by default
+EOF
+		endfunction
+
+		" let vim do the tempfile cleanup and protection
+		let s:tagsfile = tempname()
+
+		call s:init_tags() " only the first time
+
+		let s:defined_functions = 1
+	endif
+
+	call Perl_do_tags( expand('%'), s:tagsfile )
+
+	augroup perltags
+		au!
+		autocmd BufRead,BufWritePost *.pm,*.pl call Perl_do_tags(expand('%'), s:tagsfile)
+	augroup END
+
 endif
-"
+
 "-------------------------------------------------------------------------------
 " additional mapping : {<CR> always opens a block
 "-------------------------------------------------------------------------------
@@ -429,3 +486,4 @@ if !exists("g:Perl_Ctrl_j") || ( exists("g:Perl_Ctrl_j") && g:Perl_Ctrl_j != 'of
   imap    <buffer>  <silent>  <C-j>     <C-R>=Perl_JumpCtrlJ()<CR>
 endif
 " ----------------------------------------------------------------------------
+"

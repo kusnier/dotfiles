@@ -10,8 +10,8 @@
 "       Company:  FH Südwestfalen, Iserlohn
 "       Version:  1.0
 "       Created:  16.12.2008 18:16:55
-"      Revision:  $Id: perlsupportregex.vim,v 1.22 2010/05/10 14:49:05 mehner Exp $
-"       License:  Copyright 2008-2009 Dr. Fritz Mehner
+"      Revision:  $Id: perlsupportregex.vim,v 1.25 2011/08/20 13:12:20 mehner Exp $
+"       License:  Copyright 2008-2010 Dr. Fritz Mehner
 "===============================================================================
 "
 " Exit quickly when:
@@ -55,7 +55,7 @@ function! perlsupportregex#Perl_RegexExplain( mode )
   endif
 
   if a:mode == 'v'
-    call Perl_RegexPick ( "regexp", "v" )
+    call perlsupportregex#Perl_RegexPick ( "regexp", "v" )
   endif
 
   if bufloaded(s:Perl_PerlRegexBufferName) != 0 && bufwinnr(s:Perl_PerlRegexBufferNumber) != -1
@@ -114,12 +114,12 @@ endfunction    " ----------  end of function Perl_RegexCodeEvaluation  ---------
 "   item : regexp | string
 "   mode : n | v
 "------------------------------------------------------------------------------
-function! perlsupportregex#Perl_RegexPick ( item, mode )
+function! perlsupportregex#Perl_RegexPick ( item, mode ) range
   "
   " the complete line; remove leading and trailing whitespaces
   "
   if a:mode == 'n'
-    let line  = getline(line("."))
+    let line  = join( getline( a:firstline, a:lastline ), "\n" )
     if  s:MSWIN
       " MSWIN : copy item to the yank-register, remove trailing CR
       let line  = substitute( line, "\n$", '', '' )
@@ -222,6 +222,7 @@ function! perlsupportregex#Perl_RegexVisualize( )
   "
   " remove content if any:
   silent normal ggdG
+	let s:Perl_PerlRegexMatch                 = ''
 
   perl <<EOF_regex_evaluate
 
@@ -508,6 +509,7 @@ EOF_regex_evaluate
   " Vim regex pattern (range 33 ... 126 or '!' ... '~').
   "-------------------------------------------------------------------------------
   exe ":match none"
+
   if s:Perl_PerlRegexMatch != ''
     let nr    = char2nr('!')
     let tilde = char2nr('~')

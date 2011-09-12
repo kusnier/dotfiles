@@ -1,8 +1,8 @@
-*perlsupport.txt*                Perl Support                   April 28 2010
+*perlsupport.txt*                Perl Support                  September 11 2011
 
 Perl Support                                      *perl-support* *perlsupport*
 
-                              Plugin version 4.8
+                              Plugin version 4.13
                         for Vim version 7.0 and above
                        Fritz Mehner  <mehner@fh-swf.de>
 
@@ -76,6 +76,7 @@ profiler can be done with a keystroke.
  4.4      Navigate through PODs           |perlsupport-custom-navigate|
  4.5      Tabulator width                 |perlsupport-custom-tab|
  4.6      System-wide installation        |perlsupport-system-wide|
+ 4.7      Non-standard installation       |perlsupport-non-standard|
  5.      Template files and tags          |perlsupport-templates|
  5.1      Template files                  |perlsupport-templates-files|
  5.2      Macros                          |perlsupport-templates-macros|
@@ -105,8 +106,8 @@ profiler can be done with a keystroke.
 1.  USAGE WITH GUI  (gVim)                            *perlsupport-usage-gvim*
 ==============================================================================
 
-Nearly all menu entries insert code snippets or comments. All these stuff is
-taken from template files and can be changed by the user to meet his
+Nearly all menu entries insert code snippets or comments. All of these are
+contained within template files and can be changed by the user to meet their
 requirements (see|perlsupport-templates|).
 
 If the root menu 'Perl' is not visible call it with the item
@@ -139,7 +140,7 @@ my  $x1111     = 1111;                          #
 
 my  $x11111111 = 11111111;                      #
 
-The cursor position above is marked by '|' . Empty lines will be ignored.
+The cursor position above is marked by '|'. Empty lines will be ignored.
 
 The default starting column is 49 ( = (multiple of 2,4, or 8) + 1 ).  This can
 be changed by setting a global variable in the file .vimrc , e.g. :
@@ -147,7 +148,7 @@ be changed by setting a global variable in the file .vimrc , e.g. :
   let g:Perl_LineEndCommColDefault    = 45
 
 The starting column can also be set by the menu item 'Comments->Set End Comm.
-Col.' . Just position the cursor in an arbitrary column (column number is
+Col.'. Just position the cursor in an arbitrary column (column number is
 shown in the Vim status line) and choose this menu item.  This setting is
 buffer related.
 
@@ -433,8 +434,8 @@ The default value is 'gui'.
 
 1.4.2  Code Templates                             *perlsupport-templates-menu*
 ---------------------
-Nearly all menu entries insert code snippets or comments. All these stuff is
-taken from template files and can be changed by the user to meet his
+Nearly all menu entries insert code snippets or comments. All of these are
+contained within template files and can be changed by the user to meet their
 requirements (see|perlsupport-templates|on how to use the template system).
 
 The menu item 'edit local templates' opens the main template file in a local
@@ -899,6 +900,7 @@ g:Perl_Debugger (possible values: 'perl', 'ptkdb', 'ddd' ). The default is
 
 (1) perl
 The script will be run as 'perl -d my-script.pl my-arguments' in an xterm.
+Perl switches set with \rw or from the menu will be used.
 
 (2) ptkdb
 The debugger ptkdb will be started as an independent process. ptkdb is a Perl
@@ -965,6 +967,9 @@ help window using the hot keys <Shift-F1>, \h or \rp .
 Looking up help with Shift-F1 works also in the perldoc help window.
 Vim (without GUI): only \h and \rp are working.
 
+The module list can be folded (see |folding|). The Folding is defined by the
+Perl package name separator '::'.
+
 1.9.10  RUN PERLTIDY                                    *perlsupport-perltidy*
 --------------------
 The buffer can be formatted with perltidy. If nothing is marked the whole
@@ -992,6 +997,21 @@ See also |perlsupport-troubleshooting|.
 When using gVim you can mark a region of a non-Perl file to be processed by
 perltidy by using the menu item 'Run->run perltidy'. This can be used to
 format embedded Perl code.
+
+Perltidy can be used as standard beautifier (commands "={motion}", see |=| )
+by setting a global variable in the file .vimrc :
+
+  let g:Perl_Perltidy  = 'on'
+
+The default is 'off'.
+
+Perltidy can empty your buffer completely in case of an error.  Setting a
+global variable in the file .vimrc will write a backup file in the current
+directory:
+
+  let g:Perl_PerltidyBackup  = 'on'
+
+The default is 'off'.
 
 
 1.9.11  PROFILER                                        *perlsupport-profiler*
@@ -1100,6 +1120,8 @@ An alternative way to open these files is the ex-command
 
  :NYTProfCSV
 
+or using the hotkey \rpnc.
+
 After the Return you are asked for a file (file browser or command line with
 tab-expansion).
 
@@ -1126,12 +1148,13 @@ The menu item 'Profiler->NYTProf->show HTML files' calls a viewer for the file
 'nytprof/index.html'.  The default HTML-viewer is the konqueror. To change the
 viewer set a global variable in the file '~/.vimrc', e.g.
 
-  let g:Perl_NYTProf_browser = 'xterm -e w3m'
+  let g:Perl_NYTProf_browser = 'firefox'
 
 The viewer can also be called from the command line:
 
  :NYTProfHTML
 
+or using the hotkey \rpnh.
 
 1.9.12 RUN PERLCRITIC                                 *perlsupport-perlcritic*
 ---------------------
@@ -1145,16 +1168,15 @@ buffer will be saved and run through perlcritic. The reported violations will
 be displayed in a separate quickfix error window.
 
 Two perlcritic comand line options can be set by this plugin:
- -severity N  :  Directs perlcritic to only report violations of Policies with
-                 a severity greater than N.
- -vebose   N  :  Sets the verbosity level for reporting violations.
+ severity N  :  Directs perlcritic to only report violations of Policies with
+                a severity greater than N.
+ vebose   N  :  Sets the verbosity level for reporting violations.
 
 SEVERITY
 --------
-Perlcritic (version 1.02) has 5 severity levels (perlcritic default level 
-is 5).  This plugin sets the default level to 3.  This can be changed by
-setting the variable g:Perl_PerlcriticSeverity in .vimrc to another value
-(1-5):
+Perlcritic  has 5 severity levels (perlcritic default level is 5).  This
+plugin sets the default level to 3.  This can be changed by setting the
+variable g:Perl_PerlcriticSeverity in .vimrc to another value (1-5):
 
   let g:Perl_PerlcriticSeverity = 1
 
@@ -1162,17 +1184,19 @@ In addition there is an Ex command to do that, e.g.:
 
   :CriticSeverity 2
 
-The severity names can also be used (gentle, stern, harsh, cruel, brutal).
+The severity names can also be used: gentle (=5), stern (=4), harsh (=3),
+cruel (=2), brutal(=1).
+A setting of the severity in a configuration file overrides the setting from
+the menu or thee command line (see CONFIGURATION FILES below).
 
 VERBOSITY
 ---------
-Perlcritic (version 1.02) has 11 verbosity levels (default level is 4). Some
-levels are equal except for the filename and are therefore treated equal
-because the quickfix error system used by this plugin needs a filename.
-The message format will not be exactly the same as from a command line
-execution of perlcritic but the information displayed will be the same for the
-different verbosity levels. The reason also lies in some peculiarities of the
-quickfix error system used by Vim.
+Perlcritic  has 11 verbosity levels (default level is 4). Some levels are
+equal except for the filename and are therefore treated equal because the
+quickfix error system used by this plugin needs a filename.  The message
+format will not be exactly the same as from a command line execution of
+perlcritic but the information displayed will be the same.  The reason lies in
+some peculiarities of the quickfix error system used by Vim.
 
 See the perlcritic documentation for details.
 
@@ -1184,6 +1208,23 @@ g:Perl_PerlcriticVerbosity in .vimrc to another value (1-11):
 I addition there is an Ex command to do that, e.g.:
 
   :CriticVerbosity 9
+
+A setting of the verbosity in a configuration file overrides the setting from
+the menu or thee command line (see CONFIGURATION FILES below).
+
+CONFIGURATION FILES
+-------------------
+The severity and verbosity setting will be taken from a configuration file
+if such a file exists and contains lines like
+
+  severity = 3
+  verbose  = 4
+A configuration file can be specified by the environment variable PERLCRITIC.
+This plugin looks next for the file '.perlcriticrc' in the local directory
+and than for '.perlcriticrc' in the home directory. Please see the perlcritic
+documentation for more.
+If the severity or the verbosity level was taken from a configuration file the
+filename will be reported after a perlcritic run.
 
 OPTIONS
 -------
@@ -1278,7 +1319,7 @@ This menu has three states:
 
 The first (uppercase) item shows the current method.  The default is 'vim'.
 This can be changed by setting the variable g:Perl_OutputGvim to another
-value.  Possible values are 'vim', 'buffer' and 'xterm' .
+value.  Possible values are 'vim', 'buffer' and 'xterm'.
 
 Vim (non-GUI) : The output destination can be toggled between (1) and (2)
                 using the hotkey \ro .
@@ -1312,146 +1353,153 @@ All mappings (except \lps and \ups) are filetype specific: they are only
 defined for buffers with filetype 'perl' to minimize conflicts with mappings
 from other plugins.
 
+Some mappings can be used with range (of lines). In normal mode
+  \cl
+appends a end-of-line comment to the current line,  whereas 
+  4\cl
+appends end-of-line comments to the 4 lines starting with the current line.
+
 Legend:  (i) insert mode, (n) normal mode, (v) visual mode
+         [n] range
 
   -- Load / Unload Perl Support ------------------------
 
-  \lps       load perl support                       (n)
-  \ups       unload perl support                     (n)
+     \lps       load perl support                       (n)
+     \ups       unload perl support                     (n)
 
   -- Comments ------------------------------------------
 
-  \cl        line end comment                  (n,v,i)
-  \cj        adjust line end comments          (n,v  )
-  \cs        set end comment col.              (n    )
-  \cfr       frame comment                     (n   i)
-  \cfu       function description              (n   i)
-  \cm        method description                (n   i)
-  \chpl      file header (*.pl)                (n    )
-  \chpm      file header (*.pm)                (n    )
-  \cht       file header (*.t)                 (n    )
-  \chpo      file header (*.t)                 (n    )
-  \ckb       keyword comment BUG               (n   i)
-  \ckt       keyword comment TODO              (n   i)
-  \ckr       keyword comment TRICKY            (n   i)
-  \ckw       keyword comment WARNING           (n   i)
-  \cko       keyword comment WORKAROUND        (n   i)
-  \ckn       keyword comment new keyword       (n   i)
-  \cc        toggle comment                    (n,v  )
-  \cb        code block to comment             (n,v  )
-  \cn        uncomment code block              (n,v  )
-  \cd        date                              (n   i)
-  \ct        date & time                       (n   i)
-  \cv        vim modeline                      (n   i)
+  [n]\cl        line end comment                  (n,v,i)
+  [n]\cj        adjust line end comments          (n,v  )
+     \cs        set end comment col.              (n    )
+     \cfr       frame comment                     (n   i)
+     \cfu       function description              (n   i)
+     \cm        method description                (n   i)
+     \chpl      file header (*.pl)                (n    )
+     \chpm      file header (*.pm)                (n    )
+     \cht       file header (*.t)                 (n    )
+     \chpo      file header (*.pod)               (n    )
+     \ckb       keyword comment BUG               (n   i)
+     \ckt       keyword comment TODO              (n   i)
+     \ckw       keyword comment WARNING           (n   i)
+     \cko       keyword comment WORKAROUND        (n   i)
+     \ckn       keyword comment new keyword       (n   i)
+  [n]\cc        toggle comment                    (n,v  )
+     \cb        code block to comment             (n,v  )
+     \cn        uncomment code block              (n,v  )
+     \cd        date                              (n   i)
+     \ct        date & time                       (n   i)
+     \cv        vim modeline                      (n   i)
 
   -- Statements ----------------------------------------
 
-  \sd        do { } while                      (n,v,i)
-  \sf        for { }                           (n,v,i)
-  \sfe       foreach { }                       (n,v,i)
-  \si        if { }                            (n,v,i)
-  \sie       if { } else { }                   (n,v,i)
-  \se        else { }                          (n,v,i)
-  \sei       elsif { }                         (n,v,i)
-  \su        unless { }                        (n,v,i)
-  \sue       unless { } else { }               (n,v,i)
-  \st        until { }                         (n,v,i)
-  \sw        while { }                         (n,v,i)
-  \s{ \sb    { }                               (n,v,i)
+     \sd        do { } while                      (n,v,i)
+     \sf        for { }                           (n,v,i)
+     \sfe       foreach { }                       (n,v,i)
+     \si        if { }                            (n,v,i)
+     \sie       if { } else { }                   (n,v,i)
+     \se        else { }                          (n,v,i)
+     \sei       elsif { }                         (n,v,i)
+     \su        unless { }                        (n,v,i)
+     \sue       unless { } else { }               (n,v,i)
+     \st        until { }                         (n,v,i)
+     \sw        while { }                         (n,v,i)
+     \s{ \sb    { }                               (n,v,i)
 
   -- Snippets ------------------------------------------
 
-  \nr        read code snippet                 (n)
-  \nw        write code snippet                (n,v)
-  \ne        edit code snippet                 (n)
+     \nr        read code snippet                 (n,i)
+     \nw        write code snippet                (n,v,i)
+     \ne        edit code snippet                 (n,i)
 
-  \ntl       edit local template file          (n)
-  \ntg       edit global template file         (n)
-  \ntr       reread template file              (n)
+     \ntl       edit local template file          (n,i)
+     \ntg       edit global template file         (n,i)
+     \ntr       reread template file              (n,i)
 
   -- Idioms --------------------------------------------
 
-  \id  [\$ ] my $;                (*)          (n   i)
-  \id= [\$=] my $ = ;             (*)          (n   i)
-  \idd [\$$] my ( $, $ );         (*)          (n   i)
-  \ia  [\@ ] my @;                (*)          (n   i)
-  \ia= [\@=] my @ = (,,);         (*)          (n   i)
-  \ih  [\% ] my %;                (*)          (n   i)
-  \ih= [\%=] my % = (=>,=>,);     (*)          (n   i)
-  \ir        my $regex_ = q//;                 (n   i)
-  \im        $ =~ m//                          (n   i)
-  \is        $ =~ s///                         (n   i)
-  \it        $ =~ tr///                        (n   i)
-  \isu \ifu  subroutine                        (n,v,i)
-  \ip        print "...\n";                    (n   i)
-  \ii        open input file                   (n,v,i)
-  \io        open output file                  (n,v,i)
-  \ipi       open pipe                         (n,v,i)
+     \id  [\$ ] my $;                (*)          (n   i)
+     \id= [\$=] my $ = ;             (*)          (n   i)
+     \idd [\$$] my ( $, $ );         (*)          (n   i)
+     \ia  [\@ ] my @;                (*)          (n   i)
+     \ia= [\@=] my @ = (,,);         (*)          (n   i)
+     \ih  [\% ] my %;                (*)          (n   i)
+     \ih= [\%=] my % = (=>,=>,);     (*)          (n   i)
+     \ir        my $regex_ = q//;                 (n   i)
+     \im        $ =~ m//                          (n   i)
+     \is        $ =~ s///                         (n   i)
+     \it        $ =~ tr///                        (n   i)
+     \isu \ifu  subroutine                        (n,v,i)
+     \ip        print "...\n";                    (n   i)
+     \ii        open input file                   (n,v,i)
+     \io        open output file                  (n,v,i)
+     \ipi       open pipe                         (n,v,i)
 
   -- Regular Expressions -------------------------------
 
-  \xr        pick up Regex                     (n,v)
-  \xs        pick up string                    (n,v)
-  \xf        pick up flags                     (n,v)
-  \xm        match                             (n)
-  \xmm       match multiple                    (n)
-  \xe        explain Regex                     (n,v)
+  [n]\xr        pick up Regex                     (n,v)
+  [n]\xs        pick up string                    (n,v)
+     \xf        pick up flags                     (n,v)
+     \xm        match                             (n)
+     \xmm       match multiple                    (n)
+     \xe        explain Regex                     (n,v)
 
   -- POSIX Character Classes ---------------------------
 
-  \pa        [:alnum:]                         (n   i)
-  \ph        [:alpha:]                         (n   i)
-  \pi        [:ascii:]                         (n   i)
-  \pb        [:blank:]                         (n   i)
-  \pc        [:cntrl:]                         (n   i)
-  \pd        [:digit:]                         (n   i)
-  \pg        [:graph:]                         (n   i)
-  \pl        [:lower:]                         (n   i)
-  \pp        [:print:]                         (n   i)
-  \pn        [:punct:]                         (n   i)
-  \ps        [:space:]                         (n   i)
-  \pu        [:upper:]                         (n   i)
-  \pw        [:word:]                          (n   i)
-  \px        [:xdigit:]                        (n   i)
+     \pa        [:alnum:]                         (n,i)
+     \ph        [:alpha:]                         (n,i)
+     \pi        [:ascii:]                         (n,i)
+     \pb        [:blank:]                         (n,i)
+     \pc        [:cntrl:]                         (n,i)
+     \pd        [:digit:]                         (n,i)
+     \pg        [:graph:]                         (n,i)
+     \pl        [:lower:]                         (n,i)
+     \pp        [:print:]                         (n,i)
+     \pn        [:punct:]                         (n,i)
+     \ps        [:space:]                         (n,i)
+     \pu        [:upper:]                         (n,i)
+     \pw        [:word:]                          (n,i)
+     \px        [:xdigit:]                        (n,i)
 
   -- POD -----------------------------------------------
 
-  \pod       run podchecker                            (n)
-  \podh      convert POD data to .html file            (n)
-  \podm      convert POD data to *troff input (manual) (n)
-  \podt      convert POD data to ASCII text            (n)
+     \pod       run podchecker                            (n,i)
+     \podh      convert POD data to .html file            (n,i)
+     \podm      convert POD data to *troff input (manual) (n,i)
+     \podt      convert POD data to ASCII text            (n,i)
 
   -- Profiling -----------------------------------------
 
-  \rps       run Devel::SmallProf            (n)   see |perlsupport-smallprof|
-  \rpf       run Devel::FastProf             (n)   see |perlsupport-fastprof|
-  \rpn       run Devel::NYTProf              (n)   see |perlsupport-nytprof|
-  \rpnc      run CSV file (NYTProf)          (n)   see |perlsupport-nytprof|
+     \rps       run Devel::SmallProf            (n,i)   see |perlsupport-smallprof|
+     \rpf       run Devel::FastProf             (n,i)   see |perlsupport-fastprof|
+     \rpn       run Devel::NYTProf              (n,i)   see |perlsupport-nytprof|
+     \rpnc      open CSV file (NYTProf)         (n,i)   see |perlsupport-nytprof|
+     \rpnh      browse HTML files (NYTProf)     (n,i)   see |perlsupport-nytprof|
 
   -- Run -----------------------------------------------
 
-  \rr        update file, run script         (n)   see |perlsupport-run-script|
-  \rs        update file, check syntax       (n)   see |perlsupport-syntax-check|
-  \ra        set command line argument       (n)   see |perlsupport-cmdline-args|
-  \rw        set Perl command line switches  (n)   see |perlsupport-perl-switches|
-  \rm        run make                        (n)   see |perlsupport-perl-make|
-  \rma       command line argument for make  (n)   see |perlsupport-perl-make|
-  \rd        start debugger                  (n)   see |perlsupport-run-debug|
-  \re        make script executable (**)     (n)
-  \rp        read perldoc                    (n)   see |perlsupport-perldoc|
-  \ri        show installed Perl modules     (n)   see |perlsupport-module-list|
-  \rg        generation Perl module list     (n)   see |perlsupport-module-list-generation|
-  \ry        run perltidy                    (n,v) see |perlsupport-perltidy|
-  \rc        run perlcritic                  (n)   see |perlsupport-perlcritic|
-  \rt        save buffer with timestamp      (n)   see |perlsupport-timestamp|
-  \rh        hardcopy buffer to FILENAME.ps  (n,v) see |perlsupport-hardcopy|
-  \rk        settings and hotkeys            (n)
-  \rx        set xterm size (**)             (n)   see |perlsupport-xterm|
-  \ro        change output destination       (n)   see |perlsupport-output|
+     \rr        update file, run script         (n,i)   see |perlsupport-run-script|
+     \rs        update file, check syntax       (n,i)   see |perlsupport-syntax-check|
+     \ra        set command line argument       (n,i)   see |perlsupport-cmdline-args|
+     \rw        set Perl command line switches  (n,i)   see |perlsupport-perl-switches|
+     \rm        run make                        (n,i)   see |perlsupport-perl-make|
+     \rma       command line argument for make  (n,i)   see |perlsupport-perl-make|
+     \rd        start debugger                  (n,i)   see |perlsupport-run-debug|
+     \re        make script executable (**)     (n,i)
+     \ri        show installed Perl modules     (n,i)   see |perlsupport-module-list|
+     \rg        generation Perl module list     (n,i)   see |perlsupport-module-list-generation|
+     \ry        run perltidy                    (n,v,i) see |perlsupport-perltidy|
+     \rc        run perlcritic                  (n,i)   see |perlsupport-perlcritic|
+     \rt        save buffer with timestamp      (n,i)   see |perlsupport-timestamp|
+     \rh        hardcopy buffer to FILENAME.ps  (n,v,i) see |perlsupport-hardcopy|
+     \rk        settings and hotkeys            (n,i)
+     \rx        set xterm size (**)             (n,i)   see |perlsupport-xterm|
+     \ro        change output destination       (n,i)   see |perlsupport-output|
 
   -- Help ----------------------------------------------
 
-  \hp        help (plugin)                   (n,i) see |perlsupport-help|
+     \rp \h     read perldoc                    (n,i)   see |perlsupport-perldoc|
+     \hp        help (plugin)                   (n,i)   see |perlsupport-help|
 
 (*)  The optional key mappings in brackets start like Perl references. They
       are available for backward compatibility if you have 
@@ -1459,7 +1507,37 @@ Legend:  (i) insert mode, (n) normal mode, (v) visual mode
      in your "$HOME/.vimrc".
 (**) Linux/UNIX only
 
-File perl-hot-keys.pdf contains a reference card for these key mappings.
+The following mappings work also for filetype 'pod':
+
+  -- Comments ------------------------------------------
+
+  \chpo      file header (*.pod)               (n    )
+  \cb        code block to comment             (n,v  )
+  \cn        uncomment code block              (n,v  )
+
+  -- Snippets ------------------------------------------
+
+  \nr        read code snippet                 (n,i)
+  \nw        write code snippet                (n,v,i)
+  \ne        edit code snippet                 (n,i)
+
+  \ntl       edit local template file          (n,i)
+  \ntg       edit global template file         (n,i)
+  \ntr       reread template file              (n,i)
+
+  -- POD -----------------------------------------------
+
+  \pod       run podchecker                            (n,i)
+  \podh      convert POD data to .html file            (n,i)
+  \podm      convert POD data to *troff input (manual) (n,i)
+  \podt      convert POD data to ASCII text            (n,i)
+
+  -- Help ----------------------------------------------
+
+  \rp \h     read perldoc                    (n,i)   see |perlsupport-perldoc|
+  \hp        help (plugin)                   (n,i)   see |perlsupport-help|
+
+The file perl-hot-keys.pdf contains a reference card for these key mappings.
 Multi-line inserts and code snippets will be indented after insertion.
 
 The hot-keys are defined in the file type plugin perl.vim (part of this
@@ -1598,10 +1676,12 @@ g:Perl_Ctrl_j                  'on'
 g:Perl_CodeSnippets            root_dir.'perl-support/codesnippets/'
 g:Perl_LoadMenus               'yes'
 g:Perl_Dictionary_File         ''
-g:Perl_Root                    '&Perl.'
 g:Perl_MenuHeader              'yes'
 g:Perl_GuiSnippetBrowser       'gui'
 g:Perl_GuiTemplateBrowser      'gui'
+g:Perl_PerlTags                'off'
+g:Perl_Perltidy                'off'
+g:Perl_PerltidyBackup          'off'
 
 g:Perl_PerlModuleList          root_dir.'perl-support/modules/perl-modules.list'
 g:Perl_PerlModuleListGenerator root_dir.'perl-support/scripts/pmdesc3.pl'
@@ -1615,6 +1695,9 @@ g:Perl_Printheader             "%<%f%h%m%<  %=%{strftime('%x %X')}     Page %N"
 g:Perl_PerlcriticSeverity      5
 g:Perl_PerlcriticVerbosity     5
 g:Perl_PerlcriticOptions       ""
+================================================================================
+  DESCRIPTION
+================================================================================
 g:Perl_PerlRegexSubstitution   '$+'
 g:Perl_NYTProf_html            'no'
 g:Perl_NYTProf_browser         'konqueror'
@@ -1634,15 +1717,16 @@ The variable root_dir will automatically be set to one of the following values:
            g:Perl_TemplateOverwrittenMsg  : message if a template is overwritten
            g:Perl_Ctrl_j                  : hotkey Ctrl-j  'on'/'off' (see|perlsupport-Ctrl-j|)
 
- 2. group: g:Perl_CodeSnippets       : The name of the code snippet directory (see below).
+ 2. group: g:Perl_CodeSnippets       : The name of the (non-standard) code snippet directory (see below).
            g:Perl_LoadMenus          : Load menus and mappings ("yes", "no") at startup.
            g:Perl_Dictionary_File    : Path and filename of the Perl word list used for
                                        dictionary completion (see below).
-           g:Perl_Root               : The name of the root menu item of this plugin
-                                       (see below).
            g:Perl_MenuHeader         : Switch submenu titles on/off.
            g:Perl_GuiSnippetBrowser  : code snippet browser: 'gui', 'commandline'
            g:Perl_GuiTemplateBrowser : code template browser: 'gui', 'explorer', 'commandline' 
+           g:Perl_PerlTags           : switch use of Perl::Tags on/off ( 'on', 'off' )
+           g:Perl_Perltidy           : use perltidy as standard beautifier
+           g:Perl_PerltidyBackup     : write a backup file before running perltidy
 
  3. group: g:Perl_PerlModuleList          : The name of the Perl module list (text file,
                                             see below).
@@ -1676,16 +1760,7 @@ the single gVim root menu item in which the Perl submenus are contained. The
 default is
                   '&Perl.'
 
-Please note the terminating dot. A single root menu item is appropriate if the
-screen is limited or several plugins are in use.
-
-If set to '' (empty string) with
-
-  let g:Perl_Root = ''
-
-this single root menu item will not appear.  Now all submenus are put into the
-gVim root menu. Nice for a Perl-only-programmer and Perl courses with wide
-screens.
+Please note the terminating dot. 
 
 If you want to set the plugin root menu as a submenu into another menu, e.g.
 your own with the name 'Plugin', this is done by the following line in
@@ -1701,7 +1776,6 @@ variable g:Perl_LoadMenus. The line
 prevents the root menu item from appearing when the editor starts. You can
 switch it on (and off again) from the tools menu. The default for this
 variable is 'yes'.
-
 
 ------------------------------------------------------------------------------
 4.4  NAVIGATE THROUGH PODs                       *perlsupport-custom-navigate*
@@ -1759,7 +1833,8 @@ entries. To enable this feature
    noremap <silent> <F11>       :Tlist<CR>
   inoremap <silent> <F11>  <C-C>:Tlist<CR>
 
-  let tlist_perl_settings  = 'perl;c:constants;l:labels;p:package;s:subroutines;d:POD'
+  let tlist_perl_settings   = 'perl;c:constants;f:formats;l:labels;p:packages;'.
+                            \ 's:subroutines;d:subroutines;o:POD;t:Keyword Comments'
 
 (3) restart vim/gvim
 
@@ -1781,7 +1856,7 @@ setting for all files with file type 'perl' by uncommenting the two lines
   "setlocal tabstop=4
   "setlocal shiftwidth=4
 
-in the file type plugin '~/.vim/ftplugin/perl.vim' .
+in the file type plugin '~/.vim/ftplugin/perl.vim'.
 
 ------------------------------------------------------------------------------
 4.6  System-wide installation (Unix/Linux only)      *perlsupport-system-wide*
@@ -1795,9 +1870,11 @@ As *** SUPERUSER *** :
 (1) Find the Vim installation directory.
 The Vim ex command ':echo $VIM' gives '/usr/local/share/vim' or something like
 that. Beyond this directory you will find the Vim installation,  e.g. in
-'/usr/local/share/vim/vim71' if Vim version 7.1 has been installed.
+'/usr/local/share/vim/vim73' if Vim version 7.3 has been installed (Windows:
+'C:\Program Files\Vim').
 
-(2) Create a new subdirectory 'vimfiles', e.g. '/usr/local/share/vim/vimfiles'.
+(2) Create a new subdirectory 'vimfiles', e.g. '/usr/local/share/vim/vimfiles'
+(Windows: 'C:\Program Files\Vim\vimfiles').
 
 (3) Install Perl Support
 Copy the archive perl-support.zip to this new directory and unpack it:
@@ -1805,6 +1882,14 @@ Copy the archive perl-support.zip to this new directory and unpack it:
 
 (4) Generate the help tags:
   :helptags $VIM/vimfiles/doc
+
+SPECIAL CASES. Some Linux distributions use non-standard names for Vim
+directories. SUSE has a directory '/usr/share/vim/site' to put plugins in.
+These directories will not be found automatically.  After installing the
+plugin below '/usr/share/vim/site' the use of the templates will be enabled by
+the following line in '~/.vimrc':
+
+  let g:Perl_GlobalTemplateFile = '/usr/share/vim/site/perl-support/templates/Templates'
 
 
 As *** USER *** :
@@ -1817,6 +1902,39 @@ You may want to copy the snippets comming with this plugin (in
 $VIM/vimfiles/perl-support/codesnippets) into the new directory or to set a
 link to the global directory.
 
+Create your private template directory:
+
+  mkdir --parents  ~/.vim/perl-support/templates
+
+Create a private template file 'Templates' (compulsory) in this directory to
+overwrite some macros, e.g.
+
+ *|AUTHOR|*    = your name
+ *|AUTHORREF|* = ...
+ *|EMAIL|*     = ...
+ *|COMPANY|*   = ...
+ *|COPYRIGHT|* = ...
+
+You can also have local templates which overwrite the global ones. To suppress
+the messages in this case set a global variable in '~/.vimrc' (Windows:
+'~\_vimrc') :
+
+  let g:Perl_TemplateOverwrittenMsg= 'no'
+
+The default is 'yes'.
+
+------------------------------------------------------------------------------
+4.7  Non-standard installation                      *perlsupport-non-standard*
+------------------------------------------------------------------------------
+
+The place of the code snippets is "$HOME/.vim/perl-support/codesnippets/".
+For convenience this directory can be moved to another place. In this case the
+new directory has to be specified in "$HOME/.vimrc":
+
+ let g:Perl_CodeSnippets  = "/home/username/ ... /"
+
+Please note the trailing slash.
+
 ==============================================================================
 5.  TEMPLATE FILES AND TAGS                            *perlsupport-templates*
 ==============================================================================
@@ -1825,8 +1943,8 @@ link to the global directory.
 5.1  TEMPLATE FILES                              *perlsupport-templates-files*
 ------------------------------------------------------------------------------
 
-Nearly all menu entries insert code snippets or comments. All these stuff is
-taken from template files and can be changed by the user to meet his
+Nearly all menu entries insert code snippets or comments. All of these are
+contained within template files and can be changed by the user to meet their
 requirements.
 
 The master template file is '$HOME/.vim/perl-support/templates/Templates' for
@@ -2251,10 +2369,10 @@ overwritten if you do not update manually.
 6.  Perl::Tags                                          *perlsupport-perltags*
 ==============================================================================
 
-The use of the module Perl::Tags (version 0.23; see CPAN) is encouraged.  In
-order to use this feature you need a Vim binary with Perl interface compiled
-in (see |perlsupport-compile-vim|) and Perl::Tags must be installed,  of
-course.
+The use of the module Perl::Tags (version >= 0.23; see CPAN) is encouraged.
+In order to use this feature you need a Vim binary with Perl interface
+compiled in (see |perlsupport-compile-vim|) and Perl::Tags must be installed,
+of course.
 
 Usage. If the cursor is on the module name in a perl 'use' ore 'require'
 statement like
@@ -2265,6 +2383,12 @@ a CTRL-] let you jump into the file GnuplotIF.pm.  An easy way back is with
 the CTRL-T command.  See also the module documentation on how to use
 Perl::Tags.
 
+The availability of Perl::Tags is automatically detected. To switch this 
+feature on put the following line into .vimrc :
+
+  let g:Perl_PerlTags						= 'on'
+
+The default value is 'off'.
 
 ==============================================================================
 7.  PERL DICTIONARY                                   *perlsupport-dictionary*
@@ -2464,19 +2588,23 @@ Support' or the hotkey \lps is used.
 13.  MS-Windows PARTICULARITIES                          *perlsupport-windows*
 ==============================================================================
 
-The plugins should go into the directory structure below the local
-installation directory $HOME/.vim/ for LINUX/UNIX and $VIM/vimfiles/ for
-MS-Windows.
+For a user installation the plugin should go into the directory structure below 
+  $HOME/vimfiles/
+for a system installation below
+  $VIM/vimfiles/
+
 The values of the two variables can be found from inside Vim:
    :echo $VIM
 or
    :echo $HOME
 
-Configuration files:
+The configuration files for a user are
 
-  LINUX/UNIX :   $HOME/.vimrc  and  $HOME/.gvimrc
-  MS-Windows :   $VIM/_vimrc   and  $VIM/_gvimrc
+  $HOME/_vimrc   and  $HOME/_gvimrc
 
+for the system
+
+  $VIM/_vimrc   and  $VIM/_gvimrc
 
 ==============================================================================
 14.  TROUBLESHOOTING                             *perlsupport-troubleshooting*
