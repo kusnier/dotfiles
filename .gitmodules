@@ -34,3 +34,6 @@
 [submodule "home/vim/bundle/recover"]
 	path = home/vim/bundle/recover
 	url = https://github.com/chrisbra/Recover.vim
+[submodule "home/vim/bundle/vim-session"]
+	path = home/vim/bundle/vim-session
+	url = https://github.com/xolox/vim-session
