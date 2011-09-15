@@ -11,10 +11,23 @@
 #===============================================================================
 
 set -o nounset                              # Treat unset variables as an error
-base=false
 
-for dotfile in ~/dotfiles/home/* ; do
+function realpath() {
+  # Get absolute path of the script (because of different readlink in macos)
+  dir=`dirname $1`            # The directory where the script is 
+  pushd "$dir" > /dev/null    # Go there
+  callerpath=$PWD             # Record the absolute path
+  popd > /dev/null            # Return to previous dir
+  echo $callerpath
+}
+
+base=false
+dotfilespath=$(realpath $0)
+
+for dotfile in ${dotfilespath}/home/* ; do
+  echo $dotfile
   base=`basename $dotfile`
   rm -i ~/.$base
   ln -v -s $dotfile ~/.$base
 done
+
