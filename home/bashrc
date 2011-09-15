@@ -118,7 +118,6 @@ fi
 for file in paths bash_prompt exports aliases complete functions extra; do
 file="$HOME/dotfiles/bash/$file"
   [ -e "$file" ] && source "$file"
-  [ -e "$file" ] && echo "$file"
 done
 
 # Disabled hostifle usage
