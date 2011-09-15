@@ -1,5 +1,8 @@
 # My aliases
 alias c='clear'
+alias g="git"
+alias v="vim"
+alias gv="gvim"
 
 # some more ls aliases
 alias ls='ls -G'
