@@ -25,3 +25,6 @@ export MANPAGER=~/devel/gcode/scripts/bin/all/vimpager
 
 # cd options
 export FIGNORE='.svn'
+
+# Disabled hostifle usage
+#export HOSTFILE=~/dotfiles/bash/hostfile
