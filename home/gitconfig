@@ -3,6 +3,7 @@
   email = sebastian@kusnier.net
 
 [core]
+  excludesfile = ~/.gitignore
   editor = vim
 
 [color]
