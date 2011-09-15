@@ -5,14 +5,15 @@ My private dot files
 
 1. `cd`
 2. `git clone --recurse-submodules git://github.com/kusnier/dotfiles.git`
-3. `~/dotfiles/update_symlinks.sh`
+3. `./dotfiles/update_symlinks.sh`
 
 ## Install: one liner
 ```bash
-cd && git clone --recurse-submodules git://github.com/kusnier/dotfiles.git && ~/dotfiles/update_symlinks.sh
+git clone --recurse-submodules git://github.com/kusnier/dotfiles.git && ./dotfiles/update_symlinks.sh
 ```
 
 ## Update
+Go to dotfiles directory.
 ```bash
-cd ~/dotfiles && git pull --recurse-submodules && ./update_symlinks.sh
+git pull --recurse-submodules && ./update_symlinks.sh
 ```
