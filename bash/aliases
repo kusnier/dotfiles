@@ -7,6 +7,9 @@ alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 
+# List only directories
+alias lsd='ls -l | grep "^d" --color=never'
+
 # find aliases
 alias f='find . -not -name *.svn-base -iname'
 
