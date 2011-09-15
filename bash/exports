@@ -1,3 +1,19 @@
+#history
+#  don't put duplicate lines in the history. See bash(1) for more options
+#  typing a space in front of the command to ignore the command and ignore same sucessive entries.
+#  ignoreboth=ignoredups:ignorespace
+export HISTCONTROL=ignoreboth
+# history, ignore
+#export HISTIGNORE="pwd:ls:ls *:"
+export HISTIGNORE="pwd:ls:"
+
+# very long history file
+export HISTSIZE=5000000
+export HISTFILESIZE=$HISTSIZE
+
+# timestamp in history
+export HISTTIMEFORMAT='%F %T '
+
 #mysql
 export MYSQL_PS1="\\d@\\h> "
 

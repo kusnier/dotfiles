@@ -14,24 +14,6 @@ esac
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# don't put duplicate lines in the history. See bash(1) for more options
-export HISTCONTROL=ignoredups
-# ... and ignore same sucessive entries.
-export HISTCONTROL=ignoreboth
-# typing a space in front of the command to ignore the command
-export HISTCONTROL=ignorespace
-
-# history, ignore
-#export HISTIGNORE="pwd:ls:ls *:"
-export HISTIGNORE="pwd:ls:"
-
-# very long history file
-export HISTSIZE=5000000
-export HISTFILESIZE=5000000
-
-# timestamp in history
-export HISTTIMEFORMAT='%F %T '
-
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
