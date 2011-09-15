@@ -13,7 +13,8 @@ git clone --recurse-submodules git://github.com/kusnier/dotfiles.git && ./dotfil
 ```
 
 ## Update
-Go to dotfiles directory.
+Go to dotfiles directory
+
 ```bash
 git pull --recurse-submodules && ./update_symlinks.sh
 ```
