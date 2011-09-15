@@ -8,4 +8,4 @@ export PAGER=~/devel/gcode/scripts/bin/all/vimpager
 export MANPAGER=~/devel/gcode/scripts/bin/all/vimpager
 
 # cd options
-FIGNORE=.svn
+export FIGNORE='.svn'

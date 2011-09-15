@@ -113,19 +113,16 @@ if [ "$HOSTNAME" = "matrixcode" ]; then
   export LC_TIME="de_DE.UTF-8"
 fi
 
-source ~/dotfiles/bash/paths
-source ~/dotfiles/bash/export
-
-# init aliases
-if [ -f ~/dotfiles/bash/aliases ]; then
-    . ~/dotfiles/bash/aliases
-fi
+# Load ~/.bash_prompt, ~/.exports, ~/.aliases, ~/.functions and ~/.extra
+# ~/.extra can be used for settings you don't want to commit
+for file in paths bash_prompt exports aliases complete functions extra; do
+file="$HOME/dotfiles/bash/$file"
+  [ -e "$file" ] && source "$file"
+  [ -e "$file" ] && echo "$file"
+done
 
 # Disabled hostifle usage
 #export HOSTFILE=~/dotfiles/bash/hostfile
-
-# Tab-completion
-source ~/dotfiles/bash/complete
 
 # multiple tails on multiple machines
 # url: http://stackoverflow.com/questions/106668/simultaneously-monitoring-multiple-log-files-over-ssh-on-windows
