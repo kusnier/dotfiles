@@ -1,0 +1,57 @@
+# Create a new directory and enter it
+md() {
+  mkdir -p "$@" && cd "$@"
+}
+
+# multiple tails on multiple machines
+# url: http://stackoverflow.com/questions/106668/simultaneously-monitoring-multiple-log-files-over-ssh-on-windows
+# usage:
+#   [dsm@localhost:~]$ create-follower test1 user1 localhost /tmp/log-1.txt
+#   [dsm@localhost:~]$ create-follower test2 user2 otherhost /tmp/log-2.txt
+#   [dsm@localhost:~]$ create-follower test2 user3 remotebox /tmp/log-3.txt
+#
+#   [dsm@localhost:~]$ activate-followers test1 test2 test3
+#
+#   [dsm@localhost:~]$ stop-followers
+function create-follower () {
+    local _NAME=$1;
+    local _USER=$2;
+    local _HOST=$3;
+    local _PATH=$4;
+
+    if ! [ "${_NAME}" ]\
+    || ! [ "${_USER}" ]\
+    || ! [ "${_HOST}" ]\
+    || ! [ "${_PATH}" ] ; then
+        {   echo "Cannot create log follower." ;
+            echo;
+            echo "Usage: create-follower NAME USER HOST LOG-FILE";
+        } >&2;
+        return 1 ;
+    fi ;
+
+    eval "function ${_NAME}(){ ssh ${_USER}@${_HOST} tail -f \"${_PATH}\" & }"
+}
+
+function activate-followers () {
+    if (( $# < 1 )) ; then
+        {   echo "You must specify at least one follower to use" ;
+            echo ;
+            echo "Usage:" ;
+            echo "    activate-followers follower1 [follower2 ... followerN]";
+        } >&2;
+        return 1 ;
+    fi ;
+
+    for FOLLOW in "${@}" ; do
+        ${FOLLOW} ;
+    done ;
+
+    wait;
+}
+
+function stop-followers () {
+    if [ "$(jobs)" ] ; then
+        kill -9 $(jobs | perl -pe 's/\[([0-9]+)\].*/%$1/') ;
+    fi ;
+}
