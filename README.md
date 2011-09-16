@@ -3,9 +3,8 @@ My private dot files
 
 ## Install: step by step
 
-1. `cd`
-2. `git clone --recurse-submodules git://github.com/kusnier/dotfiles.git`
-3. `./dotfiles/update_symlinks.sh`
+1. `git clone --recurse-submodules git://github.com/kusnier/dotfiles.git`
+2. `./dotfiles/update_symlinks.sh`
 
 ## Install: one liner
 ```bash
