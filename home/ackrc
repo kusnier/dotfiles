@@ -1,3 +1,4 @@
 --smart-case
 --color-filename=magenta
 --color-match=red
+--all-types
