@@ -43,3 +43,6 @@
 [submodule "home/vim/bundle/xmledit"]
 	path = home/vim/bundle/xmledit
 	url = git://github.com/sukima/xmledit.git
+[submodule "home/vim/bundle/vim-coffee-script"]
+	path = home/vim/bundle/vim-coffee-script
+	url = git://github.com/kchmck/vim-coffee-script.git
