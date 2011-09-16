@@ -18,9 +18,14 @@
   ci = commit
   co = checkout
   br = branch
+  df = diff
+  lg = log -p
+  g  = grep -I
+  vd = difftool -y -t gvimdiff
 
 [merge]
   tool = vimdiff
+  log = true
 
 [github]
   user = kusnier
