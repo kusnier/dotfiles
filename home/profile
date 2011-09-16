@@ -36,7 +36,7 @@ if [ -d "$HOME/devel/gcode/scripts/bin/all" ] ; then
     PATH="$HOME/devel/gcode/scripts/bin/all:$PATH"
 fi
 
-. "$HOME/dotfiles/bash/paths"
+. "$HOME/.bash/paths"
 
 # mysql client (macosx)
 if [ -d "/usr/local/mysql/bin" ] ; then
