@@ -70,7 +70,7 @@ nnoremap <leader>w <C-w>v<C-w>l
 
 
 " Hide buffers when they are abandoned
-" set hidden makes problems with VCSVimdiff, Closing diff is not working right
+"set hidden "makes problems with VCSVimdiff, Closing diff is not working right
 set nojoinspaces
 " enable backspace to delete anyting (includes \n) in insert mode
 set backspace=indent,eol,start
@@ -78,12 +78,6 @@ set whichwrap+=<,>,h,l
 set nocompatible
 set number
 set cursorline
-
-if has("gui_running")
-  set t_Co=256
-else
-  set t_Co=16
-endif
 
 if has("autochdir")
   set autochdir
@@ -99,9 +93,8 @@ set display=lastline " display as much as possible from the last line
 " -----------------------------------------------------------
 " Encoding
 " -----------------------------------------------------------
-"set encoding=utf8
-set encoding=latin1
-autocmd FileType php,html,htm,xsl,xml setlocal encoding=latin1
+set encoding=utf8
+autocmd BufRead,BufNewFile */devel/xp*/* setlocal encoding=latin1
 
 " Store temporary files in a central spot
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
@@ -254,13 +247,17 @@ set cindent
 set cinoptions={.5s,+.5s,t0,n-2,p2s,(03s,=.5s,>1s,=1s,:1s
 " now real wrap during insert (enable/override this when using as mail-editor)
 set tw=0
+
 " use full featured format-options. see "help fo-table for help
-if v:version >= 600
-    set formatoptions=tcrqn2
-else
-    " vim 5 doesn't know r/n
-    set formatoptions=tcq2
-endif
+set formatoptions=
+set formatoptions+=c " Format comments
+set formatoptions+=r " Continue comments by default
+set formatoptions+=o " Make comment when using o or O from comment line
+set formatoptions+=q " Format comments with gq
+set formatoptions+=n " Recognize numbered lists
+set formatoptions+=2 " Use indent from 2nd line of a paragraph
+set formatoptions+=l " Don't break lines that are already long
+set formatoptions+=1 " Break before 1-letter words
 
 " define what are comments
 set com& " reset to default
@@ -359,6 +356,12 @@ nmap <leader>t <Esc>:tabnew<CR>
 " -----------------------------------------------------------
 " highlighting, colors, fonts
 " -----------------------------------------------------------
+
+if has("gui_running")
+  set t_Co=256
+else
+  set t_Co=16
+endif
 
 set background=dark
 
@@ -547,9 +550,9 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-" Using now the eclim (eclipse) complete function
-"autocmd FileType php set omnifunc=xpcomplete#CompletePHP
+autocmd FileType php set omnifunc=xpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
+set omnifunc=syntaxcomplete#Complete " Set omni-completion method.
 
 " ~/.profile content:
 " export XP_PUB_SKEL=~/devel/xp.public/trunk/skeleton
@@ -580,6 +583,7 @@ set path+=~/devel/xp-framework/tools/src/main/php
 " -----------------------------------------------------------
 
 "Ignore changes in amount of white space.
+set diffopt=filler " Add vertical spaces to keep right and left aligned
 set diffopt+=iwhite
 
 
@@ -593,8 +597,8 @@ set wh=1
 set wmh=0
 " make all windows the same size when adding/removing windows
 set equalalways
-"a new window is put right the current one
-set splitright
+set splitbelow " New window goes below
+set splitright " New windows goes right
 
 " -----------------------------------------------------------
 " GUI
@@ -678,19 +682,6 @@ if has("win32")
 endif
 
 " -----------------------------------------------------------
-" Addons Settings
-" -----------------------------------------------------------
-let Tlist_Auto_Open = 1
-let Tlist_WinWidth = 40
-"let Tlist_Ctags_Cmd = "/usr/bin/ctags"
-let Tlist_Inc_Winwidth = 1
-let Tlist_Exit_OnlyWindow = 1
-"let Tlist_File_Fold_Auto_Close = 1
-let Tlist_Process_File_Always = 1
-let Tlist_Enable_Fold_Column = 0
-let tlist_php_settings = 'php;c:class;d:constant;f:function'
-
-" -----------------------------------------------------------
 " SVN, SVN, GIT
 " -----------------------------------------------------------
 let VCSCommandSVKExec = 'no_svk'
@@ -720,13 +711,12 @@ au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 " CTRL-A Selection
 " nunmap <C-A>
 
+" Close Quickfix window (,qq)
+map <leader>qq :cclose<CR>
 map <F7> :set spell!<CR>
-map <S-F8> :TlistAddFilesRecursive ~/devel/xp.public/trunk/skeleton<CR>
-map <S-F9> :TlistAddFilesRecursive ~/devel/xp.private/trunk/xp5/projects/pet/src<CR>:TlistAddFilesRecursive ~/devel/xp.public/trunk/skeleton<CR>
 map <F10> :set invhls<CR>:let @/="<C-r><C-w>"<CR>/<BS>
 map <S-F11> :set autoindent!<CR>
 map <F11> :w! /tmp/vim_to_sqsh<CR>:silent !cat /tmp/vim_to_sqsh \| sql_dev_ipmt &> /tmp/vim_to_sqsh.out<CR>:split /tmp/vim_to_sqsh.out<CR>
-nmap <silent> <F12> :TlistToggle<CR>
 nmap <silent> <S-F12> :new ~/.vimrc.dbi_vars<CR>
 " autocheck map <F12> :Make<CR>
 map <M-E> :Ex<CR>
@@ -753,9 +743,12 @@ nmap _h :cd%:h<CR>
 nmap _s :%s/\s\+$//<CR>
 nmap _S :%s/^\s\+//<CR>
 
+map <Leader>ls :buffers<CR>
 " cycle thru buffers ...
-nnoremap <Leader>d :bn<cr>
-nnoremap <Leader>f :bp<cr>
+nnoremap <Leader>d :bnext<cr>
+nnoremap <Leader>f :bprev<cr>
+" Buffer navigation (,,) (,]) (,[) (,ls)
+map <Leader>, <C-^>
 "nmap <tab> :bn<cr>
 "nmap <s-tab> :bp<cr>
 
@@ -766,10 +759,14 @@ cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
 " Normal mode mappings
-nnoremap <C-h> <C-w>h " select window to left
-nnoremap <C-j> <C-w>j " select window below
-nnoremap <C-k> <C-w>k " select window above
-nnoremap <C-l> <C-w>l " select window to right
+" select window to left
+nnoremap <C-h> <C-w>h
+" select window below
+nnoremap <C-j> <C-w>j
+" select window above
+nnoremap <C-k> <C-w>k
+" select window to right
+nnoremap <C-l> <C-w>l
 
 " redraw window so search terms are centered
 nnoremap n nzz
@@ -884,12 +881,36 @@ let g:yankring_window_height = 12
 map <leader>yr :YRShow<cr> 
 
 " -----------------------------------------------------------
-" Plugin: CommandT
+" Plugin: Command-T
 " -----------------------------------------------------------
 "
 let g:CommandTMaxFiles=50000
 let g:CommandTMaxDepth=20
+let g:CommandTMaxHeight=12
+let g:CommandTCancelMap=['<Esc>', '<C-c>']
 nmap <silent> <Leader>T :CommandT<CR>
+
+" -----------------------------------------------------------
+" Plugin: Taglist
+" -----------------------------------------------------------
+let Tlist_Auto_Open = 1
+let Tlist_WinWidth = 40
+"let Tlist_Ctags_Cmd = "/usr/bin/ctags"
+let Tlist_Inc_Winwidth = 1
+let Tlist_Exit_OnlyWindow = 1
+"let Tlist_File_Fold_Auto_Close = 1
+let Tlist_Process_File_Always = 1
+let Tlist_Enable_Fold_Column = 0
+let tlist_php_settings = 'php;c:class;d:constant;f:function'
+nnoremap <leader>tl :TlistToggle<CR>
+map <S-F8> :TlistAddFilesRecursive ~/devel/xp.public/trunk/skeleton<CR>
+map <S-F9> :TlistAddFilesRecursive ~/devel/xp.private/trunk/xp5/projects/pet/src<CR>:TlistAddFilesRecursive ~/devel/xp.public/trunk/skeleton<CR>
+
+
+" -----------------------------------------------------------
+" Plugin: Rainbow Parenthesis
+" -----------------------------------------------------------
+nnoremap <leader>rp :RainbowParenthesesToggle<CR>
 
 " -----------------------------------------------------------
 " Plugin: Ack
@@ -1240,6 +1261,9 @@ iab @@r @return
 " -----------------------------------------------------------
 command! Ointernmail :o scp://internmail/~/httpd/
 command! Svp :VCSVimDiff prev
+
+" Sudo write (,W)
+noremap <leader>W :w !sudo tee %<CR>
 
 " -----------------------------------------------------------
 " Vimpager
