@@ -49,3 +49,6 @@
 [submodule "home/vim/bundle/vim-css-color"]
 	path = home/vim/bundle/vim-css-color
 	url = git://github.com/gf3/vim-css-color.git
+[submodule "home/vim/bundle/vim-stylus"]
+	path = home/vim/bundle/vim-stylus
+	url = git://github.com/wavded/vim-stylus.git
