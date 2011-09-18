@@ -54,4 +54,4 @@
 	url = git://github.com/wavded/vim-stylus.git
 [submodule "home/oh-my-zsh"]
 	path = home/oh-my-zsh
-	url = git://github.com/robbyrussell/oh-my-zsh.git
+	url = git://github.com/sjl/oh-my-zsh.git
