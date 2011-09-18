@@ -6,7 +6,8 @@ alias gv="gvim"
 
 # some more ls aliases
 alias ls='ls -G'
-alias ll='ls -l'
+#alias ll='ls -l'
+alias ll='tree --dirsfirst -ChFupDaLg 1'
 alias la='ls -A'
 alias l='ls -CF'
 
