@@ -86,3 +86,6 @@ for file in paths bash_prompt exports aliases complete functions extra; do
 file="$HOME/.bash/$file"
   [ -e "$file" ] && source "$file"
 done
+
+# Custom (system depended, secrets, etc.)
+[[ -s "$HOME/.customrc" ]] && source "$HOME/.customrc"
