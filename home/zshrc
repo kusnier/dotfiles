@@ -40,6 +40,5 @@ ZSH_CUSTOM=$HOME/.oh-my-zsh.custom
 for plugin ($plugins); do
   if [ -f $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh ]; then
     source $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh
-    echo source $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh
   fi
 done
