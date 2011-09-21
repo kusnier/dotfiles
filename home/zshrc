@@ -33,6 +33,8 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
+
 # Load all of custom plugins that were defined in ~/.zshrc
 ZSH_CUSTOM=$HOME/.oh-my-zsh.custom
 for plugin ($plugins); do
