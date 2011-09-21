@@ -31,9 +31,9 @@ if [ "$TERM" != "dumb" ] && [ -x /usr/bin/dircolors ]; then
 fi
 
 if [ "$TERM" != "dumb" ]; then
-    alias grep='grep --color=auto --exclude=*.svn --exclude=*.svn-base'
-    alias fgrep='fgrep --color=auto --exclude=*.svn --exclude=*.svn-base'
-    alias egrep='egrep --color=auto --exclude=*.svn --exclude=*.svn-base'
+    alias grep='grep --color=auto --exclude="*.svn" --exclude="*.svn-base"'
+    alias fgrep='fgrep --color=auto --exclude="*.svn" --exclude="*.svn-base"'
+    alias egrep='egrep --color=auto --exclude="*.svn" --exclude="*.svn-base"'
     alias diff=colordiff
 fi
 
