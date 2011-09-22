@@ -38,7 +38,7 @@ bindkey '^R' history-incremental-search-backward
 # vim mode of backspace or use X in normal mode
 bindkey '^?' backward-delete-char
 
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 # Load all of custom plugins that were defined in ~/.zshrc
 ZSH_CUSTOM=$HOME/.oh-my-zsh.custom
