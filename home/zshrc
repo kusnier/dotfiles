@@ -33,6 +33,11 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
+# use ctrl-r for history search backward, like bash in vi-mode
+bindkey '^R' history-incremental-search-backward
+# vim mode of backspace or use X in normal mode
+bindkey '^?' backward-delete-char
+
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
 
 # Load all of custom plugins that were defined in ~/.zshrc
