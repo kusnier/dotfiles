@@ -14,8 +14,10 @@ alias l='ls -CF'
 # List only directories
 alias lsd='ls -l | grep "^d" --color=never'
 
-# find aliases
-alias f='find . -not -name *.svn-base -iname'
+# find function
+function f () {
+  find . -not -name '*.svn-base' -iname $@
+}
 
 #if [ "$TERM" != "dumb" ] && [ -x /usr/bin/colordiff ]; then
 #alias svn='svn --diff-cmd /usr/bin/colordiff'

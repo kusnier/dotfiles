@@ -13,9 +13,6 @@ alias la='ls -A'
 # List only directories
 alias lsd='ls -l | grep "^d" --color=never'
 
-# find aliases
-alias f='find . -not -name *.svn-base -iname'
-
 # enable color support of ls and also add handy aliases
 if [ "$TERM" != "dumb" ] && [ -x /usr/bin/dircolors ]; then
     eval "`dircolors -b`"
