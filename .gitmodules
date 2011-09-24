@@ -52,9 +52,6 @@
 [submodule "home/vim/bundle/vim-stylus"]
 	path = home/vim/bundle/vim-stylus
 	url = git://github.com/wavded/vim-stylus.git
-[submodule "home/oh-my-zsh"]
-	path = home/oh-my-zsh
-	url = git://github.com/sjl/oh-my-zsh.git
 [submodule "home/oh-my-zsh.custom/plugins/zsh-syntax-highlighting"]
 	path = home/oh-my-zsh.custom/plugins/zsh-syntax-highlighting
 	url = git://github.com/zsh-users/zsh-syntax-highlighting.git
