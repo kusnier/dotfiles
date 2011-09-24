@@ -29,6 +29,9 @@ plugins=(git svn vi-mode node npm extract zsh-syntax-highlighting)
 [[ -e "/etc/debian_version" ]] && plugins+=(deb debian)
 [[ $(uname) == Darwin ]] && plugins+=(osx brew)
 
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+ZSH_CUSTOM=$HOME/.oh-my-zsh.custom
+
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
@@ -38,17 +41,3 @@ bindkey '^R' history-incremental-search-backward
 # vim mode of backspace or use X in normal mode
 bindkey '^?' backward-delete-char
 
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
-
-# Load all of custom plugins that were defined in ~/.zshrc
-ZSH_CUSTOM=$HOME/.oh-my-zsh.custom
-for plugin ($plugins); do
-  if [ -f $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh ]; then
-    source $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh
-  fi
-done
-
-# Load all of your custom configurations from custom/
-if [ -d "$ZSH_CUSTOM" ]; then
-  for config_file ($ZSH_CUSTOM/*.zsh) source $config_file
-fi
