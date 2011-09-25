@@ -51,9 +51,3 @@ fi
 if [ -d "/usr/local/lib/node" ] ; then
   NODE_PATH="/usr/local/lib/node"
 fi
-
-
-# MacPorts Installer addition on 2009-11-08_at_09:15:10: adding an appropriate PATH variable for use with MacPorts.
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-# Finished adapting your PATH environment variable for use with MacPorts.
-
