@@ -1,0 +1,22 @@
+# set PATH so it includes user's private bin if it exists
+[[ -d "$HOME/bin" ]] && PATH="$HOME/bin:$PATH"
+
+[[ $(uname) == 'Darwin' ]] && \
+  [[ -d "$HOME/devel/gcode/scripts/bin/macosx" ]] && \
+  PATH="$HOME/devel/gcode/scripts/bin/macosx:$PATH"
+
+[[ `uname -s` == 'Linux' ]] && \
+  [[ -d "$HOME/devel/gcode/scripts/bin/linux" ]] && \
+      PATH="$HOME/devel/gcode/scripts/bin/linux:$PATH"
+
+[[ -d "$HOME/devel/gcode/scripts/bin/all" ]] && \
+    PATH="$HOME/devel/gcode/scripts/bin/all:$PATH"
+
+
+# xp on macosx
+[[ -d "/Users/seek/devel/xp.bin" ]] && \
+    PATH="/Users/seek/devel/xp.bin:$PATH"
+
+# node.js
+[[ -d "/usr/local/lib/node" ]] && \
+  NODE_PATH="/usr/local/lib/node"
