@@ -3,20 +3,5 @@ export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=$PATH:$HOME/.gem/ruby/1.8/bin
 
-# user paths
-export XPS=$HOME/devel/xp.private/trunk/xp5/skeleton
-export XPP=$HOME/devel/xp.private/trunk/xp5/projects
-
-export XP_PUB_SKEL=$HOME/devel/xp.public/trunk/skeleton
-export XP_PRIV_SKEL=$HOME/devel/xp.private/trunk/xp5/skeleton
-export XP_PRIV_SRC=$HOME/devel/xp.private/trunk/xp5/projects/**/src/
-export XP_PRIV_LIB=$HOME/devel/xp.private/trunk/xp5/libs/**/src/
-export XP_CTAGS_DIR=$HOME/devel/xp.ctags/
-if [ -d "/dev/shm" ] ; then
-  export XP_CTAGS_DIR=/dev/shm/
-fi
-
-export TEC_145=$HOME/devel/xp.private/branches/TEC_145/xp5/projects/ipmt
-
 # cd paths
 export CDPATH=.:~/devel:~/devel/xp.private/trunk/xp5/projects:~/devel/xp.private/trunk/xp5/worlds/:~/devel/xp.private/trunk/xp5/libs:~/devel/xp.private/trunk:/media/:etc/
