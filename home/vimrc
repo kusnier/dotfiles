@@ -387,7 +387,7 @@ if has("gui_running")
     set guifont=DejaVu\ Sans\ Mono\ 8
   endif
 
-  "colorscheme macvim
+  colorscheme molokai
 
 endif
 " Custom highlights
