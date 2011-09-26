@@ -18,6 +18,12 @@ function box_name {
     [ -f ~/.box-name ] && cat ~/.box-name || hostname -s
 }
 
+if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
+  export TERM=gnome-256color
+elif infocmp xterm-256color >/dev/null 2>&1; then
+  export TERM=xterm-256color
+fi
+
 if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
   USERCOLOR=$(tput setaf 9)
   HOSTCOLOR=$(tput setaf 172)
