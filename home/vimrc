@@ -94,7 +94,7 @@ set display=lastline " display as much as possible from the last line
 " Encoding
 " -----------------------------------------------------------
 set encoding=utf8
-autocmd BufRead,BufNewFile */devel/xp*/* setlocal encoding=latin1
+autocmd BufRead,BufNewFile */devel/xp*/*.php setlocal encoding=latin1
 
 " Store temporary files in a central spot
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
