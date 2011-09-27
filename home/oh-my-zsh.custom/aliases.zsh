@@ -3,6 +3,9 @@ alias c='clear'
 alias v="vim"
 alias gv="gvim"
 
+# On linux use open like in macos
+[[ `uname -s` == 'Linux' ]] && alias open=xdg-open
+
 # some more ls aliases
 alias la='ls -A'
 
