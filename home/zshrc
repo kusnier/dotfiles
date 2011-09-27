@@ -41,3 +41,5 @@ bindkey '^R' history-incremental-search-backward
 # vim mode of backspace or use X in normal mode
 bindkey '^?' backward-delete-char
 
+# load RVM
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
