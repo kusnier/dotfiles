@@ -1276,12 +1276,6 @@ command! Svp :VCSVimDiff prev
 noremap <leader>W :w !sudo tee %<CR>
 
 " -----------------------------------------------------------
-" Vimpager
-" Url:http://www.vim.org/scripts/script.php?script_id=1723 
-" -----------------------------------------------------------
-let vimpager_use_gvim = 1
-
-" -----------------------------------------------------------
 " Learn it Bitch!!! :)
 " -----------------------------------------------------------
 imap jj <esc>
