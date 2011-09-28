@@ -3,6 +3,13 @@ alias c='clear'
 alias v="vim"
 alias gv="gvim"
 
+#Suffix aliases
+# filename.md pressing return-key starts gvim
+alias -s md=gvim
+alias -s html=gvim
+alias -s php=gvim
+alias -s js=gvim
+
 # On linux use open like in macos
 [[ `uname -s` == 'Linux' ]] && alias open=xdg-open
 
