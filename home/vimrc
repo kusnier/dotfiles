@@ -941,6 +941,11 @@ let g:checksyntax_auto_xslt = 1
 let g:checksyntax_compiler_xslt='xmllint'
 
 " -----------------------------------------------------------
+" Plugin: Twiki
+" -----------------------------------------------------------
+au BufNewFile,BufRead /tmp/vimperator-* setf twiki
+
+" -----------------------------------------------------------
 " Plugin: NERDCommenter
 " -----------------------------------------------------------
 "
