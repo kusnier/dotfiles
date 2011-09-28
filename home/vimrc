@@ -1084,7 +1084,7 @@ let g:neocomplcache_enable_auto_select = 0
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_at_startup = 0
 " This variable controls the number of the input completioning at the time of key input automatically.
 let g:neocomplcache_auto_completion_start_length = 3
 let g:neocomplcache_manual_completion_start_length = 3
