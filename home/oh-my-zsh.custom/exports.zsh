@@ -14,8 +14,10 @@ export MYSQL_PS1="\\d@\\h> "
 # Man
 # man pager: more info -> http://vim.wikia.com/wiki/Using_vim_as_a_man-page_viewer_under_Unix
 export MANPAGER="sh -c \"col -bx | iconv -c | view -c 'set ft=man nomod nolist titlestring=MANPAGE' -\""
-export PAGER=~/devel/gcode/scripts/bin/all/vimpager
-export MANPAGER=~/devel/gcode/scripts/bin/all/vimpager
+[[ -e "$HOME/devel/gcode/scripts/bin/all/vimpager" ]] && \
+  export PAGER=$HOME/devel/gcode/scripts/bin/all/vimpager
+[[ -e "$HOME/devel/gcode/scripts/bin/all/vimpager" ]] && \
+  export MANPAGER=$HOME/devel/gcode/scripts/bin/all/vimpager
 
 # cd options
 export FIGNORE='.svn'
