@@ -1,0 +1,7 @@
+" -----------------------------------------------------------
+" Vimpager
+" Url:http://www.vim.org/scripts/script.php?script_id=1723 
+" vi:ft=vim
+" -----------------------------------------------------------
+let vimpager_use_gvim = 1
+
