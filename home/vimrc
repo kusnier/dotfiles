@@ -1272,9 +1272,6 @@ iab @@r @return
 command! Ointernmail :o scp://internmail/~/httpd/
 command! Svp :VCSVimDiff prev
 
-" Sudo write (,W)
-noremap <leader>W :w !sudo tee %<CR>
-
 " -----------------------------------------------------------
 " Learn it Bitch!!! :)
 " -----------------------------------------------------------
