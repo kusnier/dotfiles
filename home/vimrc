@@ -179,11 +179,6 @@ set digraph
 " linebreak
 "set verbose=1
 " set clipboard
-" complete
-" completefunc
-" completeopt
-"set completeopt+=menu,longest,preview
-set completeopt+=menu,preview
 "
 " Remap ` to '
 " These are very similar keys. Typing 'a will jump to the line
@@ -478,6 +473,16 @@ endif
 " -----------------------------------------------------------
 " Insert-Mode Completion
 " -----------------------------------------------------------
+" complete
+" completefunc
+" completeopt
+"set completeopt+=menu,longest,preview
+""set completeopt+=menu,preview
+set completeopt=longest,menuone,preview
+""inoremap <expr> <CR>  pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <C-p> pumvisible() ? '<C-n>'  : '<C-n><C-r>=pumvisible() ? "\<lt>up>" : ""<CR>'
+inoremap <expr> <C-n> pumvisible() ? '<C-n>'  : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
 
 " order and what to complete. see ":help complete" for info
 set complete=.,w,b,u,t,i,k
@@ -964,6 +969,12 @@ nmap <leader>cc$ <plug>NERDCommenterToEOL
 nmap <leader>ccA <plug>NERDCommenterAppend
 
 " -----------------------------------------------------------
+" Plugin: NERDTree
+" -----------------------------------------------------------
+nmap  <leader>nt :NERDTreeToggle<cr>
+au Filetype nerdtree setlocal nolist
+
+" -----------------------------------------------------------
 " Cope
 " -----------------------------------------------------------
 map <leader>qc :botright cope<cr>
@@ -1271,9 +1282,6 @@ iab @@r @return
 " -----------------------------------------------------------
 command! Ointernmail :o scp://internmail/~/httpd/
 command! Svp :VCSVimDiff prev
-
-" Sudo write (,W)
-noremap <leader>W :w !sudo tee %<CR>
 
 " -----------------------------------------------------------
 " Learn it Bitch!!! :)
