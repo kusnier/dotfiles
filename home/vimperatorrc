@@ -1,10 +1,11 @@
 " vi:ft=vim
 
-:set visualbell
-:hi Bell display: none;
+set gui=none,tabs,addons
+set visualbell
+hi Bell display: none;
 " Avoid problems on qwerty <-> qwertz changes
-:map ZZ :echo('zz disabled');<CR>
-:set hlsearch
+map ZZ :echo('zz disabled');<CR>
+set hlsearch
 
 let mapleader = ","
 " Firebug
@@ -29,7 +30,7 @@ highlight CompItem font: normal 14px 'Menlo' !important;
 
 
 " pass through
-:autocmd LocationChange .* js modes.passAllKeys = /www\.google\.com\/reader/.test(buffer.URL)
-:set passkeys+='http://www\.google\.com/reader':nplmsStjkvoJKVOA
+autocmd LocationChange .* js modes.passAllKeys = /www\.google\.com\/reader/.test(buffer.URL)
+set passkeys+='http://www\.google\.com/reader':nplmsStjkvoJKVOA
 
 source ~/devel/gcode/conf/firefox/vimperator/vimperatorrc
