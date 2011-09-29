@@ -1,6 +1,7 @@
 " vi:ft=vim
 
 set gui=none,tabs,addons
+set animations
 set visualbell
 hi Bell display: none;
 " Avoid problems on qwerty <-> qwertz changes
