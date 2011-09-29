@@ -1,0 +1,25 @@
+" vi:ft=vim
+
+:set visualbell
+:hi Bell display: none;
+" Avoid problems on qwerty <-> qwertz changes
+:map ZZ :echo('zz disabled');<CR>
+:set hlsearch
+
+let mapleader = ","
+" Firebug
+map <Leader>f :firebug toggle<CR>
+" NoScript
+" - Toggles scripts temporarily on current page.
+map <Leader>n :noscript toggletemp<CR>
+" -Toggles scripts permanently on current page.
+map <Leader>p :noscript toggleperm<CR>
+
+" Don't auto hide tab in fullscreen. finally!
+set! browser.fullscreen.autohide=false
+
+" pass through
+:autocmd LocationChange .* js modes.passAllKeys = /www\.google\.com\/reader/.test(buffer.URL)
+:set passkeys+='http://www\.google\.com/reader':nplmsStjkvoJKVOA
+
+source ~/devel/gcode/conf/firefox/vimperator/vimperatorrc
