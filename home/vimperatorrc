@@ -24,7 +24,7 @@ set! browser.fullscreen.autohide=false
 set! network.http.pipelining=true
 set! network.http.pipelining.ssl=true
 set! network.http.proxy.pipelining=true
-set! network.http.pipelining.maxrequests=30
+set! network.http.pipelining.maxrequests=8
 set! network.http.max-connections=96
 set! network.http.max-connections-per-server=32
 
