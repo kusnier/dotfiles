@@ -20,6 +20,12 @@ map <Leader>p :noscript toggleperm<CR>
 " Don't auto hide tab in fullscreen. finally!
 set! browser.fullscreen.autohide=false
 
+" Speedup firefox
+set! network.http.pipelining=true
+set! network.http.pipelining.ssl=true
+set! network.http.proxy.pipelining=true
+set! network.http.pipelining.maxrequests=30
+
 set hintchars=ifjklasdhguonmerwc
 
 highlight Hint font-size: 14px; background: rgba(210,1,133,0.8) !important; border: 2px solid rgb(165,1,105); padding: 4px; border-radius: 3px; font-weight: bold; margin-left: -25px; color: white; font-family: Helvetica; line-height:1em;
