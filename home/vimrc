@@ -79,9 +79,10 @@ set nocompatible
 set number
 set cursorline
 
-if has("autochdir")
-  set autochdir
-endif
+" don't use autochdir, sucks with projects/sessions/nerdtree
+" if has("autochdir")
+"  set autochdir
+" endif
 set scrolloff=5     "start scrolling 5 lines before edge of viewport
 set sidescrolloff=3 " same, but for columns
 
