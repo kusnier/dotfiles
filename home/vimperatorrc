@@ -8,6 +8,8 @@ hi Bell display: none;
 map ZZ :echo('zz disabled');<CR>
 set hlsearch
 
+set runtimepath=$HOME/.vimperator,$HOME/devel/gcode/conf/firefox/vimperator/home
+
 let mapleader = ","
 " Firebug
 map <Leader>f :firebug toggle<CR>
@@ -27,6 +29,10 @@ set! network.http.proxy.pipelining=true
 set! network.http.pipelining.maxrequests=8
 set! network.http.max-connections=96
 set! network.http.max-connections-per-server=32
+
+" google translate plugin
+" :tr[anslate] [-l[angpair from|to] word or phrase
+let g:translate_langpair="en|de"
 
 set hintchars=ifjklasdhguonmerwc
 
