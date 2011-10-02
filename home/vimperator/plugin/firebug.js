@@ -1,25 +1,4 @@
 /**
- * Copyright (c) 2008 - 2011 by Eric Van Dewoestine
- *
- * Permission is hereby granted, free of charge, to any person obtaining a
- * copy of this software and associated documentation files (the "Software"),
- * to deal in the Software without restriction, including without limitation
- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
- * and/or sell copies of the Software, and to permit persons to whom the
- * Software is furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
- * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
- * DEALINGS IN THE SOFTWARE.
- *
- *
  * Plugin to interact with firebug.
  *
  * Usage:
@@ -42,10 +21,13 @@
  *   - scrolling:         j, k, h, l, gg, G, 0, $, <c-d>, <c-u>, <c-f>, <c-b>
  *   - tab switching:     gt, gT, g0, g$
  *
- * Note: the wincmd plugin supports navigating to/from firebug panels like
+ * Note: the wincmd plugin[1] supports navigating to/from firebug panels like
  * regular html frames, giving them focus for allowing you to then navigate via
  * the supported vimperator key bindings noted above.
  *
+ * [1] http://vimperator.org/trac/ticket/56
+ *
+ * @author Eric Van Dewoetine (ervandew@gmail.com)
  * @version 0.3
  *
  * TODO:
@@ -62,16 +44,15 @@ function FirebugVimperator(){
   // event listener to keep track of if/which firebug panel is focused.
   window.addEventListener('focus', function(event){
     var doc = null;
-    var target = event.target;
-    if (target.nodeType == Node.DOCUMENT_NODE){
-      doc = target;
-    }else if (target.ownerPanel){
-      doc = target.ownerPanel.document;
-    }else if (target.parentNode && target.parentNode.ownerPanel){ // script panel
-      doc = target.parentNode.ownerPanel.document;
+    if (event.target.nodeType == Node.DOCUMENT_NODE){
+      doc = event.target;
+    }else if (event.target.ownerPanel){
+      doc = event.target.ownerPanel.document;
+    }else if (event.target.parentNode.ownerPanel){ // script panel
+      doc = event.target.parentNode.ownerPanel.document;
     }
 
-    if (doc && doc.location == 'chrome://firebug/content/panel.html'){
+    if (doc.location == 'chrome://firebug/content/panel.html'){
       for each (node in doc.getElementsByClassName('panelNode')){
         var match = /.*\spanelNode-(\w+)\s.*/.exec(node.className);
         if (match && node.getAttribute('active') == 'true'){
