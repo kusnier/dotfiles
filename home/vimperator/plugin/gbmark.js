@@ -33,10 +33,10 @@ var INFO =
       if(1<strSelect.length){
         strUri=strEndPoint+encodeURIComponent(strUrl)
           +'&title='+encodeURIComponent(strTitle)
-          +'&annotation='+encodeURIComponent(strSelect)+'&hl=ja';
+          +'&annotation='+encodeURIComponent(strSelect);
       }else{
         strUri=strEndPoint+encodeURIComponent(strUrl)
-          +'&title='+encodeURIComponent(strTitle)+'&hl=ja';
+          +'&title='+encodeURIComponent(strTitle);
       }
       gBrowser.addTab(strUri);
     }
