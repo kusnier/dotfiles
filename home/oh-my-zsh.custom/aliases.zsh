@@ -2,6 +2,7 @@
 alias c='clear'
 alias v="vim"
 alias gv="gvim"
+alias gt="gvim --remote-tab-silent"
 
 #Suffix aliases
 # filename.md pressing return-key starts gvim
