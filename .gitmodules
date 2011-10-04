@@ -13,6 +13,7 @@
 [submodule "home/vim/bundle/vcscommand"]
 	path = home/vim/bundle/vcscommand
 	url = git://repo.or.cz/vcscommand
+	ignore = dirty
 [submodule "home/vim/bundle/nerdtree"]
 	path = home/vim/bundle/nerdtree
 	url = git://github.com/scrooloose/nerdtree.git
@@ -34,12 +35,14 @@
 [submodule "home/vim/bundle/vim-session"]
 	path = home/vim/bundle/vim-session
 	url = git://github.com/xolox/vim-session
+	ignore = dirty
 [submodule "home/vim/bundle/zencoding-vim"]
 	path = home/vim/bundle/zencoding-vim
 	url = git://github.com/mattn/zencoding-vim.git
 [submodule "home/vim/bundle/xmledit"]
 	path = home/vim/bundle/xmledit
 	url = git://github.com/sukima/xmledit.git
+	ignore = dirty
 [submodule "home/vim/bundle/vim-coffee-script"]
 	path = home/vim/bundle/vim-coffee-script
 	url = git://github.com/kchmck/vim-coffee-script.git
@@ -61,3 +64,4 @@
 [submodule "home/vim/bundle/vim-git"]
 	path = home/vim/bundle/vim-git
 	url = git://github.com/tpope/vim-git.git
+	ignore = dirty
