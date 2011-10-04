@@ -36,7 +36,7 @@ let g:translate_langpair="en|de"
 
 set hintchars=ifjklasdhguonmerwc
 
-highlight Hint font-size: 14px; background: rgba(210,1,133,0.8) !important; border: 2px solid rgb(165,1,105); padding: 4px; border-radius: 3px; font-weight: bold; margin-left: -25px; color: white; font-family: Helvetica; line-height:1em;
+highlight Hint font-size: 14px; background: rgba(41,112,166,0.8) !important; border: 2px solid rgb(255,1,105); padding: 4px; border-radius: 3px; font-weight: bold; margin-left: -25px; color: white; font-family: Helvetica; line-height:1em;
 highlight HintActive background: rgba(145,197,43,0.8) !important;
 highlight HintElem background: rgba(255, 209, 20, 0.7) !important;
 
