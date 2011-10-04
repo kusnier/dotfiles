@@ -58,3 +58,6 @@
 [submodule "home/oh-my-zsh"]
 	path = home/oh-my-zsh
 	url = https://github.com/kusnier/oh-my-zsh
+[submodule "home/vim/bundle/vim-git"]
+	path = home/vim/bundle/vim-git
+	url = git://github.com/tpope/vim-git.git
