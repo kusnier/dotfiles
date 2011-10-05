@@ -893,7 +893,10 @@ set tags=./tags,tags
 let g:easytags_dynamic_files = 1
 let g:easytags_resolve_links = 1
 let g:easytags_include_members = 1
-" If you like one of the existing styles you can link them:
+" Other plug-ins may lower the 'updatetime' value in certain contexts,
+"   e.g. insert mode in the case of the neocomplcache plug-in.
+" let g:easytags_updatetime_autodisable = 1
+
 highlight link cMember Special
 highlight link phpFunctionsTag Special
 highlight link phpClassesTag Special
