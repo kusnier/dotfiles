@@ -20,6 +20,7 @@
 " Plugin: Pathogen
 " Url: https://github.com/tpope/vim-pathogen
 " -----------------------------------------------------------
+runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
 " -----------------------------------------------------------
