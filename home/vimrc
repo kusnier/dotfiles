@@ -895,6 +895,8 @@ let g:easytags_resolve_links = 1
 let g:easytags_include_members = 1
 " If you like one of the existing styles you can link them:
 highlight link cMember Special
+highlight link phpFunctionsTag Special
+highlight link phpClassesTag Special
 
 " -----------------------------------------------------------
 " Plugin: YankRing
