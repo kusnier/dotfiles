@@ -18,9 +18,9 @@
 
 " -----------------------------------------------------------
 " Plugin: Pathogen
-" Url: http://www.vim.org/scripts/script.php?script_id=2332
+" Url: https://github.com/tpope/vim-pathogen
 " -----------------------------------------------------------
-call pathogen#runtime_append_all_bundles() 
+call pathogen#infect()
 
 " -----------------------------------------------------------
 " General setup
