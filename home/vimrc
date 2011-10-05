@@ -568,8 +568,6 @@ set omnifunc=syntaxcomplete#Complete " Set omni-completion method.
 " export XP_CTAGS_DIR=~/devel/xp.ctags/
 
 nmap <silent> <S-F4> :!~/devel/gcode/conf/ctags/ctags_gen.sh<CR>
-set tags=./tags,tags,$XP_CTAGS_DIR/tags
-
 " -----------------------------------------------------------
 " XP.Framework 
 " -----------------------------------------------------------
@@ -883,6 +881,20 @@ let g:SuperTabDefaultCompletionType='context'
 let g:SuperTabRetainCompletionDuration='session'
 let g:SuperTabLongestHighlight=1
 let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
+
+" -----------------------------------------------------------
+" Plugin: Easytags`
+" -----------------------------------------------------------
+"
+set tags=./tags,tags
+" the easytags plug-in will write to the first existing tags file seen by
+" In other words: If a project specific tags file is found it will be used,
+" otherwise the plug-in falls back to the global tags file (or a file type specific tags file).
+let g:easytags_dynamic_files = 1
+let g:easytags_resolve_links = 1
+let g:easytags_include_members = 1
+" If you like one of the existing styles you can link them:
+highlight link cMember Special
 
 " -----------------------------------------------------------
 " Plugin: YankRing
