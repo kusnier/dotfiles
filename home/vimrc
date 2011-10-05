@@ -22,6 +22,13 @@
 " -----------------------------------------------------------
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
+" vimball ?
+" If you really must use one:
+"
+" :e name.vba
+" :!mkdir ~/.vim/bundle/name
+" :UseVimball ~/.vim/bundle/name
+"
 
 " -----------------------------------------------------------
 " General setup
