@@ -17,3 +17,7 @@ Go to dotfiles directory
 ```bash
 git pull --recurse-submodules && ./update_symlinks.sh
 ```
+
+## Vim settings
+
+[Vim README.md](http://home/vim#readme)
