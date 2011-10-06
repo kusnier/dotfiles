@@ -16,6 +16,10 @@ Add these lines in vimrc
 * Ctrl-Left_MouseClick - Go to definition
 * Ctrl-Right_MouseClick - Jump back from definition
 
+### Buffder / Tab / Window
+
+* C-w T - to change that split into a new tab.
+
 _Todo_
 
 1. Add all used bindings
