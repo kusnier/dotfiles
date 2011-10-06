@@ -290,7 +290,7 @@ highlight SpecialKey guifg=#ff2a2a
 " -----------------------------------------------------------
 set foldmethod=syntax
 "set foldclose
-set foldenable
+set nofoldenable
 
 " -----------------------------------------------------------
 " Searching, Substituting
