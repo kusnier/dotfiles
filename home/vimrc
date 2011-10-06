@@ -50,7 +50,7 @@ nnoremap ; :
 nnoremap j gj
 nnoremap k gk
 
-" Tired of clearing highlighted searches by searching for ¿ldsfhjkhgakjks¿? Use this:
+" Tired of clearing highlighted searches by searching for 'ldsfhjk' Use this:
 " Test this later, mark has a mapping with ,/
 ""nmap <silent> ,/ :let @/=""<CR>
 
