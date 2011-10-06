@@ -897,10 +897,19 @@ let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
 let g:session_directory = '~/.vim-sessions'
 
 " -----------------------------------------------------------
+" Tags / Ctags
+" -----------------------------------------------------------
+"
+set tags=
+set tags+=tags;$HOME
+set tags+=./tags;$HOME
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+" -----------------------------------------------------------
 " Plugin: Easytags`
 " -----------------------------------------------------------
 "
-set tags=./tags,tags
 " the easytags plug-in will write to the first existing tags file seen by
 " In other words: If a project specific tags file is found it will be used,
 " otherwise the plug-in falls back to the global tags file (or a file type specific tags file).
