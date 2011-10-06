@@ -907,7 +907,7 @@ map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " -----------------------------------------------------------
-" Plugin: Easytags`
+" Plugin: Easytags
 " -----------------------------------------------------------
 "
 " the easytags plug-in will write to the first existing tags file seen by
