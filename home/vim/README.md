@@ -27,6 +27,16 @@ _Todo_
 
 ## Plugins
 
+### vim-fugitive
+
+* `:Gwrite` Stage the current file to the index
+* `:Gread` Revert current file to last checked in version
+* `:Gremove` Delete the current file and the corresponding Vim buffer
+* `:Gmove` Rename the current file and the corresponding Vim buffer
+* `:Gcommit` Opens up a commit window in a split
+* `:Gblame` Opens a vertically split window containing annotations
+* `:Gsplit! log` Opens the commit log in a split
+
 _Todo_
 
 1. Add used plugins with author/links
