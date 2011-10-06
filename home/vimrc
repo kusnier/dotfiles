@@ -891,6 +891,12 @@ let g:SuperTabLongestHighlight=1
 let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
 
 " -----------------------------------------------------------
+" Plugin: Session
+" -----------------------------------------------------------
+"
+let g:session_directory = '~/.vim-sessions'
+
+" -----------------------------------------------------------
 " Plugin: Easytags`
 " -----------------------------------------------------------
 "
