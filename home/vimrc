@@ -474,7 +474,7 @@ if has('statusline')
 "   %V current virtual column number (-n), if different from %c
 "   %P percentage through buffer
 "   %) end of width specification
-let &statusline='%< %n:%f %m%r%y%w%=%-35.(line: %l of %L, col: %c%V (%P)%)'
+let &statusline='%< %n:%f %m%r%y%w%{fugitive#statusline()}%=%-35.(line: %l of %L, col: %c%V (%P)%)'
 " cfi#format has problem with eclim
 " let &statusline='%< %n:%f %m%r%y%w%{cfi#format("[%s()]", "")}%=%-35.(line: %l of %L, col: %c%V (%P)%)'
 endif
@@ -720,6 +720,12 @@ au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 " ZSH
 " -----------------------------------------------------------
 au BufRead,BufNewFile *.zsh-theme set ft=zsh
+
+" -----------------------------------------------------------
+" QuickFix
+" -----------------------------------------------------------
+" open quickfix window after a grep
+autocmd QuickFixCmdPost *grep* cwindow
 
 " -----------------------------------------------------------
 " Mappings
