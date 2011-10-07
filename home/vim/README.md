@@ -30,6 +30,12 @@ _Todo_
 
 ## Plugins
 
+### autoclose / delimitMate
+
+Autoclose is disabled now. Testing delimitMate (new and on git).
+
+* `<leader>a` - Toogle autoclose/delimitMate
+
 ### vim-fugitive
 
 * `:Gwrite` Stage the current file to the index
