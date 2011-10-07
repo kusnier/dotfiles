@@ -945,6 +945,14 @@ let g:CommandTMaxHeight=12
 let g:CommandTCancelMap=['<Esc>', '<C-c>']
 nmap <silent> <Leader>T :CommandT<CR>
 
+
+" -----------------------------------------------------------
+" Plugin: Autoclose
+" Plugin: delimitMate
+" -----------------------------------------------------------
+" Disable Autoclose, test delimitMate
+let g:autoclose_loaded = 1
+
 " -----------------------------------------------------------
 " Plugin: Taglist
 " -----------------------------------------------------------
