@@ -9,12 +9,14 @@ Add these lines in vimrc
     map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 * `C-]` - go to definition
+* `g]` - Like `C-]`, but use ":tselect" instead of ":tag"
 * `C-T` - Jump back from the definition
 * `C-W C-]` - Open the definition in a horizontal split
 * `C-\` - Open the definition in a new tab
 * `A-]` - Open the definition in a vertical split
 * `C-Left_MouseClick` - Go to definition
 * `C-Right_MouseClick` - Jump back from definition
+* `:tag XYZ<tab>` - tag support tag completion
 
 ### Buffder / Tab / Window
 
