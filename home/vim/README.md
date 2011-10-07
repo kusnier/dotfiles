@@ -17,6 +17,7 @@ Add these lines in vimrc
 * `C-Left_MouseClick` - Go to definition
 * `C-Right_MouseClick` - Jump back from definition
 * `:tag XYZ<tab>` - tag support tag completion
+* `:help tags-and-searches - Tags and special searches
 
 ### Buffder / Tab / Window
 
