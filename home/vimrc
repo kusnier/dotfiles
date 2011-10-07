@@ -952,6 +952,7 @@ nmap <silent> <Leader>T :CommandT<CR>
 " -----------------------------------------------------------
 " Disable Autoclose, test delimitMate
 let g:autoclose_loaded = 1
+nmap <Leader>a :DelimitMateSwitch<CR>
 
 " -----------------------------------------------------------
 " Plugin: Taglist
