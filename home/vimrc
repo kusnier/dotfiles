@@ -565,13 +565,6 @@ autocmd FileType php set omnifunc=xpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
 set omnifunc=syntaxcomplete#Complete " Set omni-completion method.
 
-" ~/.profile content:
-" export XP_PUB_SKEL=~/devel/xp.public/trunk/skeleton
-" export XP_PRIV_SKEL=~/devel/xp.private/trunk/xp5/skeleton
-" export XP_PRIV_SRC=~/devel/xp.private/trunk/xp5/projects/**/src/
-" export XP_PRIV_LIB=$HOME/devel/xp.private/trunk/xp5/libs/**/src/
-" export XP_CTAGS_DIR=~/devel/xp.ctags/
-
 nmap <silent> <S-F4> :!~/devel/gcode/conf/ctags/ctags_gen.sh<CR>
 " -----------------------------------------------------------
 " XP.Framework 
