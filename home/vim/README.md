@@ -45,6 +45,7 @@ Autoclose is disabled now. Testing delimitMate (new and on git).
 * `:Gcommit` Opens up a commit window in a split
 * `:Gblame` Opens a vertically split window containing annotations
 * `:Gsplit! log` Opens the commit log in a split
+* `:Gbrowse` open the current file on GitHub (or git instaweb)
 
 _Todo_
 
