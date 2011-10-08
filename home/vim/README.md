@@ -25,6 +25,8 @@ Ctags generation:
 
 Commands and bindings
 
+Some of the tag match list commands:
+
 * `C-]` - go to definition
 * `g]` - Like `C-]`, but use ":tselect" instead of ":tag"
 * `C-T` - Jump back from the definition
@@ -33,7 +35,22 @@ Commands and bindings
 * `A-]` - Open the definition in a vertical split
 * `C-Left_MouseClick` - Go to definition
 * `C-Right_MouseClick` - Jump back from definition
+* `:tselelect` - lists the tags that match its argument or keyword under the cursor
+* `:tnext`, `:tprevious`, `:tfirst` and `:tlast` jump through the tag occurrences
+
+Some of the tag stack commands:
+
+* `:pop` - jumps backward in the tag stack
+* `:tag` - jumps forward in the tag stack
 * `:tag XYZ<tab>` - tag support tag completion
+* `:tags` - displays a tag stack
+
+Some of the search commands:
+
+* `[i` and `]i` display the first line containing the keyword under and after the cursor
+* `[I` and `]I` display all lines containing the keyword under and after the cursor
+* `[ C-i` and `] C-i` jumps to the first line that contains the keyword under and after the cursor
+
 * `:help tags-and-searches - Tags and special searches
 
 ### Taglist
