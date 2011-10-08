@@ -13,6 +13,7 @@ Autoclose is disabled now. Testing delimitMate (new and on git).
 * `C-w T` - to change that split into a new tab.
 
 ### Tags
+
 Add these lines in vimrc
 
     map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
@@ -28,6 +29,10 @@ Add these lines in vimrc
 * `C-Right_MouseClick` - Jump back from definition
 * `:tag XYZ<tab>` - tag support tag completion
 * `:help tags-and-searches - Tags and special searches
+
+### Taglist
+
+* `,tl` - Show/Hide Taglist (:TlistToggle)
 
 
 ### vim-fugitive
