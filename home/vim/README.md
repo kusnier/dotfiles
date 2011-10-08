@@ -19,6 +19,12 @@ Add these lines in vimrc
     map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
     map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
+Ctags generation:
+
+- for php `ctags -R --languages=php .`
+
+Commands and bindings
+
 * `C-]` - go to definition
 * `g]` - Like `C-]`, but use ":tselect" instead of ":tag"
 * `C-T` - Jump back from the definition
