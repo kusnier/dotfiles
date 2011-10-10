@@ -915,9 +915,9 @@ let g:easytags_include_members = 1
 "   e.g. insert mode in the case of the neocomplcache plug-in.
 " let g:easytags_updatetime_autodisable = 1
 
-highlight link cMember Special
-highlight link phpFunctionsTag Special
-highlight link phpClassesTag Special
+highlight cMember guifg=#1155ff
+highlight phpFunctionsTag guifg=#1155ff
+highlight phpClassesTag guifg=#ff0077
 
 " -----------------------------------------------------------
 " Plugin: YankRing
