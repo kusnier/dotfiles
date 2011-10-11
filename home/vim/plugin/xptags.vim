@@ -8,6 +8,10 @@ if exists ("loaded_xptags")
 endif
 let loaded_xptags = 1
 
+if !exists('g:global_xptags')
+  let g:global_xptags = '~/devel/xp.public'
+endif
+
 function s:LoadPathfile(pathfile)
   if filereadable(a:pathfile)
     call delete("tags")
@@ -16,6 +20,8 @@ function s:LoadPathfile(pathfile)
       echo "UpdateTags: " . line
       call xolox#easytags#update(0, 0, ['-R', line])
     endfor
+    echo "UpdateTags Global " . g:global_xptags
+      call xolox#easytags#update(0, 0, ['-R', g:global_xptags])
     echo "Update xptags done."
   endif
 endfunction
