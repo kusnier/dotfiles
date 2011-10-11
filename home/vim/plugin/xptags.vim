@@ -1,7 +1,7 @@
 " Create ctags for given path file
 " Author:  Sebastian Kusnier
-" Date: 10-Oct-2011
-" Version: 0.1
+" Date: 11-Oct-2011
+" Version: 0.3
 
 if exists ("loaded_xptags")
     finish
