@@ -699,8 +699,8 @@ autocmd FileType sql setlocal spell
 " -----------------------------------------------------------
 " Spellchecking for filetypes
 " -----------------------------------------------------------
-autocmd FileType markdown setlocal spell spelllang=en
-autocmd FileType changelog setlocal spell spelllang=en
+autocmd FileType markdown setlocal spell spelllang=en complete+=k
+autocmd FileType changelog setlocal spell spelllang=en complete+=k
 
 " -----------------------------------------------------------
 " Quicksigns
