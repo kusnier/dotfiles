@@ -10,6 +10,8 @@ let loaded_xptags = 1
 
 function s:LoadPathfile(pathfile)
   if filereadable(a:pathfile)
+    call delete("tags")
+    call writefile([], "tags", "b")
     for line in readfile(a:pathfile)
       echo "UpdateTags: " . line
       call xolox#easytags#update(0, 0, ['-R', line])
