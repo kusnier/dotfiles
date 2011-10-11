@@ -900,6 +900,8 @@ set tags+=tags;$HOME
 set tags+=./tags;$HOME
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+" On my linux at work A-] == Ý
+map Ý :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " -----------------------------------------------------------
 " Plugin: Easytags
