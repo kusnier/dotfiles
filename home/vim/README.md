@@ -57,6 +57,9 @@ Some of the search commands:
 
 * `,tl` - Show/Hide Taglist (:TlistToggle)
 
+### Suptertab
+
+* `:SuperTabHelp` - list all available completion types
 
 ### vim-fugitive
 
