@@ -487,7 +487,6 @@ endif
 "  k scan the files given with the 'dictionary' option
 set complete=.,w,b,u,t,i,k
 
-"
 "  longest  Only insert the longest common text of the matches.  If
 "     the menu is displayed you can use CTRL-L to add more
 "     characters.  Whether case is ignored depends on the kind
