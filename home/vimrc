@@ -499,6 +499,14 @@ set infercase
 set noshowfulltag
 set infercase " adjust the case of auto completed words
 
+" -----------------------------------------------------------
+" Plugin: SuperTab
+" -----------------------------------------------------------
+"
+let g:SuperTabDefaultCompletionType='context'
+let g:SuperTabRetainCompletionDuration='session'
+let g:SuperTabLongestHighlight=1
+let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
 
 " -----------------------------------------------------------
 " Eclim settings
@@ -881,15 +889,6 @@ let g:Conque_TERM = 'xterm'
 " -----------------------------------------------------------
 "
 let g:sudoAuth="gksudo"
-
-" -----------------------------------------------------------
-" Plugin: SuperTab
-" -----------------------------------------------------------
-"
-let g:SuperTabDefaultCompletionType='context'
-let g:SuperTabRetainCompletionDuration='session'
-let g:SuperTabLongestHighlight=1
-let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
 
 " -----------------------------------------------------------
 " Plugin: Session
