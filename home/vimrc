@@ -508,11 +508,11 @@ set completeopt=longest,menuone,preview
 "inoremap <expr> <C-p> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>up>" : ""<CR>'
 "inoremap <expr> <C-n> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
-set infercase
+set infercase " adjust the case of auto completed words
+
 " showfulltag when completing tags in Insert mode show only the name
 " not any arguments (when a c-funtion is inserted)
 set noshowfulltag
-set infercase " adjust the case of auto completed words
 
 " -----------------------------------------------------------
 " Plugin: SuperTab
