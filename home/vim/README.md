@@ -1,5 +1,10 @@
 # Vim settings
 
+## Must have :help
+
+* `:help cmdline-special` - Ex special characters
+* `:help ins-completion` - Insert mode completion
+
 ## Bindings
 
 ### autoclose / delimitMate
