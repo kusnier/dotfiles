@@ -478,18 +478,37 @@ endif
 " -----------------------------------------------------------
 " Insert-Mode Completion
 " -----------------------------------------------------------
-" complete
-" completefunc
-" completeopt
-"set completeopt+=menu,longest,preview
-""set completeopt+=menu,preview
+"  . scan the current buffer ('wrapscan' is ignored)
+"  w scan buffers from other windows
+"  b scan other loaded buffers that are in the buffer list
+"  u scan the unloaded buffers that are in the buffer list
+"  t tag completion
+"  i scan current and included files
+"  k scan the files given with the 'dictionary' option
+set complete=.,w,b,u,t,i,k
+
+"
+"  longest  Only insert the longest common text of the matches.  If
+"     the menu is displayed you can use CTRL-L to add more
+"     characters.  Whether case is ignored depends on the kind
+"     of completion.  For buffer text the 'ignorecase' option is
+"     used.
+"
+"  menuone  Use the popup menu also when there is only one match.
+"     Useful when there is additional information about the
+"     match, e.g., what file it comes from.
+"
+"  preview  Show extra information about the currently selected
+"     completion in the preview window.  Only works in
+"     combination with "menu" or "menuone".
+"
 set completeopt=longest,menuone,preview
+" completefunc
 "inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 "inoremap <expr> <C-p> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>up>" : ""<CR>'
 "inoremap <expr> <C-n> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
 " order and what to complete. see ":help complete" for info
-set complete=.,w,b,u,t,i,k
 " enable dictionary (add k to complete to scan dict when completing)
 " set dict=<FILENAME>
 " adjust case of a keyword completion match
