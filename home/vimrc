@@ -508,10 +508,6 @@ set completeopt=longest,menuone,preview
 "inoremap <expr> <C-p> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>up>" : ""<CR>'
 "inoremap <expr> <C-n> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
-" order and what to complete. see ":help complete" for info
-" enable dictionary (add k to complete to scan dict when completing)
-" set dict=<FILENAME>
-" adjust case of a keyword completion match
 set infercase
 " showfulltag when completing tags in Insert mode show only the name
 " not any arguments (when a c-funtion is inserted)
