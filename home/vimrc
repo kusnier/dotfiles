@@ -484,10 +484,9 @@ endif
 "set completeopt+=menu,longest,preview
 ""set completeopt+=menu,preview
 set completeopt=longest,menuone,preview
-""inoremap <expr> <CR>  pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <expr> <C-p> pumvisible() ? '<C-n>'  : '<C-n><C-r>=pumvisible() ? "\<lt>up>" : ""<CR>'
-inoremap <expr> <C-n> pumvisible() ? '<C-n>'  : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
+"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+"inoremap <expr> <C-p> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>up>" : ""<CR>'
+"inoremap <expr> <C-n> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
 " order and what to complete. see ":help complete" for info
 set complete=.,w,b,u,t,i,k
@@ -921,9 +920,6 @@ let g:easytags_dynamic_files = 1
 let g:easytags_resolve_links = 1
 let g:easytags_include_members = 1
 let g:easytags_auto_highlight = 1
-" Other plug-ins may lower the 'updatetime' value in certain contexts,
-"   e.g. insert mode in the case of the neocomplcache plug-in.
-" let g:easytags_updatetime_autodisable = 1
 
 highlight cMember guifg=#1155ff
 highlight phpFunctionsTag guifg=#1155ff
@@ -1143,104 +1139,6 @@ endif
 " Http: http://www.vim.org/scripts/script.php?script_id=3269
 " -----------------------------------------------------------
 map <LEADER>jc :call OpenFilesFromClipboard()<CR>
-
-" -----------------------------------------------------------
-" Plugin: Acp - AutocomplPop
-" -----------------------------------------------------------
-map <leader>nc :NeoComplCacheToggle<CR>
-
-" AutoComplPop like behavior.
-let g:neocomplcache_enable_auto_select = 0
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" This variable controls the number of the input completioning at the time of key input automatically.
-let g:neocomplcache_auto_completion_start_length = 3
-let g:neocomplcache_manual_completion_start_length = 3
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-
-" When you input _, this variable controls whether
-" neocomplcache takes an ambiguous searching as an end of the
-" words in it.  For example, neocomplcache come to match it
-" with 'public_html' when you input it with 'p_h'.
-let g:neocomplcache_enable_underbar_completion = 1
-
-" Set minimum syntax keyword length. - STANDARD VALUE
-let g:neocomplcache_min_syntax_length = 4
-" "For input-saving, use - to speed up completion
-let g:neocomplcache_enable_quick_match = 1
-" This variable controls whether neocomplcache use |CursorHoldI| event when complete candidates.
-""let g:neocomplcache_enable_cursor_hold_i =1
-
-" When you input a capital letter, this variable controls
-" whether neocomplcache takes an ambiguous searching as an end
-" of the words in it.  For example, neocomplcache come to
-" match it with ArgumentsException when you input it with AE.
-let g:neocomplcache_enable_camel_case_completion = 1
-
-if !exists('g:neocomplcache_keyword_patterns')
-  let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['php'] = '</\?\%(\h[[:alnum:]_-]*\s*\)\?\%(/\?>\)\?\|\$\h\w*\|\%(\h\w*\)*\h\w*\%(()\?\)\?'
-
-" Initialize text mode filetypes.
-if !exists('g:neocomplcache_text_mode_filetypes')
-  let g:neocomplcache_text_mode_filetypes = {}
-endif
-let g:neocomplcache_text_mode_filetypes['vcscommit'] = 1
-let g:neocomplcache_text_mode_filetypes['svn'] = 1
-
-" Initialize member prefix patterns."
-if !exists('g:neocomplcache_member_prefix_patterns')
-  let g:neocomplcache_member_prefix_patterns = {}
-endif
-let g:neocomplcache_member_prefix_patterns['perl,php']= '->\|::'
-
-" Initialize complete function list."{{{
-if !exists('g:neocomplcache_vim_completefuncs')
-  let g:neocomplcache_vim_completefuncs = {}
-endif
-" Do not use tags file, i will use instead the eclim (eclipse completion)
-"autocmd FileType php let g:neocomplcache_caching_limit_file_size= 9999999999
-"}}}
-
-
-" TODO:
-" "g:neoc-omplcache_filetype_include_lists
-
-" Define dictionary.
-""let g:neocomplcache_dictionary_filetype_lists = {
-""    \ 'default' : '/usr/share/dict/words',
-""    \ 'php' : '/usr/share/dict/words',
-""    \ 'vcscommit' : '/usr/share/dict/words',
-""    \ 'skfiletype' : $HOME.'/.skcomp_completions'
-""    \ }
-
-" Plugin key-mappings.
-imap <C-l>     <Plug>(neocomplcache_snippets_expand)
-smap <C-l>     <Plug>(neocomplcache_snippets_expand)
-inoremap <expr><C-g>     neocomplcache#undo_completion()
-inoremap <expr><C-l>     neocomplcache#complete_common_string()
-inoremap <expr><C-x><C-f>  neocomplcache#manual_filename_complete()
-inoremap <expr><C-n>  pumvisible() ? "\<C-n>" : neocomplcache#manual_keyword_complete()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-""inoremap <expr><CR>  (pumvisible() ? "\<C-y>":'') . "\<C-f>\<CR>X\<BS>"
-" <TAB>: completion.
-""inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-""inoremap <expr><C-h> pumvisible() ? neocomplcache#close_popup()."\<C-h>" : "\<C-h>"
-""inoremap <expr><BS> pumvisible() ? neocomplcache#close_popup()."\<C-h>" : "\<C-h>"
-""inoremap <expr><C-y>  neocomplcache#close_popup()
-""inoremap <expr><C-e>  neocomplcache#cancel_popup()
-
-" AutoComplPop like behavior.
-""inoremap <expr><CR>  (pumvisible() ? "\<C-e>":'') . (&indentexpr != '' ? "\<C-f>\<CR>X\<BS>":"\<CR>")
-""inoremap <expr><C-h> pumvisible() ? neocomplcache#cancel_popup()."\<C-h>" : "\<C-h>"
-""inoremap <expr><BS> pumvisible() ? neocomplcache#cancel_popup()."\<C-h>" : "\<C-h>"
 
 " -----------------------------------------------------------
 " Function: Google map in vim :)
