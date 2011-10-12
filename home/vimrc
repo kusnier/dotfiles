@@ -1089,7 +1089,7 @@ set grepprg=grep\ -nH
 " http://code.google.com/p/zen-coding/
 " -----------------------------------------------------------
 " Plugin is installed. Learn it Bitch!!! :)
-let g:user_zen_leader_key = '<c-k>'
+let g:user_zen_leader_key = '<c-;>'
 let g:user_zen_settings = {
 \  'indentation' : '  ',
 \  'perl' : {
