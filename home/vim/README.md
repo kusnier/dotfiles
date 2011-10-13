@@ -61,6 +61,7 @@ Preview tags
 
 * `:ptag` - open tag in a preview window, stay in current buffer 
 * `Ctrl-W }` - like :ptag
+* `:ptselect` - like :tselect but in a preview split
 
 Some of the search commands:
 
