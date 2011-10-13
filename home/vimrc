@@ -158,23 +158,6 @@ endif
 filetype plugin indent on
 
 " -----------------------------------------------------------
-" Spell
-" -----------------------------------------------------------
-set nospell
-set spelllang=de,en
-if filereadable("~/.vim/spell/spf.add")
- set spellfile=~/.vim/spell/spf.add
-endif
-if filereadable("~/.vim/spell/de.latin1.spl")
- set spellfile=~/.vim/spell/de.latin1.spl
-endif
-
-set dictionary+=/usr/share/dict/words
-"set dictionary+=/usr/share/dict/ngerman
-"set dictionary+=/usr/share/dict/polish
-set digraph
-
-" -----------------------------------------------------------
 " unused settings
 " -----------------------------------------------------------
 " runtime macros/matchit.vim
@@ -512,6 +495,23 @@ set infercase " adjust the case of auto completed words
 " showfulltag when completing tags in Insert mode show only the name
 " not any arguments (when a c-funtion is inserted)
 set noshowfulltag
+
+" -----------------------------------------------------------
+" Spell
+" -----------------------------------------------------------
+set nospell
+set spelllang=de,en
+if filereadable("~/.vim/spell/spf.add")
+ set spellfile=~/.vim/spell/spf.add
+endif
+if filereadable("~/.vim/spell/de.latin1.spl")
+ set spellfile=~/.vim/spell/de.latin1.spl
+endif
+
+set dictionary+=/usr/share/dict/words
+"set dictionary+=/usr/share/dict/ngerman
+"set dictionary+=/usr/share/dict/polish
+set digraph
 
 " -----------------------------------------------------------
 " Plugin: SuperTab
