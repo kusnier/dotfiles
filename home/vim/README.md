@@ -49,7 +49,7 @@ Some of the tag stack commands:
 * `:tag` - jumps forward in the tag stack
 * `:tag XYZ<tab>` - tag support tag completion
 * `:tags` - displays a tag stack
-* `:stag` - like :tag but open a new window
+* `:stag` - like :tag but open a new split
 
 Some of the search commands:
 
