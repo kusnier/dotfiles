@@ -42,6 +42,7 @@ Some of the tag match list commands:
 * `C-Right_MouseClick` - Jump back from definition
 * `:tselect` - lists the tags that match its argument or keyword under the cursor
 * `:stselect` - like :tselect but in a split
+* `C-W g]` to a :tselect on cursor/selection
 * `:tnext`, `:tprevious`, `:tfirst` and `:tlast` jump through the tag occurrences
 
 Some of the tag stack commands:
