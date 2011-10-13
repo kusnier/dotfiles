@@ -523,14 +523,6 @@ let g:SuperTabLongestHighlight=1
 let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
 
 " -----------------------------------------------------------
-" Eclim settings
-" -----------------------------------------------------------
-autocmd FileType php nnoremap <silent> <buffer> <cr> :PhpSearchContext<cr>
-let g:EclimProjectTreeAutoOpen=1
-let g:EclimProjectTreeExpandPathOnOpen=1
-let g:EclimProjectTreeSharedInstance=1
-
-" -----------------------------------------------------------
 " Php Development
 " -----------------------------------------------------------
 
