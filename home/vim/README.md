@@ -57,6 +57,10 @@ Some of the tag stack commands:
 * `:tags` - displays a tag stack
 * `:stag` - like :tag but open a new split
 
+Preview tags
+
+* `:ptag` - open tag in a preview window, stay in current buffer 
+
 Some of the search commands:
 
 * `[i` and `]i` display the first line containing the keyword under and after the cursor
