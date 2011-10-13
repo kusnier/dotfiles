@@ -49,6 +49,7 @@ Some of the tag match list commands:
 * `g C-]` - like :tjump
 * `:tnext`, `:tprevious`, `:tfirst` and `:tlast` jump through the tag occurrences
 * the most ex command are support pattern, `:tag /<pattern>`
+* with 'wildmenu' option the most tag command display a list of matching tags
 
 Some of the tag stack commands:
 
