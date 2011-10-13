@@ -60,6 +60,7 @@ Some of the tag stack commands:
 Preview tags
 
 * `:ptag` - open tag in a preview window, stay in current buffer 
+* `Ctrl-W }` - like :ptag
 
 Some of the search commands:
 
