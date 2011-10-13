@@ -54,7 +54,7 @@ nnoremap k gk
 ""nmap <silent> ,/ :let @/=""<CR>
 
 " The leader character is your own personal modifier key,
-" as g is Vim¿s modifier key (when compared to vi). The default
+" as g is Vim's modifier key (when compared to vi). The default
 " leader is \, but this is not located standardly on all
 " keyboards and requires a pinky stretch in any case. 
 let mapleader = ","
