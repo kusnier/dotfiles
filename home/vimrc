@@ -519,6 +519,7 @@ set noshowfulltag
 "
 let g:SuperTabDefaultCompletionType='context'
 let g:SuperTabRetainCompletionDuration='session'
+let g:SuperTabLongestEnhanced=1
 let g:SuperTabLongestHighlight=1
 let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
 
