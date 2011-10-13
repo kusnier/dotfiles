@@ -27,6 +27,7 @@ Add these lines in vimrc
 Ctags generation:
 
 - for php `ctags -R --languages=php .`
+- for file lists (project.pth) use `ctags -R -L <filelist>`
 
 Commands and bindings
 
