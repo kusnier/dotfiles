@@ -57,7 +57,7 @@ Some of the tag stack commands:
 * `:tags` - displays a tag stack
 * `:stag` - like :tag but open a new split
 
-Preview tags
+Some of the tag preview commands:
 
 * `:ptag` - open tag in a preview window, stay in current buffer 
 * `Ctrl-W }` - like :ptag
