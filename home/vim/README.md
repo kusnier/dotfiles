@@ -43,6 +43,10 @@ Some of the tag match list commands:
 * `:tselect` - lists the tags that match its argument or keyword under the cursor
 * `:stselect` - like :tselect but in a split
 * `C-W g]` to a :tselect on cursor/selection
+* `:tjump` - jump to tag or list if multiple tags found
+* `:stjump` - like :tjump but opens in a new split
+* `C-W g C-]` - like :stjump
+* `g C-]` - like :tjump
 * `:tnext`, `:tprevious`, `:tfirst` and `:tlast` jump through the tag occurrences
 
 Some of the tag stack commands:
