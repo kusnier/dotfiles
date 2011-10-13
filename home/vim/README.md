@@ -48,6 +48,7 @@ Some of the tag match list commands:
 * `C-W g C-]` - like :stjump
 * `g C-]` - like :tjump
 * `:tnext`, `:tprevious`, `:tfirst` and `:tlast` jump through the tag occurrences
+* the most ex command are support pattern, `:tag /<pattern>`
 
 Some of the tag stack commands:
 
