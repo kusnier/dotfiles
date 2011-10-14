@@ -36,10 +36,6 @@ function! SQLUtilities#SQLU_Formatter(...) range
     let hlsearch = &hlsearch
     let &hlsearch = 0
 
-    " Store pervious value of gdefault
-    let gdefault = &gdefault
-    let &gdefault = 0
-
     " save previous search string
     let saveSearch = @/ 
 
@@ -66,7 +62,6 @@ function! SQLUtilities#SQLU_Formatter(...) range
     " Restore default value
     " And restore cursor position
     let &hlsearch = hlsearch
-    let &gdefault = gdefault
     call s:SQLU_WrapperEnd(mode)
 
     " restore previous format options 
@@ -108,10 +103,6 @@ function! SQLUtilities#SQLU_FormatStmts(...) range
     let hlsearch = &hlsearch
     let &hlsearch = 0
 
-    " Store pervious value of gdefault
-    let gdefault = &gdefault
-    let &gdefault = 0
-
     " save previous search string
     let saveSearch = @/ 
 
@@ -144,7 +135,6 @@ function! SQLUtilities#SQLU_FormatStmts(...) range
     " Restore default value
     " And restore cursor position
     let &hlsearch = hlsearch
-    let &gdefault = gdefault
 
     " restore previous format options 
     let &formatoptions = saveFormatOptions 
