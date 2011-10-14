@@ -749,7 +749,8 @@ au BufRead,BufNewFile *.zsh-theme set ft=zsh
 " QuickFix
 " -----------------------------------------------------------
 " open quickfix window after a grep
-autocmd QuickFixCmdPost *grep* cwindow
+" BAD: this will break php omnicomplete
+"autocmd QuickFixCmdPost *grep* cwindow
 
 " -----------------------------------------------------------
 " Mappings
