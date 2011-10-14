@@ -27,7 +27,7 @@ dotfilespath=$(realpath $0)
 for dotfile in ${dotfilespath}/home/* ; do
   echo $dotfile
   base=`basename $dotfile`
-  rm -i ~/.$base
+  rm -ir ~/.$base
   ln -v -s $dotfile ~/.$base
 done
 
