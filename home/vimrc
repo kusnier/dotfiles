@@ -14,6 +14,9 @@
 "   Ack
 "   Snipmate
 "   Sparkup
+" TODO:
+"   - read syntax/php.vim doc, disable slow functions
+
 
 " -----------------------------------------------------------
 " Plugin: Pathogen
@@ -532,19 +535,25 @@ let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
 
 " http://phpslacker.com/2009/02/05/vim-tips-for-php-programmers/
 " highlights interpolated variables in sql strings and does sql-syntax highlighting. yay
-autocmd FileType php let php_sql_query=1
+" set to 0, because of slow php syntax handling
+autocmd FileType php let php_sql_query=0
 " does exactly that. highlights html inside of php strings (sql, etc)
-autocmd FileType php let php_htmlInStrings=1
+" set to 0, because of slow php syntax handling
+autocmd FileType php let php_htmlInStrings=0
 " discourages use oh short tags. c'mon its deprecated remember
 autocmd FileType php let php_noShortTags=1
 " automagically folds functions & methods. this is getting IDE-like isn't it?
-autocmd FileType php let php_folding=1
+" set to 0, because of slow php syntax handling
+autocmd FileType php let php_folding=0
+" set to 0, because of slow php syntax handling
+autocmd FileType php let php_strict_blocks=0
 let php_minlines=300
 " for highlighting baselib functions
 autocmd FileType php let php_baselib = 1
 " syntax works out whether -> indicates a property or method.
 " Otherwise method colours may be used on properties, for
-autocmd FileType php let php_smart_members = 1
+" set to 0, because of slow php syntax handling
+autocmd FileType php let php_smart_members = 0
 " use a different color for '->' based on whether it is used
 " for property access, method access, or dynamic access (using
 " '->{...}')
@@ -560,7 +569,8 @@ autocmd FileType php let php_alt_arrays = 2
 " If a PHP script has more lines than this limit (e.g., more
 " than 3000 lines), some options are automatically turned off
 " to help it load faster.  These options are:
-autocmd FileType php let php_large_file = 0
+" set to 0, because of slow php syntax handling
+autocmd FileType php let php_large_file = 1000
 
 " set "make" command when editing php files
 set makeprg=php\ -l\ %
@@ -577,7 +587,8 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=xpcomplete#CompletePHP
+"autocmd FileType php set omnifunc=xpcomplete#CompletePHP
+"autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
 set omnifunc=syntaxcomplete#Complete " Set omni-completion method.
 
