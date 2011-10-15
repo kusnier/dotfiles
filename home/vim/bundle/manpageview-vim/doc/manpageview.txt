@@ -1,8 +1,8 @@
-*manpageview.txt*	Man Page Viewer			May 18, 2009
+*manpageview.txt*	Man Page Viewer			Mar 29, 2011
 
 Author:  Charles E. Campbell, Jr.  <NdrchipO@ScampbellPfamily.AbizM>
 	  (remove NOSPAM from Campbell's email first)
-Copyright: (c) 2004-2009 by Charles E. Campbell, Jr.	*manpageview-copyright*
+Copyright: (c) 2004-2011 by Charles E. Campbell, Jr.	*manpageview-copyright*
            The VIM LICENSE applies to ManPageView.vim and ManPageView.txt
            (see |copyright|) except use "ManPageView" instead of "Vim"
 	   no warranty, express or implied.  use at-your-own-risk.
@@ -20,6 +20,7 @@ Copyright: (c) 2004-2009 by Charles E. Campbell, Jr.	*manpageview-copyright*
 	     Info...................................: |manpageview-info|
 	     Php....................................: |manpageview-php|
 	     Extending ManPageView..................: |manpageview-extend|
+	     Manpageview Suggestion.................: |manpageview-suggest|
 	3. ManPageView Options......................: |manpageview-options|
 	4. ManPageView History......................: |manpageview-history|
 
@@ -133,6 +134,12 @@ Copyright: (c) 2004-2009 by Charles E. Campbell, Jr.	*manpageview-copyright*
 	copy of the links WWW browser.  The homepage for Elinks is
 	http://elinks.cz/.
 
+	PYTHON					*manpageview-python*
+
+	For python help, Manpageview depends upon pydoc.  As an
+	example, try >
+		:Man pprint.py
+<
 
 	EXTENDING MANPAGEVIEW			*manpageview-extend* {{{2
 
@@ -160,7 +167,7 @@ Copyright: (c) 2004-2009 by Charles E. Campbell, Jr.	*manpageview-copyright*
 	The help on |manpageview_extend| covers these variables in more
 	detail.
 
-	MULTIPLE MAN PAGES		*manpage-pageup* *manpage-pagedown*
+	MULTIPLE MAN PAGES		*manpageview-pageup* *manpageview-pagedown*
 
         With >
 		man -a topic
@@ -170,6 +177,15 @@ Copyright: (c) 2004-2009 by Charles E. Campbell, Jr.	*manpageview-copyright*
 		PageUp  : move to preceding  manpage
 		PageDown: move to succeeding manpage
 <
+	MANPAGEVIEW SUGGESTION		*manpageview-suggest*
+
+	As an example, for C: put in .vim/ftplugin/c/c.vim: >
+		nno <buffer> K  :<c-u>exe v:count."Man ".expand("<cword>")<cr>
+<	This map allows K to immediately use manpageview with functions in a
+	C program.  One may make similar maps for other languages, of course,
+	or simply put the map in one's <.vimrc>.
+
+
 
 ==============================================================================
 3. ManPageView Options				*manpageview-options* {{{1
@@ -186,6 +202,10 @@ Copyright: (c) 2004-2009 by Charles E. Campbell, Jr.	*manpageview-copyright*
 		    happens to not be |executable()|, then no filtering
 		    will be done.  (Thanks to Matthew Wozniski).
 
+		    As an example, Hong Xu reports that he has found that >
+		      let g:manpageview_iconv= "iconv -c UTF-8 -t UTF-8"
+<		    useful when using NetBSD.
+
 						*g:manpageview_multimanpage*
 	g:manpageview_multimanpage (=1 by default)
 		    This option means that the PageUp and PageDown keys
@@ -201,7 +221,7 @@ Copyright: (c) 2004-2009 by Charles E. Campbell, Jr.	*manpageview-copyright*
 	            let g:manpageview_options= "-P 'cat -'"
 	            let g:manpageview_options= "-c"
 	            let g:manpageview_options= "-Tascii"
-	
+
 						*g:manpageview_pgm*
 	g:manpageview_pgm : by default, its "man", but it may be changed
 		     by the user.  This program is what is called to actually
@@ -221,9 +241,9 @@ Copyright: (c) 2004-2009 by Charles E. Campbell, Jr.	*manpageview-copyright*
 	   "vsplit=" man page will appear in a vertically   & evenly split window
 	   "reuse"   man page will re-use current window.  Use <ctrl-o> to return.
 	             (for the reuse option, thanks go to Alan Schmitt)
-	
+
 				*g:manpageview_server* *g:manpgeview_user*
-						
+
 	g:manpageview_server : for WinNT; uses rsh to read manpage remotely
 	g:manpageview_user   : use given server (host) and username
 	  examples:
@@ -290,6 +310,8 @@ Copyright: (c) 2004-2009 by Charles E. Campbell, Jr.	*manpageview-copyright*
 	Thanks go to the various people who have contributed changes,
 	pointed out problems, and made suggestions!
 
+	v24: Jan 03, 2011  * some extra protection against trying to use
+			     a program that is not executable
 	v23: May 18, 2009  * on the third attempt to get a manpage, if
 	                     the user provided no explicit
 			     |g:manpageview_iconv| setting, then the
@@ -297,6 +319,8 @@ Copyright: (c) 2004-2009 by Charles E. Campbell, Jr.	*manpageview-copyright*
 			   * Fixed K mapping for php, tex, etc.
 			   * (in progress) KMan [ext] to set default
 			     extension for the K map
+	     Oct 21, 2010  * added python help via pydoc (suffix: .py)
+	     Oct 25, 2010  * Version 23 released
 	v22: Nov 10, 2008  * if g:manpageview_K_{ext} (ext is some
 			     extension) exists, previously that would
 			     be enough to institute a K map.  Now, if
