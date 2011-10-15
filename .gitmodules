@@ -78,3 +78,6 @@
 [submodule "home/vim/bundle/delimitMate"]
 	path = home/vim/bundle/delimitMate
 	url = git://github.com/Raimondi/delimitMate.git
+[submodule "home/vim/bundle/calendar-vim"]
+	path = home/vim/bundle/calendar-vim
+	url = git://github.com/mattn/calendar-vim.git
