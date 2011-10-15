@@ -47,7 +47,7 @@ endif
 " ---------------------------------------------------------------------
 " Public Interface: {{{1
 if !hasmapto('<Plug>StartDrawIt')
-  map <unique> <Leader>sdi <Plug>StartDrawIt
+  map <unique> <Leader>di <Plug>StartDrawIt
 endif
 map <silent> <Plug>StartDrawIt  :set lz<cr>:call DrawIt#StartDrawIt()<cr>:set nolz<cr>
 com! -nargs=0 DIstart set lz|call DrawIt#StartDrawIt()|set nolz
