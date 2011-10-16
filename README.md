@@ -1,4 +1,5 @@
 # kusnier's dot files
+
 My private dot files
 
 ## Install: step by step
@@ -7,11 +8,13 @@ My private dot files
 2. `./dotfiles/update_symlinks.sh`
 
 ## Install: one liner
+
 ```bash
 git clone --recurse-submodules git://github.com/kusnier/dotfiles.git && ./dotfiles/update_symlinks.sh
 ```
 
 ## Update
+
 Go to dotfiles directory
 
 ```bash
