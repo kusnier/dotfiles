@@ -1002,6 +1002,11 @@ map <S-F9> :TlistAddFilesRecursive ~/devel/xp.private/trunk/xp5/projects/pet/src
 nnoremap <leader>rp :RainbowParenthesesToggle<CR>
 
 " -----------------------------------------------------------
+" Plugin: EasyMotion
+" -----------------------------------------------------------
+let g:EasyMotion_leader_key='\'
+
+" -----------------------------------------------------------
 " Plugin: Ack
 " -----------------------------------------------------------
 "
