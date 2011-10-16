@@ -1,12 +1,18 @@
 " calutil.vim: some calendar utilities
 " Author:	Charles E. Campbell, Jr.
-" Date:		Oct 19, 2007
-" Version:	3a	ASTRO-ONLY
+" Date:		Oct 08, 2008
+" Version:	3b	ASTRO-ONLY
 " ---------------------------------------------------------------------
 if exists("loaded_calutil")
  finish
 endif
-let g:loaded_calutil= "v3a"
+let g:loaded_calutil= "v3b"
+if v:version < 700
+ echohl WarningMsg
+ echo "***warning*** this version of calutil needs vim 7.0"
+ echohl Normal
+ finish
+endif
 
 " ---------------------------------------------------------------------
 " DayOfWeek: {{{1
