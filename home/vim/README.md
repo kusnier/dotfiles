@@ -96,6 +96,8 @@ Some of the search commands:
 
 ### easymotion
 
+Tutorial: <http://net.tutsplus.com/tutorials/other/vim-essential-plugin-easymotion/>
+
     let g:EasyMotion_leader_key='\'
 
 * `<Leader>f{char}` - Find {char} to the right.
