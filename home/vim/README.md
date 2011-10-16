@@ -85,6 +85,16 @@ Some of the search commands:
 
 ### vim-fugitive
 
+#### Screencasts
+
+* [A complement to command line git](http://vimcasts.org/e/31)
+* [Working with the git index](http://vimcasts.org/e/32)
+* [Resolving merge conflicts with vimdiff](http://vimcasts.org/e/33)
+* [Browsing the git object database](http://vimcasts.org/e/34)
+* [Exploring the history of a git repository](http://vimcasts.org/e/35)
+
+#### Commands
+
 * `:Gwrite` Stage the current file to the index
 * `:Gread` Revert current file to last checked in version
 * `:Gremove` Delete the current file and the corresponding Vim buffer
