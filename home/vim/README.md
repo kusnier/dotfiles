@@ -94,6 +94,24 @@ Some of the search commands:
 * `:Gsplit! log` Opens the commit log in a split
 * `:Gbrowse` open the current file on GitHub (or git instaweb)
 
+### easymotion
+
+    let g:EasyMotion_leader_key='\'
+
+* `<Leader>f{char}` - Find {char} to the right.
+* `<Leader>F{char}` - Find {char} to the left.
+* `<Leader>t{char}` - Till before the {char} to the right.
+* `<Leader>T{char}` - Till after the {char} to the left.
+* `<Leader>w` - Beginning of word forward.
+* `<Leader>W` - Beginning of WORD forward.
+* `<Leader>b` - Beginning of word backward.
+* `<Leader>B` - Beginning of WORD backward.
+* `<Leader>e` - End of word forward.
+* `<Leader>E` - End of WORD forward.
+* `<Leader>ge` - End of word backward.
+* `<Leader>gE` - End of WORD backward.
+* `<Leader>j` - Line downward.
+* `<Leader>k` - Line upward.
 
 _Todo_
 
