@@ -79,6 +79,10 @@ Some of the search commands:
 
 * `,tl` - Show/Hide Taglist (:TlistToggle)
 
+### Taglist
+
+* `,tb` - Open tagbar
+
 ### Suptertab
 
 * `:SuperTabHelp` - list all available completion types

@@ -1000,6 +1000,11 @@ nnoremap <leader>tl :TlistToggle<CR>
 map <S-F8> :TlistAddFilesRecursive ~/devel/xp.public/trunk/skeleton<CR>
 map <S-F9> :TlistAddFilesRecursive ~/devel/xp.private/trunk/xp5/projects/pet/src<CR>:TlistAddFilesRecursive ~/devel/xp.public/trunk/skeleton<CR>
 
+" -----------------------------------------------------------
+" Plugin: Tagbar
+" -----------------------------------------------------------
+nnoremap <leader>tb :TagbarOpen<CR>
+
 
 " -----------------------------------------------------------
 " Plugin: Rainbow Parenthesis
