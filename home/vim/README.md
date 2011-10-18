@@ -79,7 +79,7 @@ Some of the search commands:
 
 * `,tl` - Show/Hide Taglist (:TlistToggle)
 
-### Taglist
+### Tagbar
 
 * `,tb` - Open tagbar
 
