@@ -2,3 +2,4 @@
 *.o
 mkmf.log
 ext.bundle
+Makefile
