@@ -57,19 +57,4 @@ elseif &background == 'light'
 endif
 
 
-" *******************************************************************************************************************
-" Bash **************************************************************************************************************
-" *******************************************************************************************************************
-
-" Typical Prompt
-silent execute "syn match ConquePromptLine '" . g:ConqueTerm_PromptRegex . ".*$' contains=ConquePrompt,ConqueString oneline"
-silent execute "syn match ConquePrompt '" . g:ConqueTerm_PromptRegex . "' contained oneline"
-hi def link ConquePrompt Identifier
-
-" Strings
-syn region ConqueString start=+'+ end=+'+ skip=+\\'+ contained oneline
-syn region ConqueString start=+"+ end=+"+ skip=+\\"+ contained oneline
-syn region ConqueString start=+`+ end=+`+ skip=+\\`+ contained oneline
-hi def link ConqueString String
-
 " vim: foldmethod=marker
