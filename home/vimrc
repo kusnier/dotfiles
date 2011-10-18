@@ -965,6 +965,11 @@ let g:CommandTMaxHeight=12
 let g:CommandTCancelMap=['<Esc>', '<C-c>']
 nmap <silent> <Leader>T :CommandT<CR>
 
+" -----------------------------------------------------------
+" Plugin: Mru
+" -----------------------------------------------------------
+"
+let MRU_Add_Menu = 0
 
 " -----------------------------------------------------------
 " Plugin: Autoclose

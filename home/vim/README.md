@@ -125,10 +125,20 @@ Tutorial: <http://net.tutsplus.com/tutorials/other/vim-essential-plugin-easymoti
 * `<Leader>j` - Line downward.
 * `<Leader>k` - Line upward.
 
-_Todo_
+### MRU
 
-1. Add all used bindings
-2. mark bindings with [frequently used|tolearn|useless]
+`:MRU` - Display most recently used files
+
+####In the mru window
+
+* '<enter>' - open file
+* `o` - open selected file in a split
+* `t` - open selected file in a tab
+* `v` - open in read only mode
+* all command support a count or visual selection
+* `u` - update list
+* `q` - close mru list
+* `:MRU <pattern>` - open filtered list, completion is supported
 
 ## Plugins
 
