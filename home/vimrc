@@ -392,7 +392,7 @@ if !exists("g:colors_name")
   highlight Pmenu guibg=#000050 ctermbg=12
   highlight PmenuSel guibg=#000099 guifg=yellow
 endif
-if g:colors_name == 'molokai'
+if exists("g:colors_name") && g:colors_name == 'molokai'
   " Autochange color in insert mode
   highlight StatusLine guifg=#2b0036 guibg=white
   autocmd InsertEnter * highlight StatusLine guifg=#8b0036
