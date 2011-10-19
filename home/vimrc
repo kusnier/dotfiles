@@ -144,7 +144,6 @@ if v:version > 702
   " undo - set up persistent undo
   set undofile
   set undodir=~/.vim-undo
-  hi ColorColumn guibg=#2d2d2d
 
   " make sure that max lines are displayed
   " (80 and 120 are from ZF Coding standards)
@@ -389,17 +388,26 @@ if !exists("g:colors_name")
   highlight CursorLine guibg=Grey15
   highlight LineNr guibg=#000040 ctermbg=4
   highlight Folded guibg=Grey55
-  highlight StatusLine guifg=#2b0036 guibg=white
   highlight ModeMsg guibg=#8b0036
   highlight Pmenu guibg=#000050 ctermbg=12
   highlight PmenuSel guibg=#000099 guifg=yellow
 endif
-" Override all colorscheme
-  highlight DiffText guibg=#660000
-  highlight Comment gui=italic
+if g:colors_name == 'molokai'
   " Autochange color in insert mode
+  highlight StatusLine guifg=#2b0036 guibg=white
   autocmd InsertEnter * highlight StatusLine guifg=#8b0036
   autocmd InsertLeave * highlight StatusLine guifg=#2b0036
+else
+  " Autochange color in insert mode
+  highlight StatusLine guifg=#ae81ff guibg=white
+  autocmd InsertEnter * highlight StatusLine guifg=#f92672
+  autocmd InsertLeave * highlight StatusLine guifg=#ae81ff
+endif
+
+" Override all colorscheme
+highlight ColorColumn guibg=#2d2d2d
+highlight DiffText guibg=#660000
+highlight Comment gui=italic
 
 
 " how many lines to sync backwards
