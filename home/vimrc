@@ -657,6 +657,9 @@ set guioptions-=T
 :let g:toggleTool = 0
 map <silent> <S-F2> :if g:toggleTool == 1<CR>:set guioptions-=T<CR>:set lines+=3<CR>:let g:toggleTool = 0<CR>:else<CR>:set lines-=3<CR>:set guioptions+=T<CR>:let g:toggleTool = 1<CR>:endif<CR>
 
+" get rid of scrollbar
+set guioptions-=r
+
 
 " -----------------------------------------------------------
 " WIN-GUI Specials
