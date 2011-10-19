@@ -659,6 +659,7 @@ map <silent> <S-F2> :if g:toggleTool == 1<CR>:set guioptions-=T<CR>:set lines+=3
 
 " get rid of scrollbar
 set guioptions-=r
+set guioptions-=rL
 
 
 " -----------------------------------------------------------
