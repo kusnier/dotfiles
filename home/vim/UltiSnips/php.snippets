@@ -28,6 +28,33 @@ class ${2:ClassName} extends ${3:Object} {
 }
 endsnippet
 
+snippet xpcmd "xp command"
+/**
+ * ${1}
+ */
+class ${2:ClassName} extends Command {
+  protected 
+    $verbose = FALSE;
+
+  /**
+   * Set verbose mode
+   *
+   */
+  #[@arg]
+  public function setVerbose() {
+    $this->verbose= TRUE;
+  }
+
+  /**
+   * Runs this object
+   *
+   */
+  public function run() {
+    ${3:// code...}
+  }
+}
+endsnippet
+
 snippet xpget "xp getter"
 /**
  * Get $1
