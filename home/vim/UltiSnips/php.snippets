@@ -129,3 +129,36 @@ endsnippet
 snippet xpwl "xp writeLinef"
 $this->${1:out}->writeLinef(${3:text}, ${4:value});
 endsnippet
+
+snippet xpunittest "xp unittest class"
+uses(
+  'unittest.TestCase',
+  '${1:path.to.testing.class}'
+);
+
+/**
+ * ${2:Description}
+ *
+ * @purpose  unittest
+ * @see      xp://$1
+ */
+class ${2:TestName} extends TestCase {
+
+  /**
+   * Set up this test
+   *
+   */
+  public function setUp() {
+    ${3:// Enter code here or delete this function}
+  }
+
+  /**
+   * Tear down the this test case.
+   * 
+   */
+  public function tearDown() {
+    ${4:// Enter code here or delete this function}
+  }
+  ${5}
+}
+endsnippet
