@@ -1,0 +1,57 @@
+snippet xpclass "xp class"
+/**
+ * ${1}
+ */
+class ${2:ClassName} extends ${3:Object} {
+  /**
+   * Constructor
+   *
+   * @param   ${4:string} ${5:argument}
+   */
+  public function ${6:__construct}(\$$5) {
+    ${7:// code...}
+  }
+}
+endsnippet
+
+snippet xpget "xp getter"
+/**
+ * Get $1
+ *
+ * @return ${2:type}
+ */
+public function get${1:Name}() {
+  return $this->${1/./\l$0/};
+}
+endsnippet
+
+snippet xpset "xp setter"
+/**
+ * Set $1
+ *
+ * @param ${2:type} ${1/./\l$0/}
+ */
+public function set${1:Name}($${1/./\l$0/}) {
+  $this->${1/./\l$0/}= $${1/./\l$0/};
+}
+endsnippet
+
+snippet xpsetget "xp setter and getter"
+/**
+ * Set $1
+ *
+ * @param ${2:type} ${1/./\l$0/}
+ */
+public function set${1:Name}($${1/./\l$0/}) {
+  $this->${1/./\l$0/}= $${1/./\l$0/};
+}
+
+/**
+ * Get $1
+ *
+ * @return $2
+ */
+public function get$1() {
+  return $this->${1/./\l$0/};
+}
+endsnippet
