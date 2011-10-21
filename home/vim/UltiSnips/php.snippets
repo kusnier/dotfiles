@@ -108,3 +108,16 @@ public function set${3/./\u$0/}($$3) {
   $this->$3= $$3;
 }
 endsnippet
+
+snippet xpcmdinj "xp command class injection"
+/**
+ * Injection
+ *
+ * @param   rdbms.DBConnection $1
+ */
+#[@inject(type= 'rdbms.DBConnection', name= '${1:name}')]
+public function set${1/./\u$0/}($$1) {
+  $$1->connect();
+  $this->$1= $$1
+}
+endsnippet
