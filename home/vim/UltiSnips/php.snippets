@@ -118,6 +118,7 @@ snippet xpcmdinj "xp command class injection"
 #[@inject(type= 'rdbms.DBConnection', name= '${1:name}')]
 public function set${1/./\u$0/}($$1) {
   $$1->connect();
-  $this->$1= $$1
+  $this->$1= $$1;
 }
 endsnippet
+
