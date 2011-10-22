@@ -968,16 +968,6 @@ highlight phpFunctionsTag guifg=#1155ff
 highlight phpClassesTag guifg=#ff0077
 
 " -----------------------------------------------------------
-" Plugin: Command-T
-" -----------------------------------------------------------
-"
-let g:CommandTMaxFiles=50000
-let g:CommandTMaxDepth=20
-let g:CommandTMaxHeight=12
-let g:CommandTCancelMap=['<Esc>', '<C-c>']
-nmap <silent> <Leader>T :CommandT<CR>
-
-" -----------------------------------------------------------
 " Plugin: Mru
 " -----------------------------------------------------------
 "
