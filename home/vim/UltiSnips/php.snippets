@@ -165,3 +165,9 @@ class ${2:TestName} extends TestCase {
   ${5}
 }
 endsnippet
+
+snippet xplog "xp log (debug)"
+$log= Logger::getInstance();
+$cat= $log->getCategory('default');
+$cat->warn(${1:value});
+endsnippet
