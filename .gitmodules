@@ -101,3 +101,4 @@
 [submodule "home/vim/bundle/ctrlp"]
 	path = home/vim/bundle/ctrlp
 	url = git://github.com/kien/ctrlp.vim.git
+	ignore = dirty
