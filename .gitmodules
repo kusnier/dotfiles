@@ -98,3 +98,6 @@
 	path = home/vim/bundle/UltiSnips
 	url = git://github.com/vim-scripts/UltiSnips.git
 	ignore = dirty
+[submodule "home/vim/bundle/ctrlp"]
+	path = home/vim/bundle/ctrlp
+	url = git://github.com/kien/ctrlp.vim.git
