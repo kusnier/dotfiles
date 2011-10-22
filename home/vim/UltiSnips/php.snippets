@@ -31,6 +31,45 @@ class ${2:ClassName} extends ${3:Object} {
 }
 endsnippet
 
+snippet xpfunc "function, no params"
+/**
+ * ${1:Description}
+ *
+ * @return ${2:type}
+ * @throws ${3:Exception}
+ */
+public function ${4:functionName}() {
+  ${5:// code...}
+}
+endsnippet
+
+snippet xpfunc "function, one param"
+/**
+ * ${1:Description}
+ *
+ * @param  ${2:type} ${3:param1}
+ * @return ${4:type}
+ * @throws ${5:Exception}
+ */
+public function ${6:functionName}($$3) {
+  ${7:// code...}
+}
+endsnippet
+
+snippet xpfunc "function, two params"
+/**
+ * ${1:Description}
+ *
+ * @param  ${2:type} ${3:param1}
+ * @param  ${4:type} ${5:param1}
+ * @return ${6:type}
+ * @throws ${7:Exception}
+ */
+public function ${8:functionName}($$3, $$5) {
+  ${7:// code...}
+}
+endsnippet
+
 snippet xpcmd "xp command"
 /**
  * ${1}
