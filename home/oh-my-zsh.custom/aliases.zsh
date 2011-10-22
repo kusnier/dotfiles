@@ -72,6 +72,7 @@ alias httpdump="sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias digfull="dig +nocmd $1 any +multiline +noall +answer"
 alias localip="ipconfig getifaddr en0"
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 
