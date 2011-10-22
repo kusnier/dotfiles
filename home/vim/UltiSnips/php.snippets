@@ -171,3 +171,15 @@ $log= Logger::getInstance();
 $cat= $log->getCategory('default');
 $cat->warn(${1:value});
 endsnippet
+
+snippet vdoc "@var <variable> <class>"
+/* @var $${1:name} ${2:ClassName} */
+endsnippet
+
+snippet vd "var_dump"
+var_dump(${1:value});
+endsnippet
+
+snippet cpid
+$context->getPersonId()
+endsnippet
