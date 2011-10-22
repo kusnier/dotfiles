@@ -337,7 +337,7 @@ map <leader>cd :cd %:p:h<cr>
 " -----------------------------------------------------------
 " tabline settings
 " -----------------------------------------------------------
-set showtabline=1
+set showtabline=2 " Always show tab bar
 nmap <leader>t <Esc>:tabnew<CR>
 
 
