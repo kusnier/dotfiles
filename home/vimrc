@@ -434,7 +434,7 @@ set wildmenu
 ""set wildmode=list,full
 set wildmode=list:longest,list:full
 " ignore some files for filename completion
-set wildignore=*.o,*.r,*.so,*.sl,*.tar,*.tgz,*.svn
+set wildignore=*.o,*.r,*.so,*.sl,*.tar,*.tgz,*.svn,.git/*
 " remember last 2000 typed commands
 set history=2000
 if has('cmdline_info')
