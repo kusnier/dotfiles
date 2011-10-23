@@ -24,6 +24,7 @@ In CtrlP window
 * `<C-f>` - next type
 * `<C-b>` - previous type
 * `F5` - clear file cache
+* `<C-y>` - open new file
 * other useful bindings: `<C-a>, <C-e>, <C-h>, <C-l>`
 
 ### autoclose / delimitMate
