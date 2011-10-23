@@ -7,6 +7,25 @@
 
 ## Bindings
 
+### CtrlP
+
+* `<C-p>` - Open window
+
+In CtrlP window
+
+* `<C-k>` - up
+* `<C-j>` - down
+* `<C-n>` - history back
+* `<C-p>` - history forward
+* `<cr>` - open in current buffer
+* `<C-s>` - open in new split/window
+* `<C-t>` - open in new tab
+* `<C-v>` - open in new vertical split
+* `<C-f>` - next type
+* `<C-b>` - previous type
+* `F5` - clear file cache
+* other useful bindings: `<C-a>, <C-e>, <C-h>, <C-l>`
+
 ### autoclose / delimitMate
 
 Autoclose is disabled now. Testing delimitMate (new and on git).
