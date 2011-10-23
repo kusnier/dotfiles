@@ -23,6 +23,8 @@ In CtrlP window
 * `<C-v>` - open in new vertical split
 * `<C-f>` - next type
 * `<C-b>` - previous type
+* `<C-z>` - mark to open
+* `<C-o>` - open marked files
 * `F5` - clear file cache
 * `<C-y>` - open new file
 * other useful bindings: `<C-a>, <C-e>, <C-h>, <C-l>`
