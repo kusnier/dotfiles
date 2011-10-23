@@ -25,9 +25,13 @@ In CtrlP window
 * `<C-b>` - previous type
 * `<C-z>` - mark to open
 * `<C-o>` - open marked files
+* `<C-r>` - toggle between the string mode and full regexp mode
+* `<C-d>` - toggle between full path search and filename only search
+* `<C-u>` - clear the input field
 * `F5` - clear file cache
 * `<C-y>` - open new file
 * other useful bindings: `<C-a>, <C-e>, <C-h>, <C-l>`
+* cycle through the lines with the first letter that matches that key
 
 ### autoclose / delimitMate
 
