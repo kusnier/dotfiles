@@ -9,9 +9,9 @@
 
 ### CtrlP
 
-* `<C-p>` - Open window
+* `<C-p>` - to invoke CtrlP
 
-In CtrlP window
+Once CtrlP is open:
 
 * `<C-k>` - up
 * `<C-j>` - down
