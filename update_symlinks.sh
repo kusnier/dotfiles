@@ -22,7 +22,8 @@ function realpath() {
 }
 
 base=false
-dotfilespath=$(realpath $0)
+# ensure we're on the base of the dotfiles repo
+dotfilespath="$(git rev-parse --show-toplevel)" || exit
 
 for dotfile in ${dotfilespath}/home/* ; do
   echo $dotfile
