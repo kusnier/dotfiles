@@ -259,3 +259,19 @@ endsnippet
 snippet if? "ternary operator"
 $${1:retVal}= (${2:condition}) ? ${3:a} : ${4:b};${5}
 endsnippet
+
+snippet tget "this->get"
+$this->get${1:Name}()
+endsnippet
+
+snippet fore "for each value"
+foreach ($${1:variable} as $${2:value}){
+	${3:// code...}
+}
+endsnippet
+
+snippet fore "for each key => value "
+foreach ($${1:variable} as $${2:key} => $${3:value}){
+	${4:// code...}
+}
+endsnippet
