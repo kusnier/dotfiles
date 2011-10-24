@@ -79,6 +79,9 @@ alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 # vim aliases
 alias vtag='gvim -t'
 
+alias wget-mirror="wget -e robots=off --timestamping --recursive --level=inf --no-parent --page-requisites --convert-links --backup-converted"
+alias wget-fullpage="wget -e robots=off --page-requisites --span-hosts --convert-links"
+
 #How to temporarily stop using aliases
 #When you want to call the command instead of the alias, then you have to escape it and call.
 # $ \aliasname
