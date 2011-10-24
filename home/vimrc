@@ -436,7 +436,7 @@ set wildmode=list:longest,list:full
 " ignore some files for filename completion
 set wildignore=*.o,*.r,*.so,*.sl,*.tar,*.tgz,*.svn,.git/*
 " remember last 2000 typed commands
-set history=2000
+set history=200
 if has('cmdline_info')
   " show cursor position below each window
   set ruler
