@@ -105,3 +105,4 @@
 [submodule "home/vim/bundle/vim-notes"]
 	path = home/vim/bundle/vim-notes
 	url = git://github.com/xolox/vim-notes.git
+	ignore = dirty
