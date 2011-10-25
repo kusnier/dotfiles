@@ -7,6 +7,20 @@
 
 ## Bindings
 
+### notes.vim
+
+* `:Note` - starting a new note
+* `:write` or `:update` - saving notes
+* `:Note <anything>` - edit existing notes or create if no notes are found
+* `:DeleteNote` - delete current note
+* `:SearchNotes` - searching notes
+* `:RelatedNotes` - find all notes referencing the current file
+* `:RecentNotes` - lists notes by modification date
+* `gf` - navigation between notes
+* automatic curly quotes, arrows and list bullets
+* completion of note titles using `C-x C-u`
+* completion of tags using `C-x C-o`
+
 ### CtrlP
 
 * `<C-p>` - to invoke CtrlP
