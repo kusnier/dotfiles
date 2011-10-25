@@ -102,3 +102,6 @@
 	path = home/vim/bundle/ctrlp
 	url = git://github.com/kien/ctrlp.vim.git
 	ignore = dirty
+[submodule "home/vim/bundle/vim-notes"]
+	path = home/vim/bundle/vim-notes
+	url = git://github.com/xolox/vim-notes.git
