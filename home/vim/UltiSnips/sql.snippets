@@ -1,0 +1,29 @@
+snippet self "select from (=)"
+select ${1:*} from ${2:table}
+where
+  ${3:column} = ${4:value}
+;
+endsnippet
+
+snippet self "select from (like)"
+select ${1:*} from ${2:table}
+where
+  ${3:column} like '${4:value}'
+;
+endsnippet
+
+snippet andc "and condition (=)"
+and ${1:column} = ${2:value}
+endsnippet
+
+snippet andl "and condition (like)"
+and ${1:column} like '${2:value}'
+endsnippet
+
+snippet orc "or condition (=)"
+or ${1:column} = ${2:value}
+endsnippet
+
+snippet orl "or condition (like)"
+or ${1:column} like '${2:value}'
+endsnippet
