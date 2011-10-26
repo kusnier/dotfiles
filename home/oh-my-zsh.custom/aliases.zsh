@@ -76,6 +76,9 @@ alias digfull="dig +nocmd $1 any +multiline +noall +answer"
 alias localip="ipconfig getifaddr en0"
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 
+# lpr
+lpr_a4="lpr -o PageSize=A4 -o media=A4"
+
 # vim aliases
 alias vtag='gvim -t'
 
