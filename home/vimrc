@@ -906,6 +906,8 @@ let g:omni_sql_include_owner = 0
 :au BufNewFile,BufRead */sites-enabled/*.conf set ft=apache
 :au BufNewFile,BufRead */sites-enabled/00* set ft=apache
 :au BufNewFile,BufRead */sites-available/00* set ft=apache
+:au BufNewFile,BufRead */config/*/apache/* set ft=apache
+:au BufNewFile,BufRead */config/*/apache2/* set ft=apache
 
 
 " Hex to Dec function
