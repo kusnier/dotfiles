@@ -62,6 +62,7 @@ alias svnup='find . -depth -maxdepth 1 -type d -not -name '.svn' -exec svn up {}
 # git
 # Undo a `git push`
 alias undopush="git push -f origin HEAD^:master"
+alias undocomit="git reset --soft HEAD^"
 
 # diff
 alias wdiff="wdiff -n -w $'\033[30;41m' -x $'\033[0m' -y $'\033[30;42m' -z $'\033[0m'"
