@@ -436,6 +436,7 @@ set wildmode=list:longest,list:full
 " ignore some files for filename completion
 set wildignore=*.o,*.r,*.so,*.sl,*.tar,*.tgz,*.svn
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+set wildignore+=*/target/*
 " remember last 2000 typed commands
 set history=200
 if has('cmdline_info')
@@ -908,7 +909,6 @@ let g:omni_sql_include_owner = 0
 :au BufNewFile,BufRead */sites-available/00* set ft=apache
 :au BufNewFile,BufRead */config/*/apache/* set ft=apache
 :au BufNewFile,BufRead */config/*/apache2/* set ft=apache
-
 
 " Hex to Dec function
 function! Hex2Dec()
