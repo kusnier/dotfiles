@@ -38,7 +38,8 @@ source $ZSH/oh-my-zsh.sh
 
 # Treat the `#', `~' and `^' characters as part of patterns for filename generation, etc.
 # (An initial unquoted `~' always produces named directory expansion.)
-setopt extendedglob
+# unset because ob git .. HEAD^ problems
+#setopt extendedglob
 
 # use ctrl-r for history search backward, like bash in vi-mode
 bindkey '^R' history-incremental-search-backward
