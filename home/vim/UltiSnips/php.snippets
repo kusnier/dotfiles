@@ -1,4 +1,4 @@
-snippet xphead "xphead"
+snippet xphead "xphead" b
 /* This class is part of the XP framework
  *
  * $Id:$
@@ -6,13 +6,13 @@ snippet xphead "xphead"
   
 endsnippet
 
-snippet with "xp with"
+snippet with "xp with" b
 with ($${1:value}= ${2:test}); {
   $${1}->${3:method};
 }
 endsnippet
 
-snippet xpclass "xp class"
+snippet xpclass "xp class" b
 /**
  * ${1}
  *
@@ -31,7 +31,7 @@ class ${2:ClassName} extends ${3:Object} {
 }
 endsnippet
 
-snippet xpfunc "function, no params"
+snippet xpfunc "function, no params" b
 /**
  * ${1:Description}
  *
@@ -43,7 +43,7 @@ public function ${4:functionName}() {
 }
 endsnippet
 
-snippet xpfunc "function, one param"
+snippet xpfunc "function, one param" b
 /**
  * ${1:Description}
  *
@@ -56,7 +56,7 @@ public function ${6:functionName}($$3) {
 }
 endsnippet
 
-snippet xpfunc "function, two params"
+snippet xpfunc "function, two params" b
 /**
  * ${1:Description}
  *
@@ -70,7 +70,7 @@ public function ${8:functionName}($$3, $$5) {
 }
 endsnippet
 
-snippet xpcmd "xp command"
+snippet xpcmd "xp command" b
 /**
  * ${1}
  */
@@ -97,7 +97,7 @@ class ${2:ClassName} extends Command {
 }
 endsnippet
 
-snippet xpget "xp getter"
+snippet xpget "xp getter" b
 /**
  * Get $1
  *
@@ -108,7 +108,7 @@ public function get${1:Name}() {
 }
 endsnippet
 
-snippet xpset "xp setter"
+snippet xpset "xp setter" b
 /**
  * Set $1
  *
@@ -119,7 +119,7 @@ public function set${1:Name}($${1/./\l$0/}) {
 }
 endsnippet
 
-snippet xpsetget "xp setter and getter"
+snippet xpsetget "xp setter and getter" b
 /**
  * Set $1
  *
@@ -139,7 +139,7 @@ public function get$1() {
 }
 endsnippet
 
-snippet xpargn "xp command class argument"
+snippet xpargn "xp command class argument" b
 /**
  * ${1:text}
  *
@@ -151,7 +151,7 @@ public function set${3/./\u$0/}($$3) {
 }
 endsnippet
 
-snippet xpcmdinj "xp command class injection"
+snippet xpcmdinj "xp command class injection" b
 /**
  * Injection
  *
@@ -164,15 +164,15 @@ public function set${1/./\u$0/}($$1) {
 }
 endsnippet
 
-snippet xpwl "xp writeLine"
+snippet xpwl "xp writeLine" b
 $this->${1:out}->writeLine(${3:text});
 endsnippet
 
-snippet xpwl "xp writeLinef"
+snippet xpwl "xp writeLinef" b
 $this->${1:out}->writeLinef(${3:text}, ${4:value});
 endsnippet
 
-snippet xpunittest "xp unittest class"
+snippet xpunittest "xp unittest class" b
 uses(
   'unittest.TestCase',
   '${1:path.to.testing.class}'
@@ -205,18 +205,18 @@ class ${2:TestName} extends TestCase {
 }
 endsnippet
 
-snippet xplog "xp log (debug)"
+snippet xplog "xp log (debug)" b
 $log= Logger::getInstance();
 $cat= $log->getCategory('default');
 $cat->warn(${1:value});
 endsnippet
 
-snippet vdoc "@var <variable> <class>"
+snippet vdoc "@var <variable> <class>" b
 /* @var $${1:name} ${2:ClassName} */
 
 endsnippet
 
-snippet vd "var_dump"
+snippet vd "var_dump" b
 var_dump(${1:value});
 endsnippet
 
@@ -224,7 +224,7 @@ snippet cpid
 $context->getPersonId()
 endsnippet
 
-snippet xput "unittest function"
+snippet xput "unittest function" b
 /**
  * ${1:Add description here}
  *
@@ -235,7 +235,7 @@ public function ${2:testMethod}() {
 }
 endsnippet
 
-snippet xpute "unittest function, expect exception"
+snippet xpute "unittest function, expect exception" b
 /**
  * ${1:Add description here}
  *
@@ -246,17 +246,17 @@ public function ${3:testMethod}() {
 }
 endsnippet
 
-snippet xppcon
+snippet xppcon b
 parent::__construct();
 
 endsnippet
 
-snippet xppclon
+snippet xppclon b
 parent::__clone();
 
 endsnippet
 
-snippet if? "ternary operator"
+snippet if? "ternary operator" b
 $${1:retVal}= (${2:condition}) ? ${3:a} : ${4:b};${5}
 endsnippet
 
@@ -264,13 +264,13 @@ snippet tget "this->get"
 $this->get${1:Name}()
 endsnippet
 
-snippet fore "for each value"
+snippet fore "for each value" b
 foreach ($${1:variable} as $${2:value}){
 	${3:// code...}
 }
 endsnippet
 
-snippet fore "for each key => value "
+snippet fore "for each key => value " b
 foreach ($${1:variable} as $${2:key} => $${3:value}){
 	${4:// code...}
 }
@@ -303,7 +303,7 @@ switch ($${1:variable}) {
 }
 endsnippet
 
-snippet pdd
+snippet pdd b
 echo '<pre>'; var_dump(${1}); echo '</pre>'; die(${2:});
 endsnippet
 
@@ -313,18 +313,18 @@ while (${1:/* condition */}) {
 }
 endsnippet
 
-snippet ret "return"
+snippet ret "return" b
 return {1:value};
 endsnippet
 
-snippet retz "return null"
+snippet retz "return null" b
 return NULL;
 endsnippet
 /
-snippet ret0 "return false"
+snippet ret0 "return false" b
 return false;
 endsnippet
 
-snippet ret1 "return true"
+snippet ret1 "return true" b
 return true;
 endsnippet
