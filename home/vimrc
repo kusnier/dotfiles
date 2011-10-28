@@ -1080,6 +1080,11 @@ nmap  <leader>nt :NERDTreeToggle<cr>
 au Filetype nerdtree setlocal nolist
 
 " -----------------------------------------------------------
+" Plugin: UltiSnips
+" -----------------------------------------------------------
+let g:UltiSnipsEditSplit = "vertical"
+
+" -----------------------------------------------------------
 " Cope
 " -----------------------------------------------------------
 map <leader>qc :botright cope<cr>
