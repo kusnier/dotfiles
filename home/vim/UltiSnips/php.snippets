@@ -146,7 +146,7 @@ snippet xpargn "xp command class argument" b
  * @param   ${2:type} ${3:name}
  */
 #[@arg(name= '$3', short= '${4:short}')]
-public function set${3/./\u$0/}($$3) {
+public function set${3/./\u$0/}($$3${4:= ${5:initial}}) {
   $this->$3= $$3;
 }
 endsnippet
