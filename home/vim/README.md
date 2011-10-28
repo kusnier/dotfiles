@@ -7,6 +7,13 @@
 
 ## Bindings
 
+### UltiSnips
+
+* `<tab>` - Expand snippet
+* `<C-tab>` - List snippets for current word
+* `<C-j>` - next tabstops mark
+* `<C-k>` - previous tabstops mark
+
 ### notes.vim
 
 * `:Note` - starting a new note
