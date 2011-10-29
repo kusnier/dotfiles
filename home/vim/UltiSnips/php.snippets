@@ -165,11 +165,12 @@ public function set${1/./\u$0/}($$1) {
 endsnippet
 
 snippet xpwl "xp writeLine" b
-$this->${1:out}->writeLine(${3:text});
+$this->${1:out}->writeLine(${1:text});
 endsnippet
 
 snippet xpwl "xp writeLinef" b
-$this->${1:out}->writeLinef(${3:text}, ${4:value});
+$this->${1:out}->writeLinef("${2:%s}\n"${2/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$3${2/([^%]|%%)*(%.)?.*/(?2:\);)/}
+
 endsnippet
 
 snippet xpunittest "xp unittest class" b
@@ -246,12 +247,12 @@ public function ${3:testMethod}() {
 }
 endsnippet
 
-snippet xppcon b
+snippet xppcon "" b
 parent::__construct();
 
 endsnippet
 
-snippet xppclon b
+snippet xppclon "" b
 parent::__clone();
 
 endsnippet
@@ -303,7 +304,7 @@ switch ($${1:variable}) {
 }
 endsnippet
 
-snippet pdd b
+snippet pdd "" b
 echo '<pre>'; var_dump(${1}); echo '</pre>'; die(${2:});
 endsnippet
 
