@@ -1,5 +1,7 @@
 " vi:ft=vim
 
+set editor='bash -lc "gvim -f \$*" gvim '
+
 set gui=none,tabs,addons
 set animations
 set visualbell
