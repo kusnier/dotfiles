@@ -13,6 +13,10 @@
 * `,p` - Toggle paste mode
 * `<ESC>` - Clear search highlight
 
+### Rainbow Parenthesis
+
+* `,rp` Toggle RainbowParenthesis
+
 ### UltiSnips
 
 * `<tab>` - Expand snippet
