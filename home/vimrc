@@ -36,6 +36,10 @@ call pathogen#infect()
 " General setup
 " -----------------------------------------------------------
 
+" Paste toggle (,p)
+set pastetoggle=<leader>p
+map <leader>p :set invpaste paste?<CR>
+
 " save on losing focus
 " This makes problems :D
 ""au FocusLost * :wa

@@ -10,6 +10,7 @@
 ### General
 
 * `,l` - Toggle invisibles
+* `,p` - Toggle paste mode
 
 ### UltiSnips
 
