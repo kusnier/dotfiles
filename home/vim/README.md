@@ -7,6 +7,10 @@
 
 ## Bindings
 
+### General
+
+* `,l` - Toggle invisibles
+
 ### UltiSnips
 
 * `<tab>` - Expand snippet
