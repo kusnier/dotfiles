@@ -747,7 +747,7 @@ autocmd FileType svn setlocal spelllang=en
 autocmd FileType vcscommit setlocal spell
 autocmd FileType vcscommit setlocal spelllang=en
 autocmd FileType sql setlocal spell
-
+autocmd FileType gitcommit setlocal spell spelllang=en
 
 " -----------------------------------------------------------
 " Spellchecking for filetypes
