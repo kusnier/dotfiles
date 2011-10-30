@@ -12,6 +12,7 @@
 * `,l` - Toggle invisibles
 * `,p` - Toggle paste mode
 * `<ESC>` - Clear search highlight
+* `,W` - Strip all trailing whitespace in buffer
 
 ### Rainbow Parenthesis
 
