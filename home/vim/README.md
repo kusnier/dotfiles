@@ -13,6 +13,7 @@
 * `,p` - Toggle paste mode
 * `<ESC>` - Clear search highlight
 * `,W` - Strip all trailing whitespace in buffer
+* `:Hammer` - Preview markup file in browser
 
 ####Splits
 
