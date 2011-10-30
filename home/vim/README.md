@@ -11,6 +11,7 @@
 
 * `,l` - Toggle invisibles
 * `,p` - Toggle paste mode
+* `<ESC>` - Clear search highlight
 
 ### UltiSnips
 
