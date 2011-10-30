@@ -14,6 +14,16 @@
 * `<ESC>` - Clear search highlight
 * `,W` - Strip all trailing whitespace in buffer
 
+####Splits
+
+`+` Increase split size.
+`-` Decrease split size.
+`<C-j>` Go to split below.
+`<C-k>` Go to split above.
+`<C-h>` Go to split left.
+`<C-l>` Go to split right.
+
+
 ### Rainbow Parenthesis
 
 * `,rp` Toggle RainbowParenthesis
