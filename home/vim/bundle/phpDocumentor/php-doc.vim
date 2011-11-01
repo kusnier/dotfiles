@@ -68,20 +68,11 @@ let g:pdv_cfg_CommentSingle = "//"
 
 " Default values
 let g:pdv_cfg_Type = "mixed"
-" let g:pdv_cfg_Package = "Framework"
-" let g:pdv_cfg_Package = "Webdav"
-let g:pdv_cfg_Package = "qaVoice"
-let g:pdv_cfg_Version = ""
-let g:pdv_cfg_Author = "Tobias Schlitt <toby@qafoo.com>"
-let g:pdv_cfg_Copyright = "Copyright (C) 2010 Qafoo GmbH. All rights reserved."
+let g:pdv_cfg_Package = ""
+let g:pdv_cfg_Version = "$id$"
+let g:pdv_cfg_Author = ""
+let g:pdv_cfg_Copyright = ""
 let g:pdv_cfg_License = ""
-
-" TOB: let g:pdv_cfg_Type = "mixed"
-" TOB: let g:pdv_cfg_Package = ""
-" TOB: let g:pdv_cfg_Version = "$id$"
-" TOB: let g:pdv_cfg_Author = "Tobias Schlitt <toby@php.net>"
-" TOB: let g:pdv_cfg_Copyright = "1997-2005 The PHP Group"
-" TOB: let g:pdv_cfg_License = "PHP Version 3.0 {@link http://www.php.net/license/3_0.txt}"
 
 let g:pdv_cfg_ReturnVal = "void"
 
