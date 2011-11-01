@@ -24,6 +24,9 @@
 `<C-h>` Go to split left.
 `<C-l>` Go to split right.
 
+### phpDocumentor
+
+* `<C-d>` - Generate php doc (current pos, range)
 
 ### Rainbow Parenthesis
 
