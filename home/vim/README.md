@@ -154,6 +154,7 @@ Some of the search commands:
 ### Tagbar
 
 * `,tb` - Show/Hide Tagbar
+* `s` -  Reorder the items by alpha or occurance
 
 ### NerdTree
 
