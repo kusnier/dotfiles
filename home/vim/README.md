@@ -155,6 +155,16 @@ Some of the search commands:
 
 * `,tb` - Show/Hide Tagbar (:TagbarToggle)
 
+### NerdTree
+
+* `,nb` - Show/Hide NerdTree
+
+Bindings in NerdTree window:
+
+* `C` - Make a node the current working directory
+* `:Bookmark` - BookmarkName to bookmark the current selection
+* `B` - Toggle the bookmark menu
+
 ### Suptertab
 
 * `:SuperTabHelp` - list all available completion types
