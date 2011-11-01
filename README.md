@@ -23,6 +23,6 @@ git pull --recurse-submodules && ./update_symlinks.sh
 
 ## Vim settings
 
-[Vim README.md][1]
+[Vim README.md][vimreadme]
 
-[1]: https://github.com/kusnier/dotfiles/tree/master/home/vim#readme
+[vimreadme]: https://github.com/kusnier/dotfiles/tree/master/home/vim#readme
