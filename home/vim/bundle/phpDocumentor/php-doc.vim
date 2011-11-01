@@ -78,7 +78,6 @@ let g:pdv_cfg_ReturnVal = "void"
 
 " Wether to create @uses tags for implementation of interfaces and inheritance
 let g:pdv_cfg_Uses = 0
-" TOB: let g:pdv_cfg_Uses = 1
 
 " Options
 " :set paste before documenting (1|0)? Recommended.
@@ -86,11 +85,10 @@ let g:pdv_cfg_paste = 1
 
 " Wether for PHP5 code PHP4 tags should be set, like @access,... (1|0)?
 let g:pdv_cfg_php4always = 0
-" TOB: let g:pdv_cfg_php4always = 1
  
 " Wether to guess scopes after PEAR coding standards:
 " $_foo/_bar() == <private|protected> (1|0)?
-let g:pdv_cfg_php4guess = 1
+let g:pdv_cfg_php4guess = 0
 
 " If you selected 1 for the last value, this scope identifier will be used for
 " the identifiers having an _ in the first place.
