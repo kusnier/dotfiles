@@ -149,11 +149,11 @@ Some of the search commands:
 
 ### Taglist
 
-* `,tl` - Show/Hide Taglist (:TlistToggle)
+* `,tl` - Show/Hide Taglist
 
 ### Tagbar
 
-* `,tb` - Show/Hide Tagbar (:TagbarToggle)
+* `,tb` - Show/Hide Tagbar
 
 ### NerdTree
 
