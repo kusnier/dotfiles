@@ -1020,7 +1020,7 @@ map <S-F9> :TlistAddFilesRecursive ~/devel/xp.private/trunk/xp5/projects/pet/src
 " -----------------------------------------------------------
 " Plugin: Tagbar
 " -----------------------------------------------------------
-nnoremap <leader>tb :TagbarOpen<CR>
+nnoremap <leader>tb :TagbarToggle<CR>
 
 
 " -----------------------------------------------------------

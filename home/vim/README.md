@@ -153,7 +153,7 @@ Some of the search commands:
 
 ### Tagbar
 
-* `,tb` - Open tagbar
+* `,tb` - Show/Hide Tagbar (:TagbarToggle)
 
 ### Suptertab
 
