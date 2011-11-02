@@ -594,8 +594,8 @@ autocmd FileType php let php_alt_arrays = 2
 autocmd FileType php let php_large_file = 1000
 
 " set "make" command when editing php files
-set makeprg=php\ -l\ %
-set errorformat=%m\ in\ %f\ on\ line\ %l
+autocmd FileType php setl makeprg=php\ -l\ %
+autocmd FileType php setl errorformat=%m\ in\ %f\ on\ line\ %l
 " Make opens error-list automatically
 command! Make :make %|:cw
 ":au BufWritePost *.php :Make
@@ -1052,14 +1052,17 @@ let g:notes_directory = '~/.vim-notes'
 "":au BufWritePost *.html :CheckSyntax
 "":au BufWritePost *.xml :CheckSyntax
 "":au BufWritePost *.xsl :CheckSyntax
-let g:checksyntax_auto_javascript = 1
-let g:checksyntax_compiler_javascript='jshint'
-let g:checksyntax_auto_php = 1
-let g:checksyntax_auto_html = 1
-let g:checksyntax_auto_xml = 1
-let g:checksyntax_compiler_xml='xmllint'
-let g:checksyntax_auto_xslt = 1
-let g:checksyntax_compiler_xslt='xmllint'
+if !exists('g:checksyntax')
+  let g:checksyntax = {}
+endif
+let g:checksyntax['javascript'] = {
+            \ 'auto': executable('jshint') == 1,
+            \ 'compiler': 'jshint'
+            \ }
+let g:checksyntax['xslt'] = {
+            \ 'auto': executable('xmllint') == 1,
+            \ 'compiler': 'xmllint'
+            \ }
 
 " -----------------------------------------------------------
 " Plugin: Twiki
