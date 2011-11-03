@@ -1029,6 +1029,19 @@ nnoremap <leader>tb :TagbarToggle<CR>
 nnoremap <leader>rp :RainbowParenthesesToggle<CR>
 
 " -----------------------------------------------------------
+" Plugin: Fugitive
+" -----------------------------------------------------------
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gr :Gremove<CR>
+nnoremap <Leader>gl :Glog<CR>
+nnoremap <Leader>gb :Gblame<CR>
+nnoremap <Leader>gm :Gmove
+nnoremap <Leader>gp :Ggrep
+nnoremap <Leader>gR :Gread<CR>
+nnoremap <Leader>gg :Git
+nnoremap <Leader>gd :Gdiff<CR>
+
+" -----------------------------------------------------------
 " Plugin: EasyMotion
 " -----------------------------------------------------------
 let g:EasyMotion_leader_key='\'
