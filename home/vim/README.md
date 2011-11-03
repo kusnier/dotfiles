@@ -14,6 +14,7 @@
 * `<ESC>` - Clear search highlight
 * `,W` - Strip all trailing whitespace in buffer
 * `:Hammer` - Preview markup file in browser
+* `<C-w>o` - Make the current window the only one on the screen
 
 ####Splits
 
