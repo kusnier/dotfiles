@@ -112,3 +112,6 @@
 [submodule "home/vim/bundle/phpcomplete.vim"]
 	path = home/vim/bundle/phpcomplete.vim
 	url = git://github.com/shawncplus/phpcomplete.vim.git
+[submodule "home/vim/bundle/gundo.vim"]
+	path = home/vim/bundle/gundo.vim
+	url = git://github.com/sjl/gundo.vim.git
