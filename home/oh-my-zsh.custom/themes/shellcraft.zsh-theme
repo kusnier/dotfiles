@@ -31,20 +31,26 @@ if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
   SEPARATOR=$(tput setaf 8)
   PURPLE=$(tput setaf 141)
   PROMPT='
-%{${BOLD}${USERCOLOR}%}%n%{$SEPARATOR%} at %{${BOLD}${HOSTCOLOR}%}$(box_name)%{$SEPARATOR%} in %{${BOLD}${DIRCOLOR}%}${PWD/#$HOME/~}%{$reset_color%}$(hg_prompt_info)$(git_prompt_info)$(svn_prompt_info)
+%{${BOLD}${USERCOLOR}%}%n%{$SEPARATOR%} at %{${BOLD}${HOSTCOLOR}%}$(box_name)%{$SEPARATOR%} in %{${BOLD}${DIRCOLOR}%}${PWD/#$HOME/~}%{$reset_color%}$(hg_prompt_info)$(git_prompt_status)%{$reset_color%}$(git_prompt_info)$(svn_prompt_info)
 $(virtualenv_info)%(?,,%{${fg_bold[white]}%}[%?]%{$reset_color%} )$ '
   ZSH_THEME_GIT_PROMPT_PREFIX="%{$SEPARATOR%} on %{$PURPLE%}"
 else
   PROMPT='
-%{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}$(box_name)%{$reset_color%} in %{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}$(hg_prompt_info)$(git_prompt_info)$(svn_prompt_info)
+%{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}$(box_name)%{$reset_color%} in %{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}$(hg_prompt_info)$(git_prompt_status)%{$reset_color%}$(git_prompt_info)$(svn_prompt_info)
 $(virtualenv_info)%(?,,%{${fg_bold[white]}%}[%?]%{$reset_color%} )$ '
   ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[magenta]%}"
 fi
 
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[green]%}!"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[green]%}?"
+ZSH_THEME_GIT_PROMPT_DIRTY=""
 ZSH_THEME_GIT_PROMPT_CLEAN=""
+
+ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[green]%} ✚"
+ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[blue]%} ✹"
+ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%} ✖"
+ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[magenta]%} ➜"
+ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%} ═"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} ✭"
 
 ZSH_THEME_SVN_PROMPT_PREFIX=" on %{$fg[magenta]%}svn:("
 ZSH_THEME_SVN_PROMPT_SUFFIX=")"
