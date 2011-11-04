@@ -1087,6 +1087,7 @@ let g:checksyntax['xslt'] = {
 " Plugin: Twiki
 " -----------------------------------------------------------
 au BufNewFile,BufRead /tmp/vimperator-* setf twiki
+au BufNewFile,BufRead /tmp/vimperator-* set spell
 
 " -----------------------------------------------------------
 " Plugin: NERDCommenter
