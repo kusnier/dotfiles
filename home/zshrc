@@ -24,7 +24,7 @@ DISABLE_AUTO_UPDATE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(ant git svn vi-mode node npm extract zsh-syntax-highlighting)
+plugins=(git svn vi-mode node npm extract zsh-syntax-highlighting)
 [[ -e "/etc/zsh_command_not_found" ]] && plugins+=(command-not-found)
 [[ -e "/etc/debian_version" ]] && plugins+=(deb debian)
 [[ $(uname) == Darwin ]] && plugins+=(osx brew)
