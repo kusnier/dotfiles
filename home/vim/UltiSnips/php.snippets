@@ -71,6 +71,10 @@ public function ${8:functionName}($$3, $$5) {
 endsnippet
 
 snippet xpcmd "xp command" b
+uses(
+  'util.cmd.Command'
+);
+
 /**
  * ${1}
  */
@@ -321,7 +325,7 @@ endsnippet
 snippet retz "return null" b
 return NULL;
 endsnippet
-/
+
 snippet ret0 "return false" b
 return false;
 endsnippet
