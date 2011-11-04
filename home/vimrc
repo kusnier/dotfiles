@@ -1112,6 +1112,7 @@ nmap <leader>ccA <plug>NERDCommenterAppend
 " -----------------------------------------------------------
 nmap  <leader>nt :NERDTreeToggle<cr>
 au Filetype nerdtree setlocal nolist
+let NERDTreeChDirMode=2 "CWD is changed whenever the tree root is changed
 
 " -----------------------------------------------------------
 " Plugin: UltiSnips
