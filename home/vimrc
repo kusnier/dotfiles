@@ -773,6 +773,11 @@ set lazyredraw
 au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 
 " -----------------------------------------------------------
+" Greasemonkey
+" -----------------------------------------------------------
+au BufRead,BufNewFile */gm_scripts/*.js set ft=javascript.greasemonkey
+
+" -----------------------------------------------------------
 " ZSH
 " -----------------------------------------------------------
 au BufRead,BufNewFile *.zsh-theme set ft=zsh
