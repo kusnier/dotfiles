@@ -1,0 +1,49 @@
+snippet e "@exclude"
+// @exclude       ${1:http://}$0
+endsnippet
+
+snippet i "@include"
+// @include       ${1:http://}$0
+endsnippet
+
+snippet css "GM_addStyle"
+GM_addStyle("${1:CSS}");
+endsnippet
+
+snippet get "GM_getValue"
+GM_getValue("${1:key}", ${2:"${3:default value}"});
+endsnippet
+
+snippet log "GM_log"
+GM_log(${1:"${2:info}"});
+endsnippet
+
+snippet tab "GM_openInTab"
+GM_openInTab(${1:"${2:http://www.example.com}"});
+$0
+endsnippet
+
+snippet menu "GM_registerMenuCommand"
+GM_registerMenuCommand("${1:Command Name}", ${3:function() {
+	$0
+\}});
+endsnippet
+
+snippet set "GM_setValue"
+GM_setValue("${1:key}", ${2:"${3:value}"});
+endsnippet
+
+snippet xhr "GM_xmlhttpRequest"
+GM_xmlhttpRequest({
+	method: "GET",
+	url: ${1:"${2:http://www.example.com}"},
+	onload: ${3:function(result) {
+		${0:var response = result.responseText;}
+	\} }
+});
+endsnippet
+
+snippet clog "unsafeWindow_console_log (Firebug)"
+console.log("${1:Debug: %o}", ${2:object});
+endsnippet
+
