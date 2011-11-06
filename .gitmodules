@@ -121,3 +121,4 @@
 [submodule "home/vim/bundle/syntastic"]
 	path = home/vim/bundle/syntastic
 	url = git://github.com/scrooloose/syntastic.git
+	ignore = dirty
