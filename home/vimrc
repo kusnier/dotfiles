@@ -768,6 +768,13 @@ autocmd FileType changelog setlocal spell spelllang=en complete+=k
 set lazyredraw
 
 " -----------------------------------------------------------
+" Syntastic
+" -----------------------------------------------------------
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_jump=1
+let g:syntastic_auto_loc_list=1
+
+" -----------------------------------------------------------
 " Greasemonkey
 " -----------------------------------------------------------
 au BufRead,BufNewFile */gm_scripts/*.js set ft=javascript.greasemonkey
