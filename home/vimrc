@@ -1071,26 +1071,6 @@ let g:ackprg="ack -H --nocolor --nogroup --column"
 let g:notes_directory = '~/.vim-notes'
 
 " -----------------------------------------------------------
-" Plugin: CheckSyntax
-" -----------------------------------------------------------
-"
-"":au BufWritePost *.php :CheckSyntax
-"":au BufWritePost *.html :CheckSyntax
-"":au BufWritePost *.xml :CheckSyntax
-"":au BufWritePost *.xsl :CheckSyntax
-if !exists('g:checksyntax')
-  let g:checksyntax = {}
-endif
-let g:checksyntax['javascript'] = {
-            \ 'auto': executable('jshint') == 1,
-            \ 'compiler': 'jshint'
-            \ }
-let g:checksyntax['xslt'] = {
-            \ 'auto': executable('xmllint') == 1,
-            \ 'compiler': 'xmllint'
-            \ }
-
-" -----------------------------------------------------------
 " Plugin: Twiki
 " -----------------------------------------------------------
 au BufNewFile,BufRead /tmp/vimperator-* setf twiki
