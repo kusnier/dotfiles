@@ -768,11 +768,6 @@ autocmd FileType changelog setlocal spell spelllang=en complete+=k
 set lazyredraw
 
 " -----------------------------------------------------------
-" JQuery syntax
-" -----------------------------------------------------------
-au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
-
-" -----------------------------------------------------------
 " Greasemonkey
 " -----------------------------------------------------------
 au BufRead,BufNewFile */gm_scripts/*.js set ft=javascript.greasemonkey
