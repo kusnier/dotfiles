@@ -1,2 +1,3 @@
-ANT_OPTS="-Dant.logger.defaults=/home/$USER/.ansicolorloggerrc -Djava.library.path=/usr/lib/jni"
+ANT_OPTS="-Dant.logger.defaults=/home/$USER/.ansicolorloggerrc"
+ANT_OPTS="$ANT_OPTS -Djava.library.path=/usr/lib/jni"
 ANT_ARGS="-logger org.apache.tools.ant.listener.AnsiColorLogger"
