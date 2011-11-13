@@ -159,13 +159,48 @@ Some of the search commands:
 
 ### NerdTree
 
-* `,nb` - Show/Hide NerdTree
+* `,nt` - Show/Hide NerdTree
+* `,nmt` or `:NERDTreeMirror` - Shares an existing NERD tree (other tab)
+* `,nft` or `:NERDTreeFind` - Find the current file in the tree
+* `:Bookmark <name>` - Bookmark the current node
+* `:BookmarkToRoot <bookmark>` - Open bookmarked dir as new root
 
 Bindings in NerdTree window:
 
 * `C` - Make a node the current working directory
-* `:Bookmark` - BookmarkName to bookmark the current selection
 * `B` - Toggle the bookmark menu
+* `A` - Zoom (maximize/minimize) the NERDTree window
+
+Filter bindings
+
+* `B` - Toggle whether the bookmark table is displayed
+* `I` - Toggle whether hidden files displayed
+* `f` - Toggle whether the file filters are used
+* `F` - Toggle whether files are displayed
+
+Open/Edit bindings
+
+* `o` - Open files, directories and bookmarks 
+* `go` - Open selected file, but leave cursor in the NERDTree
+* `t` - Open selected node/bookmark in a new tab 
+* `T` - Same as 't' but keep the focus on the current tab 
+* `i` - Open selected file in a split window 
+* `gi` - Same as i, but leave the cursor on the NERDTree 
+* `s` - Open selected file in a new vsplit 
+* `gs` - Same as s, but leave the cursor on the NERDTree 
+* `O` - Recursively open the selected directory 
+* `x` - Close the current nodes parent 
+* `X` - Recursively close all children of the current node 
+* `e` - Edit the current dif 
+
+Jump bindings
+
+* `P`  - Jump to the root node
+* `p` - Jump to current nodes parent
+* `K` - Jump up inside directories at the current tree depth
+* `J` - Jump down inside directories at the current tree depth
+* `<C-J>` - Jump down to the next sibling of the current directory
+* `<C-K>` - Jump up to the previous sibling of the current directory
 
 ### Suptertab
 
