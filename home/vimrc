@@ -1098,6 +1098,9 @@ nmap <leader>ccA <plug>NERDCommenterAppend
 " Plugin: NERDTree
 " -----------------------------------------------------------
 nmap  <leader>nt :NERDTreeToggle<cr>
+nmap  <leader>nmt :NERDTreeMirror<cr>
+nmap  <leader>nft :NERDTreeFind<cr>
+
 au Filetype nerdtree setlocal nolist
 let NERDTreeChDirMode=2 "CWD is changed whenever the tree root is changed
 let NERDTreeDirArrows=1
