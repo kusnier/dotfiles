@@ -80,6 +80,14 @@ Once CtrlP is open:
 * other useful bindings: `<C-a>, <C-e>, <C-h>, <C-l>`
 * cycle through the lines with the first letter that matches that key
 
+Input Formats
+
+* Simple String
+* Vim regex
+* End the string with a colon ':' followed by a Vim command to execute that
+* `..` go backward in the directory tree
+* `/` or `\` find and got tot to the project's root
+
 ### autoclose / delimitMate
 
 Autoclose is disabled now. Testing delimitMate (new and on git).
