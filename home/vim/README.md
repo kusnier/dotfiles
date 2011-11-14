@@ -178,6 +178,12 @@ Bindings in NerdTree window:
 * `C` - Make a node the current working directory
 * `B` - Toggle the bookmark menu
 * `A` - Zoom (maximize/minimize) the NERDTree window
+* `u` - Move the tree root up one directory
+* `U` - Same as 'u' except the old root node is left open
+* `r` - Recursively refresh the current directory
+* `R` - Recursively refresh the current root
+* `m` - Display the NERD tree menu
+* `cd` - Change the CWD to the dir of the selected node
 
 Filter bindings
 
