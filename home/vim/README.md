@@ -165,6 +165,8 @@ Some of the search commands:
 * `,tb` - Show/Hide Tagbar
 * `s` -  Reorder the items by alpha or occurance
 * `<space>` - Show tag prototype in command line
+* `<C-n>` - Go to the next top-level tag
+* `<C-p>` - Go to the previous top-level tag
 
 ### NerdTree
 
