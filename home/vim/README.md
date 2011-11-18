@@ -167,6 +167,8 @@ Some of the search commands:
 * `<space>` - Show tag prototype in command line
 * `<C-n>` - Go to the next top-level tag
 * `<C-p>` - Go to the previous top-level tag
+* `x` - Toggle zooming the window
+* `q` - Close the Tagbar window
 
 ### NerdTree
 
