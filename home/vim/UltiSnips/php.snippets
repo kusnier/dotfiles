@@ -251,6 +251,24 @@ public function ${3:testMethod}() {
 }
 endsnippet
 
+snippet xputb "unittest setup function" b
+/**
+ * Setup
+ *
+ */
+#[@beforeClass]
+public static function beforeClass() {
+  // Register driver for "mock"
+  DriverManager::register('mock', XPClass::forName('net.xp_framework.unittest.rdbms.mock.MockConnection'));
+
+  // Setup connections w/ mock driver
+  $cm= ConnectionManager::getInstance();
+  $cm->pool= array();
+  $cm->register(DriverManager::getConnection('mock://host/database?autoconnect=1'), '${1:dbname}', '');
+
+}
+endsnippet
+
 snippet xppcon "" b
 parent::__construct();
 
