@@ -122,3 +122,6 @@
 	path = home/vim/bundle/syntastic
 	url = git://github.com/kusnier/syntastic.git
 	ignore = dirty
+[submodule "home/vim/bundle/vim-mediawiki"]
+	path = home/vim/bundle/vim-mediawiki
+	url = git://github.com/kusnier/vim-mediawiki.git
