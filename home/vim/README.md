@@ -164,6 +164,7 @@ Some of the search commands:
 
 * `,tb` - Show/Hide Tagbar
 * `s` -  Reorder the items by alpha or occurance
+* `<space>` - Show tag prototype in command line
 
 ### NerdTree
 
