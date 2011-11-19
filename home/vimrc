@@ -909,11 +909,8 @@ let g:omni_sql_include_owner = 0
 
 " Enable file-type for using vi in sqsh and mysql-cl
 :au BufNewFile,BufRead sqsh-edit* setf sql
-:au BufNewFile,BufRead sqsh-edit* :TlistToggle
 :au BufNewFile,BufRead /tmp/sql* setf sql
-:au BufNewFile,BufRead /tmp/sql* :TlistToggle
 :au BufNewFile,BufRead /tmp/bash-fc* setf sh
-:au BufNewFile,BufRead /tmp/bash-fc* :TlistToggle
 :au BufNewFile,BufRead *.ddl setf sql
 
 
