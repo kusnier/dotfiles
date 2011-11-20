@@ -125,3 +125,6 @@
 [submodule "home/vim/bundle/vim-mediawiki"]
 	path = home/vim/bundle/vim-mediawiki
 	url = git://github.com/kusnier/vim-mediawiki.git
+[submodule "home/vim/bundle/tabman.vim"]
+	path = home/vim/bundle/tabman.vim
+	url = git://github.com/kien/tabman.vim.git
