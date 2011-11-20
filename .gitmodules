@@ -128,3 +128,4 @@
 [submodule "home/vim/bundle/tabman.vim"]
 	path = home/vim/bundle/tabman.vim
 	url = git://github.com/kien/tabman.vim.git
+	ignore = dirty
