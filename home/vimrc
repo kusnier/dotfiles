@@ -994,6 +994,14 @@ let g:ctrlp_root_markers = ['VERSION', 'xpinstall', 'ivy.xml']
 let g:ctrlp_mru_files = 1
 
 " -----------------------------------------------------------
+" Plugin: TabMan
+" -----------------------------------------------------------
+let g:tabman_toggle = '<leader>tm'
+let g:tabman_focus  = '<leader>ftm'
+let g:tabman_side   = 'right'
+let g:tabman_width = 20
+
+" -----------------------------------------------------------
 " Plugin: Autoclose
 " Plugin: delimitMate
 " -----------------------------------------------------------
