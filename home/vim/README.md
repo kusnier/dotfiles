@@ -170,6 +170,11 @@ Some of the search commands:
 * `x` - Toggle zooming the window
 * `q` - Close the Tagbar window
 
+### TagMan
+
+* `,tm` - Toggle the TabMan window in the current tab
+* `,ftm` - Give focus to the TabMan window in the current tab
+
 ### NerdTree
 
 * `,nt` - Show/Hide NerdTree
