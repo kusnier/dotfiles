@@ -4,6 +4,7 @@ bashsupport-Ctrl-j	bashsupport.txt	/*bashsupport-Ctrl-j*
 bashsupport-ad-mappings	bashsupport.txt	/*bashsupport-ad-mappings*
 bashsupport-aligned-comm	bashsupport.txt	/*bashsupport-aligned-comm*
 bashsupport-also-bash	bashsupport.txt	/*bashsupport-also-bash*
+bashsupport-bash-cmdline-args	bashsupport.txt	/*bashsupport-bash-cmdline-args*
 bashsupport-cmdline-args	bashsupport.txt	/*bashsupport-cmdline-args*
 bashsupport-comm-echo	bashsupport.txt	/*bashsupport-comm-echo*
 bashsupport-comm-keywords	bashsupport.txt	/*bashsupport-comm-keywords*
