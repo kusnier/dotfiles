@@ -1,0 +1,77 @@
+snippet i "Italic"
+*${1:text}*
+endsnippet
+
+snippet b "Bold"
+**${1:text}**
+endsnippet
+
+snippet h "Header 1" b
+# ${1:Header 1}
+endsnippet
+
+snippet h "Header 2" b
+## ${1:Header 2}
+endsnippet
+
+snippet h "Header 3" b
+### ${1:Header 3}
+endsnippet
+
+snippet h "Header 4" b
+#### ${1:Header 4}
+endsnippet
+
+snippet h "Header 5" b
+##### ${1:Header 5}
+endsnippet
+
+snippet h "Header 6" b
+###### ${1:Header 6}
+endsnippet
+
+snippet list "List (ul)" b
+* ${1:Item 1}
+* ${2:Item 2}
+* ${3:Item 3}
+endsnippet
+
+snippet list "List (ol)" b
+1. ${1:Item 1}
+2. ${2:Item 2}
+3. ${3:Item 3}
+endsnippet
+
+snippet link "Link"
+[${1:description}](${2:http://example.com/}${3: "${4:Title optional}"})
+endsnippet
+
+snippet link "Link (Reference)"
+[${1:description}][${2:reference}]
+endsnippet
+
+snippet link "Reference for links"
+[${1:reference}]: ${2:http://example.com/}${3: "${4:Title optional}"}
+endsnippet
+
+snippet img "Image"
+![${1:alt text}](${2:/path/to/img.jpg}${3: "${4:Title optional}"})
+endsnippet
+
+snippet img "Image (Reference)"
+![${1:alt text}][${2:reference}]
+endsnippet
+
+snippet img "Reference for images"
+[${1:reference}]: ${2:/path/to/img.jpg}${3: "${4:Title optional}"}
+endsnippet
+
+snippet code "Code (inline)"
+`${1:code}`
+endsnippet
+
+snippet code "Code (block)" b
+    ${1:code...
+    code...
+    code...}
+endsnippet
