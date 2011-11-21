@@ -329,23 +329,19 @@ noremap   <Down>   <NOP>
 noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
 
+" When pressing <leader>cd switch to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>
+
+" -----------------------------------------------------------
 " Tab configuration
+" -----------------------------------------------------------
+nmap <leader>tn <Esc>:tabnew<CR>
 " Comment never used bindings
 " map <leader>tn :tabnew %<cr>
 " map <leader>te :tabedit
 " map <leader>tc :tabclose<cr>
 " map <leader>tm :tabmove 
-
-" When pressing <leader>cd switch to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>
-
-
-" -----------------------------------------------------------
-" tabline settings
-" -----------------------------------------------------------
 set showtabline=2 " Always show tab bar
-nmap <leader>t <Esc>:tabnew<CR>
-
 
 " -----------------------------------------------------------
 " highlighting, colors, fonts
