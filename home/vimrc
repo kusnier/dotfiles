@@ -760,6 +760,7 @@ autocmd FileType markdown setlocal spell spelllang=en complete+=k
 autocmd FileType changelog setlocal spell spelllang=en complete+=k
 map <leader>spd :setlocal spelllang+=de<CR>
 map <leader>spe :setlocal spelllang+=en<CR>
+map <leader>spp :setlocal spelllang+=pl<CR>
 
 " -----------------------------------------------------------
 " Quicksigns
