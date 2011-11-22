@@ -1,3 +1,7 @@
+# Markdown snippets
+#
+# Maintainer: Sebastian Kusnier <sebastian AT kusnier DOT net>
+
 snippet i "Italic"
 *${1:text}*
 endsnippet
@@ -31,15 +35,15 @@ snippet h "Header 6" b
 endsnippet
 
 snippet list "List (ul)" b
-* ${1:Item 1}
-* ${2:Item 2}
-* ${3:Item 3}
+*   ${1:Item 1}
+*   ${2:Item 2}
+*   ${3:Item 3}
 endsnippet
 
 snippet list "List (ol)" b
-1. ${1:Item 1}
-2. ${2:Item 2}
-3. ${3:Item 3}
+1.  ${1:Item 1}
+2.  ${2:Item 2}
+3.  ${3:Item 3}
 endsnippet
 
 snippet link "Link"
@@ -74,4 +78,10 @@ snippet code "Code (block)" b
     ${1:code...
     code...
     code...}
+endsnippet
+
+snippet block "Blockquote" b
+> ${1:Text...}
+> ${2:Text...}
+> ${3:Text...}
 endsnippet
