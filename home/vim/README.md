@@ -57,6 +57,11 @@
 ### CtrlP
 
 * `<C-p>` - to invoke CtrlP
+* `:CtrlP` - Open CtrlP in find file mode.
+* `:CtrlPBuffer` - Open CtrlP in find buffer mode.
+* `:CtrlPMRU` - Open CtrlP in find Most-Recently-Used file mode.
+* `:CtrlPTag` - Search for a tag.
+* `:CtrlPQuickfix` - Sear for an entry in the current quickfix.
 
 Once CtrlP is open:
 
