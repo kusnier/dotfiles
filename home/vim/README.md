@@ -107,8 +107,10 @@ Autoclose is disabled now. Testing delimitMate (new and on git).
 
 Add these lines in vimrc
 
-    map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-    map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+```vim
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+```
 
 Ctags generation:
 
@@ -272,7 +274,9 @@ The session command supports completion
 
 Tutorial: <http://net.tutsplus.com/tutorials/other/vim-essential-plugin-easymotion/>
 
-    let g:EasyMotion_leader_key='\'
+```vim
+let g:EasyMotion_leader_key='\'
+```
 
 * `<Leader>f{char}` - Find {char} to the right.
 * `<Leader>F{char}` - Find {char} to the left.
