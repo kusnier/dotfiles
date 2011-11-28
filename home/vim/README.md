@@ -18,12 +18,12 @@
 
 ####Splits
 
-`+` Increase split size.
-`-` Decrease split size.
-`<C-j>` Go to split below.
-`<C-k>` Go to split above.
-`<C-h>` Go to split left.
-`<C-l>` Go to split right.
+* `+` Increase split size.
+* `-` Decrease split size.
+* `<C-j>` Go to split below.
+* `<C-k>` Go to split above.
+* `<C-h>` Go to split left.
+* `<C-l>` Go to split right.
 
 ### phpDocumentor
 
