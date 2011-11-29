@@ -802,8 +802,7 @@ au BufRead,BufNewFile *.zsh-theme set ft=zsh
 map <leader>qq :cclose<CR>
 map <F7> :set spell!<CR>
 map <F10> :set invhls<CR>:let @/="<C-r><C-w>"<CR>/<BS>
-map <S-F11> :set autoindent!<CR>
-map <F11> :w! /tmp/vim_to_sqsh<CR>:silent !cat /tmp/vim_to_sqsh \| sql_dev_ipmt &> /tmp/vim_to_sqsh.out<CR>:split /tmp/vim_to_sqsh.out<CR>
+map <F11> :set autoindent!<CR>
 nmap <silent> <S-F12> :new ~/.vimrc.dbi_vars<CR>
 " autocheck map <F12> :Make<CR>
 map <M-E> :Ex<CR>
