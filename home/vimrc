@@ -1076,6 +1076,14 @@ let g:ackprg="ack -H --nocolor --nogroup --column"
 let g:notes_directory = '~/.vim-notes'
 
 " -----------------------------------------------------------
+" Plugin: Indent Guides
+" -----------------------------------------------------------
+autocmd FileType php         IndentGuidesEnable
+autocmd FileType html        IndentGuidesEnable
+autocmd FileType javascript  IndentGuidesEnable
+autocmd FileType *           IndentGuidesDisable
+
+" -----------------------------------------------------------
 " Plugin: Twiki
 " -----------------------------------------------------------
 au BufNewFile,BufRead /tmp/vimperator-* setf twiki
