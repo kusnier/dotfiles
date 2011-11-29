@@ -989,6 +989,7 @@ highlight phpClassesTag guifg=#ff0077
 " -----------------------------------------------------------
 " Plugin: CtrlP
 " -----------------------------------------------------------
+let g:ctrlp_extensions = ['tag', 'qfx']
 let g:ctrlp_working_path_mode = 2
 let g:ctrlp_root_markers = ['VERSION', 'xpinstall', 'ivy.xml']
 let g:ctrlp_mru_files = 1
