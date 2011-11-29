@@ -293,6 +293,10 @@ let g:EasyMotion_leader_key='\'
 * `<Leader>j` - Line downward.
 * `<Leader>k` - Line upward.
 
+### Indent guides
+
+* `<Leader>ig` - Toogle indent guides
+
 ## Plugins
 
 _Todo_
