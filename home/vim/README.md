@@ -60,8 +60,9 @@
 * `:CtrlP` - Open CtrlP in find file mode.
 * `:CtrlPBuffer` - Open CtrlP in find buffer mode.
 * `:CtrlPMRU` - Open CtrlP in find Most-Recently-Used file mode.
-* `:CtrlPTag` - Search for a tag.
-* `:CtrlPQuickfix` - Sear for an entry in the current quickfix.
+* `:CtrlPTag` - Search for a tag within a generated central tags file
+* `:CtrlPQuickfix` - Search for an entry in the current quickfix errors and jump to it.
+* `:CtrlPDir` - Search for a directory and change the working directory to it.
 
 Once CtrlP is open:
 
@@ -84,6 +85,14 @@ Once CtrlP is open:
 * `<C-y>` - open new file
 * other useful bindings: `<C-a>, <C-e>, <C-h>, <C-l>`
 * cycle through the lines with the first letter that matches that key
+
+Bindings for the CtrlPDir view
+
+* `<cr>`  - Change the local working directory for CtrlP and keep it open.
+* `<c-t>` - Change the global working directory (exit).
+* `<c-v>` - Change the local working directory for the current window (exit).
+* `<c-x>` - Change the global working directory to CtrlP’s current local
+            working directory (exit).
 
 Input Formats
 
