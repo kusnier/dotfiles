@@ -1019,7 +1019,7 @@ nmap <Leader>a :DelimitMateSwitch<CR>
 " -----------------------------------------------------------
 highlight MyTagListFileName cterm=bold ctermfg=161 gui=bold guifg=#F92672
 highlight MyTagListTagName ctermfg=81 guifg=#66D9EF
-let Tlist_Auto_Open = 1
+let Tlist_Auto_Open = 0
 let Tlist_Use_Right_Window = 1
 let Tlist_WinWidth = 40
 "let Tlist_Compact_Format = 1
