@@ -74,6 +74,8 @@ let mapleader = ","
 " -----------------------------------------------------------
 " Leader mappings
 " -----------------------------------------------------------
+" Trailing whitespace will be highlighted automatically
+match ErrorMsg '\s\+$'
 " strip all trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " HTML  ,ft mapped to a "fold tag"
