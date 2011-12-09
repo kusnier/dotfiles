@@ -29,6 +29,15 @@
 
 * `:diffthis` - Make the current window part of the diff windows
 
+### Text manipulation
+
+* `gU{motion}` - Make {motion} text uppercase.
+* `gUU` - Make current line uppercase.
+* `gu{motion}` - Make {motion} text lowercase.
+* `guu` - Make current line lowercase.
+* `g~{motion}` - Switch ase of {motion} text.
+* `g~~` - Switch case of current line.
+
 ### phpDocumentor
 
 * `<C-d>` - Generate php doc (current pos, range)
