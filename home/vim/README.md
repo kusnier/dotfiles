@@ -172,7 +172,7 @@ Some of the tag stack commands:
 
 Some of the tag preview commands:
 
-* `:ptag` - open tag in a preview window, stay in current buffer 
+* `:ptag` - open tag in a preview window, stay in current buffer
 * `Ctrl-W }` - like :ptag
 * `:ptselect` - like :tselect but in a preview split
 * `:ptnext`, `:ptprevious`, `:ptfirst` and `:ptlast` jump through the tag occurrences
@@ -233,18 +233,18 @@ Filter bindings
 
 Open/Edit bindings
 
-* `o` - Open files, directories and bookmarks 
+* `o` - Open files, directories and bookmarks
 * `go` - Open selected file, but leave cursor in the NERDTree
-* `t` - Open selected node/bookmark in a new tab 
-* `T` - Same as 't' but keep the focus on the current tab 
-* `i` - Open selected file in a split window 
-* `gi` - Same as i, but leave the cursor on the NERDTree 
-* `s` - Open selected file in a new vsplit 
-* `gs` - Same as s, but leave the cursor on the NERDTree 
-* `O` - Recursively open the selected directory 
-* `x` - Close the current nodes parent 
-* `X` - Recursively close all children of the current node 
-* `e` - Edit the current dif 
+* `t` - Open selected node/bookmark in a new tab
+* `T` - Same as 't' but keep the focus on the current tab
+* `i` - Open selected file in a split window
+* `gi` - Same as i, but leave the cursor on the NERDTree
+* `s` - Open selected file in a new vsplit
+* `gs` - Same as s, but leave the cursor on the NERDTree
+* `O` - Recursively open the selected directory
+* `x` - Close the current nodes parent
+* `X` - Recursively close all children of the current node
+* `e` - Edit the current dif
 
 Jump bindings
 
