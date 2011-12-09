@@ -16,7 +16,7 @@
 * `:Hammer` - Preview markup file in browser
 * `<C-w>o` - Make the current window the only one on the screen
 
-####Splits
+###Splits
 
 * `+` Increase split size.
 * `-` Decrease split size.
@@ -24,6 +24,10 @@
 * `<C-k>` Go to split above.
 * `<C-h>` Go to split left.
 * `<C-l>` Go to split right.
+
+### Diff
+
+* `:diffthis` - Make the current window part of the diff windows
 
 ### phpDocumentor
 
