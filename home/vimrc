@@ -63,6 +63,7 @@ nnoremap k gk
 " leader is \, but this is not located standardly on all
 " keyboards and requires a pinky stretch in any case. 
 let mapleader = ","
+let maplocalleader = "\\"
 
 " -----------------------------------------------------------
 " Leader mappings
