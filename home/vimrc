@@ -10,13 +10,6 @@
 "   VIM xdebug
 "   http://www.apaddedcell.com/easy-php-debugging-ubuntu-using-xdebug-and-vim
 "   http://tech.blog.box.net/2007/06/20/how-to-debug-php-with-vim-and-xdebug-on-linux/
-" Test plugins:
-"   Ack
-"   Snipmate
-"   Sparkup
-" TODO:
-"   - read syntax/php.vim doc, disable slow functions
-
 
 " -----------------------------------------------------------
 " Plugin: Pathogen
