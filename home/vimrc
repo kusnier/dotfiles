@@ -17,14 +17,14 @@
 " -----------------------------------------------------------
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
-" vimball ?
-" If you really must use one:
-"
+
+" -----------------------------------------------------------
+" HowTo: Pathogen and vimball
+" -----------------------------------------------------------
 " :e name.vba
 " :!mkdir ~/.vim/bundle/name
 " :UseVimball ~/.vim/bundle/name
-"
-"
+
 " -----------------------------------------------------------
 " Printer setup
 " -----------------------------------------------------------
