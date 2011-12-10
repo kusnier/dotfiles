@@ -267,7 +267,7 @@ imap <S-Tab> <C-o><<
 " -----------------------------------------------------------
 " List chars - Show invisibles
 " -----------------------------------------------------------
-set list listchars=tab:»·,trail:·,eol:¬
+set list listchars=tab:»·,trail:·,eol:¬,extends:¿,precedes:¿
 if !exists("g:colors_name")
   highlight NonText guifg=#2a2a2a
   highlight SpecialKey guifg=#ff2a2a
