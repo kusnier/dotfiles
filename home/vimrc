@@ -1,7 +1,7 @@
-" VIMRC
-" Last Change:  $Date: 2011-07-31 18:50:31 +0200 (So, 31 Jul 2011) $
-" Maintainer:   Sebastian <seek> Kusnier, seek /at/ matrixcode /dot/ de
-" License:      This file is placed in the public domain.
+" .vimrc
+" Author:  Sebastian <seek> Kusnier, seek /at/ matrixcode /dot/ de
+" Source:  https://github.com/kusnier/dotfiles/blob/master/home/vimrc
+" License: This file is placed in the public domain.
 "
 " USE :options
 "  for a linteractive list of all options
