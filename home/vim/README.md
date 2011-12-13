@@ -16,7 +16,14 @@
 * `:Hammer` - Preview markup file in browser
 * `<C-w>o` - Make the current window the only one on the screen
 
-###Splits
+### Command-line
+
+#### History
+
+* `q:` - Open Ex command-line history
+* `q/` or `q?` - Open search string history
+
+### Splits
 
 * `+` Increase split size.
 * `-` Decrease split size.
