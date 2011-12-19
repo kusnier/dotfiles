@@ -394,6 +394,7 @@ endif
 if exists("g:colors_name") && g:colors_name == 'molokai'
   " Autochange color in insert mode
   highlight StatusLine guifg=#2b0036 guibg=white
+  highlight Search guibg=#f0e600 guifg=black
   autocmd InsertEnter * highlight StatusLine guifg=#8b0036
   autocmd InsertLeave * highlight StatusLine guifg=#2b0036
 else
