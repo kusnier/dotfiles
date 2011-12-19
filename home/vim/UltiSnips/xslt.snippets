@@ -1,15 +1,155 @@
-snippet xv "xsl:value-of" i
-<xsl:value-of select="${1:value}"/>
+# xslt snippets
+#
+# Maintainer: Sebastian Kusnier <sebastian AT kusnier DOT net>
+#
+snippet ns "xmlns=y"
+xmlns="$2"
 endsnippet
 
-snippet for "xsl:for-each"
-<xsl:for-each select="${1:select}">
-  ${2:code}
+snippet ns "xmlns:x=y"
+xmlns:$1="$2"
+endsnippet
+
+snippet ns "xmlns:exslt"
+xmlns:exslt="http://exslt.org/common"
+endsnippet
+
+snippet ns "xmlns:html"
+xmlns:html="http://www.w3.org/1999/xhtml"
+endsnippet
+
+snippet ns "xmlns:xsl"
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+endsnippet
+
+snippet <ou "xsl:output" i
+<xsl:output encoding="UTF-8" indent="yes" method="${1:xml}"/>
+
+endsnippet
+
+snippet <ap "xsl:apply-templates sort" i
+<xsl:apply-templates select="${1:value}">
+  <xsl:sort select="${2:node}" order="${3:ascending}" data-type="${4:text}" />$5
+</xsl:apply-templates>$0
+endsnippet
+
+snippet <ap "xsl:apply-templates with-param" i
+<xsl:apply-templates select="${1:value}">
+  <xsl:with-param name="${2:parameter}" select="${3:value}" />$4
+</xsl:apply-templates>$0
+endsnippet
+
+snippet <ap "xsl:apply-templates" i
+<xsl:apply-templates select="${1:value}"/>$0
+endsnippet
+
+snippet <att "xsl:attribute blank" i
+<xsl:attribute name="${1:name}">${2:value}</xsl:attribute>$0
+endsnippet
+
+snippet <att "xsl:attribute value-of" i
+<xsl:attribute name="${1:name}">
+  <xsl:value-of select="${2:value}" />
+</xsl:attribute>$0
+endsnippet
+
+snippet <ct "xsl:call-template" i
+<xsl:call-template name="${1:value}"/>$0
+endsnippet
+
+snippet <ct "xsl:call-template with-param" i
+<xsl:call-template name="${1:value}">
+  <xsl:with-param name="${2:name}">${3:value}</xsl:with-param>$0
+</xsl:call-template>
+endsnippet
+
+
+snippet <c "xsl:choose" i
+<xsl:choose>
+  <xsl:when test="${1:value}">
+    $0
+  </xsl:when>
+</xsl:choose>
+endsnippet
+
+snippet <co "xsl:copy-of" i
+<xsl:copy-of select="${1:value}"/>$0
+endsnippet
+
+snippet <fe "xsl:for-each" i
+<xsl:for-each select="${1:value}">
+  $0
 </xsl:for-each>
 endsnippet
 
-snippet if "xsl:if" i
-<xsl:if test="${1:expression}">
-  ${2:code}
+snippet <i "xsl:if" i
+<xsl:if test="${1:value}">
+  $0
 </xsl:if>
+endsnippet
+
+snippet <i "xsl:import" i
+<xsl:import href="${1:location}"/>$0
+endsnippet
+
+snippet <i "xsl:include" i
+<xsl:include href="${1:location}"/>$0
+endsnippet
+
+snippet <o "xsl:otherwise" i
+<xsl:otherwise>
+  $0
+</xsl:otherwise>
+endsnippet
+
+snippet <p "xsl:param" i
+<xsl:param name="${1:parameter}">${2:value}</xsl:param>$0
+endsnippet
+
+snippet <p "xsl:param (with select)" i
+<xsl:param name="${1:parameter}" select="${2:node}" />$0
+endsnippet
+
+snippet <s "xsl:sort" i
+<xsl:sort select="${1:element}" />$0
+endsnippet
+
+snippet <s "xsl:sort (type and order)" i
+<xsl:sort select="$1"${2: data-type="${3:number}"}${4: order="${5:ascending}"}/>$0
+endsnippet
+
+snippet <t "xsl:template" i
+<xsl:template match="${1:value}">
+  $0
+</xsl:template>
+endsnippet
+
+snippet <t "xsl:text" i
+<xsl:text>${1:text}</xsl:text>$0
+endsnippet
+
+snippet <v "xsl:value-of" i
+<xsl:value-of select="${1:value}"/>$0
+endsnippet
+
+snippet <var "xsl:variable" i
+<xsl:variable name="${1:variable}">$0</xsl:variable>
+endsnippet
+
+snippet <var "xsl:variable (with select)" i
+<xsl:variable name="${1:parameter}" select="${2:node}" />$0
+endsnippet
+
+snippet <w "xsl:when" i
+<xsl:when test="${1:value}">
+  $0
+</xsl:when>
+endsnippet
+
+snippet <wp "xsl:with-param" i
+<xsl:with-param name="${1:name}">${2:value}</xsl:with-param>$0
+endsnippet
+
+snippet <wp "xsl:with-param (with select)" i
+<xsl:with-param name="${1:parameter}" select="${2:node}" />$0
 endsnippet
