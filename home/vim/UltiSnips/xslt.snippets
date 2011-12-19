@@ -1,0 +1,15 @@
+snippet xv "xsl:value-of" i
+<xsl:value-of select="${1:value}"/>
+endsnippet
+
+snippet for "xsl:for-each"
+<xsl:for-each select="${1:select}">
+  ${2:code}
+</xsl:for-each>
+endsnippet
+
+snippet if "xsl:if" i
+<xsl:if test="${1:expression}">
+  ${2:code}
+</xsl:if>
+endsnippet
