@@ -34,10 +34,6 @@ Using vim is like talking to your editor in ‘verb modifier object’ sentences
 * Change everything from here to the letter X: `ctX`
 * Visually select this paragraph: `vap` (visual around paragraph)
 
-### Text objects
-
-* 
-
 ## Bindings
 
 ### General
