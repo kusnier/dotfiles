@@ -5,6 +5,23 @@
 * `:help cmdline-special` - Ex special characters
 * `:help ins-completion` - Insert mode completion
 
+## Learn to speak vim - verbs, nouns and modifiers
+
+Using vim is like talking to your editor in ‘verb modifier object’ sentences
+
+* Verbs: `v` (visual), `c` (change), `d` (delete), `y` (yank/copy)
+* Objects:`w` (word), `s` (sentence) `p` (paragraph) `b` (block/parentheses)
+* Modifiers: `i` (inside), a (around), `t` (till..finds a character), `/` (search..find a string/regex)
+
+### Speak to the editor in sentences
+
+* Delete the current word: `diw` (delete inside word)
+* Change current sentence: `cis` (change inside sentence)
+* Change a string inside quotes: `ci”` (change inside quote)
+* Change until next occurrence of ‘foo’: `c/foo` (change search foo)
+* Change everything from here to the letter X: `ctX`
+* Visually select this paragraph: `vap` (visual around paragraph)
+
 ## Bindings
 
 ### General
