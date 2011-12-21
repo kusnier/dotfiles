@@ -1,5 +1,5 @@
 if [ "x$OH_MY_ZSH_HG" = "x" ]; then
-    OH_MY_ZSH_HG="hg"
+  [[ -e ~/.hgextensions/hg-prompt/prompt.py ]] && OH_MY_ZSH_HG="hg"
 fi
 
 function virtualenv_info {
