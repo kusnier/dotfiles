@@ -65,6 +65,28 @@ Using vim is like talking to your editor in ‘verb modifier object’ sentences
 * `<c-x><c-o>` - Omni completion.
 * `<c-x>s` - Spelling suggestions.
 
+### CTRL-R {0-9a-z”%#:-=.} <small>*(insert mode)*</small>
+
+Insert the contents of a numbered or named register.
+Between typing `CTRL-R` and the second character `”` will be displayed to
+indicate that you are expected to enter the name of a register.
+
+Special registers:
+
+* `“` - the unnamed register, containing the text of the last delete or yank
+* `%` - the current file name
+* `#` - the alternate file name
+* `*` - the clipboard contents (X11: primary selection)
+* `+` - the clipboard contents
+* `/` - the last search pattern
+* `:` - the last command-line
+* `-` - the last small (less than a line) delete
+* `.` - the last inserted text
+* `=` - the expression register: you are prompted to enter an expression (see |expression|) (doesn’t work at the expression prompt; some things such as changing the buffer or current window are not allowed to avoid side effects) When the result is a |List| the items are used as lines.  They can have line breaks inside too. When the result is a Float it’s automatically converted to a String.
+
+> The expression register is very nice for calculating.
+> `CTRL-R =`, then type `5*5` and you will get the result in the buffer.
+
 ### Command-line
 
 #### History
