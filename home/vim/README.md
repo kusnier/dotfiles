@@ -132,6 +132,7 @@ Using vim is like talking to your editor in ‘verb modifier object’ sentences
 * `:CtrlPTag` - Search for a tag within a generated central tags file
 * `:CtrlPQuickfix` - Search for an entry in the current quickfix errors and jump to it.
 * `:CtrlPDir` - Search for a directory and change the working directory to it.
+* `:CtrlPBufTag` - Search for a tag within the current buffer and jump to the definition.
 
 Once CtrlP is open:
 
