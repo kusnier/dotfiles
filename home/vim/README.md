@@ -44,6 +44,9 @@ Using vim is like talking to your editor in ‘verb modifier object’ sentences
 * `,W` - Strip all trailing whitespace in buffer
 * `:Hammer` - Preview markup file in browser
 * `<C-w>o` - Make the current window the only one on the screen
+* `<Space>` - Start command mode (normal mode)
+* `<Space><Space>` - Start shell command mode with (normal mode)
+* `<C-Space>` - Use tags completion
 
 ### Insert mode completion
 
