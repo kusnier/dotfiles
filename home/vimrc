@@ -34,6 +34,11 @@ set printoptions=paper:A4,syntax:a,duplex:off
 " General setup
 " -----------------------------------------------------------
 
+" Use space for something useful
+nnoremap <Space> :
+nnoremap <Space><Space> :!
+inoremap <C-Space> <C-X><C-]>
+
 " Paste toggle (,p)
 set pastetoggle=<leader>p
 map <leader>p :set invpaste paste?<CR>
