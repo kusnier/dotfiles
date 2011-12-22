@@ -45,6 +45,23 @@ Using vim is like talking to your editor in ‘verb modifier object’ sentences
 * `:Hammer` - Preview markup file in browser
 * `<C-w>o` - Make the current window the only one on the screen
 
+### Insert mode completion
+
+* `<c-n>` - Keywords in 'complete' searching down.
+* `<c-p>` - Keywords in 'complete' searching up.
+* `<c-x><c-l>` - Whole lines.
+* `<c-x><c-n>` - Keywords in current file.
+* `<c-x><c-k>` - Keywords in 'dictionary'.
+* `<c-x><c-t>` - Keywords in 'thesaurus', thesaurus-style.
+* `<c-x><c-i>` - Keywords in the current and included files.
+* `<c-x><c-]>` - Tags.
+* `<c-x><c-f>` - File names.
+* `<c-x><c-d>` - Definitions or macros.
+* `<c-x><c-v>` - Vim command-line.
+* `<c-x><c-u>` - User defined completion.
+* `<c-x><c-o>` - Omni completion.
+* `<c-x>s` - Spelling suggestions.
+
 ### Command-line
 
 #### History
