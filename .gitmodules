@@ -129,3 +129,6 @@
 	path = home/vim/bundle/tabman.vim
 	url = git://github.com/kien/tabman.vim.git
 	ignore = dirty
+[submodule "home/vim/bundle/inline_edit.vim"]
+	path = home/vim/bundle/inline_edit.vim
+	url = git://github.com/AndrewRadev/inline_edit.vim.git
