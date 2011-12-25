@@ -48,6 +48,14 @@ if [ -d "/Users/seek/devel/xp.bin" ] ; then
     PATH="/Users/seek/devel/xp.bin:$PATH"
 fi
 
+# node.js
 if [ -d "/usr/local/lib/node" ] ; then
-  NODE_PATH="/usr/local/lib/node"
+  export NODE_PATH="/usr/local/lib/node:$NODE_PATH"
 fi
+
+# node.js - macosx
+if [ -d "/usr/local/lib/node_modules" ] ; then
+  export NODE_PATH="/usr/local/lib/node_modules:$NODE_PATH"
+fi
+
+export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH

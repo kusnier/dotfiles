@@ -20,3 +20,11 @@
 # node.js
 [[ -d "/usr/local/lib/node" ]] && \
   NODE_PATH="/usr/local/lib/node"
+
+# node.js - macosx
+[[ -d "/usr/local/lib/node_modules" ]] && \
+  NODE_PATH="/usr/local/lib/node_modules"
+
+# doctorjs
+[[ -d "/usr/local/lib/jsctags" ]] && \
+  export NODE_PATH=/usr/local/lib/jsctags:$NODE_PATH
