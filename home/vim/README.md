@@ -73,6 +73,10 @@ indicate that you are expected to enter the name of a register.
 
 Special registers:
 
+* `0` - yank register
+* `1` to `9` - shifting delete registers
+* `a` to `z` - registers, for your own use (capitalized A to Z are for appending to corresponding registers).
+* `_` - like `/dev/null`, this is a black hole
 * `“` - the unnamed register, containing the text of the last delete or yank
 * `%` - the current file name
 * `#` - the alternate file name
@@ -82,10 +86,31 @@ Special registers:
 * `:` - the last command-line
 * `-` - the last small (less than a line) delete
 * `.` - the last inserted text
-* `=` - the expression register: you are prompted to enter an expression (see |expression|) (doesn’t work at the expression prompt; some things such as changing the buffer or current window are not allowed to avoid side effects) When the result is a |List| the items are used as lines.  They can have line breaks inside too. When the result is a Float it’s automatically converted to a String.
+* `=` - the expression register: you are prompted to enter an expression
+    (see |expression|) (doesn’t work at the expression prompt; some things
+    such as changing the buffer or current window are not allowed to avoid
+    side effects) When the result is a |List| the items are used as lines.
+    They can have line breaks inside too. When the result is a Float it’s
+    automatically converted to a String.
+
+See `:help registers` for the full reference.
+
+> In Insert or Command-line mode, `Ctrl-R plus a register name`, inserts the
+> contents of this register. If you want to insert them literally
+> (no auto-indenting, no conversion of control characters like 0x08 to
+> backspace, etc), you can use `Ctrl-R, Ctrl-O, register name`.
+> `See :help i_CTRL-R` and following paragraphs for more reference.
+
 
 > The expression register is very nice for calculating.
 > `CTRL-R =`, then type `5*5` and you will get the result in the buffer.
+
+Examples
+
+* `Vy:@"` - Vy will select whole line and yank it into the default register
+    (also known as the unnamed register). The :@ Ex command plays Ex commands
+    stored in the register given as argument, and " is how you refer to the
+    unnamed register.
 
 ### Command-line
 
