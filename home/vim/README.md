@@ -77,7 +77,7 @@ Special registers:
 * `1` to `9` - shifting delete registers
 * `a` to `z` - registers, for your own use (capitalized A to Z are for appending to corresponding registers).
 * `_` - like `/dev/null`, this is a black hole
-* `“` - the unnamed register, containing the text of the last delete or yank
+* `"` - the unnamed register, containing the text of the last delete or yank
 * `%` - the current file name
 * `#` - the alternate file name
 * `*` - the clipboard contents (X11: primary selection)
