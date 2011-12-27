@@ -132,3 +132,6 @@
 [submodule "home/vim/bundle/inline_edit.vim"]
 	path = home/vim/bundle/inline_edit.vim
 	url = git://github.com/AndrewRadev/inline_edit.vim.git
+[submodule "home/vim/bundle/vim-eunuch"]
+	path = home/vim/bundle/vim-eunuch
+	url = git://github.com/tpope/vim-eunuch.git
