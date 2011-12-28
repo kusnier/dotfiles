@@ -73,6 +73,11 @@ alias wdiff="wdiff -n -w $'\033[30;41m' -x $'\033[0m' -y $'\033[30;42m' -z $'\03
 alias tdump="tcpdump -i eth0 port not `echo $SSH_CLIENT | awk '{print $2}'`"
 alias httpdump="sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
+# lwp-request - Simple command line user agent
+for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
+  alias "$method"="lwp-request -m '$method'"
+done
+
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias digfull="dig +nocmd $1 any +multiline +noall +answer"
