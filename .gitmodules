@@ -135,3 +135,6 @@
 [submodule "home/vim/bundle/vim-eunuch"]
 	path = home/vim/bundle/vim-eunuch
 	url = git://github.com/tpope/vim-eunuch.git
+[submodule "home/vim/bundle/vim-pasta"]
+	path = home/vim/bundle/vim-pasta
+	url = git://github.com/sickill/vim-pasta.git
