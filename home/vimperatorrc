@@ -14,7 +14,9 @@ set runtimepath=$HOME/.vimperator,$HOME/devel/gcode/conf/firefox/vimperator/home
 
 let mapleader = ","
 " Firebug
-map <Leader>f :firebug toggle<CR>
+"map <Leader>f :firebug toggle<CR>
+map <Leader>f <F12>
+
 " NoScript
 " - Toggles scripts temporarily on current page.
 map <Leader>n :noscript toggletemp<CR>
