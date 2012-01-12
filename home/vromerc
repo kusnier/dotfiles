@@ -1,0 +1,13 @@
+""" .vromerc file
+
+" Rule for next/prev page. (Should written in RegExp)
+set nextpattern+=^NextPage|››$
+set previouspattern+=^PrevPage|‹‹$
+
+" Change external editor, default is GVim
+set editor=gvim -f
+
+" Disable Vrome in those sites, Multiple URLs can be separated with ','
+set disablesites=mail.google.com, reader.google.com // don't run Vrome in those sites
+
+" vim: set ft=vim:
