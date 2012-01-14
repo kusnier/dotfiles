@@ -138,3 +138,6 @@
 [submodule "home/vim/bundle/vim-pasta"]
 	path = home/vim/bundle/vim-pasta
 	url = git://github.com/sickill/vim-pasta.git
+[submodule "home/vim/bundle/csv.vim"]
+	path = home/vim/bundle/csv.vim
+	url = git://github.com/chrisbra/csv.vim.git
