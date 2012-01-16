@@ -141,3 +141,6 @@
 [submodule "home/vim/bundle/csv.vim"]
 	path = home/vim/bundle/csv.vim
 	url = git://github.com/chrisbra/csv.vim.git
+[submodule "home/vim/bundle/xp-framework.vim"]
+	path = home/vim/bundle/xp-framework.vim
+	url = git://github.com/kusnier/xp-framework.vim.git
