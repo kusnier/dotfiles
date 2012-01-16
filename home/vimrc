@@ -613,21 +613,6 @@ autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 autocmd FileType c setlocal omnifunc=ccomplete#Complete
 set omnifunc=syntaxcomplete#Complete " Set omni-completion method.
 
-nmap <silent> <S-F4> :!~/devel/gcode/conf/ctags/ctags_gen.sh<CR>
-" -----------------------------------------------------------
-" XP.Framework 
-" -----------------------------------------------------------
-
-"includeexp anpassungen, damit auch util.TimeZone verstanden wird
-autocmd FileType php setlocal include=^\\s\\+'\\(\\w\\+\\.\\)\\+\\w\\+'\\,\\?$
-set include=^\\s\\+'\\zs\\(\\w\\+\\.\\)\\+\\w\\+\\ze'\\,\\?$
-set includeexpr=substitute(v:fname,'\\.','/','g')
-set suffixesadd=.class.php
-" gf ueber der datei, goto file
-set path-=/usr/include
-set path+=~/devel/xp-framework/core/src/main/php
-set path+=~/devel/xp-framework/tools/src/main/php
-
 " -----------------------------------------------------------
 " Vim Diff
 " -----------------------------------------------------------
