@@ -147,3 +147,6 @@
 [submodule "home/vim/bundle/xp-framework.vim"]
 	path = home/vim/bundle/xp-framework.vim
 	url = git://github.com/kusnier/xp-framework.vim.git
+[submodule "home/vim/bundle/vim-powerline"]
+	path = home/vim/bundle/vim-powerline
+	url = https://github.com/Lokaltog/vim-powerline.git

@@ -1118,6 +1118,11 @@ let g:UltiSnipsEditSplit = "vertical"
 let g:pasta_disabled_filetypes = ["python", "coffee", "markdown", 'twiki', 'mediawiki']
 
 " -----------------------------------------------------------
+" Plugin: powerline
+" -----------------------------------------------------------
+let g:Powerline_symbols = 'fancy'
+
+" -----------------------------------------------------------
 " Cope
 " -----------------------------------------------------------
 map <leader>qc :botright cope<cr>
