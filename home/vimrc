@@ -1120,7 +1120,9 @@ let g:pasta_disabled_filetypes = ["python", "coffee", "markdown", 'twiki', 'medi
 " -----------------------------------------------------------
 " Plugin: powerline
 " -----------------------------------------------------------
-let g:Powerline_symbols = 'fancy'
+if has("gui_running")
+  let g:Powerline_symbols = 'fancy'
+endif
 
 " -----------------------------------------------------------
 " Cope
