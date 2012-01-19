@@ -605,6 +605,16 @@ nnoremap <Leader>gg :Git
 nnoremap <Leader>gd :Gdiff<CR>
 
 " }}}
+" UltiSnips {{{
+
+let g:UltiSnipsEditSplit = "vertical"
+
+" }}}
+" vim-pasta {{{
+
+let g:pasta_disabled_filetypes = ["python", "coffee", "markdown", 'twiki', 'mediawiki']
+
+" }}}
 
 " }}}
 "
@@ -1038,16 +1048,6 @@ au Filetype nerdtree setlocal nolist
 let NERDTreeChDirMode=2 "CWD is changed whenever the tree root is changed
 let NERDTreeDirArrows=1
 let NERDTreeMinimalUI=1
-
-" -----------------------------------------------------------
-" Plugin: UltiSnips
-" -----------------------------------------------------------
-let g:UltiSnipsEditSplit = "vertical"
-
-" -----------------------------------------------------------
-" Plugin: vim-pasta
-" -----------------------------------------------------------
-let g:pasta_disabled_filetypes = ["python", "coffee", "markdown", 'twiki', 'mediawiki']
 
 " -----------------------------------------------------------
 " => bufExplorer plugin
