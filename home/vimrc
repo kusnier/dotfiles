@@ -1050,10 +1050,6 @@ let g:UltiSnipsEditSplit = "vertical"
 let g:pasta_disabled_filetypes = ["python", "coffee", "markdown", 'twiki', 'mediawiki']
 
 " -----------------------------------------------------------
-" Plugin: powerline
-" -----------------------------------------------------------
-
-" -----------------------------------------------------------
 " => bufExplorer plugin
 " -----------------------------------------------------------
 "let g:bufExplorerDefaultHelp=0
@@ -1130,39 +1126,6 @@ function XmlAttribCallback( xml_tag )
     endif
 endfunction
 endif
-
-" -----------------------------------------------------------
-" Plugin: open_file_from_clip_board : open file path that is copied in clipboard 
-" Http: http://www.vim.org/scripts/script.php?script_id=3269
-" -----------------------------------------------------------
-map <LEADER>jc :call OpenFilesFromClipboard()<CR>
-
-" -----------------------------------------------------------
-" Function: Google map in vim :)
-" -----------------------------------------------------------
-" Stick it somewhere (.vimrc?)
-" Works with Gvim and Macvim
-" Windows users should go back to their IE6
-" Usage:
-" :Maps Birmingham,UK
-
-function! s:Maps(search)
-  let search = a:search
-  let p1 = "http://maps.google.com/maps/api/staticmap?center="
-  let p2 = "&zoom=13&size=400x400&maptype=roadmap&sensor=true&format=png"
-  let url = p1.search.p2
-  if has('gui')
-      if has('gui_gnome')
-        let cmd = "xdg-open"
-      elseif has('gui_macvim')
-        let cmd = "qlmanage -p"
-      elseif has('gui_win32')
-        " WTF?
-      endif
-  endif
-  execute ' ! curl -L "'.url.'" > /tmp/vimgmap.png | '.cmd.' /tmp/vimgmap.png'
-endfunction
-command! -bar -nargs=* Maps call s:Maps("<args>")
 
 " -----------------------------------------------------------
 " Highlight rows longer than 80 characters
