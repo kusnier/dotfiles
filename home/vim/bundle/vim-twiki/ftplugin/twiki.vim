@@ -2,10 +2,11 @@
 "
 " TWiki syntax file
 "
-" Language:        TWiki
-" Last Change: Mon Sep 18 13:08:38 UTC 2006
+" Language:    TWiki
+" Last Change: 2012-01-19
 " Maintainer:  Rainer Thierfelder <rainer{AT}rainers-welt{DOT}de>
 " Additions:   Eric Haarbauer <ehaar{DOT}com{AT}grithix{DOT}dyndns{DOT}org>
+" Additions:   Sebastian Kusnier <sebastian{AT}kusnier{DOT}net>
 " License:     GPL (http://www.gnu.org/licenses/gpl.txt)
 "    Copyright (C) 2004-2006  Rainer Thierfelder
 "
@@ -76,6 +77,29 @@ setlocal shiftwidth=3
 setlocal softtabstop=3
 " tabs should be converted to spaces
 setlocal expandtab
+
+" Make navigation more amenable to the long wrapping lines. 
+noremap <buffer> k gk
+noremap <buffer> j gj
+noremap <buffer> <Up> gk
+noremap <buffer> <Down> gj
+noremap <buffer> 0 g0
+noremap <buffer> ^ g^
+noremap <buffer> $ g$
+noremap <buffer> D dg$ 
+noremap <buffer> C cg$ 
+noremap <buffer> A g$a
+ 
+inoremap <buffer> <Up> <C-O>gk
+inoremap <buffer> <Down> <C-O>gj
+
+vnoremap <buffer> k gk
+vnoremap <buffer> j gj
+vnoremap <buffer> <Up> gk
+vnoremap <buffer> <Down> gj
+vnoremap <buffer> 0 g0
+vnoremap <buffer> ^ g^
+vnoremap <buffer> $ g$
 
 " Folding options and functions: {{{1
 
