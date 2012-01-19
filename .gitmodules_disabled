@@ -1,0 +1,4 @@
+# vim: ft=gitconfig
+[submodule "home/vim/bundle/calendar-vim"]
+	path = home/vim/bundle/calendar-vim
+	url = git://github.com/mattn/calendar-vim.git
