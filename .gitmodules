@@ -151,3 +151,6 @@
 	path = home/vim/bundle/vim-powerline
 	url = https://github.com/Lokaltog/vim-powerline.git
   ignore = dirty
+[submodule "home/vim/bundle/headlights"]
+	path = home/vim/bundle/headlights
+	url = https://github.com/mbadran/headlights.git
