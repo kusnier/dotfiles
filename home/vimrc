@@ -307,6 +307,17 @@ set noedcompatible
 nnoremap <C-S> :,$s/\<<C-R><C-W>\>/
 
 " }}}
+" Tags / Ctags ---------------------------------------------------------- {{{
+
+set tags=
+set tags+=tags;$HOME
+set tags+=./tags;$HOME
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+" On my linux at work A-] == Ý
+map Ý :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+" }}}
 " Highlighting, colors, fonts --------------------------------------------- {{{
 
 if has("gui_running")
@@ -615,6 +626,157 @@ let g:UltiSnipsEditSplit = "vertical"
 let g:pasta_disabled_filetypes = ["python", "coffee", "markdown", 'twiki', 'mediawiki']
 
 " }}}
+" Autoclose / delimiMate {{{
+
+" Disable Autoclose, test delimitMate
+let g:autoclose_loaded = 1
+nmap <Leader>a :DelimitMateSwitch<CR>
+
+" }}}
+" Gundo {{{
+
+nnoremap <leader>gt :GundoToggle<CR>
+
+" }}}
+" EasyMotion {{{
+
+let g:EasyMotion_leader_key='\'
+
+" }}}
+" Ack {{{
+
+let g:ackprg="ack -H --nocolor --nogroup --column"
+
+" }}}
+" notes.vim {{{
+
+let g:notes_directory = '~/.vim-notes'
+
+" }}}
+" Indent Guides {{{
+
+autocmd FileType php         IndentGuidesEnable
+autocmd FileType html        IndentGuidesEnable
+autocmd FileType javascript  IndentGuidesEnable
+autocmd FileType *           IndentGuidesDisable
+
+" }}}
+" NERDCommenter {{{
+
+let g:NERDCreateDefaultMappings = 0
+nmap <leader>ccc <plug>NERDCommenterComment
+nmap <leader>cc<space> <plug>NERDCommenterToggle
+nmap <leader>ccm <plug>NERDCommenterMinimal
+nmap <leader>ccs <plug>NERDCommenterSexy
+nmap <leader>cci <plug>NERDCommenterInvert
+nmap <leader>ccy <plug>NERDCommenterYank
+nmap <leader>ccl <plug>NERDCommenterAlignLeft
+nmap <leader>ccb <plug>NERDCommenterAlignBoth
+nmap <leader>ccn <plug>NERDCommenterNest
+nmap <leader>ccu <plug>NERDCommenterUncomment
+nmap <leader>cc$ <plug>NERDCommenterToEOL
+nmap <leader>ccA <plug>NERDCommenterAppend
+
+" }}}
+" NERDTree {{{
+
+nmap  <leader>nt :NERDTreeToggle<cr>
+nmap  <leader>nmt :NERDTreeMirror<cr>
+nmap  <leader>nft :NERDTreeFind<cr>
+
+au Filetype nerdtree setlocal nolist
+let NERDTreeChDirMode=2 "CWD is changed whenever the tree root is changed
+let NERDTreeDirArrows=1
+let NERDTreeMinimalUI=1
+
+" }}}
+" bufExplorer {{{
+
+"let g:bufExplorerDefaultHelp=0
+"let g:bufExplorerShowRelativePath=1
+"let g:bufExplorerSortBy = "name"
+
+" }}}
+" ftPlugin: xml {{{
+
+" update xml.vim: if (&filetype == 'xslt' || &filetype == 'html' || &filetype == 'xhtml') && (!exists ("g:xml_no_html"))
+let xml_tag_syntax_prefixes = 'html\|xml\|xsl\|docbk'
+let xml_use_xhtml = 1
+autocmd FileType html let xml_jump_string = "`"
+autocmd FileType xml let xml_jump_string = "`"
+
+if !exists("*XmlAttribCallback")
+function XmlAttribCallback( xml_tag )
+    if a:xml_tag ==? "table"
+        return "cellpadding=\"0\" cellspacing=\"0\" border=\"0\""
+    elseif a:xml_tag ==? "link"
+        return "href=\"/site.css\" rel=\"StyleSheet\" type=\"text/css\""
+    elseif a:xml_tag ==? "body"
+        return "bgcolor=\"white\""
+    elseif a:xml_tag ==? "frame"
+        return "name=\"NAME\" src=\"/\" scrolling=\"auto\" noresize"
+    elseif a:xml_tag ==? "frameset"
+        return "rows=\"0,*\" cols=\"*,0\" border=\"0\""
+    elseif a:xml_tag ==? "img"
+        return "src=\"\" width=\"0\" height=\"0\" border=\"0\" alt=\"\""
+    elseif a:xml_tag ==? "a"
+        if has("browse")
+            " Look up a file to fill the href. Used in local relative file
+            " links. typeing your own href before closing the tag with `>'
+            " will override this.
+            let cwd = getcwd()
+            let cwd = substitute (cwd, "\\", "/", "g")
+            let href = browse (0, "Link to href...", getcwd(), "")
+            let href = substitute (href, cwd . "/", "", "")
+            let href = substitute (href, " ", "%20", "g")
+        else
+            let href = ""
+        endif
+        return "href=\"" . href . "\""
+    else
+        return 0
+    endif
+endfunction
+endif
+
+" }}}
+" dbext {{{
+
+let g:dbext_default_buffer_lines = 10
+" each buffer uses its OWN Result buffer
+let g:dbext_default_use_sep_result_buffer = 1
+let g:dbext_default_DBI_split_on_pattern = ';'
+let g:dbext_default_dict_show_owner = 0
+:let  g:dbext_default_DBI_max_rows = 1000
+"let  g:dbext_default_DBI_column_delimiter = "|"
+" will be called automatically each time the Result buffer is updated
+function! DBextPostResult(db_type, buf_nr)
+  " If dealing with a MYSQL database
+  "if a:db_type == 'MYSQL'
+      " Assuming the first column is an integer
+      " highlight it using the WarningMsg color
+      "syn match logWarn '^\d\+'
+      "hi def link logWarn		WarningMsg
+      setlocal ft=dbi_result
+      setlocal nolist
+  "endif
+  set dictionary-=/usr/share/dict/words
+endfunction
+":au BufNewFile,BufRead Result setf dbi_result
+":au BufNewFile,BufRead Result set nolist
+
+" Load dbext connection profiles, this part is secret
+so ~/.vimrc.sql_profiles
+
+" }}}
+" VCSCommand {{{
+
+let VCSCommandSVKExec = 'no_svk'
+let VCSCommandDeleteOnHide = 'yes'
+" VCSCommandEnableBufferSetup is not working
+let VCSCommandEnableBufferSetup = 'yes'
+
+" }}}
 
 " }}}
 "
@@ -681,98 +843,10 @@ autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 autocmd FileType c setlocal omnifunc=ccomplete#Complete
 set omnifunc=syntaxcomplete#Complete " Set omni-completion method.
 
-" -----------------------------------------------------------
-" GUI
-" -----------------------------------------------------------
-
-" get rid of menu
-set guioptions-=m
-:let g:toggleMenu = 0
-map <silent> <S-F1> :if g:toggleMenu == 1<CR>:set guioptions-=m<CR>:set lines+=1<CR>:let g:toggleMenu = 0<CR>:else<CR>:set guioptions+=m<CR>:let g:toggleMenu = 1<CR>:endif<CR>
-
-" get rid of toolbar
-set guioptions-=T
-:let g:toggleTool = 0
-map <silent> <S-F2> :if g:toggleTool == 1<CR>:set guioptions-=T<CR>:set lines+=3<CR>:let g:toggleTool = 0<CR>:else<CR>:set lines-=3<CR>:set guioptions+=T<CR>:let g:toggleTool = 1<CR>:endif<CR>
-
-" get rid of scrollbar
-set guioptions-=r
-set guioptions-=rL
-
-
-" -----------------------------------------------------------
-" WIN-GUI Specials
-" -----------------------------------------------------------
-
-" first of all: we don't use "behave windows"
-" to try to get a better clipboard-handling
-" (we do it ourself)
-
-if has("win32")
-    if has("gui_running")
-        " alt jumps to menu
-        set winaltkeys=menu
-        " clipboard to autoselect
-        set guioptions+=a
-
-        " ---- Windows Like keys ----
-        " CTRL-Z is Undo; not in cmdline though
-        noremap <C-Z> u
-        inoremap <C-Z> <C-O>u
-        " CTRL-Y is Redo (although not repeat); not in cmdline though
-        "noremap <C-Y> <C-R>
-        "inoremap <C-Y> <C-O><C-R>
-        " CTRL-A is Select all
-        "noremap <C-A> gggH<C-O>G
-        "inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
-        "cnoremap <C-A> <C-C>gggH<C-O>G
-        " CTRL-F4 is Close window
-        noremap <C-F4> <C-W>c
-        inoremap <C-F4> <C-O><C-W>c
-        cnoremap <C-F4> <C-C><C-W>c
-        " CTRL-Tab is Next window
-        noremap <C-Tab> <C-W>w
-        inoremap <C-Tab> <C-O><C-W>w
-        cnoremap <C-Tab> <C-C><C-W>w
-        " ---- Windows Like Copy-Paste keys ----
-        " CTRL-v is paste
-        "inoremap <C-v> <esc>"*p<return>i
-        "noremap <C-v> "*p<return>
-        " CTRL-x is cut (in visual mode only)
-        "vnoremap <C-x> "*d
-        " CTRL-c is copy (in visual mode only)
-        "vnoremap <C-c> "*y
-        " ---- Restore some remapped things 
-        " make real <C-V> (visual block) as <C-Q> available
-        noremap <c-q> <c-v>
-        inoremap <C-Y> <C-Y>
-
-    endif
-endif
-
-" -----------------------------------------------------------
-" UNIX Specials
-" -----------------------------------------------------------
-
-if has("unix")
-  set clipboard=autoselect
-  set shell=/bin/bash
-endif
-
-" -----------------------------------------------------------
-" Windows Specials
-" -----------------------------------------------------------
-if has("win32")
-  set shell=C:\Windows\system32\cmd.exe
-endif
 
 " -----------------------------------------------------------
 " SVN, SVN, GIT
 " -----------------------------------------------------------
-let VCSCommandSVKExec = 'no_svk'
-let VCSCommandDeleteOnHide = 'yes'
-" VCSCommandEnableBufferSetup is not working
-let VCSCommandEnableBufferSetup = 'yes'
 autocmd FileType svn setlocal spell
 autocmd FileType svn setlocal spelllang=en
 autocmd FileType vcscommit setlocal spell
@@ -952,254 +1026,13 @@ let g:omni_sql_include_owner = 0
 :au BufNewFile,BufRead */config/*/apache/* set ft=apache
 :au BufNewFile,BufRead */config/*/apache2/* set ft=apache
 
-" Hex to Dec function
-function! Hex2Dec()
-    let lstr = getline(".")
-    let hexstr = matchstr(lstr, '0x[a-fA-F0-9]\+')
-    while hexstr != ""
-        let hexstr = hexstr + 0
-        exe 's#0x[a-fA-F0-9]\+#'.hexstr."#"
-        let lstr = substitute(lstr, '0x[a-fA-F0-9]\+', hexstr, "")
-        let hexstr = matchstr(lstr, '0x[a-fA-F0-9]\+')
-    endwhile
-endfunction
-
-" -----------------------------------------------------------
-" Tags / Ctags
-" -----------------------------------------------------------
-"
-set tags=
-set tags+=tags;$HOME
-set tags+=./tags;$HOME
-map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-" On my linux at work A-] == Ý
-map Ý :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-
-" -----------------------------------------------------------
-" Plugin: Autoclose
-" Plugin: delimitMate
-" -----------------------------------------------------------
-" Disable Autoclose, test delimitMate
-let g:autoclose_loaded = 1
-nmap <Leader>a :DelimitMateSwitch<CR>
-
-" -----------------------------------------------------------
-" Plugin: Gundo
-" -----------------------------------------------------------
-nnoremap <leader>gt :GundoToggle<CR>
-
-" -----------------------------------------------------------
-" Plugin: EasyMotion
-" -----------------------------------------------------------
-let g:EasyMotion_leader_key='\'
-
-" -----------------------------------------------------------
-" Plugin: Ack
-" -----------------------------------------------------------
-"
-let g:ackprg="ack -H --nocolor --nogroup --column"
-
-" -----------------------------------------------------------
-" Plugin: notes.vim
-" -----------------------------------------------------------
-let g:notes_directory = '~/.vim-notes'
-
-" -----------------------------------------------------------
-" Plugin: Indent Guides
-" -----------------------------------------------------------
-autocmd FileType php         IndentGuidesEnable
-autocmd FileType html        IndentGuidesEnable
-autocmd FileType javascript  IndentGuidesEnable
-autocmd FileType *           IndentGuidesDisable
-
-" -----------------------------------------------------------
-" Plugin: Twiki
-" -----------------------------------------------------------
-au BufNewFile,BufRead /tmp/vimperator-* setf twiki
-au BufNewFile,BufRead /tmp/vimperator-* set spell
-
-" -----------------------------------------------------------
-" Plugin: NERDCommenter
-" -----------------------------------------------------------
-"
-let g:NERDCreateDefaultMappings = 0
-nmap <leader>ccc <plug>NERDCommenterComment
-nmap <leader>cc<space> <plug>NERDCommenterToggle
-nmap <leader>ccm <plug>NERDCommenterMinimal
-nmap <leader>ccs <plug>NERDCommenterSexy
-nmap <leader>cci <plug>NERDCommenterInvert
-nmap <leader>ccy <plug>NERDCommenterYank
-nmap <leader>ccl <plug>NERDCommenterAlignLeft
-nmap <leader>ccb <plug>NERDCommenterAlignBoth
-nmap <leader>ccn <plug>NERDCommenterNest
-nmap <leader>ccu <plug>NERDCommenterUncomment
-nmap <leader>cc$ <plug>NERDCommenterToEOL
-nmap <leader>ccA <plug>NERDCommenterAppend
-
-" -----------------------------------------------------------
-" Plugin: NERDTree
-" -----------------------------------------------------------
-nmap  <leader>nt :NERDTreeToggle<cr>
-nmap  <leader>nmt :NERDTreeMirror<cr>
-nmap  <leader>nft :NERDTreeFind<cr>
-
-au Filetype nerdtree setlocal nolist
-let NERDTreeChDirMode=2 "CWD is changed whenever the tree root is changed
-let NERDTreeDirArrows=1
-let NERDTreeMinimalUI=1
-
-" -----------------------------------------------------------
-" => bufExplorer plugin
-" -----------------------------------------------------------
-"let g:bufExplorerDefaultHelp=0
-"let g:bufExplorerShowRelativePath=1
-"let g:bufExplorerSortBy = "name"
-
-" -----------------------------------------------------------
-" => Minibuffer plugin
-" -----------------------------------------------------------
-"let g:miniBufExplModSelTarget = 1
-"let g:miniBufExplorerMoreThanOne = 2
-"let g:miniBufExplModSelTarget = 0
-"let g:miniBufExplUseSingleClick = 1
-"let g:miniBufExplMapWindowNavVim = 1
-"let g:miniBufExplVSplit = 25
-"let g:miniBufExplSplitBelow=1
-"autocmd BufRead,BufNew :call UMiniBufExplorer
-"map <leader>u :TMiniBufExplorer<cr>:TMiniBufExplorer<cr>
-
-" -----------------------------------------------------------
-" => Fuzzy finder
-" -----------------------------------------------------------
-"try
-"    call fuf#defineLaunchCommand('FufCWD', 'file', 'fnamemodify(getcwd(), ''%:p:h'')')
-"    map <leader>t :FufCWD **/<CR>
-"catch
-"endtry
-
 " -----------------------------------------------------------
 " => Vim grep
 " -----------------------------------------------------------
 let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
 set grepprg=grep\ -nH
 
-" -----------------------------------------------------------
-" ftPlugin: xml
-" -----------------------------------------------------------
-" update xml.vim: if (&filetype == 'xslt' || &filetype == 'html' || &filetype == 'xhtml') && (!exists ("g:xml_no_html"))
-let xml_tag_syntax_prefixes = 'html\|xml\|xsl\|docbk'
-let xml_use_xhtml = 1
-autocmd FileType html let xml_jump_string = "`"
-autocmd FileType xml let xml_jump_string = "`"
-
-if !exists("*XmlAttribCallback")
-function XmlAttribCallback( xml_tag )
-    if a:xml_tag ==? "table"
-        return "cellpadding=\"0\" cellspacing=\"0\" border=\"0\""
-    elseif a:xml_tag ==? "link"
-        return "href=\"/site.css\" rel=\"StyleSheet\" type=\"text/css\""
-    elseif a:xml_tag ==? "body"
-        return "bgcolor=\"white\""
-    elseif a:xml_tag ==? "frame"
-        return "name=\"NAME\" src=\"/\" scrolling=\"auto\" noresize"
-    elseif a:xml_tag ==? "frameset"
-        return "rows=\"0,*\" cols=\"*,0\" border=\"0\""
-    elseif a:xml_tag ==? "img"
-        return "src=\"\" width=\"0\" height=\"0\" border=\"0\" alt=\"\""
-    elseif a:xml_tag ==? "a"
-        if has("browse")
-            " Look up a file to fill the href. Used in local relative file
-            " links. typeing your own href before closing the tag with `>'
-            " will override this.
-            let cwd = getcwd()
-            let cwd = substitute (cwd, "\\", "/", "g")
-            let href = browse (0, "Link to href...", getcwd(), "")
-            let href = substitute (href, cwd . "/", "", "")
-            let href = substitute (href, " ", "%20", "g")
-        else
-            let href = ""
-        endif
-        return "href=\"" . href . "\""
-    else
-        return 0
-    endif
-endfunction
-endif
-
-" -----------------------------------------------------------
-" Highlight rows longer than 80 characters
-" -----------------------------------------------------------
-function! ToggleOverLengthHi()
-    if exists("b:overlengthhi") && b:overlengthhi
-        highlight clear OverLength
-        let b:overlengthhi = 0
-        echo "overlength hilight off"
-    else
-        " adjust colors/styles as desired
-        highlight OverLength ctermbg=darkred gui=undercurl guisp=blue
-        " change '81' to be 1+(number of columns)
-        match OverLength /\%81v.\+/
-        let b:overlengthhi = 1
-        echo "overlength hilight on"
-    endif
-endfunction
-map <silent> <F1> <Esc>:call ToggleOverLengthHi()<CR>
-
-" -----------------------------------------------------------
-" Create an ':html' alias to writeout an HTML-ized version of the file
-" -----------------------------------------------------------
-cab createhtml so \$VIMRUNTIME/syntax/2html.vim
-
-" -----------------------------------------------------------
-" Load dbext connection profiles, this part is secret
-" -----------------------------------------------------------
-let g:dbext_default_buffer_lines = 10
-" each buffer uses its OWN Result buffer
-let g:dbext_default_use_sep_result_buffer = 1
-let g:dbext_default_DBI_split_on_pattern = ';'
-let g:dbext_default_dict_show_owner = 0
-:let  g:dbext_default_DBI_max_rows = 1000
-"let  g:dbext_default_DBI_column_delimiter = "|"
-" will be called automatically each time the Result buffer is updated
-function! DBextPostResult(db_type, buf_nr)
-  " If dealing with a MYSQL database
-  "if a:db_type == 'MYSQL'
-      " Assuming the first column is an integer
-      " highlight it using the WarningMsg color
-      "syn match logWarn '^\d\+'
-      "hi def link logWarn		WarningMsg
-      setlocal ft=dbi_result
-      setlocal nolist
-  "endif
-  set dictionary-=/usr/share/dict/words
-endfunction
-":au BufNewFile,BufRead Result setf dbi_result
-":au BufNewFile,BufRead Result set nolist
-
-so ~/.vimrc.sql_profiles
-
-" -----------------------------------------------------------
-" Spelling mistakes / abbreviations for Insert mode
-" -----------------------------------------------------------
-iab examlpe example
-iab persond_id person_id
-iab perosn_id person_id
-iab vdvars var_dump(xdebug_get_declared_vars());
-iab vdstack var_dump(xdebug_get_function_stack());
-iab skpid 21240455
-cab dbiall let dbext_default_DBI_max_rows=0
-iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
-iab cdate <c-r>=strftime("%y-%m-%d")<cr>
-iab @@p @param
-iab @@r @return
-
-" -----------------------------------------------------------
-" Special commands
-" -----------------------------------------------------------
-command! Ointernmail :o scp://internmail/~/httpd/
-command! Svp :VCSVimDiff prev
-
+" Various filetype-specific stuff ----------------------------------------- {{{
 
 " Vim {{{
 
@@ -1214,7 +1047,112 @@ augroup END
 
 " }}}
 
+" twiki {{{
 
+augroup ft_twiki
+  au!
+  au BufNewFile,BufRead /tmp/vimperator-* setf twiki
+  au BufNewFile,BufRead /tmp/vimperator-* set spell
+augroup END
+
+" }}}
+
+" }}}
+" Spelling mistakes / abbreviations for Insert mode ----------------------- {{{
+
+iab examlpe example
+iab persond_id person_id
+iab perosn_id person_id
+iab vdvars var_dump(xdebug_get_declared_vars());
+iab vdstack var_dump(xdebug_get_function_stack());
+iab skpid 21240455
+cab dbiall let dbext_default_DBI_max_rows=0
+iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
+iab cdate <c-r>=strftime("%y-%m-%d")<cr>
+iab @@p @param
+iab @@r @return
+
+" }}}
+" Special commands -------------------------------------------------------- {{{
+
+command! Ointernmail :o scp://internmail/~/httpd/
+
+" }}}
+" GUI ---------------------------------------------------------- {{{
+
+" get rid of menu
+set guioptions-=m
+:let g:toggleMenu = 0
+map <silent> <S-F1> :if g:toggleMenu == 1<CR>:set guioptions-=m<CR>:set lines+=1<CR>:let g:toggleMenu = 0<CR>:else<CR>:set guioptions+=m<CR>:let g:toggleMenu = 1<CR>:endif<CR>
+
+" get rid of toolbar
+set guioptions-=T
+:let g:toggleTool = 0
+map <silent> <S-F2> :if g:toggleTool == 1<CR>:set guioptions-=T<CR>:set lines+=3<CR>:let g:toggleTool = 0<CR>:else<CR>:set lines-=3<CR>:set guioptions+=T<CR>:let g:toggleTool = 1<CR>:endif<CR>
+
+" get rid of scrollbar
+set guioptions-=r
+set guioptions-=rL
+
+" win32  {{{
+
+if has("win32")
+    if has("gui_running")
+        " alt jumps to menu
+        set winaltkeys=menu
+        " clipboard to autoselect
+        set guioptions+=a
+
+        " ---- Windows Like keys ----
+        " CTRL-Z is Undo; not in cmdline though
+        noremap <C-Z> u
+        inoremap <C-Z> <C-O>u
+        " CTRL-Y is Redo (although not repeat); not in cmdline though
+        "noremap <C-Y> <C-R>
+        "inoremap <C-Y> <C-O><C-R>
+        " CTRL-A is Select all
+        "noremap <C-A> gggH<C-O>G
+        "inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
+        "cnoremap <C-A> <C-C>gggH<C-O>G
+        " CTRL-F4 is Close window
+        noremap <C-F4> <C-W>c
+        inoremap <C-F4> <C-O><C-W>c
+        cnoremap <C-F4> <C-C><C-W>c
+        " CTRL-Tab is Next window
+        noremap <C-Tab> <C-W>w
+        inoremap <C-Tab> <C-O><C-W>w
+        cnoremap <C-Tab> <C-C><C-W>w
+        " ---- Windows Like Copy-Paste keys ----
+        " CTRL-v is paste
+        "inoremap <C-v> <esc>"*p<return>i
+        "noremap <C-v> "*p<return>
+        " CTRL-x is cut (in visual mode only)
+        "vnoremap <C-x> "*d
+        " CTRL-c is copy (in visual mode only)
+        "vnoremap <C-c> "*y
+        " ---- Restore some remapped things 
+        " make real <C-V> (visual block) as <C-Q> available
+        noremap <c-q> <c-v>
+        inoremap <C-Y> <C-Y>
+
+    endif
+endif
+
+" }}}
+"
+" }}}
+" Shell ---------------------------------------------------------- {{{
+
+if has("unix")
+  set clipboard=autoselect
+  set shell=/bin/bash
+endif
+
+if has("win32")
+  set shell=C:\Windows\system32\cmd.exe
+endif
+
+" }}}
 " Learn it Bitch!!! :) ---------------------------------------------------- {{{
 
 imap jj <esc>
