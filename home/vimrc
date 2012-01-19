@@ -25,10 +25,12 @@ set nocompatible
 set printoptions=paper:A4,syntax:a,duplex:off
 
 " }}}
+" Basic options ----------------------------------------------------------- {{{
 
-" -----------------------------------------------------------
-" General setup
-" -----------------------------------------------------------
+" make sure that max lines are displayed (80 and 120 are from ZF Coding standards)
+set colorcolumn=80,120
+
+" }}}
 
 " Use space for something useful
 nnoremap <Space> :
@@ -101,21 +103,26 @@ set sidescrolloff=3 " same, but for columns
 set autoread " automatically detect changes and re-read the file
 set display=lastline " display as much as possible from the last line
 
-" -----------------------------------------------------------
-" Encoding
-" -----------------------------------------------------------
+" Encoding --------------------------------------------------------------- {{{
+
 set encoding=utf8
 autocmd BufRead,BufNewFile */devel/xp*/*.php setlocal fileencoding=latin1
 
-" Store temporary files in a central spot
+" }}}
+" Store temporary vim files in a central spot ----------------------------- {{{
+
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set backupskip=/tmp/*,/private/tmp/*" 
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set backup
 
-" -----------------------------------------------------------
-" Strip trailing whitespace 
-" -----------------------------------------------------------
+if v:version > 702
+  set undofile
+  set undodir=~/.vim-undo
+endif
+
+" }}}
+" Strip trailing whitespace  ---------------------------------------------- {{{
 function! <SID>StripTrailingWhitespaces()
     " Preparation: save last search, and cursor position.
     let _s=@/
@@ -129,6 +136,7 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 " Auto strip trailing white spaces sucks
 ""autocmd BufWritePre *.php,*.js :call <SID>StripTrailingWhitespaces()
+" }}}
 
 
 "" TESTING
@@ -136,22 +144,6 @@ set showfulltag
 set switchbuf=usetab
 " set switchbuf=split - Split always
 " set switchbuf=newtab - Like "split", but open a new tab page.
-
-" -----------------------------------------------------------
-" Vim 7.3 options
-" -----------------------------------------------------------
-if v:version > 702
-  " undo - set up persistent undo
-  set undofile
-  set undodir=~/.vim-undo
-
-  " make sure that max lines are displayed
-  " (80 and 120 are from ZF Coding standards)
-  set colorcolumn=80,120
-
-  " Relative line numbers
-  "set rnu
-endif
 
 " -----------------------------------------------------------
 " Special Features
