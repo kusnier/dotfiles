@@ -777,6 +777,13 @@ let VCSCommandDeleteOnHide = 'yes'
 let VCSCommandEnableBufferSetup = 'yes'
 
 " }}}
+" Syntastic {{{
+
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_jump=1
+let g:syntastic_auto_loc_list=1
+
+" }}}
 
 " }}}
 "
@@ -845,52 +852,11 @@ set omnifunc=syntaxcomplete#Complete " Set omni-completion method.
 
 
 " -----------------------------------------------------------
-" SVN, SVN, GIT
-" -----------------------------------------------------------
-autocmd FileType svn setlocal spell
-autocmd FileType svn setlocal spelllang=en
-autocmd FileType vcscommit setlocal spell
-autocmd FileType vcscommit setlocal spelllang=en
-autocmd FileType sql setlocal spell
-autocmd FileType gitcommit setlocal spell spelllang=en
-
-" -----------------------------------------------------------
 " Spellchecking for filetypes
 " -----------------------------------------------------------
-autocmd FileType markdown setlocal spell spelllang=en complete+=k
-autocmd FileType changelog setlocal spell spelllang=en complete+=k
 map <leader>spd :setlocal spelllang+=de<CR>
 map <leader>spe :setlocal spelllang+=en<CR>
 map <leader>spp :setlocal spelllang+=pl<CR>
-
-" -----------------------------------------------------------
-" Quicksigns
-" -----------------------------------------------------------
-set lazyredraw
-
-" -----------------------------------------------------------
-" Syntastic
-" -----------------------------------------------------------
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_jump=1
-let g:syntastic_auto_loc_list=1
-
-" -----------------------------------------------------------
-" Greasemonkey
-" -----------------------------------------------------------
-au BufRead,BufNewFile */gm_scripts/*.js set ft=javascript.greasemonkey
-
-" -----------------------------------------------------------
-" ZSH
-" -----------------------------------------------------------
-au BufRead,BufNewFile *.zsh-theme set ft=zsh
-
-" -----------------------------------------------------------
-" QuickFix
-" -----------------------------------------------------------
-" open quickfix window after a grep
-" BAD: this will break php omnicomplete
-"autocmd QuickFixCmdPost *grep* cwindow
 
 " -----------------------------------------------------------
 " Mappings
@@ -1007,24 +973,11 @@ endif
 let g:sql_type_default = 'mysql'
 let g:omni_sql_include_owner = 0
 
-" Enable file-type for using vi in sqsh and mysql-cl
-:au BufNewFile,BufRead sqsh-edit* setf sql
-:au BufNewFile,BufRead /tmp/sql* setf sql
-:au BufNewFile,BufRead /tmp/bash-fc* setf sh
-:au BufNewFile,BufRead *.ddl setf sql
-
 
 " highlights crontabs
 :au! BufNewFile,BufRead *.tab
 :au BufNewFile,BufRead *.tab setf crontab
 " schlund configs
-:au BufNewFile,BufRead *.conf.tmpl set ft=apache
-:au BufNewFile,BufRead */sites-available/*.conf set ft=apache
-:au BufNewFile,BufRead */sites-enabled/*.conf set ft=apache
-:au BufNewFile,BufRead */sites-enabled/00* set ft=apache
-:au BufNewFile,BufRead */sites-available/00* set ft=apache
-:au BufNewFile,BufRead */config/*/apache/* set ft=apache
-:au BufNewFile,BufRead */config/*/apache2/* set ft=apache
 
 " -----------------------------------------------------------
 " => Vim grep
@@ -1033,6 +986,24 @@ let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
 set grepprg=grep\ -nH
 
 " Various filetype-specific stuff ----------------------------------------- {{{
+
+" greasemonkey {{{
+
+augroup ft_greasemonkey
+  au!
+  au BufRead,BufNewFile */gm_scripts/*.js set ft=javascript.greasemonkey
+augroup END
+
+" }}}
+
+" zsh {{{
+
+augroup ft_zsh
+  au!
+  au BufRead,BufNewFile *.zsh-theme set ft=zsh
+augroup END
+
+" }}}
 
 " Vim {{{
 
@@ -1053,6 +1024,89 @@ augroup ft_twiki
   au!
   au BufNewFile,BufRead /tmp/vimperator-* setf twiki
   au BufNewFile,BufRead /tmp/vimperator-* set spell
+augroup END
+
+" }}}
+
+" svn {{{
+
+augroup ft_svn
+  au!
+  autocmd FileType svn setlocal spell
+  autocmd FileType svn setlocal spelllang=en
+augroup END
+
+" }}}
+
+" vcscommit {{{
+
+augroup ft_vcscommit
+  au!
+  autocmd FileType vcscommit setlocal spell
+  autocmd FileType vcscommit setlocal spelllang=en
+augroup END
+
+" }}}
+
+" sql {{{
+
+augroup ft_sql
+  au!
+  autocmd FileType sql setlocal spell
+  autocmd BufNewFile,BufRead sqsh-edit* setf sql
+  autocmd BufNewFile,BufRead /tmp/sql* setf sql
+  autocmd BufNewFile,BufRead *.ddl setf sql
+augroup END
+
+" }}}
+
+" sh {{{
+
+augroup ft_sh
+  au!
+  autocmd BufNewFile,BufRead /tmp/bash-fc* setf sh
+augroup END
+
+" }}}
+
+" apache {{{
+
+augroup ft_apache
+  au!
+  autocmd BufNewFile,BufRead *.conf.tmpl set ft=apache
+  autocmd BufNewFile,BufRead */sites-available/*.conf set ft=apache
+  autocmd BufNewFile,BufRead */sites-enabled/*.conf set ft=apache
+  autocmd BufNewFile,BufRead */sites-enabled/00* set ft=apache
+  autocmd BufNewFile,BufRead */sites-available/00* set ft=apache
+  autocmd BufNewFile,BufRead */config/*/apache/* set ft=apache
+  autocmd BufNewFile,BufRead */config/*/apache2/* set ft=apache
+augroup END
+
+" }}}
+
+" gitcommit {{{
+
+augroup ft_gitcommit
+  au!
+  autocmd FileType gitcommit setlocal spell spelllang=en
+augroup END
+
+" }}}
+
+" markdown {{{
+
+augroup ft_markdown
+  au!
+  autocmd FileType markdown setlocal spell spelllang=en complete+=k
+augroup END
+
+" }}}
+
+" changelog {{{
+
+augroup ft_changelog
+  au!
+  autocmd FileType changelog setlocal spell spelllang=en complete+=k
 augroup END
 
 " }}}
