@@ -5,18 +5,12 @@
 "
 " USE :options
 "  for a linteractive list of all options
-"
-" URLS:
-"   VIM xdebug
-"   http://www.apaddedcell.com/easy-php-debugging-ubuntu-using-xdebug-and-vim
-"   http://tech.blog.box.net/2007/06/20/how-to-debug-php-with-vim-and-xdebug-on-linux/
 
-" -----------------------------------------------------------
-" Plugin: Pathogen
-" Url: https://github.com/tpope/vim-pathogen
-" -----------------------------------------------------------
+" Preamble ---------------------------------------------------------------- {{{
+
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
+set nocompatible
 
 " -----------------------------------------------------------
 " HowTo: Pathogen and vimball
@@ -25,10 +19,12 @@ call pathogen#infect()
 " :!mkdir ~/.vim/bundle/name
 " :UseVimball ~/.vim/bundle/name
 
-" -----------------------------------------------------------
-" Printer setup
-" -----------------------------------------------------------
+" }}}
+" Printer setup ----------------------------------------------------------- {{{
+
 set printoptions=paper:A4,syntax:a,duplex:off
+
+" }}}
 
 " -----------------------------------------------------------
 " General setup
@@ -90,7 +86,6 @@ set nojoinspaces
 " enable backspace to delete anyting (includes \n) in insert mode
 set backspace=indent,eol,start
 set whichwrap+=<,>,h,l
-set nocompatible
 set number
 set cursorline
 
@@ -1314,6 +1309,21 @@ iab @@r @return
 " -----------------------------------------------------------
 command! Ointernmail :o scp://internmail/~/httpd/
 command! Svp :VCSVimDiff prev
+
+
+" Vim {{{
+
+augroup ft_vim
+    au!
+    au FileType vim setlocal foldmethod=marker
+    au FileType vim setlocal foldlevelstart=0
+    au FileType vim setlocal foldenable
+    au FileType help setlocal textwidth=78
+    au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
+augroup END
+
+" }}}
+
 
 " -----------------------------------------------------------
 " Learn it Bitch!!! :)
