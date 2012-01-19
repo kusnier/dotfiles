@@ -151,3 +151,6 @@
 [submodule "home/vim/bundle/headlights"]
 	path = home/vim/bundle/headlights
 	url = https://github.com/mbadran/headlights.git
+[submodule "home/vim/bundle/mark"]
+	path = home/vim/bundle/mark
+	url = git://github.com/vim-scripts/Mark--Karkat.git
