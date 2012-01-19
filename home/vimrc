@@ -247,9 +247,34 @@ set foldmethod=syntax
 set nofoldenable
 
 " }}}
-" Tabs ---------------------------------------------------------------- {{{
+" Tabs -------------------------------------------------------------------- {{{
 
 set showtabline=2 " Always show tab bar
+
+" }}}
+" Window handling --------------------------------------------------------- {{{
+
+" minimal number of lines used for the current window
+set wh=1
+" minimal number of lines used for any window
+set wmh=0
+" make all windows the same size when adding/removing windows
+set equalalways
+set splitbelow " New window goes below
+set splitright " New windows goes right
+
+" Faster split resizing (+,-)
+if bufwinnr(1)
+  map + <C-W>+
+  map - <C-W>-
+endif
+
+" }}}
+" Diff -------------------------------------------------------------------- {{{
+
+"Ignore changes in amount of white space.
+set diffopt=filler " Add vertical spaces to keep right and left aligned
+set diffopt+=iwhite
 
 " }}}
 " Searching, Substituting ------------------------------------------------- {{{
@@ -473,11 +498,10 @@ set dictionary+=~/.vim/dict/ngerman
 set digraph
 
 " }}}
+" Plugin options ---------------------------------------------------------- {{{
 
-" -----------------------------------------------------------
-" Plugin: SuperTab
-" -----------------------------------------------------------
-"
+" SuperTab {{{
+
 let g:SuperTabDefaultCompletionType='context'
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 let g:SuperTabRetainCompletionDuration='session'
@@ -485,6 +509,105 @@ let g:SuperTabLongestEnhanced=1
 let g:SuperTabLongestHighlight=1
 let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
 
+" }}}
+" ZenCoding {{{
+
+" http://code.google.com/p/zen-coding/
+" Plugin is installed. Learn it Bitch!!! :)
+let g:user_zen_leader_key = '<c-;>'
+let g:user_zen_settings = {
+\  'indentation' : '  ',
+\  'perl' : {
+\    'aliases' : {
+\      'req' : 'require '
+\    },
+\    'snippets' : {
+\      'use' : "use strict\nuse warnings\n\n",
+\      'warn' : "warn \"|\";",
+\    }
+\  }
+\}
+
+" }}}
+" Powerline {{{
+
+if has("gui_running")
+  let g:Powerline_symbols = 'fancy'
+endif
+
+" }}}
+" Cope {{{
+
+map <leader>qc :botright cope<cr>
+map <leader>qn :cn<cr>
+map <leader>qp :cp<cr>
+
+" }}}
+" Vim-Session {{{
+
+let g:session_directory = '~/.vim-sessions'
+
+" }}}
+" Easytags {{{
+
+" the easytags plug-in will write to the first existing tags file seen by
+" In other words: If a project specific tags file is found it will be used,
+" otherwise the plug-in falls back to the global tags file (or a file type specific tags file).
+let g:easytags_always_enabled = 0
+let g:easytags_dynamic_files = 1
+let g:easytags_resolve_links = 1
+let g:easytags_include_members = 1
+let g:easytags_auto_highlight = 0
+
+highlight cMember guifg=#1155ff
+highlight phpFunctionsTag guifg=#1155ff
+highlight phpClassesTag guifg=#ff0077
+
+" }}}
+" CtrlP {{{
+
+let g:ctrlp_extensions = ['tag', 'qfx', 'dir', 'buffertag']
+let g:ctrlp_working_path_mode = 2
+let g:ctrlp_root_markers = ['VERSION', 'xpinstall', 'ivy.xml']
+let g:ctrlp_mru_files = 1
+let g:ctrlp_dont_split = 'NERD_tree_2'
+
+" }}}
+" TabMan {{{
+
+let g:tabman_toggle = '<leader>tm'
+let g:tabman_focus  = '<leader>ftm'
+let g:tabman_side   = 'right'
+let g:tabman_width = 20
+
+" }}}
+" Tabbar {{{
+
+nnoremap <leader>tb :TagbarToggle<CR>
+nnoremap <leader>tl :TagbarToggle<CR>
+
+" }}}
+" Rainbow Parentheses {{{
+
+nnoremap <leader>rp :RainbowParenthesesToggle<CR>
+
+" }}}
+" Fugitive {{{
+
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gr :Gremove<CR>
+nnoremap <Leader>gl :Glog<CR>
+nnoremap <Leader>gb :Gblame<CR>
+nnoremap <Leader>gm :Gmove
+nnoremap <Leader>gp :Ggrep
+nnoremap <Leader>gR :Gread<CR>
+nnoremap <Leader>gg :Git
+nnoremap <Leader>gd :Gdiff<CR>
+
+" }}}
+
+" }}}
+"
 " -----------------------------------------------------------
 " Php Development
 " -----------------------------------------------------------
@@ -547,34 +670,6 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 autocmd FileType c setlocal omnifunc=ccomplete#Complete
 set omnifunc=syntaxcomplete#Complete " Set omni-completion method.
-
-" -----------------------------------------------------------
-" Vim Diff
-" -----------------------------------------------------------
-
-"Ignore changes in amount of white space.
-set diffopt=filler " Add vertical spaces to keep right and left aligned
-set diffopt+=iwhite
-
-
-" -----------------------------------------------------------
-" window handling
-" -----------------------------------------------------------
-
-" minimal number of lines used for the current window
-set wh=1
-" minimal number of lines used for any window
-set wmh=0
-" make all windows the same size when adding/removing windows
-set equalalways
-set splitbelow " New window goes below
-set splitright " New windows goes right
-
-" Faster split resizing (+,-)
-if bufwinnr(1)
-  map + <C-W>+
-  map - <C-W>-
-endif
 
 " -----------------------------------------------------------
 " GUI
@@ -860,25 +955,6 @@ function! Hex2Dec()
 endfunction
 
 " -----------------------------------------------------------
-" Plugin: Conque Shell
-" -----------------------------------------------------------
-"
-let g:Conque_Syntax = 'conque'
-let g:Conque_TERM = 'xterm'
-
-" -----------------------------------------------------------
-" Plugin: SudoW
-" -----------------------------------------------------------
-"
-let g:sudoAuth="gksudo"
-
-" -----------------------------------------------------------
-" Plugin: Session
-" -----------------------------------------------------------
-"
-let g:session_directory = '~/.vim-sessions'
-
-" -----------------------------------------------------------
 " Tags / Ctags
 " -----------------------------------------------------------
 "
@@ -891,71 +967,12 @@ map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 map Ý :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " -----------------------------------------------------------
-" Plugin: Easytags
-" -----------------------------------------------------------
-"
-" the easytags plug-in will write to the first existing tags file seen by
-" In other words: If a project specific tags file is found it will be used,
-" otherwise the plug-in falls back to the global tags file (or a file type specific tags file).
-let g:easytags_always_enabled = 0
-let g:easytags_dynamic_files = 1
-let g:easytags_resolve_links = 1
-let g:easytags_include_members = 1
-let g:easytags_auto_highlight = 0
-
-highlight cMember guifg=#1155ff
-highlight phpFunctionsTag guifg=#1155ff
-highlight phpClassesTag guifg=#ff0077
-
-" -----------------------------------------------------------
-" Plugin: CtrlP
-" -----------------------------------------------------------
-let g:ctrlp_extensions = ['tag', 'qfx', 'dir', 'buffertag']
-let g:ctrlp_working_path_mode = 2
-let g:ctrlp_root_markers = ['VERSION', 'xpinstall', 'ivy.xml']
-let g:ctrlp_mru_files = 1
-let g:ctrlp_dont_split = 'NERD_tree_2'
-
-" -----------------------------------------------------------
-" Plugin: TabMan
-" -----------------------------------------------------------
-let g:tabman_toggle = '<leader>tm'
-let g:tabman_focus  = '<leader>ftm'
-let g:tabman_side   = 'right'
-let g:tabman_width = 20
-
-" -----------------------------------------------------------
 " Plugin: Autoclose
 " Plugin: delimitMate
 " -----------------------------------------------------------
 " Disable Autoclose, test delimitMate
 let g:autoclose_loaded = 1
 nmap <Leader>a :DelimitMateSwitch<CR>
-
-" -----------------------------------------------------------
-" Plugin: Tagbar
-" -----------------------------------------------------------
-nnoremap <leader>tb :TagbarToggle<CR>
-nnoremap <leader>tl :TagbarToggle<CR>
-
-
-" -----------------------------------------------------------
-" Plugin: Rainbow Parenthesis
-" -----------------------------------------------------------
-nnoremap <leader>rp :RainbowParenthesesToggle<CR>
-
-" -----------------------------------------------------------
-" Plugin: Fugitive
-" -----------------------------------------------------------
-nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gr :Gremove<CR>
-nnoremap <Leader>gl :Glog<CR>
-nnoremap <Leader>gb :Gblame<CR>
-nnoremap <Leader>gm :Gmove
-nnoremap <Leader>gp :Ggrep
-nnoremap <Leader>gR :Gread<CR>
-nnoremap <Leader>gg :Git
-nnoremap <Leader>gd :Gdiff<CR>
 
 " -----------------------------------------------------------
 " Plugin: Gundo
@@ -1035,16 +1052,6 @@ let g:pasta_disabled_filetypes = ["python", "coffee", "markdown", 'twiki', 'medi
 " -----------------------------------------------------------
 " Plugin: powerline
 " -----------------------------------------------------------
-if has("gui_running")
-  let g:Powerline_symbols = 'fancy'
-endif
-
-" -----------------------------------------------------------
-" Cope
-" -----------------------------------------------------------
-map <leader>qc :botright cope<cr>
-map <leader>qn :cn<cr>
-map <leader>qp :cp<cr>
 
 " -----------------------------------------------------------
 " => bufExplorer plugin
@@ -1080,26 +1087,6 @@ map <leader>qp :cp<cr>
 " -----------------------------------------------------------
 let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
 set grepprg=grep\ -nH
-
-" -----------------------------------------------------------
-" Plugin: ZenCoding
-" http://code.google.com/p/zen-coding/
-" -----------------------------------------------------------
-" Plugin is installed. Learn it Bitch!!! :)
-let g:user_zen_leader_key = '<c-;>'
-let g:user_zen_settings = {
-\  'indentation' : '  ',
-\  'perl' : {
-\    'aliases' : {
-\      'req' : 'require '
-\    },
-\    'snippets' : {
-\      'use' : "use strict\nuse warnings\n\n",
-\      'warn' : "warn \"|\";",
-\    }
-\  }
-\}
-
 
 " -----------------------------------------------------------
 " ftPlugin: xml
