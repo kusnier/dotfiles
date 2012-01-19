@@ -11,6 +11,7 @@
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 set nocompatible
+filetype plugin indent on
 
 " -----------------------------------------------------------
 " HowTo: Pathogen and vimball
@@ -29,6 +30,28 @@ set printoptions=paper:A4,syntax:a,duplex:off
 
 " make sure that max lines are displayed (80 and 120 are from ZF Coding standards)
 set colorcolumn=80,120
+
+" Hide buffers when they are abandoned
+"set hidden "makes problems with VCSVimdiff, Closing diff is not working right
+set nojoinspaces
+" enable backspace to delete anyting (includes \n) in insert mode
+set backspace=indent,eol,start
+set whichwrap+=<,>,h,l
+set number
+set cursorline
+set scrolloff=5     "start scrolling 5 lines before edge of viewport
+set sidescrolloff=3 " same, but for columns
+
+" the following two settings assume that you know what you are doing
+"set autowrite " automatically save changes when executing critical commands
+set autoread " automatically detect changes and re-read the file
+set display=lastline " display as much as possible from the last line
+
+"" TESTING
+set showfulltag
+set switchbuf=usetab
+" set switchbuf=split - Split always
+" set switchbuf=newtab - Like "split", but open a new tab page.
 
 " }}}
 
@@ -61,9 +84,8 @@ nnoremap k gk
 " Test this later, mark has a mapping with ,/
 ""nmap <silent> ,/ :let @/=""<CR>
 
-" -----------------------------------------------------------
-" Leader mappings
-" -----------------------------------------------------------
+" Leader mappings --------------------------------------------------------- {{{
+
 let mapleader = ","
 let maplocalleader = "\\"
 " Trailing whitespace will be highlighted automatically
@@ -82,27 +104,24 @@ nnoremap <leader>w <C-w>v<C-w>l
 ""nnoremap <leader>a :Ack
 
 
-" Hide buffers when they are abandoned
-"set hidden "makes problems with VCSVimdiff, Closing diff is not working right
-set nojoinspaces
-" enable backspace to delete anyting (includes \n) in insert mode
-set backspace=indent,eol,start
-set whichwrap+=<,>,h,l
-set number
-set cursorline
 
-" don't use autochdir, sucks with projects/sessions/nerdtree
-" if has("autochdir")
-"  set autochdir
-" endif
-set scrolloff=5     "start scrolling 5 lines before edge of viewport
-set sidescrolloff=3 " same, but for columns
+" When pressing <leader>cd switch to the directory of the open buffer {{{
 
-" the following two settings assume that you know what you are doing
-"set autowrite " automatically save changes when executing critical commands
-set autoread " automatically detect changes and re-read the file
-set display=lastline " display as much as possible from the last line
+map <leader>cd :cd %:p:h<cr>
 
+" }}}
+" Tab mapping {{{
+
+nmap <leader>tn <Esc>:tabnew<CR>
+" map <leader>tn :tabnew %<cr>
+" map <leader>te :tabedit
+" map <leader>tc :tabclose<cr>
+" map <leader>tm :tabmove 
+
+
+" }}}
+
+" }}}
 " Encoding --------------------------------------------------------------- {{{
 
 set encoding=utf8
@@ -137,48 +156,7 @@ endfunction
 " Auto strip trailing white spaces sucks
 ""autocmd BufWritePre *.php,*.js :call <SID>StripTrailingWhitespaces()
 " }}}
-
-
-"" TESTING
-set showfulltag
-set switchbuf=usetab
-" set switchbuf=split - Split always
-" set switchbuf=newtab - Like "split", but open a new tab page.
-
-" -----------------------------------------------------------
-" Special Features
-" -----------------------------------------------------------
-
-filetype plugin indent on
-
-" -----------------------------------------------------------
-" unused settings
-" -----------------------------------------------------------
-" runtime macros/matchit.vim
-" Zeilenumbruch
-" breakat
-" Automatically save before commands like :next and :make
-"set autowrite
-" cursorcolumn
-" cursorline
-" linebreak
-"set verbose=1
-" set clipboard
-"
-" Remap ` to '
-" These are very similar keys. Typing 'a will jump to the line
-" in the current file marked with ma. However, `a will jump to
-" the line and column marked with ma.
-" It is more useful in any case I can imagine, but it is located
-" way off in the corner of the keyboard.
-" The best way to handle this is just to swap them:
-" nnoremap ' `
-" nnoremap ` '
-
-
-" -----------------------------------------------------------
-" Mouse setup
-" -----------------------------------------------------------
+" Mouse setup ------------------------------------------------------------- {{{
 
 set mousemodel=extend
 " Enable mouse usage (all modes) in terminals
@@ -186,17 +164,16 @@ set mouse=a
 " focus follows mouse
 " set mousefocus
 
-" -----------------------------------------------------------
-" Bell setup
-" -----------------------------------------------------------
+" }}}
+" Bell setup ------------------------------------------------------------- {{{
+
 " No bell or flash wanted
 set noerrorbells
 set novisualbell
 set t_vb=
 
-" -----------------------------------------------------------
-" Text-Formatting, Identing, Tabbing
-" -----------------------------------------------------------
+" }}}
+" Text-Formatting, Identing, Tabbing -------------------------------------- {{{
 
 " Program for formating
 set formatprg=par
@@ -251,27 +228,31 @@ endif
 " shift-tab to unindent
 imap <S-Tab> <C-o><<
 
+" }}}
+" List chars - Show invisibles -------------------------------------------- {{{
 
-" -----------------------------------------------------------
-" List chars - Show invisibles
-" -----------------------------------------------------------
 set list listchars=tab:»·,trail:·,eol:¬
+
 if !exists("g:colors_name")
   highlight NonText guifg=#2a2a2a
   highlight SpecialKey guifg=#ff2a2a
 endif
 nnoremap <silent> <leader>l :set nolist!<CR>
 
-" -----------------------------------------------------------
-" Folding
-" -----------------------------------------------------------
+" }}}
+" Folding ---------------------------------------------------------------- {{{
+
 set foldmethod=syntax
 "set foldclose
 set nofoldenable
 
-" -----------------------------------------------------------
-" Searching, Substituting
-" -----------------------------------------------------------
+" }}}
+" Tabs ---------------------------------------------------------------- {{{
+
+set showtabline=2 " Always show tab bar
+
+" }}}
+" Searching, Substituting ------------------------------------------------- {{{
 
 " select case-insenitiv search
 set ignorecase
@@ -300,40 +281,8 @@ set noedcompatible
 "search+replace word under cursor
 nnoremap <C-S> :,$s/\<<C-R><C-W>\>/
 
-
-" -----------------------------------------------------------
-" Leader mappings
-" -----------------------------------------------------------
-" Use the arrows to something usefull
-" map <right> :bn<cr>
-" map <left> :bp<cr>
-" Overwrite alle Array keys with nothing
-inoremap  <Up>     <NOP>
-inoremap  <Down>   <NOP>
-inoremap  <Left>   <NOP>
-inoremap  <Right>  <NOP>
-noremap   <Up>     <NOP>
-noremap   <Down>   <NOP>
-noremap   <Left>   <NOP>
-noremap   <Right>  <NOP>
-
-" When pressing <leader>cd switch to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>
-
-" -----------------------------------------------------------
-" Tab configuration
-" -----------------------------------------------------------
-nmap <leader>tn <Esc>:tabnew<CR>
-" Comment never used bindings
-" map <leader>tn :tabnew %<cr>
-" map <leader>te :tabedit
-" map <leader>tc :tabclose<cr>
-" map <leader>tm :tabmove 
-set showtabline=2 " Always show tab bar
-
-" -----------------------------------------------------------
-" highlighting, colors, fonts
-" -----------------------------------------------------------
+" }}}
+" Highlighting, colors, fonts --------------------------------------------- {{{
 
 if has("gui_running")
   set t_Co=256
@@ -411,12 +360,9 @@ let c_comment_strings = 1
 
 " use css when converting syntax to html (2html.vim)
 let html_use_css = 1
-" and a nice command for makeing html-code
-command! Code2html :source $VIMRUNTIME/syntax/2html.vim|
 
-" -----------------------------------------------------------
-" Statusline, Menu
-" -----------------------------------------------------------
+" }}}
+" Statusline, Menu, Command ----------------------------------------------- {{{
 
 " use tab for auto-expansion in menus
 set wildchar=<TAB>
@@ -507,9 +453,9 @@ set infercase " adjust the case of auto completed words
 " not any arguments (when a c-funtion is inserted)
 set noshowfulltag
 
-" -----------------------------------------------------------
-" Spell
-" -----------------------------------------------------------
+" }}}
+" Spell ------------------------------------------------------------------- {{{
+
 set nospell
 set spelllang=de,en
 if filereadable("~/.vim/spell/spf.add")
@@ -525,6 +471,8 @@ set dictionary+=~/.vim/dict/ngerman
 "set dictionary+=~/.vim/dict/polish
 
 set digraph
+
+" }}}
 
 " -----------------------------------------------------------
 " Plugin: SuperTab
@@ -1317,7 +1265,17 @@ augroup END
 " }}}
 
 
-" -----------------------------------------------------------
-" Learn it Bitch!!! :)
-" -----------------------------------------------------------
+" Learn it Bitch!!! :) ---------------------------------------------------- {{{
+
 imap jj <esc>
+
+inoremap  <Up>     <NOP>
+inoremap  <Down>   <NOP>
+inoremap  <Left>   <NOP>
+inoremap  <Right>  <NOP>
+noremap   <Up>     <NOP>
+noremap   <Down>   <NOP>
+noremap   <Left>   <NOP>
+noremap   <Right>  <NOP>
+
+" }}}
