@@ -28,6 +28,13 @@ set printoptions=paper:A4,syntax:a,duplex:off
 " }}}
 " Basic options ----------------------------------------------------------- {{{
 
+" set lazyredraw
+set ttimeout
+set notimeout
+set nottimeout
+
+set noswapfile
+
 " make sure that max lines are displayed (80 and 120 are from ZF Coding standards)
 if v:version > 702
   set colorcolumn=80,120
@@ -41,8 +48,19 @@ set backspace=indent,eol,start
 set whichwrap+=<,>,h,l
 set number
 set cursorline
+set ttyfast
 set scrolloff=5     "start scrolling 5 lines before edge of viewport
+set sidescroll=1
 set sidescrolloff=3 " same, but for columns
+
+set virtualedit+=block
+
+" Fix linewise visual selection of various text objects
+nnoremap VV V
+nnoremap Vit vitVkoj
+nnoremap Vat vatV
+nnoremap Vab vabV
+nnoremap VaB vaBV
 
 " the following two settings assume that you know what you are doing
 "set autowrite " automatically save changes when executing critical commands
@@ -130,6 +148,7 @@ autocmd BufRead,BufNewFile */devel/xp*/*.php setlocal fileencoding=latin1
 " Store temporary vim files in a central spot ----------------------------- {{{
 
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+" Make Vim able to edit crontab files again.
 set backupskip=/tmp/*,/private/tmp/*" 
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set backup
@@ -232,7 +251,9 @@ map <F11> :set autoindent!<CR>
 " }}}
 " List chars - Show invisibles -------------------------------------------- {{{
 
-set list listchars=tab:»·,trail:·,eol:¬
+set list listchars=tab:»·,trail:·,eol:¬,extends:¿,precedes:¿
+"set showbreak=¿
+"set fillchars=diff:¿
 
 if !exists("g:colors_name")
   highlight NonText guifg=#2a2a2a
@@ -244,8 +265,16 @@ nnoremap <silent> <leader>l :set nolist!<CR>
 " Folding ----------------------------------------------------------------- {{{
 
 set foldmethod=syntax
+set foldlevelstart=0
 "set foldclose
 set nofoldenable
+
+" Make zO recursively open whatever top level fold we're in, no matter where the
+" cursor happens to be.
+nnoremap zO zCzO
+
+" Use ,z to "focus" the current fold.
+nnoremap <leader>z zMzvzz
 
 " }}}
 " Tabs -------------------------------------------------------------------- {{{
@@ -281,8 +310,11 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " redraw window so search terms are centered
-nnoremap n nzz
-nnoremap N Nzz
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Resize splits when the window is resized
+au VimResized * exe "normal! \<c-w>="
 
 " }}}
 " Buffer ------------------------------------------------------------------ {{{
@@ -332,6 +364,12 @@ set gdefault
 set noedcompatible
 "search+replace word under cursor
 nnoremap <C-S> :,$s/\<<C-R><C-W>\>/
+
+" Open a Quickfix window for the last search.
+nnoremap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
+
+" Ack for the last search.
+nnoremap <silent> <leader>? :execute "Ack! '" . substitute(substitute(substitute(@/, "\\\\<", "\\\\b", ""), "\\\\>", "\\\\b", ""), "\\\\v", "", "") . "'"<CR>
 
 " }}}
 " Spelling ---------------------------------------------------------------- {{{
@@ -449,6 +487,7 @@ set wildmode=list:longest,list:full
 " ignore some files for filename completion
 set wildignore=*.o,*.r,*.so,*.sl,*.tar,*.tgz,*.svn
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+set wildignore+=*.DS_Store                       " OSX bullshit
 set wildignore+=*/target/*
 " remember last 2000 typed commands
 set history=200
