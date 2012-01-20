@@ -811,7 +811,9 @@ endfunction
 ":au BufNewFile,BufRead Result set nolist
 
 " Load dbext connection profiles, this part is secret
-so ~/.vimrc.sql_profiles
+if filereadable(expand("~/.vimrc.sql_profiles"))
+  so ~/.vimrc.sql_profiles
+endif
 
 " }}}
 " VCSCommand {{{
