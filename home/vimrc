@@ -29,7 +29,9 @@ set printoptions=paper:A4,syntax:a,duplex:off
 " Basic options ----------------------------------------------------------- {{{
 
 " make sure that max lines are displayed (80 and 120 are from ZF Coding standards)
-set colorcolumn=80,120
+if v:version > 702
+  set colorcolumn=80,120
+endif
 
 " Hide buffers when they are abandoned
 "set hidden "makes problems with VCSVimdiff, Closing diff is not working right
