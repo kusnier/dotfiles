@@ -13,3 +13,14 @@ ${2:content}
 
 " }}}
 endsnippet
+
+snippet ftsec "" b
+" ${1:filetype} {{{
+
+augroup ft_$1
+  au!
+  ${2}
+augroup END
+
+" }}}
+endsnippet
