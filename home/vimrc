@@ -1366,7 +1366,7 @@ function! SynStack() "{{{
   echo join(map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")'), " > ")
 endfunc "}}}
 
-nnoremap ß :call SynStack()<CR>
+nnoremap <leader>ss :call SynStack()<CR>
 
 " }}}
 
