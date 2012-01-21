@@ -657,11 +657,6 @@ map <leader>qn :cn<cr>
 map <leader>qp :cp<cr>
 
 " }}}
-" Vim-Session {{{
-
-let g:session_directory = '~/.vim-sessions'
-
-" }}}
 " Easytags {{{
 
 " the easytags plug-in will write to the first existing tags file seen by
