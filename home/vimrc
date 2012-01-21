@@ -28,11 +28,6 @@ set printoptions=paper:A4,syntax:a,duplex:off
 " }}}
 " Basic options ----------------------------------------------------------- {{{
 
-" set lazyredraw
-set ttimeout
-set notimeout
-set nottimeout
-
 set noswapfile
 
 " make sure that max lines are displayed (80 and 120 are from ZF Coding standards)
@@ -46,14 +41,21 @@ set nojoinspaces
 " enable backspace to delete anyting (includes \n) in insert mode
 set backspace=indent,eol,start
 set whichwrap+=<,>,h,l
+set display=lastline " display as much as possible from the last line
 set number
 set cursorline
 set ttyfast
-set scrolloff=5     "start scrolling 5 lines before edge of viewport
+set scrolloff=3     "start scrolling 3 lines before edge of viewport
 set sidescroll=1
 set sidescrolloff=3 " same, but for columns
 
+" Virtual editing means that the cursor can be positioned where there is no
+" characer.
 set virtualedit+=block
+
+" remap j an k to jump to the rows in the smae line, if lines wraps
+nnoremap j gj
+nnoremap k gk
 
 " Fix linewise visual selection of various text objects
 nnoremap VV V
@@ -62,16 +64,7 @@ nnoremap Vat vatV
 nnoremap Vab vabV
 nnoremap VaB vaBV
 
-" the following two settings assume that you know what you are doing
-"set autowrite " automatically save changes when executing critical commands
 set autoread " automatically detect changes and re-read the file
-set display=lastline " display as much as possible from the last line
-
-"" TESTING
-set showfulltag
-set switchbuf=usetab
-" set switchbuf=split - Split always
-" set switchbuf=newtab - Like "split", but open a new tab page.
 
 " jump to the last position when reopening a file
 if has("autocmd")
@@ -96,9 +89,6 @@ map <leader>ve :edit $MYVIMRC<cr>
 
 " Get efficient: shortcut mappings
 nnoremap ; :
-" remap j an k to jump to the rows in the smae line, if lines wraps
-nnoremap j gj
-nnoremap k gk
 
 " }}}
 " Leader mappings --------------------------------------------------------- {{{
@@ -125,7 +115,9 @@ nnoremap <leader>w <C-w>v<C-w>l
 map <leader>cd :cd %:p:h<cr>
 
 " }}}
-" Tab mapping {{{
+" Tabs ------------------------------------------------------------------- {{{
+
+set switchbuf=usetab
 
 nmap <leader>tn <Esc>:tabnew<CR>
 " map <leader>tn :tabnew %<cr>
@@ -403,6 +395,7 @@ set omnifunc=syntaxcomplete#Complete " Set omni-completion method.
 " }}}
 " Tags / Ctags ------------------------------------------------------------ {{{
 
+set showfulltag
 set tags=
 set tags+=tags;$HOME
 set tags+=./tags;$HOME
@@ -579,10 +572,6 @@ set completeopt=longest,menuone,preview
 "inoremap <expr> <C-n> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
 set infercase " adjust the case of auto completed words
-
-" showfulltag when completing tags in Insert mode show only the name
-" not any arguments (when a c-funtion is inserted)
-set noshowfulltag
 
 " Command mode mappings
 " jump to start of command line
