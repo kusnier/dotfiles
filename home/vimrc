@@ -903,11 +903,11 @@ augroup END
 
 augroup ft_vim
     au!
-    au FileType vim setlocal foldmethod=marker
-    au FileType vim setlocal foldlevelstart=0
-    au FileType vim setlocal foldenable
-    au FileType help setlocal textwidth=78
-    au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
+    autocmd FileType vim setlocal foldmethod=marker
+    autocmd FileType vim setlocal foldlevelstart=0
+    autocmd FileType vim setlocal foldenable
+    autocmd FileType help setlocal textwidth=78
+    "autocmd BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
 augroup END
 
 " }}}
@@ -1078,7 +1078,51 @@ augroup END
 
 augroup ft_javascript
   au!
+  autocmd FileType javascript setlocal foldmethod=marker
+  autocmd FileType javascript setlocal foldmarker={,}
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+
+  " Make {<cr> insert a pair of brackets in such a way that the cursor is correctly
+  " positioned inside of them AND the following code doesn't get unfolded.
+  autocmd Filetype javascript inoremap <buffer> {<cr> {}<left><cr><space><space><space><space>.<cr><esc>kA<bs>
+augroup END
+
+" }}}
+
+" vimperatorrc {{{
+
+augroup ft_vimperator
+    au!
+    au BufNewFile,BufRead .vimperatorrc set filetype=vimperator
+    au BufNewFile,BufRead ~/Library/Caches/TemporaryItems/vimperator-*.tmp set nolist wrap linebreak columns=100 colorcolumn=0
+augroup END
+
+" }}}
+"
+" Java {{{
+
+augroup ft_java
+    au!
+    autocmd FileType java setlocal foldmethod=marker
+    autocmd FileType java setlocal foldmarker={,}
+augroup END
+
+" }}}
+
+" Ruby {{{
+
+augroup ft_ruby
+    au!
+    au Filetype ruby setlocal foldmethod=syntax
+augroup END
+
+" }}}
+
+" Vagrant {{{
+
+augroup ft_vagrant
+    au!
+    au BufRead,BufNewFile Vagrantfile set ft=ruby
 augroup END
 
 " }}}
@@ -1087,7 +1131,23 @@ augroup END
 
 augroup ft_html
   au!
-  autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType html,xsl setlocal foldmethod=manual
+  autocmd FileType html,xsl setlocal omnifunc=htmlcomplete#CompleteTags
+
+  " Use <localleader>f to fold the current tag.
+  au FileType html,xsl nnoremap <buffer> <localleader>tf Vatzf
+
+  " Use Shift-Return to turn this:
+  "     <tag>|</tag>
+  "
+  " into this:
+  "     <tag>
+  "         |
+  "     </tag>
+  au FileType html,xsl nnoremap <buffer> <s-cr> vit<esc>a<cr><esc>vito<esc>i<cr><esc>
+
+  " Indent tag
+  au FileType html,xsl <buffer> <localleader>= Vat=
 augroup END
 
 " }}}
@@ -1259,6 +1319,22 @@ set grepprg=grep\ -nH
 
 " Close Quickfix window (,qq)
 map <leader>qq :cclose<CR>
+
+" QuickFix {{{
+
+augroup ft_quickfix
+    au!
+    au Filetype qf setlocal colorcolumn=0 nolist nocursorline nowrap
+augroup END
+
+" }}}
+
+" }}}
+" Quick editing ----------------------------------------------------------- {{{
+
+nnoremap <leader>ev <C-w>v<C-w>j:e $MYVIMRC<cr>
+nnoremap <leader>es <C-w>v<C-w>j:e ~/.vim/UltiSnips/<cr>
+nnoremap <leader>ed <C-w>v<C-w>j:e ~/dotfiles/<cr>
 
 " }}}
 " Learn it Bitch!!! :) ---------------------------------------------------- {{{
