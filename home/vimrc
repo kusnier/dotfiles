@@ -1279,7 +1279,10 @@ map <silent> <S-F2> :if g:toggleTool == 1<CR>:set guioptions-=T<CR>:set lines+=3
 
 " get rid of scrollbar
 set guioptions-=r
-set guioptions-=rL
+set guioptions-=l
+set guioptions-=L
+set guioptions-=r
+set guioptions-=R
 
 " win32  {{{
 
@@ -1366,6 +1369,22 @@ augroup END
 nnoremap <leader>ev <C-w>v<C-w>j:e $MYVIMRC<cr>
 nnoremap <leader>es <C-w>v<C-w>j:e ~/.vim/UltiSnips/<cr>
 nnoremap <leader>ed <C-w>v<C-w>j:e ~/dotfiles/<cr>
+
+" }}}
+" vimrc helper ------------------------------------------------------------ {{{
+
+" Synstack {{{
+
+" Take from Steve Losh's vimrc
+" Show the stack of syntax hilighting classes affecting whatever is under the
+" cursor.
+function! SynStack() "{{{
+  echo join(map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")'), " > ")
+endfunc "}}}
+
+nnoremap ß :call SynStack()<CR>
+
+" }}}
 
 " }}}
 " Learn it Bitch!!! :) ---------------------------------------------------- {{{
