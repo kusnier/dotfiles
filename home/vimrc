@@ -111,8 +111,6 @@ match ErrorMsg '\s\+$'
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " HTML  ,ft mapped to a "fold tag"
 nnoremap <leader>ft Vatzf
-" re-hardwrap paragraphs of text
-nnoremap <leader>q gqip
 " mapping to reselect the text that was just pasted so I can perform commands (like indentation) on it
 nnoremap <leader>vv V`]
 " open a new vertical split and switch over to it
@@ -191,13 +189,16 @@ set novisualbell
 set t_vb=
 
 " }}}
-" Text-Formatting, Identing, Tabbing -------------------------------------- {{{
+" Text-Formatting, Identing, Tabbing, Align ------------------------------- {{{
 
 " Program for formating
 set formatprg=par
 " gq - use external format program
 " gw - use Vim's internal formatter
 " use: QGIP to format texts :)
+
+" re-hardwrap paragraphs of text
+nnoremap <leader>q gqip
 
 " autoindenting (local to buffer)
 set autoindent
@@ -247,6 +248,21 @@ endif
 imap <S-Tab> <C-o><<
 
 map <F11> :set autoindent!<CR>
+
+" Split line (sister to [J]oin lines)
+" The normal use of S is covered by cc, so don't worry about shadowing it.
+nnoremap S i<cr><esc><right>
+
+nnoremap <leader>Al :left<cr>
+nnoremap <leader>Ac :center<cr>
+nnoremap <leader>Ar :right<cr>
+vnoremap <leader>Al :left<cr>
+vnoremap <leader>Ac :center<cr>
+vnoremap <leader>Ar :right<cr>
+
+" Quickreturn
+inoremap <c-cr> <esc>A<cr>
+inoremap <s-cr> <esc>A:<cr>
 
 " }}}
 " List chars - Show invisibles -------------------------------------------- {{{
@@ -332,6 +348,9 @@ map <Leader>, <C-^>
 "Ignore changes in amount of white space.
 set diffopt=filler " Add vertical spaces to keep right and left aligned
 set diffopt+=iwhite
+
+" Diffoff
+nnoremap <leader>D :diffoff!<cr>
 
 " }}}
 " Searching, Substituting ------------------------------------------------- {{{
@@ -667,6 +686,9 @@ let g:ctrlp_root_markers = ['VERSION', 'xpinstall', 'ivy.xml']
 let g:ctrlp_mru_files = 1
 let g:ctrlp_dont_split = 'NERD_tree_2'
 
+nnoremap <leader>pm :CtrlPMRUFiles<cr>
+nnoremap <leader>pt :CtrlPTag<cr>
+
 " }}}
 " TabMan {{{
 
@@ -730,6 +752,7 @@ let g:EasyMotion_leader_key='\'
 " Ack {{{
 
 let g:ackprg="ack -H --nocolor --nogroup --column"
+map <leader>a :Ack! 
 
 " }}}
 " notes.vim {{{
@@ -875,6 +898,14 @@ let g:syntastic_auto_loc_list=1
 let g:sql_type_default = 'mysql'
 let g:omni_sql_include_owner = 0
 nmap <silent> <S-F12> :new ~/.vimrc.dbi_vars<CR>
+
+" }}}
+" HTML5 {{{
+
+let g:event_handler_attributes_complete = 0
+let g:rdfa_attributes_complete = 0
+let g:microdata_attributes_complete = 0
+let g:atia_attributes_complete = 0
 
 " }}}
 
