@@ -259,7 +259,9 @@ inoremap <s-cr> <esc>A:<cr>
 " }}}
 " List chars - Show invisibles -------------------------------------------- {{{
 
-set list listchars=tab:»·,trail:·,eol:¬
+set list listchars=tab:»·,trail:·,eol:¬,extends:❯,precedes:❮
+set showbreak=↪
+set fillchars=diff:⣿
 
 if !exists("g:colors_name")
   highlight NonText guifg=#2a2a2a
