@@ -1145,7 +1145,7 @@ augroup ft_html
   au FileType html,xsl nnoremap <buffer> <s-cr> vit<esc>a<cr><esc>vito<esc>i<cr><esc>
 
   " Indent tag
-  au FileType html,xsl <buffer> <localleader>= Vat=
+  au FileType html,xsl nnoremap <buffer> <localleader>= Vat=
 augroup END
 
 " }}}
