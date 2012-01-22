@@ -83,10 +83,6 @@ nnoremap <Space> :
 nnoremap <Space><Space> :!
 inoremap <C-Space> <C-X><C-]>
 
-" Fast editing of the .vimrc
-map <S-F5> :edit $MYVIMRC<CR>
-map <leader>ve :edit $MYVIMRC<cr>
-
 " Get efficient: shortcut mappings
 nnoremap ; :
 
