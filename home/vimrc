@@ -197,17 +197,39 @@ endif
 " }}}
 " Folding ----------------------------------------------------------------- {{{
 
-set foldmethod=syntax
 set foldlevelstart=0
-"set foldclose
-set nofoldenable
+
+" Space to toggle folds.
+nnoremap <s-Space> za
+vnoremap <s-Space> za
 
 " Make zO recursively open whatever top level fold we're in, no matter where the
 " cursor happens to be.
 nnoremap zO zCzO
 
+" Make the current location sane.
+nnoremap <c-cr> zvzz
+
 " Use ,z to "focus" the current fold.
 nnoremap <leader>z zMzvzz
+
+function! MyFoldText() " {{{
+    let line = getline(v:foldstart)
+
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
+
+    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+endfunction " }}}
+set foldtext=MyFoldText()
+
 
 " }}}
 " Tabs -------------------------------------------------------------------- {{{
@@ -1272,6 +1294,24 @@ if has("win32")
   set shell=C:\Windows\system32\cmd.exe
 endif
 
+" Taken from Steve Losh's vimrc
+function! s:ExecuteInShell(command) " {{{
+    let command = join(map(split(a:command), 'expand(v:val)'))
+    let winnr = bufwinnr('^' . command . '$')
+    silent! execute  winnr < 0 ? 'botright vnew ' . fnameescape(command) : winnr . 'wincmd w'
+    setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap nonumber
+    echo 'Execute ' . command . '...'
+    silent! execute 'silent %!'. command
+    silent! redraw
+    silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
+    silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>:AnsiEsc<CR>'
+    silent! execute 'nnoremap <silent> <buffer> q :q<CR>'
+    silent! execute 'AnsiEsc'
+    echo 'Shell command ' . command . ' executed.'
+endfunction " }}}
+command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
+nnoremap <leader>! :Shell 
+
 " }}}
 " Vim grep ---------------------------------------------------------------- {{{
 
@@ -1331,3 +1371,4 @@ noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
 
 " }}}
+
