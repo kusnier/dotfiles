@@ -30,6 +30,12 @@ set printoptions=paper:A4,syntax:a,duplex:off
 
 set noswapfile
 
+let mapleader = ","
+let maplocalleader = "\\"
+
+" Trailing whitespace will be highlighted automatically
+match ErrorMsg '\s\+$'
+
 " make sure that max lines are displayed (80 and 120 are from ZF Coding standards)
 if v:version > 702
   set colorcolumn=80,120
@@ -89,40 +95,19 @@ nnoremap ; :
 " }}}
 " Leader mappings --------------------------------------------------------- {{{
 
-let mapleader = ","
-let maplocalleader = "\\"
-" Trailing whitespace will be highlighted automatically
-match ErrorMsg '\s\+$'
 " strip all trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-" HTML  ,ft mapped to a "fold tag"
-nnoremap <leader>ft Vatzf
-" mapping to reselect the text that was just pasted so I can perform commands (like indentation) on it
-nnoremap <leader>vv V`]
-" open a new vertical split and switch over to it
-nnoremap <leader>w <C-w>v<C-w>l
-" use ack
-""nnoremap <leader>a :Ack
 
-
-
-" When pressing <leader>cd switch to the directory of the open buffer {{{
-
+" When pressing <leader>cd switch to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>
 
-" }}}
-" Tabs ------------------------------------------------------------------- {{{
-
+" Tabs
 set switchbuf=usetab
-
 nmap <leader>tn <Esc>:tabnew<CR>
 " map <leader>tn :tabnew %<cr>
 " map <leader>te :tabedit
 " map <leader>tc :tabclose<cr>
 " map <leader>tm :tabmove 
-
-
-" }}}
 
 " }}}
 " Encoding ---------------------------------------------------------------- {{{
@@ -1146,7 +1131,7 @@ augroup ft_html
   autocmd FileType html,xsl setlocal foldmethod=manual
   autocmd FileType html,xsl setlocal omnifunc=htmlcomplete#CompleteTags
 
-  " Use <localleader>f to fold the current tag.
+  " Use <localleader>tf to fold the current tag.
   au FileType html,xsl nnoremap <buffer> <localleader>tf Vatzf
 
   " Use Shift-Return to turn this:
