@@ -50,7 +50,7 @@ match ErrorMsg '\s\+$'
 
 " make sure that max lines are displayed (80 and 120 are from ZF Coding standards)
 if v:version > 702
-  set colorcolumn=80,120
+  set colorcolumn=+1,121
 endif
 
 " Hide buffers when they are abandoned
@@ -156,10 +156,8 @@ set formatoptions+=1 " Break before 1-letter words
 " re-hardwrap paragraphs of text
 nnoremap <leader>q gqip
 
-" autoindenting (local to buffer)
 set autoindent
 set copyindent
-" smartindenting (clever autoindenting)
 set smartindent
 
 " Tab options
@@ -170,7 +168,7 @@ set softtabstop=2 " if non-zero, number of spaces to insert for a <tab>
 
 " Split line (sister to [J]oin lines)
 " The normal use of S is covered by cc, so don't worry about shadowing it.
-" Take form Steve Losh
+" Taken form Steve Losh
 nnoremap S i<cr><esc><right>
 
 nnoremap <leader>Al :left<cr>
@@ -195,7 +193,6 @@ if !exists("g:colors_name")
   highlight NonText guifg=#2a2a2a
   highlight SpecialKey guifg=#ff2a2a
 endif
-nnoremap <silent> <leader>l :set nolist!<CR>
 
 " }}}
 " Folding ----------------------------------------------------------------- {{{
