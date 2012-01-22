@@ -138,38 +138,7 @@ endif
 " }}}
 " Text-Formatting, Identing, Tabbing, Align ------------------------------- {{{
 
-" Program for formating
-set formatprg=par
-" gq - use external format program
-" gw - use Vim's internal formatter
-" use: QGIP to format texts :)
-
-" re-hardwrap paragraphs of text
-nnoremap <leader>q gqip
-
-" autoindenting (local to buffer)
-set autoindent
-set copyindent
-"set indentexpr
-" smartindenting (clever autoindenting)
-set smartindent
-" number of spaces the tab stands for
-set tabstop=2
-set expandtab
-" Override expandtab vor xp:Changelog files
-autocmd FileType changelog setlocal expandtab
-" number of spaces used for (auto)indenting
-set shiftwidth=2
-" a <tab> in an indent insets 'shiftwidth' spaces (not tabstop)
-set smarttab
-" if non-zero, number of spaces to insert for a <tab>
-set softtabstop=2
-" enable specific indenting for c-code and others
-set cindent
-" and here some nice options for cindenting
-set cinoptions={.5s,+.5s,t0,n-2,p2s,(03s,=.5s,>1s,=1s,:1s
-" now real wrap during insert (enable/override this when using as mail-editor)
-set tw=0
+set textwidth=120
 
 " use full featured format-options. see "help fo-table for help
 set formatoptions=
@@ -182,22 +151,24 @@ set formatoptions+=2 " Use indent from 2nd line of a paragraph
 set formatoptions+=l " Don't break lines that are already long
 set formatoptions+=1 " Break before 1-letter words
 
-" define what are comments
-set com& " reset to default
-set com^=sr:*\ -,mb:*\ \ ,el:*/ com^=sr://\ -,mb://\ \ ,el:///
-" auto tw=78 when textmode
-if has("autocmd")
-    autocmd FileType text setlocal textwidth=78
-    autocmd FileType text setlocal lbr
-    autocmd FileType text set nocindent
-endif
-" shift-tab to unindent
-imap <S-Tab> <C-o><<
+" re-hardwrap paragraphs of text
+nnoremap <leader>q gqip
 
-map <F11> :set autoindent!<CR>
+" autoindenting (local to buffer)
+set autoindent
+set copyindent
+" smartindenting (clever autoindenting)
+set smartindent
+
+" Tab options
+set tabstop=2 " number of spaces the tab stands for
+set expandtab
+set shiftwidth=2 " number of spaces used for (auto)indenting
+set softtabstop=2 " if non-zero, number of spaces to insert for a <tab>
 
 " Split line (sister to [J]oin lines)
 " The normal use of S is covered by cc, so don't worry about shadowing it.
+" Take form Steve Losh
 nnoremap S i<cr><esc><right>
 
 nnoremap <leader>Al :left<cr>
@@ -852,6 +823,16 @@ let g:atia_attributes_complete = 0
 " }}}
 " Various filetype-specific stuff ----------------------------------------- {{{
 
+" text {{{
+
+augroup ft_text
+  au!
+  autocmd FileType text setlocal textwidth=78
+  autocmd FileType text setlocal linebreak
+augroup END
+
+" }}}
+
 " greasemonkey {{{
 
 augroup ft_greasemonkey
@@ -1187,6 +1168,8 @@ augroup END
 augroup ft_xpframework
   au!
   autocmd BufRead,BufNewFile *.class.php setlocal fileencoding=latin1
+  " Override expandtab vor xp:Changelog files
+  autocmd FileType changelog setlocal expandtab
 augroup END
 
 " }}}
