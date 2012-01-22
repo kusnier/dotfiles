@@ -139,6 +139,8 @@ endif
 " Text-Formatting, Identing, Tabbing, Align ------------------------------- {{{
 
 set textwidth=120
+set linebreak
+set wrap
 
 " use full featured format-options. see "help fo-table for help
 set formatoptions=
@@ -828,7 +830,6 @@ let g:atia_attributes_complete = 0
 augroup ft_text
   au!
   autocmd FileType text setlocal textwidth=78
-  autocmd FileType text setlocal linebreak
 augroup END
 
 " }}}
