@@ -28,10 +28,22 @@ set printoptions=paper:A4,syntax:a,duplex:off
 " }}}
 " Basic options ----------------------------------------------------------- {{{
 
+set encoding=utf8
 set noswapfile
-
 let mapleader = ","
 let maplocalleader = "\\"
+
+" Mouse setup
+set mousemodel=extend
+" Enable mouse usage (all modes) in terminals
+set mouse=a
+" focus follows mouse
+" set mousefocus
+
+" No bell or flash wanted
+set noerrorbells
+set novisualbell
+set t_vb=
 
 " Trailing whitespace will be highlighted automatically
 match ErrorMsg '\s\+$'
@@ -110,12 +122,6 @@ nmap <leader>tn <Esc>:tabnew<CR>
 " map <leader>tm :tabmove 
 
 " }}}
-" Encoding ---------------------------------------------------------------- {{{
-
-set encoding=utf8
-autocmd BufRead,BufNewFile */devel/xp*/*.php setlocal fileencoding=latin1
-
-" }}}
 " Store temporary vim files in a central spot ----------------------------- {{{
 
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
@@ -128,38 +134,6 @@ if v:version > 702
   set undofile
   set undodir=~/.vim-undo
 endif
-
-" }}}
-" Strip trailing whitespace  ---------------------------------------------- {{{
-function! <SID>StripTrailingWhitespaces()
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    %s/\s\+$//e
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
-endfunction
-" Auto strip trailing white spaces sucks
-""autocmd BufWritePre *.php,*.js :call <SID>StripTrailingWhitespaces()
-" }}}
-" Mouse setup ------------------------------------------------------------- {{{
-
-set mousemodel=extend
-" Enable mouse usage (all modes) in terminals
-set mouse=a
-" focus follows mouse
-" set mousefocus
-
-" }}}
-" Bell setup -------------------------------------------------------------- {{{
-
-" No bell or flash wanted
-set noerrorbells
-set novisualbell
-set t_vb=
 
 " }}}
 " Text-Formatting, Identing, Tabbing, Align ------------------------------- {{{
@@ -1204,6 +1178,15 @@ augroup ft_c
   au!
   autocmd FileType c setlocal foldmethod=syntax
   autocmd FileType c setlocal omnifunc=ccomplete#Complete
+augroup END
+
+" }}}
+
+" xpframework {{{
+
+augroup ft_xpframework
+  au!
+  autocmd BufRead,BufNewFile *.class.php setlocal fileencoding=latin1
 augroup END
 
 " }}}
