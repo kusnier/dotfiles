@@ -85,9 +85,13 @@ nnoremap VaB vaBV
 set autoread " automatically detect changes and re-read the file
 
 " jump to the last position when reopening a file
-if has("autocmd")
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
+augroup line_return
+    au!
+    au BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \     execute 'normal! g`"zvzz' |
+        \ endif
+augroup END
 
 " Paste toggle (,p)
 set pastetoggle=<leader>p
@@ -103,6 +107,10 @@ inoremap <C-Space> <C-X><C-]>
 
 " Get efficient: shortcut mappings
 nnoremap ; :
+
+" Source
+vnoremap <leader>S y:execute @@<cr>
+nnoremap <leader>S ^vg_y:execute @@<cr>
 
 " }}}
 " Leader mappings --------------------------------------------------------- {{{
@@ -168,7 +176,6 @@ set softtabstop=2 " if non-zero, number of spaces to insert for a <tab>
 
 " Split line (sister to [J]oin lines)
 " The normal use of S is covered by cc, so don't worry about shadowing it.
-" Taken form Steve Losh
 nnoremap S i<cr><esc><right>
 
 nnoremap <leader>Al :left<cr>
@@ -844,6 +851,15 @@ let g:atia_attributes_complete = 0
 " }}}
 " Various filetype-specific stuff ----------------------------------------- {{{
 
+" C {{{
+
+augroup ft_c
+    au!
+    au FileType c setlocal foldmethod=syntax
+augroup END
+
+" }}}
+
 " text {{{
 
 augroup ft_text
@@ -1042,6 +1058,16 @@ augroup END
 augroup ft_python
   au!
   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  autocmd FileType python setlocal define=^\s*\\(def\\\\|class\\)
+augroup END
+
+" }}}
+
+" Ruby {{{
+
+augroup ft_ruby
+    au!
+    au Filetype ruby setlocal foldmethod=syntax
 augroup END
 
 " }}}
@@ -1294,7 +1320,6 @@ if has("win32")
   set shell=C:\Windows\system32\cmd.exe
 endif
 
-" Taken from Steve Losh's vimrc
 function! s:ExecuteInShell(command) " {{{
     let command = join(map(split(a:command), 'expand(v:val)'))
     let winnr = bufwinnr('^' . command . '$')
@@ -1345,7 +1370,6 @@ nnoremap <leader>ed <C-w>v<C-w>j:e ~/dotfiles/<cr>
 
 " Synstack {{{
 
-" Take from Steve Losh's vimrc
 " Show the stack of syntax hilighting classes affecting whatever is under the
 " cursor.
 function! SynStack() "{{{
