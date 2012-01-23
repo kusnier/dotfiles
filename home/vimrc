@@ -112,6 +112,9 @@ nnoremap ; :
 vnoremap <leader>S y:execute @@<cr>
 nnoremap <leader>S ^vg_y:execute @@<cr>
 
+" List previous opened files
+nnoremap <leader>o :oldfiles<cr>
+
 " }}}
 " Leader mappings --------------------------------------------------------- {{{
 
@@ -999,6 +1002,8 @@ augroup END
 
 augroup ft_php
   au!
+  autocmd FileType javascript setlocal foldmethod=marker
+  autocmd FileType javascript setlocal foldmarker={,}
   " http://phpslacker.com/2009/02/05/vim-tips-for-php-programmers/
   " highlights interpolated variables in sql strings and does sql-syntax highlighting. yay
   " set to 0, because of slow php syntax handling
@@ -1354,9 +1359,9 @@ augroup END
 " }}}
 " Quick editing ----------------------------------------------------------- {{{
 
-nnoremap <leader>ev <C-w>v<C-w>j:e $MYVIMRC<cr>
-nnoremap <leader>es <C-w>v<C-w>j:e ~/.vim/UltiSnips/<cr>
-nnoremap <leader>ed <C-w>v<C-w>j:e ~/dotfiles/<cr>
+nnoremap <leader>ev :e $MYVIMRC<cr>
+nnoremap <leader>es :e ~/.vim/UltiSnips/<cr>
+nnoremap <leader>ed :e ~/dotfiles/<cr>
 
 " }}}
 " vimrc helper ------------------------------------------------------------ {{{
