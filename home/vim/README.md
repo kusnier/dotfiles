@@ -219,11 +219,9 @@ Input Formats
 * `..` go backward in the directory tree
 * `/` or `\` find and got tot to the project's root
 
-### autoclose / delimitMate
+### autoclose
 
-Autoclose is disabled now. Testing delimitMate (new and on git).
-
-* `<leader>a` - Toogle autoclose/delimitMate
+* `<leader>a` - Toogle autoclose
 
 ### Buffder / Tab / Window
 
