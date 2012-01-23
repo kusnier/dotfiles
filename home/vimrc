@@ -1002,8 +1002,8 @@ augroup END
 
 augroup ft_php
   au!
-  autocmd FileType javascript setlocal foldmethod=marker
-  autocmd FileType javascript setlocal foldmarker={,}
+  autocmd FileType php setlocal foldmethod=marker
+  autocmd FileType php setlocal foldmarker={,}
   " http://phpslacker.com/2009/02/05/vim-tips-for-php-programmers/
   " highlights interpolated variables in sql strings and does sql-syntax highlighting. yay
   " set to 0, because of slow php syntax handling
