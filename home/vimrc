@@ -748,8 +748,8 @@ let NERDTreeMinimalUI=1
 " update xml.vim: if (&filetype == 'xslt' || &filetype == 'html' || &filetype == 'xhtml') && (!exists ("g:xml_no_html"))
 let xml_tag_syntax_prefixes = 'html\|xml\|xsl\|docbk'
 let xml_use_xhtml = 1
-autocmd FileType html let xml_jump_string = "`"
-autocmd FileType xml let xml_jump_string = "`"
+"autocmd FileType html let xml_jump_string = "`"
+"autocmd FileType xml let xml_jump_string = "`"
 
 if !exists("*XmlAttribCallback")
 function XmlAttribCallback( xml_tag )
