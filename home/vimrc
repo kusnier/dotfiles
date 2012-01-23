@@ -671,13 +671,6 @@ let g:UltiSnipsEditSplit = "vertical"
 let g:pasta_disabled_filetypes = ["python", "coffee", "markdown", 'twiki', 'mediawiki']
 
 " }}}
-" Autoclose / delimiMate {{{
-
-" Disable Autoclose, test delimitMate
-let g:autoclose_loaded = 1
-nmap <Leader>a :DelimitMateSwitch<CR>
-
-" }}}
 " Gundo {{{
 
 nnoremap <leader>gt :GundoToggle<CR>
@@ -691,7 +684,7 @@ let g:EasyMotion_leader_key='\'
 " Ack {{{
 
 let g:ackprg="ack -H --nocolor --nogroup --column"
-map <leader>a :Ack! 
+map <leader>A :Ack! 
 
 " }}}
 " notes.vim {{{
