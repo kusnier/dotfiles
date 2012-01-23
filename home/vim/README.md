@@ -50,15 +50,27 @@ Using vim is like talking to your editor in ‘verb modifier object’ sentences
 
 ### General
 
-* `,l` - Toggle invisibles
+* `;` - Mapped to `:`
 * `,p` - Toggle paste mode
 * `<ESC>` - Clear search highlight
-* `,W` - Strip all trailing whitespace in buffer
 * `:Hammer` - Preview markup file in browser
 * `<C-w>o` - Make the current window the only one on the screen
 * `<Space>` - Start command mode (normal mode)
 * `<Space><Space>` - Start shell command mode with (normal mode)
 * `<C-Space>` - Use tags completion
+* `,S` - Source selected code
+* `,o' - List the files that have marks stored in the viminfo file.
+* `,cd` - Switch to the directory of the opened file
+* `,tn` - Open ne tab
+
+### Text manipulation/editing
+
+* `<c-cr>`
+* `,q` - Format text
+* `,Al` - Align left
+* `,Ac` - Align center
+* `,Ar` - Align right
+* `,W` - Strip all trailing whitespace in buffer
 
 ### Insert mode completion
 
