@@ -45,6 +45,10 @@ Using vim is like talking to your editor in ‘verb modifier object’ sentences
 * `zt` - put this line at the 't'op of the screen
 * `zb` - put this line at the 'b'ottom of the screen
 * `zz` - put this line at the middle of the screen
+* `<c-f>` - (forward) moves down 1 page-length.
+* `<c-b>` - (back) moves up 1 page-length.
+* `<c-d>` - (down) moves down 1/2 page-length.
+* `<c-u>` - (up) moves up 1/2 page-length.
 
 ## Bindings
 
