@@ -610,10 +610,12 @@ map <leader>qp :cp<cr>
 " In other words: If a project specific tags file is found it will be used,
 " otherwise the plug-in falls back to the global tags file (or a file type specific tags file).
 let g:easytags_always_enabled = 0
-let g:easytags_dynamic_files = 1
+let g:easytags_dynamic_files = 2
 let g:easytags_resolve_links = 1
 let g:easytags_include_members = 1
 let g:easytags_auto_highlight = 0
+let g:easytags_on_cursorhold = 0
+let g:easytags_auto_update = 0
 
 highlight cMember guifg=#1155ff
 highlight phpFunctionsTag guifg=#1155ff
