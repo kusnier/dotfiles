@@ -50,6 +50,29 @@ Using vim is like talking to your editor in ‘verb modifier object’ sentences
 * `<c-d>` - (down) moves down 1/2 page-length.
 * `<c-u>` - (up) moves up 1/2 page-length.
 
+### Ex
+
+#### Ranges
+
+* `:%s/text/replacement/` - Global substitution
+* `:20 s/text/replacement/` - Only on line 20
+* `:20,30 s/text/replacement/` - Between line 20 and 30
+* `:-2,+2 s/text/replacement/` - Relative to the current line
+* `:20,$ s/text/replacement/` - Between line 20 and last line
+* `:'a,'b s/text/replacement/` - Between mark a and b
+* `:20,30 d` - Delete lines 20 to 30
+* `:20,30 y` - Yank lines 20 to 30
+* `:20,30 m 40` - Move range to line 40
+* `:20,30 t 40` - Copy range to line 40
+* `:20,30 p` -  - Print line between 20,30
+
+#### Text filters with g and v
+
+* `:g/vim/ m0` - Move all lines matching the regular expression /vim/ to the top of the file
+* `:v/vim/ m0` - retrieve a range of lines that don’t match a regular expression with v
+* `:10,20 g/vim/ m0` - Combine fixed ranges with search ranges
+* `:g/vim/ norm A;` - Add a semicolon to every line matching /vim/
+
 ## Bindings
 
 ### General
