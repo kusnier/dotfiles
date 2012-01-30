@@ -924,6 +924,7 @@ augroup ft_vcscommit
   au!
   autocmd FileType vcscommit setlocal spell
   autocmd FileType vcscommit setlocal spelllang=en
+  autocmd FileType vcscommit setlocal textwidth=78
 augroup END
 
 " }}}
@@ -978,6 +979,7 @@ augroup END
 augroup ft_gitcommit
   au!
   autocmd FileType gitcommit setlocal spell spelllang=en
+  autocmd FileType gitcommit setlocal textwidth=78
 augroup END
 
 " }}}
