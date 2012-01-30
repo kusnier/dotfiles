@@ -2,3 +2,4 @@
 --color-filename=magenta
 --color-match=red
 --all-types
+--ignore-dir=target
