@@ -1002,46 +1002,13 @@ augroup END
 
 augroup ft_php
   au!
-  autocmd FileType php setlocal foldmethod=marker
-  autocmd FileType php setlocal foldmarker={,}
-  " http://phpslacker.com/2009/02/05/vim-tips-for-php-programmers/
-  " highlights interpolated variables in sql strings and does sql-syntax highlighting. yay
-  " set to 0, because of slow php syntax handling
-  autocmd FileType php let php_sql_query=0
-  " does exactly that. highlights html inside of php strings (sql, etc)
-  " set to 0, because of slow php syntax handling
-  autocmd FileType php let php_htmlInStrings=0
-  " discourages use oh short tags. c'mon its deprecated remember
-  autocmd FileType php let php_noShortTags=1
-  " automagically folds functions & methods. this is getting IDE-like isn't it?
-  " set to 0, because of slow php syntax handling
-  autocmd FileType php let php_folding=0
-  " set to 0, because of slow php syntax handling
-  autocmd FileType php let php_strict_blocks=0
-  let php_minlines=300
-  " for highlighting baselib functions
+  " Folding classes and functions
+  autocmd FileType php let php_folding=1
+  " For highlighting baselib functions
   autocmd FileType php let php_baselib = 1
-  " syntax works out whether -> indicates a property or method.
-  " Otherwise method colours may be used on properties, for
-  " set to 0, because of slow php syntax handling
-  autocmd FileType php let php_smart_members = 0
-  " use a different color for '->' based on whether it is used
-  " for property access, method access, or dynamic access (using
-  " '->{...}')
-  autocmd FileType php let php_alt_properties = 1
-  " to colorize ( and ) around an array body, as well as '=>'
-  " requires php_strict_blocks
-  " Setting this to '2' will highlighting the commas as well.
-  " Commas are not highlighted by default because it's too much
-  " color.
-  autocmd FileType php let php_alt_arrays = 2
-  " ... to colorize the ( and ) around an if, while, foreach, or switch body.
-  ""autocmd FileType php let php_alt_construct_parents = 1
-  " If a PHP script has more lines than this limit (e.g., more
-  " than 3000 lines), some options are automatically turned off
-  " to help it load faster.  These options are:
-  " set to 0, because of slow php syntax handling
-  autocmd FileType php let php_large_file = 1000
+  " Disable short tags
+  autocmd FileType php let php_noShortTags = 1
+  autocmd FileType php let php_parentError = 1
 
   " set "make" command when editing php files
   autocmd FileType php setl makeprg=php\ -l\ %
