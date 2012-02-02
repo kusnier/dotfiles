@@ -561,6 +561,12 @@ map <F7> :set spell!<CR>
 " }}}
 " Plugin options ---------------------------------------------------------- {{{
 
+" CamelCaseComplete {{{
+
+let g:CamelCaseComplete_complete = '.,w'
+let g:CamelCaseComplete_FindStartMark = ''
+
+" }}}
 " SuperTab {{{
 
 let g:SuperTabDefaultCompletionType='context'
@@ -1018,6 +1024,7 @@ augroup ft_php
   autocmd FileType php setl makeprg=php\ -l\ %
   autocmd FileType php setl errorformat=%m\ in\ %f\ on\ line\ %l
   autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+  autocmd FileType php let b:CamelCaseComplete_complete = '.,w,t'
 augroup END
 
 " }}}
