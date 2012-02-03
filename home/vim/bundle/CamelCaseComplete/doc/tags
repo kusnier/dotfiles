@@ -1,0 +1,17 @@
+CamelCaseComplete-configuration	CamelCaseComplete.txt	/*CamelCaseComplete-configuration*
+CamelCaseComplete-dependencies	CamelCaseComplete.txt	/*CamelCaseComplete-dependencies*
+CamelCaseComplete-description	CamelCaseComplete.txt	/*CamelCaseComplete-description*
+CamelCaseComplete-history	CamelCaseComplete.txt	/*CamelCaseComplete-history*
+CamelCaseComplete-ideas	CamelCaseComplete.txt	/*CamelCaseComplete-ideas*
+CamelCaseComplete-installation	CamelCaseComplete.txt	/*CamelCaseComplete-installation*
+CamelCaseComplete-known-problems	CamelCaseComplete.txt	/*CamelCaseComplete-known-problems*
+CamelCaseComplete-limitations	CamelCaseComplete.txt	/*CamelCaseComplete-limitations*
+CamelCaseComplete-todo	CamelCaseComplete.txt	/*CamelCaseComplete-todo*
+CamelCaseComplete-usage	CamelCaseComplete.txt	/*CamelCaseComplete-usage*
+CamelCaseComplete.txt	CamelCaseComplete.txt	/*CamelCaseComplete.txt*
+CamelCaseComplete.vim	CamelCaseComplete.txt	/*CamelCaseComplete.vim*
+b:CamelCaseComplete_complete	CamelCaseComplete.txt	/*b:CamelCaseComplete_complete*
+g:CamelCaseComplete_CaseInsensitiveFallback	CamelCaseComplete.txt	/*g:CamelCaseComplete_CaseInsensitiveFallback*
+g:CamelCaseComplete_FindStartMark	CamelCaseComplete.txt	/*g:CamelCaseComplete_FindStartMark*
+g:CamelCaseComplete_complete	CamelCaseComplete.txt	/*g:CamelCaseComplete_complete*
+i_CTRL-X_CTRL-C	CamelCaseComplete.txt	/*i_CTRL-X_CTRL-C*

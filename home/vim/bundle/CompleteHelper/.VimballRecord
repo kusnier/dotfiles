@@ -1,0 +1,1 @@
+CompleteHelper.vba.gz: call delete('/Users/seek/.vim/bundle/CompleteHelper/autoload/CompleteHelper.vim')|call delete('/Users/seek/.vim/bundle/CompleteHelper/autoload/CompleteHelper/Repeat.vim')|call delete('/Users/seek/.vim/bundle/CompleteHelper/autoload/EchoWithoutScrolling.vim')|call delete('/Users/seek/.vim/bundle/CompleteHelper/doc/CompleteHelper.txt')
