@@ -115,6 +115,7 @@ Using vim is like talking to your editor in ‘verb modifier object’ sentences
 * `<c-x><c-u>` - User defined completion.
 * `<c-x><c-o>` - Omni completion.
 * `<c-x>s` - Spelling suggestions.
+* `<c-x><c-c>` - CamelCaseComplete completion. (plugin)
 
 ### CTRL-R {0-9a-z”%#:-=.} <small>*(insert mode)*</small>
 
