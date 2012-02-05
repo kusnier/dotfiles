@@ -391,7 +391,6 @@ set infercase " adjust the case of auto completed words
 set showfulltag
 set tags=
 set tags+=tags;$HOME
-set tags+=./tags;$HOME
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 map <leader>] :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
