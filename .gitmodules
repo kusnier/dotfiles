@@ -144,3 +144,4 @@
 [submodule "home/vim/bundle/ultisnips"]
 	path = home/vim/bundle/ultisnips
 	url = git://github.com/SirVer/ultisnips.git
+  ignore = dirty
