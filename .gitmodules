@@ -145,3 +145,6 @@
 	path = home/vim/bundle/ultisnips
 	url = git://github.com/SirVer/ultisnips.git
   ignore = dirty
+[submodule "home/vim/bundle/delimitMate"]
+	path = home/vim/bundle/delimitMate
+	url = git://github.com/Raimondi/delimitMate.git

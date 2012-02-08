@@ -12,6 +12,3 @@
   path = home/vim/bundle/vim-session
   url = git://github.com/xolox/vim-session
   ignore = dirty
-[submodule "home/vim/bundle/delimitMate"]
-  path = home/vim/bundle/delimitMate
-  url = git://github.com/Raimondi/delimitMate.git
