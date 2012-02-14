@@ -1111,7 +1111,7 @@ augroup END
 
 augroup ft_html
   au!
-  let b:loaded_delimitMate = 0
+  autocmd FileType html,xsl let b:loaded_delimitMate = 0
   autocmd FileType html,xsl setlocal foldmethod=manual
   autocmd FileType html,xsl setlocal omnifunc=htmlcomplete#CompleteTags
 
