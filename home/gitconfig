@@ -27,6 +27,8 @@
   ls = ls-files
   g  = grep -I
   vd = difftool -y -t gvimdiff
+  p = !"git pull; git submodule foreach git pull origin master"
+  undopush = push -f origin HEAD^:master
 
   # Show files ignored by git:
   ign = ls-files -o -i --exclude-standard
