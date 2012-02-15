@@ -429,7 +429,7 @@ if has("gui_running")
     set guifont=DejaVu\ Sans\ Mono\ 8
   endif
 
-colorscheme badwolf
+colorscheme molokai
 
 endif
 " Custom highlights
