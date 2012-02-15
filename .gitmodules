@@ -83,9 +83,6 @@
 	path = home/vim/bundle/vim-notes
 	url = git://github.com/xolox/vim-notes.git
 	ignore = dirty
-[submodule "home/vim/bundle/vim-javascript"]
-	path = home/vim/bundle/vim-javascript
-	url = git://github.com/pangloss/vim-javascript.git
 [submodule "home/vim/bundle/phpcomplete.vim"]
 	path = home/vim/bundle/phpcomplete.vim
 	url = git://github.com/shawncplus/phpcomplete.vim.git
