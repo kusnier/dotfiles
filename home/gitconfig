@@ -24,6 +24,7 @@
   lg = log -p
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  l = log --pretty=oneline -n 20 --graph
   ls = ls-files
   g  = grep -I
   vd = difftool -y -t gvimdiff
