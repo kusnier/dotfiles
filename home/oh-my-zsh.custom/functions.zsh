@@ -6,15 +6,3 @@ function f () {
   echo "  $ ls **/filename*"
 }
 
-# Start an HTTP server from a directory, optionally specifying the port
-function server() {
-  local port="${1:-8000}"
-  if [[ -e $( which serve ) ]]; then
-    open "http://localhost:${port}/" && serve -p "$port"
-  elif [[ -e $( which python ) ]] then
-    open "http://localhost:${port}/" && python -m SimpleHTTPServer $port
-  else
-    echo "Can't share directory!"
-    echo "Node.js serve or python not found!"
-  fi
-}

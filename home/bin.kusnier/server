@@ -1,0 +1,17 @@
+#!/bin/zsh
+#
+# Requirements: node.js module server or python
+
+# On linux use open like in macos
+[[ `uname -s` == 'Linux' ]] && alias open=xdg-open
+
+# Start an HTTP server from a directory, optionally specifying the port
+port="${1:-8000}"
+if [[ -e $( which serve ) ]]; then
+  open "http://localhost:${port}/" && serve -p "$port"
+elif [[ -e $( which python ) ]]; then
+  open "http://localhost:${port}/" && python -m SimpleHTTPServer $port
+else
+  echo "Can't share directory!"
+  echo "Node.js serve or python not found!"
+fi
