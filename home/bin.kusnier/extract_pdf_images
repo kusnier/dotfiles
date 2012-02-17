@@ -1,0 +1,6 @@
+#!/bin/bash
+
+mkdir ./"$1_images"
+pdfimages -j "$1" ./"$1_images"/PDFimage
+find ./"$1_images"/ -name '*.ppm' -exec convert {} {}.png \;
+rm ./"$1_images"/*.ppm
