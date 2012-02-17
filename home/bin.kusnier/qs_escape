@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+var qs= require('querystring');
+var util= require('util');
+
+// print each argument escaped
+process.argv.forEach(function (val, index, array) {
+  if (index > 1) {
+    console.log(qs.escape(val));
+  }
+});
