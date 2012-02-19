@@ -4,6 +4,9 @@ alias v="vim"
 alias gv="gvim"
 alias gt="gvim --remote-tab-silent"
 
+# Use MacVim in terminal too
+[[ -x `which mvim` ]] && alias vim="mvim -v"
+
 #Suffix aliases
 # filename.md pressing return-key starts gvim
 alias -s md=gvim
