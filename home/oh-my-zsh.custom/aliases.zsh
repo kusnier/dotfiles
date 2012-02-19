@@ -5,6 +5,7 @@ alias gv="gvim"
 alias gt="gvim --remote-tab-silent"
 
 # Use MacVim in terminal too
+# or: brew install macvim --override-system-vim
 [[ -x `which mvim` ]] && alias vim="mvim -v"
 
 #Suffix aliases
