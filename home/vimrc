@@ -1345,6 +1345,7 @@ augroup END
 " Quick editing ----------------------------------------------------------- {{{
 
 nnoremap <leader>ev :e $MYVIMRC<cr>
+nnoremap <leader>ef :e ~/.vimperatorrc<cr>
 nnoremap <leader>es :e ~/.vim/UltiSnips/<cr>
 nnoremap <leader>ed :e ~/dotfiles/<cr>
 
