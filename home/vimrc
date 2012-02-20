@@ -489,7 +489,9 @@ set wildmode=list:longest,list:full
 set wildignore=*.o,*.r,*.so,*.sl,*.tar,*.tgz,*.svn
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 set wildignore+=*.DS_Store                       " OSX bullshit
-set wildignore+=*/target/*
+set wildignore+=*/target/app/*
+set wildignore+=*/target/classes/*
+set wildignore+=*/target/*_RELEASE/*
 " remember last 2000 typed commands
 set history=200
 if has('cmdline_info')
