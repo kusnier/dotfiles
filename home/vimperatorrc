@@ -49,3 +49,5 @@ autocmd LocationChange .* js modes.passAllKeys = /www\.google\.com\/reader/.test
 set passkeys+='http://www\.google\.com/reader':nplmsStjkvoJKVOA
 
 source ~/devel/gcode/conf/firefox/vimperator/vimperatorrc
+
+:bmark -keyword=vrm https://github.com/kusnier/dotfiles/blob/master/home/vim/README.md
