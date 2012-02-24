@@ -199,3 +199,34 @@ endsnippet
 snippet r "Table Row"
 | ${1:data} | ${2:data} | ${3:data} | ${4:data} |
 endsnippet
+
+snippet nb "NoteBox (warning)" b
+%INCLUDE{"Wikisystem.NoteBox" section="warning" TEXT="
+${VISUAL:text}
+"}%
+endsnippet
+
+snippet nb "NoteBox (info)" b
+%INCLUDE{"Wikisystem.NoteBox" section="info" TEXT="
+${VISUAL:text}
+"}%
+endsnippet
+
+snippet nb "NoteBox (tip)" b
+%INCLUDE{"Wikisystem.NoteBox" section="tip" TEXT="
+${VISUAL:text}
+"}%
+endsnippet
+
+snippet nb "NoteBox (ok)" b
+%INCLUDE{"Wikisystem.NoteBox" section="ok" TEXT="
+${VISUAL:text}
+"}%
+endsnippet
+
+snippet nb "NoteBox (general)" b
+%INCLUDE{"Wikisystem.NoteBox" section="general" TEXT="
+${VISUAL:text}
+"}%
+endsnippet
+
