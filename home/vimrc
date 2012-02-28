@@ -258,6 +258,11 @@ set equalalways
 set splitbelow " New window goes below
 set splitright " New windows goes right
 
+" Split resizing
+nmap <left>  :3wincmd <<cr>
+nmap <right> :3wincmd ><cr>
+nmap <up>    :3wincmd +<cr>
+nmap <down>  :3wincmd -<cr>
 " Faster split resizing (+,-)
 if bufwinnr(1)
   map + <C-W>+
@@ -282,6 +287,13 @@ nnoremap <c-h> :call WinMove('h')<cr>
 nnoremap <c-k> :call WinMove('k')<cr>
 nnoremap <c-l> :call WinMove('l')<cr>
 nnoremap <c-j> :call WinMove('j')<cr>
+map <leader>wc :wincmd q<cr>
+map <leader>wr <C-W>r
+map <leader>H  :wincmd H<cr>
+map <leader>K  :wincmd K<cr>
+map <leader>L  :wincmd L<cr>
+map <leader>J  :wincmd J<cr>
+
 
 " redraw window so search terms are centered
 nnoremap n nzzzv
@@ -1386,10 +1398,10 @@ inoremap  <Up>     <NOP>
 inoremap  <Down>   <NOP>
 inoremap  <Left>   <NOP>
 inoremap  <Right>  <NOP>
-noremap   <Up>     <NOP>
-noremap   <Down>   <NOP>
-noremap   <Left>   <NOP>
-noremap   <Right>  <NOP>
+"noremap   <Up>     <NOP>
+"noremap   <Down>   <NOP>
+"noremap   <Left>   <NOP>
+"noremap   <Right>  <NOP>
 
 " }}}
 

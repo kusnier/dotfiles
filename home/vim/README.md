@@ -90,6 +90,28 @@ Using vim is like talking to your editor in ‘verb modifier object’ sentences
 * `,cd` - Switch to the directory of the opened file
 * `,tn` - Open ne tab
 
+### Window / Split
+
+* `<C-h>` - Split left / Move to left
+* `<C-l>` - Split right / Move to right
+* `<C-k>` - Split top / Move to top
+* `<C-j>` - Split bottom / Move to bottom
+
+* `,wc` - Close window
+* `,wr` - Rotate window
+
+Move split/window
+
+* `,h` - Move window to left
+* `,l` - Move window to right
+* `,k` - Move window to top
+* `,j` - Move window to bottom
+
+* `<left>` - Resize split to left +3
+* `<right>` - Resize split to right +3
+* `<up>` - Resize split to top +3
+* `<bottom>` - Resize split to bottom +3
+
 ### Text manipulation/editing
 
 * `<c-cr>`
