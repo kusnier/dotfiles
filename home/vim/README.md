@@ -435,18 +435,6 @@ Jump bindings
 
 * `:SuperTabHelp` - list all available completion types
 
-### Session
-
-The session command supports completion
-
-* `:OpenSession <name>` - Open a saved session
-* `:SaveSession <name>` - Save this/new session
-* `:ColseSession` - Close session
-* `:DeleteSession` - Delete session
-* `:ViewSession <name>` - View the Vim cript generated for a session
-* `:RestartVim` - Save current editing session, restart vim and restore the session
-* `$gvim --servername name` - Start vim and open session if exists
-
 ### vim-fugitive
 
 #### Screencasts
