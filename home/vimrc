@@ -264,15 +264,24 @@ if bufwinnr(1)
   map - <C-W>-
 endif
 
-" Normal mode mappings
-" select window to left
-nnoremap <C-h> <C-w>h
-" select window below
-nnoremap <C-j> <C-w>j
-" select window above
-nnoremap <C-k> <C-w>k
-" select window to right
-nnoremap <C-l> <C-w>l
+
+function! WinMove(key) 
+  let t:curwin = winnr()
+  exec "wincmd ".a:key
+  if (t:curwin == winnr()) "we havent moved
+    if (match(a:key,'[jk]')) "were we going up/down
+      wincmd v
+    else 
+      wincmd s
+    endif
+    exec "wincmd ".a:key
+  endif
+endfunction
+" Split/Move to window with the same command
+nnoremap <c-h> :call WinMove('h')<cr>
+nnoremap <c-k> :call WinMove('k')<cr>
+nnoremap <c-l> :call WinMove('l')<cr>
+nnoremap <c-j> :call WinMove('j')<cr>
 
 " redraw window so search terms are centered
 nnoremap n nzzzv
