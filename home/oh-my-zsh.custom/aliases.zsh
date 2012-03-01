@@ -100,3 +100,8 @@ alias wget-fullpage="wget -e robots=off --page-requisites --span-hosts --convert
 #How to temporarily stop using aliases
 #When you want to call the command instead of the alias, then you have to escape it and call.
 # $ \aliasname
+
+if [[ `uname -s` == 'Darwin' ]]; then 
+  alias airport="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport"
+  alias wlan_scan="airport -s"
+fi
