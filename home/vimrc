@@ -97,6 +97,9 @@ augroup END
 set pastetoggle=<leader>p
 map <leader>p :set invpaste paste?<CR>
 
+" Save when losing focus
+au FocusLost * :silent! wall
+
 " }}}
 " General Bindings -------------------------------------------------------- {{{
 
