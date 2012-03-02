@@ -297,6 +297,14 @@ Input Formats
 
 * `<leader>a` - Toogle autoclose
 
+
+### Ack motions
+
+Motions to Ack for things.  Works with pretty much everything, including:  
+w, W, e, E, b, B, t*, f*, i*, a*, and custom text objects
+
+* `<motion>\a` - Search with ack
+
 ### Buffder / Tab / Window
 
 * `C-w T` - to change that split into a new tab.
