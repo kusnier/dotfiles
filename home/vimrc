@@ -195,6 +195,9 @@ vnoremap <leader>Ar :right<cr>
 inoremap <c-cr> <esc>A<cr>
 inoremap <s-cr> <esc>A:<cr>
 
+" Change case
+nnoremap U gUiw
+
 " }}}
 " List chars - Show invisibles -------------------------------------------- {{{
 
