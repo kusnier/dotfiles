@@ -106,5 +106,5 @@ if [[ `uname -s` == 'Darwin' ]]; then
   alias wlan_scan="airport -s"
 fi
 
-alias random_mac="openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'"
-alias set_random_mac="sudo ifconfig en0 ether $(random_mac)"
+alias random_mac="ruby -e 'puts (\"%02x\"%((rand 64)*4|2))+(0..4).inject(\"\"){|s,x|s+\":%02x\"%(rand 256)}'"
+alias set_random_mac="echo sudo ifconfig en0 ether $(random_mac)"
