@@ -105,3 +105,5 @@ if [[ `uname -s` == 'Darwin' ]]; then
   alias airport="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport"
   alias wlan_scan="airport -s"
 fi
+
+alias random_mac="openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'"
