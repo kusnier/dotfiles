@@ -107,3 +107,4 @@ if [[ `uname -s` == 'Darwin' ]]; then
 fi
 
 alias random_mac="openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'"
+alias set_random_mac="sudo ifconfig en0 ether $(random_mac)"
