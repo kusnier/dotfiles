@@ -683,6 +683,11 @@ let g:tabman_side   = 'right'
 let g:tabman_width = 20
 
 " }}}
+" MarkGreen {{{
+
+map <Leader>ut <Plug>MakeGreen
+
+" }}}
 " Tabbar {{{
 
 nnoremap <leader>tb :TagbarToggle<CR>
