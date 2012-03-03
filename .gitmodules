@@ -151,3 +151,6 @@
 [submodule "home/vim/bundle/vim-javascript-syntax"]
 	path = home/vim/bundle/vim-javascript-syntax
 	url = git://github.com/jelera/vim-javascript-syntax.git
+[submodule "home/vim/bundle/nodeunit.vim"]
+	path = home/vim/bundle/nodeunit.vim
+	url = git://github.com/lambdalisue/nodeunit.vim.git
