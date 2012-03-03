@@ -112,6 +112,14 @@ Move split/window
 * `<up>` - Resize split to top +3
 * `<bottom>` - Resize split to bottom +3
 
+### Quickfix
+
+* `:cl` - display the list of error
+* `:cn` - jump to the next error
+* `:cp` - jump to the previous error
+* `:copen` - open a buffer with the list of error
+* `:cw` - close it
+
 ### Text manipulation/editing
 
 * `<c-cr>`
