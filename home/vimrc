@@ -1132,6 +1132,9 @@ augroup ft_javascript
   autocmd FileType javascript setlocal foldmarker={,}
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
+" Nodeunit
+  autocmd BufNewFile,BufRead test/test-*.js :compiler nodeunit
+
   " Make {<cr> insert a pair of brackets in such a way that the cursor is correctly
   " positioned inside of them AND the following code doesn't get unfolded.
   autocmd Filetype javascript inoremap <buffer> {<cr> {}<left><cr><space><space><space><space>.<cr><esc>kA<bs>
