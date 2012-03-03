@@ -18,6 +18,7 @@ sqlutil-format-options	SQLUtilities.txt	/*sqlutil-format-options*
 sqlutil-formatter	SQLUtilities.txt	/*sqlutil-formatter*
 sqlutil-history	SQLUtilities.txt	/*sqlutil-history*
 sqlutil-mappings	SQLUtilities.txt	/*sqlutil-mappings*
+sqlutil-options	SQLUtilities.txt	/*sqlutil-options*
 sqlutil-procedure	SQLUtilities.txt	/*sqlutil-procedure*
 sqlutil-todo	SQLUtilities.txt	/*sqlutil-todo*
 sqlutil-tutorial	SQLUtilities.txt	/*sqlutil-tutorial*
