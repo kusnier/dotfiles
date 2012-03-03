@@ -154,6 +154,3 @@
 [submodule "home/vim/bundle/nodeunit.vim"]
 	path = home/vim/bundle/nodeunit.vim
 	url = git://github.com/lambdalisue/nodeunit.vim.git
-[submodule "home/vim/vim-makegreen"]
-	path = home/vim/vim-makegreen
-	url = git://github.com/reinh/vim-makegreen.git
