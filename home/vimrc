@@ -685,7 +685,7 @@ let g:tabman_width = 20
 " }}}
 " MarkGreen {{{
 
-map <Leader>ut <Plug>MakeGreen
+map <silent> <Leader>ut :call MakeGreen()<cr>
 
 " }}}
 " Tabbar {{{
