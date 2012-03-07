@@ -1265,6 +1265,9 @@ augroup ft_xml
   au FileType xml nnoremap <buffer> <localleader>= Vat=
 
   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+  " Formatting XML in Vim with indent command
+  autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
 augroup END
 
 " }}}
