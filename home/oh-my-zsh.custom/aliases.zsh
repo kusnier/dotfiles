@@ -2,7 +2,8 @@
 alias c='clear'
 alias v="vim"
 alias gv="gvim"
-alias gt="gvim --remote-tab-silent"
+alias gvim="gvim --remote-tab-silent"
+alias mvim="mvim --remote-tab-silent"
 
 # Use MacVim in terminal too
 # or: brew install macvim --override-system-vim
