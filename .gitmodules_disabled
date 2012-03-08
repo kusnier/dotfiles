@@ -12,3 +12,10 @@
   path = home/vim/bundle/vim-session
   url = git://github.com/xolox/vim-session
   ignore = dirty
+[submodule "home/vim/bundle/vim-easytags"]
+  path = home/vim/bundle/vim-easytags
+  url = git://github.com/xolox/vim-easytags.git
+  ignore = dirty
+[submodule "home/vim/bundle/headlights"]
+  path = home/vim/bundle/headlights
+  url = https://github.com/mbadran/headlights.git
