@@ -134,9 +134,6 @@
 [submodule "home/vim/bundle/delimitMate"]
 	path = home/vim/bundle/delimitMate
 	url = git://github.com/Raimondi/delimitMate.git
-[submodule "home/vim/bundle/badwolf"]
-	path = home/vim/bundle/badwolf
-	url = git://github.com/sjl/badwolf.git
 [submodule "home/vim/bundle/vim-javascript-syntax"]
 	path = home/vim/bundle/vim-javascript-syntax
 	url = git://github.com/jelera/vim-javascript-syntax.git
