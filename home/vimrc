@@ -1222,6 +1222,19 @@ augroup ft_css
   autocmd Filetype less,css setlocal omnifunc=csscomplete#CompleteCSS
   autocmd Filetype less,css setlocal iskeyword+=-
 
+  function! CssFoldText()
+      let line = getline(v:foldstart)
+      let nnum = nextnonblank(v:foldstart + 1)
+      while nnum < v:foldend+1
+          let line = line . " " . substitute(getline(nnum), "^ *", "", "g")
+          let nnum = nnum + 1
+      endwhile
+      return line
+  endfunction
+
+  autocmd Filetype css setlocal foldtext=CssFoldText()
+  autocmd Filetype css setlocal fillchars=fold:\ 
+
   " Use <leader>S to sort properties.  Turns this:
   "
   "     p {
