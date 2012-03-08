@@ -5,6 +5,8 @@ alias gv="gvim"
 alias gvim="gvim --remote-tab-silent"
 alias mvim="mvim --remote-tab-silent"
 [[ `uname -s` == 'Darwin' ]] && alias gvim="mvim --remote-tab-silent"
+[[ `uname -s` == 'Darwin' ]] && alias gview="mview"
+[[ `uname -s` == 'Darwin' ]] && alias gvimdiff="mvimdiff"
 
 
 # Use MacVim in terminal too
