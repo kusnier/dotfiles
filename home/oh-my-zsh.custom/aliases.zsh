@@ -3,7 +3,6 @@ alias c='clear'
 alias v="vim"
 alias gv="gvim"
 alias gvim="gvim --remote-tab-silent"
-alias mvim="mvim --remote-tab-silent"
 [[ `uname -s` == 'Darwin' ]] && alias gvim="mvim"
 [[ `uname -s` == 'Darwin' ]] && alias gview="mview"
 [[ `uname -s` == 'Darwin' ]] && alias gvimdiff="mvimdiff"
