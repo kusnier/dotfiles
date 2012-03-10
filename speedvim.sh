@@ -1,10 +1,10 @@
 #!/bin/bash
-cd ~/.vim/bundle
-mkdir ~/.vim/bundle.merged;
-rm -r ~/.vim/bundle.merged/*
+mkdir home/vim/bundle.merged;
+rm -r home/vim/bundle.merged/*
+cd home/vim/bundle
 for d in *;do
   cd $d
-  cp -i -r * ~/.vim/bundle.merged
+  cp -i -r * ../../bundle.merged
 # Cp is better. I will move my vim files to a ramdisk
 #  for f in **/*;do
 #    t="$HOME/.vim/bundle.merged/$(dirname "$f")";
@@ -15,4 +15,4 @@ for d in *;do
 done
 
 # Generate doc/tags file
-vim -c ':helptags ~/.vim/bundle.merged/doc/' -c ':q'
+vim -c ':helptags ../bundle.merged/doc/' -c ':q'
