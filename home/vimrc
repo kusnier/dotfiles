@@ -8,9 +8,14 @@
 
 " Preamble ---------------------------------------------------------------- {{{
 
-"runtime bundle/vim-pathogen/autoload/pathogen.vim
-"call pathogen#infect()
-set rtp+=~/.vim/bundle.merged
+" Load a merged version of all bundles (Move this folder to a ramdisk)
+if isdirectory(expand("~/.vim/bundle.merged"))
+  set rtp+=~/.vim/bundle.merged
+else
+  runtime bundle/vim-pathogen/autoload/pathogen.vim
+  call pathogen#infect()
+endif
+
 set nocompatible
 filetype plugin indent on
 
