@@ -14,3 +14,5 @@ for d in *;do
   cd ..;
 done
 
+# Generate doc/tags file
+vim -c ':helptags ~/.vim/bundle.merged/doc/' -c ':q'
