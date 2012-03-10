@@ -10,7 +10,8 @@
 
 " Load a merged version of all bundles (Move this folder to a ramdisk)
 if isdirectory(expand("~/.vim/bundle.merged"))
-  set rtp+=~/.vim/bundle.merged
+  set rtp-=~/.vim
+  let &rtp="~/.vim,~/.vim/bundle.merged,".&rtp
 else
   runtime bundle/vim-pathogen/autoload/pathogen.vim
   call pathogen#infect()
