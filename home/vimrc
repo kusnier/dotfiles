@@ -8,8 +8,9 @@
 
 " Preamble ---------------------------------------------------------------- {{{
 
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
+"runtime bundle/vim-pathogen/autoload/pathogen.vim
+"call pathogen#infect()
+set rtp+=~/.vim/bundle.merged
 set nocompatible
 filetype plugin indent on
 
