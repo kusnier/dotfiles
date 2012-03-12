@@ -34,7 +34,8 @@ done
 # Generate doc/tags file
 vim -c ':helptags ../bundle.merged/doc/' -c ':q'
 
-
-
-
+# Create a copy on /dev/shm
+cd ../bundle.merged
+mkdir -p /dev/shm/vim.bundle.merged
+cp -R * /dev/shm/vim.bundle.merged
 

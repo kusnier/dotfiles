@@ -9,7 +9,10 @@
 " Preamble ---------------------------------------------------------------- {{{
 
 " Load a merged version of all bundles (Move this folder to a ramdisk)
-if isdirectory(expand("~/.vim/bundle.merged"))
+if isdirectory(expand("/dev/shm/vim.bundle.merged"))
+  set rtp-=~/.vim
+  let &rtp="~/.vim,/dev/shm/vim.bundle.merged,".&rtp
+elseif isdirectory(expand("~/.vim/bundle.merged"))
   set rtp-=~/.vim
   let &rtp="~/.vim,~/.vim/bundle.merged,".&rtp
 else
