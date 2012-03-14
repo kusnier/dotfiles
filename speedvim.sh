@@ -35,8 +35,9 @@ done
 vim -c ':helptags ../bundle.merged/doc/' -c ':q'
 
 # Create a copy on /dev/shm
-cd ../bundle.merged
-mkdir -p /dev/shm/vim.bundle.merged
-rm -r /dev/shm/vim.bundle.merged/*
-cp -R * /dev/shm/vim.bundle.merged
-
+if [[ -d '/dev/shm' ]]; then
+  cd ../bundle.merged
+  mkdir -p /dev/shm/vim.bundle.merged
+  rm -r /dev/shm/vim.bundle.merged/*
+  cp -R * /dev/shm/vim.bundle.merged
+fi
