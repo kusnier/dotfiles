@@ -376,6 +376,9 @@ nnoremap <silent> <leader><leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 " Ack for the last search.
 nnoremap <silent> <leader><leader>? :execute "Ack! '" . substitute(substitute(substitute(@/, "\\\\<", "\\\\b", ""), "\\\\>", "\\\\b", ""), "\\\\v", "", "") . "'"<CR>
 
+" Use tab jump between matches
+map <tab> %
+
 " }}}
 " Spelling ---------------------------------------------------------------- {{{
 
