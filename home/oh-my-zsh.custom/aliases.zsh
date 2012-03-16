@@ -15,6 +15,7 @@ alias vc='gvim -t'
 # Use MacVim in terminal too
 # or: brew install macvim --override-system-vim
 [[ -x `which mvim` ]] && alias vim="mvim -v"
+[[ -x `which mvim` ]] && alias vi="mvim -v"
 
 #Suffix aliases
 # filename.md pressing return-key starts gvim
