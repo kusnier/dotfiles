@@ -1,8 +1,12 @@
 # My aliases
+#
+# vim aliases
 alias c='clear'
-alias v="vim"
-alias gv="gvim"
-alias gvim="gvim --remote-tab-silent"
+alias v='vim'
+alias gv='gvim'
+alias vt='gvim --remote-tab-silent'
+alias vc='gvim -t'
+
 [[ `uname -s` == 'Darwin' ]] && alias gvim="mvim"
 [[ `uname -s` == 'Darwin' ]] && alias gview="mview"
 [[ `uname -s` == 'Darwin' ]] && alias gvimdiff="mvimdiff"
@@ -94,9 +98,6 @@ alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 
 # lpr
 alias lpr_a4="lpr -o media=A4 -o fitplot=true"
-
-# vim aliases
-alias vtag='gvim -t'
 
 alias wget-mirror="wget -e robots=off --timestamping --recursive --level=inf --no-parent --page-requisites --convert-links --backup-converted"
 alias wget-fullpage="wget -e robots=off --page-requisites --span-hosts --convert-links"
