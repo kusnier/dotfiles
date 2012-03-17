@@ -1108,6 +1108,7 @@ augroup ft_php
   au!
   " Folding classes and functions
   autocmd FileType php let php_folding=1
+  autocmd FileType php setlocal foldmethod=syntax
   " For highlighting baselib functions
   autocmd FileType php let php_baselib = 1
   " Disable short tags
