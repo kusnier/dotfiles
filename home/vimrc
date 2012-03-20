@@ -578,6 +578,26 @@ cnoremap <C-a> <Home>
 " jump to end of command line
 cnoremap <C-e> <End>
 
+" enter cmdline-window by default with :, / and ?
+nn : q:i
+vn : q:i
+nn / q/i
+vn / q/i
+nn ? q?i
+vn ? q?i
+" allow leaving cmdline-window with empty line
+au CmdwinEnter * nnoremap :q:echo ""
+" allow normal cmdline :, / and ?
+nn q: :
+vn q: :
+nn q/ /
+vn q/ /
+nn q? ?
+vn q? ?
+
+"if it’s not formated properly here’s the link to someone’s vimrc:
+"https://github.com/paradigm/dotfiles/blob/master/.vimrc#L103
+
 " }}}
 " Spell ------------------------------------------------------------------- {{{
 
