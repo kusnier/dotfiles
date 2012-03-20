@@ -49,6 +49,22 @@ Using vim is like talking to your editor in ‘verb modifier object’ sentences
 * `<c-b>` - (back) moves up 1 page-length.
 * `<c-d>` - (down) moves down 1/2 page-length.
 * `<c-u>` - (up) moves up 1/2 page-length.
+* `{` - Move to start of previous paragraph or code block.
+* `}` - Move to end of next paragraph or code block.
+* `/<search>` - Search forward
+* `?<search>` - Search backward
+* `t<char>` - Move forward until the next occurrence of the character.
+* `f<char>` - Move forward over the next occurrence of the character.
+* `T<char>` - Move backward until the previous occurrence of the character.
+* `F<char>` - Move backward over the previous occurrence of the character.
+* Moving wordwise with w, W, b, B, e, and E is better, too.
+
+### Repeat
+
+* `@:` - Repeat last command
+* `n` or `N` - for searches
+* `&` - Repeat substitution
+* `@@` - Repeat macro
 
 ### Ex
 
@@ -198,6 +214,8 @@ Examples
 
 #### History
 
+The window will close when this is done, but you can close it with Ctrl+W, C the same as any other window if you change your mind.
+
 * `q:` - Open Ex command-line history
 * `q/` or `q?` - Open search string history
 
@@ -222,6 +240,7 @@ Examples
 * `guu` - Make current line lowercase.
 * `g~{motion}` - Switch ase of {motion} text.
 * `g~~` - Switch case of current line.
+* `~` - Change case of current letter **(consider :set tildeop.)**
 
 ### phpDocumentor
 
