@@ -71,6 +71,7 @@ Vim has a so called “very magic” (/s\v) mode for regexes which allows you to
 * `n` or `N` - for searches
 * `&` - Repeat substitution
 * `@@` - Repeat macro
+* `,` and `;` - repeat last `f` or `F`
 
 ### Ex
 
