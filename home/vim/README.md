@@ -528,8 +528,79 @@ let g:EasyMotion_leader_key='\'
 * `:SudoWrite`: Write a privileged file with `sudo`.
 * `:W`: Write every open file.
 
-## Plugins
+### Unimpaired
 
-_Todo_
+#### NEXT AND PREVIOUS
 
-1. Add used plugins with author/links
+* `[a` - :previous
+* `]a` - :next
+* `[A` - :first
+* `]A` - :last
+* `[b` - :bprevious
+* `]b` - :bnext
+* `[B` - :bfirst
+* `]B` - :blast
+* `[l` - :lprevious
+* `]l` - :lnext
+* `[L` - :lfirst
+* `]L` - :llast
+* `[q` - :cprevious
+* `]q` - :cnext
+* `[Q` - :cfirst
+* `]Q` - :clast
+* `[t` - :tprevious
+* `]t` - :tnext
+* `[T` - :tfirst
+* `]T` - :tlast
+* `[o` - Go to the file preceding the current one alphabetically in the current file's directory.
+* `]o` - Go to the file succeeding the current one alphabetically in the current file's directory.
+* `[n` - Go to the previous SCM conflict marker.  Try d[n inside a conflict.
+* `]n` - Go to the next SCM conflict marker.  Try d]n inside a conflict.
+
+#### LINE OPERATIONS
+
+* `[<Space>` - Add [count] blank lines above the cursor.
+* `]<Space>`  - Add [count] blank lines below the cursor.
+* `[e` - Exchange the current line with [count] lines above it.
+* `]e` - Exchange the current line with [count] lines below it.
+
+#### ENCODING AND DECODING
+
+Each of these operations has a map that takes a motion, a map that
+targets [count] lines, and a visual mode map.  The linewise variant integrates
+with repeat.vim.
+
+Mnenomic: encoding always comes before decoding; "[" always comes before "]".
+
+* `[x{motion}` - XML encode.
+* `[xx` - `<foo bar="baz"> => &lt;foo bar=&quot;baz&quot&gt;`
+* `{Visual}[x`
+
+* `]x{motion}` - XML decode.  HTML entities are handled as well.
+* `]xx`
+* `{Visual}]x`
+
+* `[u{motion}` - URL encode.
+* `[uu` - `foo bar => foo%20bar`
+* `{Visual}[u`
+
+* `]u{motion}` -  URL decode.
+* `]uu`
+* `{Visual}]u`
+
+* `[y{motion}` -  C String encode.  Backslash escape control
+* `[yy` - characters, quotation marks, and backslashes.
+* `{Visual}[y`
+
+* `]y{motion}` - C String decode.
+* `]yy`
+* `{Visual}]y`
+
+* `[Y{motion}` -  Base64 encode.
+* `[YY` - `foo bar => Zm9vIGJhcg==`
+* `{Visual}[Y`
+
+* `]Y{motion}` -  Base64 decode
+* `]YY` - Input length must be a multiple of 4.
+* `{Visual}]Y`
+
