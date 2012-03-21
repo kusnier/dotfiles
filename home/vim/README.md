@@ -73,6 +73,14 @@ Vim has a so called “very magic” (/s\v) mode for regexes which allows you to
 * `@@` - Repeat macro
 * `,` and `;` - repeat last `f` or `F`
 
+### Commands starting with `g`
+
+See :help g
+
+* `ge` - go to previous word end
+* `gi` or `. it takes you to the position where the last change
+* `gv` - last visual selection (useful too in the context of gi)
+
 ### Ex
 
 #### Ranges
