@@ -44,7 +44,7 @@
 	url = git://github.com/zsh-users/zsh-syntax-highlighting.git
 [submodule "home/vim/bundle/hammer.vim"]
 	path = home/vim/bundle/hammer.vim
-	url = git://github.com/robgleeson/hammer.vim.git
+	url = git://github.com/matthias-guenther/hammer.vim.git
 [submodule "home/oh-my-zsh"]
 	path = home/oh-my-zsh
 	url = git://github.com/kusnier/oh-my-zsh.git
