@@ -143,3 +143,6 @@
 [submodule "home/vim/bundle/vim-makegreen"]
 	path = home/vim/bundle/vim-makegreen
 	url = git://github.com/reinh/vim-makegreen.git
+[submodule "home/vim/bundle/vim-unimpaired"]
+	path = home/vim/bundle/vim-unimpaired
+	url = git://github.com/tpope/vim-unimpaired.git
