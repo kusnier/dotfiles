@@ -59,6 +59,12 @@ Using vim is like talking to your editor in ‘verb modifier object’ sentences
 * `F<char>` - Move backward over the previous occurrence of the character.
 * Moving wordwise with w, W, b, B, e, and E is better, too.
 
+### Search
+
+Vim has a so called “very magic” (/s\v) mode for regexes which allows you to use parenthesis, brackets, the alternative separator (i.e. ‘|’), pluses, etc. with their special meaning but without the need to escape those characters.
+
+**(see :help /\v)**
+
 ### Repeat
 
 * `@:` - Repeat last command
