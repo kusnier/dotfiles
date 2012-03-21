@@ -572,28 +572,28 @@ with repeat.vim.
 
 Mnenomic: encoding always comes before decoding; "[" always comes before "]".
 
-* `[x{motion}` - XML encode.
-  `[xx` - `<foo bar="baz"> => &lt;foo bar=&quot;baz&quot&gt;`
+* `[x{motion}` - XML encode.  
+  `[xx` - `<foo bar="baz"> => &lt;foo bar=&quot;baz&quot&gt;`  
   `{Visual}[x`
-* `]x{motion}` - XML decode.  HTML entities are handled as well.
-  `]xx`
+* `]x{motion}` - XML decode.  HTML entities are handled as well.  
+  `]xx`  
   `{Visual}]x`
-* `[u{motion}` - URL encode.
-  `[uu` - `foo bar => foo%20bar`
+* `[u{motion}` - URL encode.  
+  `[uu` - `foo bar => foo%20bar`  
   `{Visual}[u`
-* `]u{motion}` -  URL decode.
-  `]uu`
+* `]u{motion}` -  URL decode.  
+  `]uu`  
   `{Visual}]u`
-* `[y{motion}` -  C String encode.  Backslash escape control
-  `[yy` - characters, quotation marks, and backslashes.
+* `[y{motion}` -  C String encode.  Backslash escape control  
+  `[yy` - characters, quotation marks, and backslashes.  
   `{Visual}[y`
-* `]y{motion}` - C String decode.
-  `]yy`
+* `]y{motion}` - C String decode.  
+  `]yy`  
   `{Visual}]y`
-* `[Y{motion}` -  Base64 encode.
-  `[YY` - `foo bar => Zm9vIGJhcg==`
+* `[Y{motion}` -  Base64 encode.  
+  `[YY` - `foo bar => Zm9vIGJhcg==`  
   `{Visual}[Y`
-* `]Y{motion}` -  Base64 decode
-  `]YY` - Input length must be a multiple of 4.
+* `]Y{motion}` -  Base64 decode  
+  `]YY` - Input length must be a multiple of 4.  
   `{Visual}]Y`
 
