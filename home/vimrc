@@ -644,6 +644,12 @@ let g:SuperTabLongestEnhanced=1
 let g:SuperTabLongestHighlight=1
 let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
 
+autocmd FileType *
+  \ if &omnifunc != '' |
+  \   call SuperTabChain(&omnifunc, "context") |
+  \   call SuperTabSetDefaultCompletionType("context") |
+  \ endif
+
 " }}}
 " ZenCoding {{{
 
