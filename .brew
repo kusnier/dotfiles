@@ -1,0 +1,70 @@
+#!/bin/bash
+
+# Make sure we’re using the latest Homebrew, and upgrade any already-installed formulae
+# vim: ft=sh
+brew update && brew upgrade
+
+brews=(
+  ack
+  atk
+  autojump
+  autossh
+  cairo
+  cmake
+  colordiff
+  ctags
+  dia
+  figlet
+  fontforge
+  gdk-pixbuf
+  gettext
+  git
+  glib
+  growlnotify
+  gtk+
+  htmldoc
+  htop
+  hub
+  id3lib
+  id3v2
+  imagemagick
+  imagesnap
+  intltool
+  jasper
+  jpeg
+  libffi
+  libiconv
+  libtiff
+  libusb
+  libusb-compat
+  little-cms
+  lynx
+  macvim
+  markdown
+  mercurial
+  mongodb
+  mplayer
+  ncftp
+  netcat
+  nmap
+  node
+  pango
+  pixman
+  pkg-config
+  poppler
+  potrace
+  rtmpdump
+  sane-backends
+  spark
+  ssh-copy-id
+  tree
+  unrar
+  watch
+  wget
+  xz
+  yasm
+)
+
+for brew in ${brews[@]} ; do
+  brew install $brew
+done
