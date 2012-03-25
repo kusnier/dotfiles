@@ -1,2 +1,3 @@
 mark.vba.gz: call delete('/Users/seek/.vim/bundle/mark/autoload/mark.vim')|call delete('/Users/seek/.vim/bundle/mark/plugin/mark.vim')|call delete('/Users/seek/.vim/bundle/mark/doc/mark.txt')
 mark.vba.gz: call delete('/home/kuse/.vim/bundle/mark/autoload/mark.vim')|call delete('/home/kuse/.vim/bundle/mark/plugin/mark.vim')|call delete('/home/kuse/.vim/bundle/mark/doc/mark.txt')
+mark.vba.gz: call delete('/Users/seek/.vim/bundle/mark/autoload/mark.vim')|call delete('/Users/seek/.vim/bundle/mark/plugin/mark.vim')|call delete('/Users/seek/.vim/bundle/mark/doc/mark.txt')
