@@ -17,6 +17,9 @@ alias vc='gvim -t'
 [[ -x `which mvim` ]] && alias vim="mvim -v"
 [[ -x `which mvim` ]] && alias vi="mvim -v"
 
+# Get OS X Software Updates, update Homebrew itself, and upgrade installed Homebrew packages
+[[ `uname -s` == 'Darwin' ]] && alias update='sudo softwareupdate -i -a; brew update; brew upgrade'
+
 #Suffix aliases
 # filename.md pressing return-key starts gvim
 alias -s md=gvim
