@@ -27,9 +27,9 @@ git pull --recurse-submodules && ./update_symlinks.sh
 
 ## Speedup vim
 
-With each new module in vim/bundles the startup becomes slower.
+With each new module in vim/bundle the startup becomes slower.
 
-To speedup the startup i have created a script to copy all bundles in a merged folder (bundles.merged).
+To speedup the startup i have created a script to copy all bundles in a merged folder (bundle.merged).
 
 After this merge the merged version is copied to RAM (Linux: /dev/shm).
 
