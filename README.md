@@ -28,10 +28,13 @@ git pull --recurse-submodules && ./update_symlinks.sh
 ## Speedup vim
 
 With each new module in vim/bundles the startup becomes slower.
+
 To speedup the startup i have created a script to copy all bundles in a merged folder (bundles.merged).
+
 After this merge the merged version is copied to RAM (Linux: /dev/shm).
 
 In vimrc i do
+
   * /dev/shm/vim.bundle.merged/ exists -> Add RAM version to runtime path
   * ~/.vim/bundle.merged/ exists -> Add merged version to runtime path
   * Otherwise use pathogen in the normal way
