@@ -35,9 +35,9 @@ After this merge the merged version is copied to RAM (Linux: /dev/shm).
 
 In vimrc i do
 
-  * /dev/shm/vim.bundle.merged/ exists -> Add RAM version to runtime path
-  * ~/.vim/bundle.merged/ exists -> Add merged version to runtime path
-  * Otherwise use pathogen in the normal way
+*   /dev/shm/vim.bundle.merged/ exists -> Add RAM version to runtime path
+*   ~/.vim/bundle.merged/ exists -> Add merged version to runtime path
+*   Otherwise use pathogen in the normal way
 
 ```bash
 yes | ./speedvim.sh
