@@ -117,3 +117,6 @@ fi
 
 alias random_mac="ruby -e 'puts (\"%02x\"%((rand 64)*4|2))+(0..4).inject(\"\"){|s,x|s+\":%02x\"%(rand 256)}'"
 alias set_random_mac="echo sudo ifconfig en0 ether $(random_mac)"
+
+# node/npm
+alias nodemoduleslist="npm list -g | grep '^.─' | sed 's/\W\|[0-9]//g'"
