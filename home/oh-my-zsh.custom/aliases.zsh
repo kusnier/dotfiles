@@ -81,6 +81,8 @@ alias undopush="echo Use new git alias: git undopush"
 alias undocomit="git reset --soft HEAD^"
 # choose changes for staging
 alias gap="git add --patch"
+# Use (g)vim to show log
+alias glog="git log -p | vim - -g -R -c 'set foldmethod=syntax'"
 
 # diff
 alias wdiff="wdiff -n -w $'\033[30;41m' -x $'\033[0m' -y $'\033[30;42m' -z $'\033[0m'"
