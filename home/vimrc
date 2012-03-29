@@ -6,7 +6,8 @@
 " USE :options
 "  for a linteractive list of all options
 
-" Todo: http://stackoverflow.com/questions/4984335/vim-dynamic-runtimepath-per-module-vim-and-slow-startup
+" Speedup: http://stackoverflow.com/questions/4984335/vim-dynamic-runtimepath-per-module-vim-and-slow-startup
+" Profiling: http://stackoverflow.com/questions/1687799/profiling-vim-startup-time
 
 " Preamble ---------------------------------------------------------------- {{{
 
