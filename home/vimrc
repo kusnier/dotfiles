@@ -6,6 +6,8 @@
 " USE :options
 "  for a linteractive list of all options
 
+" Todo: http://stackoverflow.com/questions/4984335/vim-dynamic-runtimepath-per-module-vim-and-slow-startup
+
 " Preamble ---------------------------------------------------------------- {{{
 
 " Load a merged version of all bundles (Move this folder to a ramdisk)
