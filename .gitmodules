@@ -131,9 +131,6 @@
 	path = home/vim/bundle/ultisnips
 	url = git://github.com/SirVer/ultisnips.git
   ignore = dirty
-[submodule "home/vim/bundle/delimitMate"]
-	path = home/vim/bundle/delimitMate
-	url = git://github.com/Raimondi/delimitMate.git
 [submodule "home/vim/bundle/vim-javascript-syntax"]
 	path = home/vim/bundle/vim-javascript-syntax
 	url = git://github.com/jelera/vim-javascript-syntax.git
@@ -146,3 +143,6 @@
 [submodule "home/vim/bundle/vim-unimpaired"]
 	path = home/vim/bundle/vim-unimpaired
 	url = git://github.com/tpope/vim-unimpaired.git
+[submodule "home/vim/bundle/vim-smartinput"]
+	path = home/vim/bundle/vim-smartinput
+	url = git://github.com/kana/vim-smartinput.git
