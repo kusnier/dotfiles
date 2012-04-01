@@ -72,6 +72,7 @@ Vim has a so called “very magic” (/s\v) mode for regexes which allows you to
 * `&` - Repeat substitution
 * `@@` - Repeat macro
 * `,` and `;` - repeat last `f` or `F`
+* `:10,$ norm @a` - repeat macro in register a between line 10 and last line
 
 ### Commands starting with `g`
 
