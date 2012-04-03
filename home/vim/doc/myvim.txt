@@ -28,140 +28,140 @@ Learn to speak vim - verbs, nouns and modifiers              *myvim-speakvim*
 
 Using vim is like talking to your editor in ‘verb modifier object’ sentences
 
-* Verbs:
-    * `v` (visual)
-    * `c` (change)
-    * `d` (delete)
-    * `y` (yank/copy)
-* Objects:
-    * `w` (word)
-    * `s` (sentence)
-    * `p` (paragraph)
-    * `b` (block/parentheses)
-    * `a` (arguments)
-* Modifiers:
-    * `i` (inside), a (around)
-    * `t` (till..finds a character)
-    * `/` (search..find a string/regex)
+  Verbs:~
+    |v| (visual)
+    |c| (change)
+    |d| (delete)
+    |y| (yank/copy)
+  Objects:~
+    |w| (word)
+    |s| (sentence)
+    |p| (paragraph)
+    |b| (block/parentheses)
+    |a| (arguments)
+  Modifiers:~
+    |i| (inside), a (around)
+    |t| (till..finds a character)
+    |/| (search..find a string/regex)
+
+Speak to the editor in sentences     *myvim-speak-to-the-editor-in-sentences*
+--------------------------------
+
+  Delete the current word:                     |diw|   (delete inside word)
+  Change current sentence:                     |cis|   (change inside sentence)
+  Change a string inside quotes:               ci”   (change inside quote)
+  Change until next occurrence of ‘foo’:       |c/foo| (change search foo)
+  Change everything from here to the letter X: |ctX|
+  Visually select this paragraph:              |vap|  (visual around paragraph)
 
 
 =============================================================================
-Speak to the editor in sentences                     *myvim-speakinsentences*
+Holding down |j| is a vim anti-pattern.                  *myvim-holdingdownj*
 
-* Delete the current word: `diw` (delete inside word)
-* Change current sentence: `cis` (change inside sentence)
-* Change a string inside quotes: `ci”` (change inside quote)
-* Change until next occurrence of ‘foo’: `c/foo` (change search foo)
-* Change everything from here to the letter X: `ctX`
-* Visually select this paragraph: `vap` (visual around paragraph)
+  |nG|         - jump to line n ("line 5, Go")
+  <C-o>      - jump backwards ("out")
+  <C-i>      - jump forwards ("in")
+  |L|          - jump to bottom of screen ("low")
+  |M|          - jump to middle of screen ("middle")
+  |H|          - jump to top of screen ("high")
+  |zt|         - put this line at the 't'op of the screen
+  |zb|         - put this line at the 'b'ottom of the screen
+  |zz|         - put this line at the middle of the screen
+  <c-f>`     - (forward) moves down 1 page-length.
+  <c-b>`     - (back) moves up 1 page-length.
+  <c-d>`     - (down) moves down 1/2 page-length.
+  <c-u>`     - (up) moves up 1/2 page-length.
+  |{|          - Move to start of previous paragraph or code block.
+  |}|          - Move to end of next paragraph or code block.
+  |/|{search}  - Search forward
+  |?|{search}  - Search backward
+  |t|{char}    - Move forward until the next occurrence of the character.
+  |f|{char}    - Move forward over the next occurrence of the character.
+  |T|{char}    - Move backward until the previous occurrence of the character.
+  |F|{char}    - Move backward over the previous occurrence of the character.
+
+  Moving wordwise with |w|, |W|, |b|, |B|, |e|, and |E| is better, too.
 
 
 =============================================================================
-Holding down 'j' is a vim anti-pattern.                  *myvim-holdingdownj*
+Search                                                         *myvim-search*
 
-* `nG` - jump to line n ("line 5, Go")
-* `C`-o - jump backwards ("out")
-* `C`-i - jump forwards ("in")
-* `L` - jump to bottom of screen ("low")
-* `M` - jump to middle of screen ("middle")
-* `H` - jump to top of screen ("high")
-* `zt` - put this line at the 't'op of the screen
-* `zb` - put this line at the 'b'ottom of the screen
-* `zz` - put this line at the middle of the screen
-* `<c-f>` - (forward) moves down 1 page-length.
-* `<c-b>` - (back) moves up 1 page-length.
-* `<c-d>` - (down) moves down 1/2 page-length.
-* `<c-u>` - (up) moves up 1/2 page-length.
-* `{` - Move to start of previous paragraph or code block.
-* `}` - Move to end of next paragraph or code block.
-* `/<search>` - Search forward
-* `?<search>` - Search backward
-* `t<char>` - Move forward until the next occurrence of the character.
-* `f<char>` - Move forward over the next occurrence of the character.
-* `T<char>` - Move backward until the previous occurrence of the character.
-* `F<char>` - Move backward over the previous occurrence of the character.
-* Moving wordwise with w, W, b, B, e, and E is better, too.
-
-
-==============================================================================
-Search							 *myvim-search*
-
-Vim has a so called “very magic” (/s\v) mode for regexes which allows you to
+Vim has a so called "very magic" (/s\v) mode for regexes which allows you to
 use parenthesis, brackets, the alternative separator (i.e. ‘|’), pluses, etc.
 with their special meaning but without the need to escape those characters.
 
 	*Note	see :help /\v
 
-==============================================================================
-Repeat							 *myvim-repeat*
 
-* `@:` - Repeat last command
-* `n` or `N` - for searches
-* `&` - Repeat substitution
-* `@@` - Repeat macro
-* `,` and `;` - repeat last `f` or `F`
-* `:10,$ norm @a` - repeat macro in register a between line 10 and last line
+=============================================================================
+Repeat                                                         *myvim-repeat*
+
+  |@:|             - Repeat last command
+  |n| or |N|         - for searches
+  |&|              - Repeat substitution
+  |@@|             - Repeat macro
+  |,| and |;|        - repeat last |f| or |F|
+  :10,$ norm @a  - repeat macro in register a between line 10 and last line
 
 
-==============================================================================
-Commands starting with g					 *myvim-repeat*
-
+=============================================================================
+Commands starting with g                     *myvim-commands-starting-with-g*
 
 See :help g
 
-* ge - go to previous word end
-* gi or `. it takes you to the position where the last change
-* gv - last visual selection (useful too in the context of gi)
+  |ge|        - go to previous word end
+  |gi| or `.  - it takes you to the position where the last change
+  |gv|        - last visual selection (useful too in the context of gi)
 
 
-==============================================================================
-Ex								 *myvim-ex*
+=============================================================================
+Ex                                                                 *myvim-ex*
 
-------------------------------------------------------------------------------
-RANGES								*myvim-ranges*
+RANGES                                                         *myvim-ranges*
+------
 
-
-* `:%s/text/replacement/` - Global substitution
-* `:20 s/text/replacement/` - Only on line 20
-* `:20,30 s/text/replacement/` - Between line 20 and 30
-* `:-2,+2 s/text/replacement/` - Relative to the current line
-* `:20,$ s/text/replacement/` - Between line 20 and last line
-* `:'a,'b s/text/replacement/` - Between mark a and b
-* `:20,30 d` - Delete lines 20 to 30
-* `:20,30 y` - Yank lines 20 to 30
-* `:20,30 m 40` - Move range to line 40
-* `:20,30 t 40` - Copy range to line 40
-* `:20,30 p` -  - Print line between 20,30
-
-
-------------------------------------------------------------------------------
-TEXT FILTERS WITH G ANDV				*myvim-textfilter*
-
-* `:g/vim/ m0` - Move all lines matching the regular expression /vim/ to the top of the file
-* `:v/vim/ m0` - retrieve a range of lines that don’t match a regular expression with v
-* `:10,20 g/vim/ m0` - Combine fixed ranges with search ranges
-* `:g/vim/ norm A;` - Add a semicolon to every line matching /vim/
+  :%s/text/replacement/        - Global substitution
+  :20 s/text/replacement/      - Only on line 20
+  :20,30 s/text/replacement/   - Between line 20 and 30
+  :-2,+2 s/text/replacement/   - Relative to the current line
+  :20,$ s/text/replacement/    - Between line 20 and last line
+  :'a,'b s/text/replacement/   - Between mark a and b
+  :20,30 d                     - Delete lines 20 to 30
+  :20,30 y                     - Yank lines 20 to 30
+  :20,30 m 40                  - Move range to line 40
+  :20,30 t 40                  - Copy range to line 40
+  :20,30 p                     - Print line between 20,30
 
 
-==============================================================================
-Bindings						 *myvim-bindings*
+TEXT FILTERS WITH G AND V                   *myvim-text-filters-with-g-and-v*
+-------------------------
 
-------------------------------------------------------------------------------
-GENERAL							*myvim-general*
+  :g/vim/ m0        - Move all lines matching the regular expression /vim/
+                      to the top of the file
+  :v/vim/ m0        - retrieve a range of lines that don’t match a regular
+                      expression with v
+  :10,20 g/vim/ m0  - Combine fixed ranges with search ranges
+  :g/vim/ norm A;   - Add a semicolon to every line matching /vim/
 
 
-* `;` - Mapped to `:`
-* `,p` - Toggle paste mode
-* `<ESC>` - Clear search highlight
-* `:Hammer` - Preview markup file in browser
-* `<C-w>o` - Make the current window the only one on the screen
-* `<Space>` - Start command mode (normal mode)
-* `<Space><Space>` - Start shell command mode with (normal mode)
-* `<C-Space>` - Use tags completion
-* `,S` - Source selected code
-* `,o' - List the files that have marks stored in the viminfo file.
-* `,cd` - Switch to the directory of the opened file
-* `,tn` - Open ne tab
+=============================================================================
+Bindings                                                     *myvim-bindings*
+
+GENERAL                                                       *myvim-general*
+-------
+
+  |;|               - Mapped to |:|
+  |,p|              - Toggle paste mode
+  <ESC>           - Clear search highlight
+  |:Hammer|         - Preview markup file in browser
+  <C-w>o          - Make the current window the only one on the screen
+  <Space>         - Start command mode (normal mode)
+  <Space><Space>` - Start shell command mode with (normal mode)
+  <C-Space>       - Use tags completion
+  |,S|              - Source selected code
+  |,o|              - List the files that have marks stored in the viminfo file.
+  |,cd|             - Switch to the directory of the opened file
+  |,tn|             - Open ne tab
 
 ------------------------------------------------------------------------------
 WINDOW OR SPLIT							*myvim-window*
