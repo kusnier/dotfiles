@@ -23,7 +23,7 @@ git pull --recurse-submodules && ./update_symlinks.sh
 
 ## Vim settings
 
-[Vim README.md][vimreadme]
+[Myvim][myvim]
 
 ## Speedup vim
 
@@ -43,4 +43,4 @@ In vimrc i do
 yes | ./speedvim.sh
 ```
 
-[vimreadme]: https://github.com/kusnier/dotfiles/tree/master/home/vim#readme
+[myvim]: http://vim-doc.heroku.com/view?https://raw.github.com/kusnier/dotfiles/master/home/vim/doc/myvim.txt
