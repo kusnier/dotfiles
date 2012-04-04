@@ -2,18 +2,47 @@
 
 Copyright (C) 2012 Sebastian Kusnier <seek@matrixcode.de>
 
-CONTENTS					*myvim-contents*
+CONTENTS                                                       *myvim-contents*
 
-Introduction            |smartinput-introduction|
-Interface               |smartinput-interface|
-  Functions               |smartinput-functions|
-  Key Mappings            |smartinput-key-mappings|
-Rules                   |smartinput-rules|
-Customization           |smartinput-customization|
-Bugs                    |smartinput-bugs|
-Changelog               |smartinput-changelog|
-
-  *Todo  Create index for myvim
+Must have help                                           |myvim-must-have-help|
+Learn to speak vim - verbs, nouns and modifiers                |myvim-speakvim|
+Speak to the editor in sentences       |myvim-speak-to-the-editor-in-sentences|
+Holding down |j| is a vim anti-pattern.                      |myvim-holdingdownj|
+Search                                                           |myvim-search|
+Repeat                                                           |myvim-repeat|
+Commands starting with g                       |myvim-commands-starting-with-g|
+Ex                                                                   |myvim-ex|
+  Ranges                                                         |myvim-ranges|
+  Text filters with g and v                   |myvim-text-filters-with-g-and-v|
+Bindings                                                       |myvim-bindings|
+  General                                                       |myvim-general|
+  Window or split                                       |myvim-window-or-split|
+  Quickfix                                                     |myvim-quickfix|
+  Text manipulation and editing           |myvim-text-manipulation-and-editing|
+  Insert mode completion                         |myvim-insert-mode-completion|
+  Ctrl-r                                                         |myvim-ctrl-r|
+  Command-line                                             |myvim-command-line|
+    History:                                                    |myvim-history|
+  Diff                                                             |myvim-diff|
+  Phpdocumentor                                           |myvim-phpdocumentor|
+  Rainbow parenthesis                               |myvim-rainbow-parenthesis|
+  Ultisnips                                                   |myvim-ultisnips|
+  Notes.vim                                                   |myvim-notes.vim|
+  Clam                                                             |myvim-clam|
+  Ctrlp                                                           |myvim-ctrlp|
+  Autoclose                                                   |myvim-autoclose|
+  Ack motions                                               |myvim-ack-motions|
+  Tags                                                             |myvim-tags|
+    Commands and bindings                   |myvim-ctags-commands-and-bindings|
+  Tagbar                                                         |myvim-tagbar|
+  Tagman                                                         |myvim-tagman|
+  Nerdtree                                                     |myvim-nerdtree|
+  Supertab                                                     |myvim-supertab|
+  Vim-fugitive                                             |myvim-vim-fugitive|
+  Easymotion                                                 |myvim-easymotion|
+  Indent guides                                           |myvim-indent-guides|
+  Eunuch helpers for unix                       |myvim-eunuch-helpers-for-unix|
+  Unimpaired                                                 |myvim-unimpaired|
 
 =============================================================================
 Must have help                                         *myvim-must-have-help*
