@@ -146,3 +146,6 @@
 [submodule "home/vim/bundle/vim-smartinput"]
 	path = home/vim/bundle/vim-smartinput
 	url = git://github.com/kana/vim-smartinput.git
+[submodule "home/vim/bundle/clam.vim"]
+	path = home/vim/bundle/clam.vim
+	url = git://github.com/sjl/clam.vim.git
