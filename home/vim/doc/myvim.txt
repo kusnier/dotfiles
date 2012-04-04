@@ -13,7 +13,7 @@ Customization           |smartinput-customization|
 Bugs                    |smartinput-bugs|
 Changelog               |smartinput-changelog|
 
-
+  *Todo  Create index for myvim
 
 =============================================================================
 Must have help                                         *myvim-must-have-help*
@@ -350,6 +350,19 @@ NOTES.VIM                                                   *myvim-notes.vim*
 * automatic curly quotes, arrows and list bullets
 * completion of note titles using `C-x C-u`
 * completion of tags using `C-x C-o`
+
+CLAM                                                             *myvim-clam*
+----
+
+
+  |!| - Open command with !:Clam {cursor}
+
+Clam also defines two special mappings in the command output window for your
+convenience.
+
+  <localleader>r    - "Refresh" the output by running the command again.
+  <localleader>p    - "Pipe" the buffer through another command and replace
+                      the contents with its result.
 
 
 CTRLP                                                           *myvim-ctrlp*
