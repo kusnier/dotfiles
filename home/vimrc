@@ -612,6 +612,11 @@ let g:autoclose_loaded = 1
 nmap <Leader>a :DelimitMateSwitch<CR>
 
 " }}}
+" Clam {{{
+
+nnoremap ! :Clam<space>
+
+" }}}
 " CamelCaseComplete {{{
 
 let g:CamelCaseComplete_complete = '.,w'
