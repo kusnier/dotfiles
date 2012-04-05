@@ -43,4 +43,4 @@ In vimrc i do
 yes | ./speedvim.sh
 ```
 
-[myvim]: http://vim-doc.heroku.com/view?https://raw.github.com/kusnier/dotfiles/master/home/vim/doc/myvim.txt
+[myvim]: https://raw.github.com/kusnier/dotfiles/master/home/vim/doc/myvim.txt
