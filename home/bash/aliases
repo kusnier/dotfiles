@@ -1,8 +1,14 @@
 # My aliases
 alias c='clear'
 alias g="git"
-alias v="vim"
-alias gv="gvim"
+alias v='vim'
+alias gv='gvim'
+alias vt='gvim --remote-tab-silent'
+alias vc='gvim -t'
+
+[[ `uname -s` == 'Darwin' ]] && alias gvim="mvim"
+[[ `uname -s` == 'Darwin' ]] && alias gview="mview"
+[[ `uname -s` == 'Darwin' ]] && alias gvimdiff="mvimdiff"
 
 # some more ls aliases
 alias ls='ls -G'
