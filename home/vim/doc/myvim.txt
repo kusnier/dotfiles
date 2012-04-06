@@ -349,7 +349,8 @@ The window will close when this is done, but you can close it with
 DIFF                                                             *myvim-diff*
 ----
 
-  |:diffthis| - Make the current window part of the diff windows
+  |:diffthis|    - Make the current window part of the diff windows
+  |:diffupdate|  - Update the diff highlighting and folds.
 
 Jumping to diffs:~
   |[c|        - Jump backwards to the previous start of a change.
