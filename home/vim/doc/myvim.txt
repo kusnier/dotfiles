@@ -349,7 +349,21 @@ The window will close when this is done, but you can close it with
 DIFF                                                             *myvim-diff*
 ----
 
-  :diffthis - Make the current window part of the diff windows
+  |:diffthis| - Make the current window part of the diff windows
+
+Jumping to diffs:~
+  |[c|        - Jump backwards to the previous start of a change.
+  |]c|        - Jump forwards to the next start of a change.
+
+Diff copying:~
+  |:diffget|  - Modify the current buffer to undo difference with another buffer.
+  |:diffput|  - Modify another buffer to undo difference with the current
+              buffer.  Just like ":diffget" but the other buffer is modified
+              instead of the current one.
+  |do|        - Same as ":diffget" without argument or range.  The "o" stands
+              for "obtain" ("dg" can't be used, it could be the start of
+              "dgg"!). Note: this doesn't work in Visual mode.
+  |dp|        - Same as ":diffput" without argument or range.
 
 
 PHPDOCUMENTOR                                           *myvim-phpdocumentor*
