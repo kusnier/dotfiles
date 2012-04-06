@@ -35,10 +35,14 @@
   ign = ls-files -o -i --exclude-standard
 
 [merge]
-  tool = vimdiff
+  tool = threesome
   log = true
   summary = true
 
 [github]
   user = kusnier
   token = Key Goes Here
+
+[mergetool "threesome"]
+cmd = "gvim -f $BASE $LOCAL $REMOTE $MERGED -c 'ThreesomeInit'"
+trustExitCode = true
