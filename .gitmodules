@@ -149,3 +149,6 @@
 [submodule "home/vim/bundle/clam.vim"]
 	path = home/vim/bundle/clam.vim
 	url = git://github.com/sjl/clam.vim.git
+[submodule "home/vim/bundle/threesome.vim"]
+	path = home/vim/bundle/threesome.vim
+	url = git://github.com/sjl/threesome.vim.git
