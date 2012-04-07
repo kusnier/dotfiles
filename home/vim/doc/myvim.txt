@@ -52,6 +52,17 @@ Must have help                                         *myvim-must-have-help*
 
 
 =============================================================================
+Enter insert mode                                   *myvim-enter-insert-mode*
+
+  |i|   - Insert before character under cursor
+  |a|   - Insert after cursor
+  |I|   - Insert at beginning of current line
+  |A|   - Insert at end of the line
+  |o|   - Starts insert mode in a new line below current one
+  |O|   - Insert in a new line above current one
+
+
+=============================================================================
 Learn to speak vim - verbs, nouns and modifiers              *myvim-speakvim*
 
 
