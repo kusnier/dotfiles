@@ -14,8 +14,8 @@ alias vc='gvim -t'
 
 # Use MacVim in terminal too
 # or: brew install macvim --override-system-vim
-[[ -x `which mvim` ]] && alias vim="mvim -v"
-[[ -x `which mvim` ]] && alias vi="mvim -v"
+# [[ -x `which mvim` ]] && alias vim="mvim -v"
+# [[ -x `which mvim` ]] && alias vi="mvim -v"
 
 [[ `uname -s` == 'Darwin' ]] && alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
