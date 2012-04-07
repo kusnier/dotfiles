@@ -4,6 +4,8 @@
 # vim: ft=sh
 brew update && brew upgrade
 
+brew install macvim --override-system-vim
+
 brews=(
   ack
   atk
@@ -39,7 +41,6 @@ brews=(
   libusb-compat
   little-cms
   lynx
-  macvim
   markdown
   mercurial
   mongodb
