@@ -61,6 +61,8 @@ Enter insert mode                                   *myvim-enter-insert-mode*
   |o|   - Starts insert mode in a new line below current one
   |O|   - Insert in a new line above current one
 
+For more information, see :help change.txt.
+
 
 =============================================================================
 Learn to speak vim - verbs, nouns and modifiers              *myvim-speakvim*
