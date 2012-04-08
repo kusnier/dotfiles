@@ -390,6 +390,8 @@ Examples
             Ex commands stored in the register given as argument, and " is
             how you refer to the unnamed register.
 
+You can inspect the current state of all registers with :registers.
+See :help registers.
 
 COMMAND-LINE                                             *myvim-command-line*
 ------------
