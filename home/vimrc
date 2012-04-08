@@ -147,6 +147,7 @@ nmap <leader>tn <Esc>:tabnew<CR>
 " map <leader>te :tabedit
 " map <leader>tc :tabclose<cr>
 " map <leader>tm :tabmove 
+nnoremap <leader>x <c-^>
 
 " }}}
 " Store temporary vim files in a central spot ----------------------------- {{{
