@@ -65,6 +65,32 @@ For more information, see :help change.txt.
 
 
 =============================================================================
+Motion                                                         *myvim-motion*
+
+  →  |  ←  |  description
+  ---|-----|-+-----------------------------------
+  /  |  ?  |  Search for a pattern of text, jump to it by hitting Enter (<CR>)
+  *  |  #  |  Search for the word under cursor
+  n  |  N  |  Jump to the next match for the previous search
+  $  |  ^  |  Position cursor at end of current line
+  f  |  F  |  Position cursor on the character in the same line that matches
+     |     |  the next keystroke
+  t  |  T  |  Position cursor before the next character that matches the keystroke
+  ;  |  ,  |  Repeat the last f, F, t, or T
+  w  |  b  |  Move to start of next word
+  W  |  B  |  Move to start of next "WORD" (sequence of non-blank characters)
+  }  |  {  |  Move down one paragraph (block of text separated by blank lines)
+  gg |     |  Jump to first line of document
+  G  |     |  Jump to end of document
+
+
+Pro tip: while in insert mode, <C-w> deletes the last word before cursor.
+         This is more efficient than backspacing.
+
+For in-depth documentation on motions, see :help motion.txt.
+
+
+=============================================================================
 Learn to speak vim - verbs, nouns and modifiers              *myvim-speakvim*
 
 
