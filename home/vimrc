@@ -700,6 +700,7 @@ let g:ctrlp_dont_split = 'NERD_tree_2'
 
 nnoremap <leader>pm :CtrlPMRUFiles<cr>
 nnoremap <leader>pt :CtrlPTag<cr>
+nnoremap <leader>pc :CtrlP %:h<cr>
 
 " }}}
 " TabMan {{{
