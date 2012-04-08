@@ -107,6 +107,10 @@ those jumps. From the :help jump-motions documentation:
   <C-o>  - jump backwards in history
   <C-i>  - jump forwards in history
 
+Bindings:~
+
+  ,x - Switch between the currently open buffer and the previous one
+
 =============================================================================
 Learn to speak vim - verbs, nouns and modifiers              *myvim-speakvim*
 
