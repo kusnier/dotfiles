@@ -152,3 +152,6 @@
 [submodule "home/vim/bundle/threesome.vim"]
 	path = home/vim/bundle/threesome.vim
 	url = git://github.com/sjl/threesome.vim.git
+[submodule "home/vim/bundle/vim-slime"]
+	path = home/vim/bundle/vim-slime
+	url = git://github.com/jpalardy/vim-slime.git
