@@ -101,11 +101,11 @@ those jumps. From the :help jump-motions documentation:
   jump is remembered.
 <
 
-  `.     - Motion brings the cursor back on the exact place where the last
-           change was made
-  ``     - Jump back to before the previous jump with
-  <C-o>  - jump backwards in history
-  <C-i>  - jump forwards in history
+  '. or  `. - Motion brings the cursor back on the exact place where the last
+              change was made
+  '' or  `` - Jump back to before the previous jump with
+  <C-o>     - jump backwards in history
+  <C-i>     - jump forwards in history
 
 Bindings:~
 
