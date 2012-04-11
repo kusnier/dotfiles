@@ -606,13 +606,6 @@ map <F7> :set spell!<CR>
 " }}}
 " Plugin options ---------------------------------------------------------- {{{
 
-" Autoclose / delimiMate {{{
-
-" Disable Autoclose, test delimitMate
-let g:autoclose_loaded = 1
-nmap <Leader>a :DelimitMateSwitch<CR>
-
-" }}}
 " Clam {{{
 
 nnoremap ! :Clam<space>
