@@ -155,3 +155,6 @@
 [submodule "home/vim/bundle/vim-slime"]
 	path = home/vim/bundle/vim-slime
 	url = git://github.com/jpalardy/vim-slime.git
+[submodule "home/vim/bundle/vitality"]
+	path = home/vim/bundle/vitality
+	url = git://github.com/sjl/vitality.vim.git
