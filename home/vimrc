@@ -609,6 +609,7 @@ map <F7> :set spell!<CR>
 " Clam {{{
 
 nnoremap ! :Clam<space>
+vnoremap ! :ClamVisual<space>
 
 " }}}
 " CamelCaseComplete {{{
@@ -622,7 +623,7 @@ let g:CamelCaseComplete_FindStartMark = ''
 let g:SuperTabDefaultCompletionType='context'
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 let g:SuperTabRetainCompletionDuration='session'
-let g:SuperTabLongestEnhanced=1
+"let g:SuperTabLongestEnhanced=1
 let g:SuperTabLongestHighlight=1
 let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
 
