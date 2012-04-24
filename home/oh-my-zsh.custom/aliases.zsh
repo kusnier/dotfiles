@@ -21,6 +21,8 @@ alias vc='gvim -t'
 
 # Get OS X Software Updates, update Homebrew itself, and upgrade installed Homebrew packages
 [[ `uname -s` == 'Darwin' ]] && alias update='sudo softwareupdate -i -a; brew update; brew upgrade'
+# Get Debian/Ubuntu Updates
+[[ -e "/etc/debian_version" ]] && alias update='sudo apt-get update; sudo apt-get upgrade'
 
 #Suffix aliases
 # filename.md pressing return-key starts gvim
