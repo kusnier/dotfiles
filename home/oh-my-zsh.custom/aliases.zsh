@@ -6,6 +6,7 @@ alias v='vim'
 alias gv='gvim'
 alias vt='gvim --remote-tab-silent'
 alias vc='gvim -t'
+alias e='gvim .'
 
 [[ `uname -s` == 'Darwin' ]] && alias gvim="mvim"
 [[ `uname -s` == 'Darwin' ]] && alias gview="mview"
