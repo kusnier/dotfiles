@@ -127,3 +127,10 @@ alias set_random_mac="echo sudo ifconfig en0 ether $(random_mac)"
 
 # node/npm
 alias nodemoduleslist="npm list -g | grep '^.─' | sed 's/\W\|[0-9]//g'"
+
+# MacOS Spotlight
+if [[ `uname -s` == 'Darwin' ]]; then 
+  alias spotlight-off='sudo mdutil -a -i off && sudo mv /System/Library/CoreServices/Search.bundle/ /System/Library/CoreServices/SearchOff.bundle/ && killall SystemUIServer'
+  alias spotlight-on='sudo mdutil -a -i on && sudo mv /System/Library/CoreServices/SearchOff.bundle/ /System/Library/CoreServices/Search.bundle/ && killall SystemUIServer'
+  alias spotlight-wat='sudo fs_usage -w -f filesys mdworker | grep "open"'
+fi
