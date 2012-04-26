@@ -35,7 +35,7 @@
   ign = ls-files -o -i --exclude-standard
 
 [merge]
-  tool = threesome
+  tool = splice
   log = true
   summary = true
 
@@ -43,6 +43,6 @@
   user = kusnier
   token = Key Goes Here
 
-[mergetool "threesome"]
-cmd = "gvim -f $BASE $LOCAL $REMOTE $MERGED -c 'ThreesomeInit'"
-trustExitCode = true
+[mergetool "splice"]
+  cmd = "gvim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+  trustExitCode = true
