@@ -158,3 +158,6 @@
 [submodule "home/vim/bundle/splice"]
 	path = home/vim/bundle/splice
 	url = git://github.com/sjl/splice.vim.git
+[submodule "home/vim/bundle/gitv"]
+	path = home/vim/bundle/gitv
+	url = git://github.com/gregsexton/gitv.git
