@@ -134,3 +134,5 @@ if [[ `uname -s` == 'Darwin' ]]; then
   alias spotlight-on='sudo mdutil -a -i on && sudo mv /System/Library/CoreServices/SearchOff.bundle/ /System/Library/CoreServices/Search.bundle/ && killall SystemUIServer'
   alias spotlight-wat='sudo fs_usage -w -f filesys mdworker | grep "open"'
 fi
+
+alias hi='pygmentize'
