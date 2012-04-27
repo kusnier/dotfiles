@@ -39,6 +39,7 @@ brews=(
   libtiff
   libusb
   libusb-compat
+  links
   little-cms
   lynx
   markdown
