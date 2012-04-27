@@ -184,10 +184,6 @@ The window will close when this is done, but you can close it with Ctrl+W, C the
 * `g~~` - Switch case of current line.
 * `~` - Change case of current letter **(consider :set tildeop.)**
 
-### phpDocumentor
-
-* `<C-d>` - Generate php doc (current pos, range)
-
 ### Rainbow Parenthesis
 
 * `,rp` Toggle RainbowParenthesis
