@@ -491,16 +491,17 @@ convenience.
 CTRLP                                                           *myvim-ctrlp*
 -----
 
-  <C-p>             - to invoke CtrlP
-  :CtrlP            - Open CtrlP in find file mode.
-  :CtrlPBuffer      - Open CtrlP in find buffer mode.
-  :CtrlPMRU or ,pm  - Open CtrlP in find Most-Recently-Used file mode.
-  :CtrlPTag         - Search for a tag within a generated central tags file
-  :CtrlPQuickfix    - Search for an entry in the current quickfix errors and
-                      jump to it.
-  :CtrlPDir         - Search for a directory and change the working directory
-                      to it.
-  :CtrlPBufTag      - Search for a tag within the current buffer and jump to
+  <C-p>              - to invoke CtrlP
+  :CtrlP             - Open CtrlP in find file mode.
+  :CtrlPBuffer       - Open CtrlP in find buffer mode.
+  :CtrlPMRU or ,pm   - Open CtrlP in find Most-Recently-Used file mode.
+  :CtrlPMixed or ,pp - Open CtrlP in find Most-Recently-Used file mode.
+  :CtrlPTag          - Search for a tag within a generated central tags file
+  :CtrlPQuickfix     - Search for an entry in the current quickfix errors and
+                       jump to it.
+  :CtrlPDir          - Search for a directory and change the working directory
+                       to it.
+  :CtrlPBufTag       - Search for a tag within the current buffer and jump to
                       the definition.
 
 Once CtrlP is open:~
