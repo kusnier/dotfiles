@@ -7,6 +7,7 @@ alias gv='gvim'
 alias vt='gvim --remote-tab-silent'
 alias vc='gvim -t'
 alias e='gvim .'
+alias vime=”vim -g -u ~/.vimencrypt -x″
 
 [[ `uname -s` == 'Darwin' ]] && alias gvim="mvim"
 [[ `uname -s` == 'Darwin' ]] && alias gview="mview"
