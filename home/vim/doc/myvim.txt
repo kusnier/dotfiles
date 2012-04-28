@@ -178,6 +178,16 @@ Vim has a so called "very magic" (/s\v) mode for regexes which allows you to
 use parenthesis, brackets, the alternative separator (i.e. ‘|’), pluses, etc.
 with their special meaning but without the need to escape those characters.
 
+Use <C-r>{register} to insert register content to pattern
+
+Or
+
+Use \=@{register} to use the register in the pattern
+
+>
+  :s/search/\=@a/
+<
+
 	*Note	see :help /\v
 
 
