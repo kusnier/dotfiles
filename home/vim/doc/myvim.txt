@@ -384,6 +384,13 @@ Special registers:
            They can have line breaks inside too. When the result is a Float it’s
            automatically converted to a String.
 
+
+CTRL-R CTRL-F  the Filename under the cursor
+CTRL-R CTRL-P  the Filename under the cursor, expanded with 'path' as in |gf|
+CTRL-R CTRL-W  the Word under the cursor
+CTRL-R CTRL-A  the WORD under the cursor; see |WORD|
+
+
 See :help |registers| for the full reference.
 
 > In Insert or Command-line mode, `Ctrl-R plus a register name`, inserts the
