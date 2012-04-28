@@ -24,7 +24,6 @@ Bindings                                                       |myvim-bindings|
   Command-line                                             |myvim-command-line|
     History:                                                    |myvim-history|
   Diff                                                             |myvim-diff|
-  Phpdocumentor                                           |myvim-phpdocumentor|
   Rainbow parenthesis                               |myvim-rainbow-parenthesis|
   Ultisnips                                                   |myvim-ultisnips|
   Notes.vim                                                   |myvim-notes.vim|
@@ -428,11 +427,6 @@ Diff copying:~
               "dgg"!). Note: this doesn't work in Visual mode.
   |dp|        - Same as ":diffput" without argument or range.
 
-
-PHPDOCUMENTOR                                           *myvim-phpdocumentor*
--------------
-
-  <C-d> - Generate php doc (current pos, range)
 
 RAINBOW PARENTHESIS                               *myvim-rainbow-parenthesis*
 -------------------
