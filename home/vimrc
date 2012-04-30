@@ -1048,6 +1048,7 @@ augroup ft_sql
   autocmd BufNewFile,BufRead sqsh-edit* setf sql
   autocmd BufNewFile,BufRead /tmp/sql* setf sql
   autocmd BufNewFile,BufRead *.ddl setf sql
+  autocmd FileType sql let b:CamelCaseComplete_complete = '.,w,k'
 augroup END
 
 " }}}
