@@ -598,8 +598,6 @@ set dictionary+=~/.vim/dict/american-english
 set dictionary+=~/.vim/dict/ngerman
 "set dictionary+=~/.vim/dict/polish
 
-set digraph
-
 map <F7> :set spell!<CR>
 
 " }}}
