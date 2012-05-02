@@ -323,7 +323,7 @@ nnoremap N Nzzzv
 au VimResized * wincmd =
 
 " }}}
-" Buffer ------------------------------------------------------------------ {{{
+" Buffer ------------------------------------------------------------------ {{
 
 map <Leader>ls :buffers<CR>
 " cycle thru buffers ...
@@ -691,7 +691,9 @@ let g:ctrlp_root_markers = ['VERSION', 'xpinstall/', 'ivy.xml']
 let g:ctrlp_mru_files = 1
 let g:ctrlp_dont_split = 'NERD_tree_2'
 
-nnoremap <leader>pm :CtrlPMRUFiles<cr>
+nnoremap <Leader>bs :CtrlPBuffer<CR>
+nnoremap <Leader>pb :CtrlPBuffer<CR>
+nnoremap <leader>pr :CtrlPMRUFiles<cr>
 nnoremap <leader>pp :CtrlPMixed<cr>
 nnoremap <leader>pt :CtrlPTag<cr>
 nnoremap <leader>pc :CtrlP %:h<cr>
@@ -804,6 +806,7 @@ let NERDTreeMinimalUI=1
 " }}}
 " bufExplorer {{{
 
+let g:bufexplorer_version = "DISABLE"
 "let g:bufExplorerDefaultHelp=0
 "let g:bufExplorerShowRelativePath=1
 "let g:bufExplorerSortBy = "name"
