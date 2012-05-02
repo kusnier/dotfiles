@@ -804,14 +804,6 @@ let NERDTreeDirArrows=1
 let NERDTreeMinimalUI=1
 
 " }}}
-" bufExplorer {{{
-
-let g:bufexplorer_version = "DISABLE"
-"let g:bufExplorerDefaultHelp=0
-"let g:bufExplorerShowRelativePath=1
-"let g:bufExplorerSortBy = "name"
-
-" }}}
 " ftPlugin: xml {{{
 
 " update xml.vim: if (&filetype == 'xslt' || &filetype == 'html' || &filetype == 'xhtml') && (!exists ("g:xml_no_html"))
