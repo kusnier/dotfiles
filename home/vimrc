@@ -743,7 +743,7 @@ let g:UltiSnipsEditSplit = "vertical"
 " }}}
 " vim-pasta {{{
 
-let g:pasta_disabled_filetypes = ["python", "coffee", "markdown", 'twiki', 'mediawiki']
+let g:pasta_enabled_filetypes = ['php', 'ruby', 'javascript', 'css', 'sh']
 
 " }}}
 " Gundo {{{
