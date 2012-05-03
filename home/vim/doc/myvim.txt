@@ -1,4 +1,4 @@
-*myvim.txt*	My vim shortcuts.	Last change: 2012-04-01
+*myvim.txt*     My vim shortcuts.       Last change: 2012-04-01
 
 Copyright (C) 2012 Sebastian Kusnier <seek@matrixcode.de>
 
@@ -61,6 +61,18 @@ Enter insert mode                                   *myvim-enter-insert-mode*
   |O|   - Insert in a new line above current one
 
 For more information, see :help change.txt.
+
+Special keys:~
+
+See: |ins-special-keys|
+
+Special special keys:~
+
+CTRL-O          execute one command, return to Insert mode
+CTRL-\ CTRL-O   like CTRL-O but don't move the cursor
+CTRL-L          when 'insertmode' is set: go to Normal mode
+
+See: |ins-special-special|
 
 
 =============================================================================
@@ -188,7 +200,7 @@ Use \=@{register} to use the register in the pattern
   :s/search/\=@a/
 <
 
-	*Note	see :help /\v
+        *Note   see :help /\v
 
 
 =============================================================================
