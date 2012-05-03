@@ -217,7 +217,7 @@ nnoremap U gUiw
 
 set list listchars=tab:»·,trail:·,eol:¬,extends:❯,precedes:❮
 set showbreak=↪
-set fillchars=diff:⣿
+set fillchars=diff:⣿,vert:│
 
 if !exists("g:colors_name")
   highlight NonText guifg=#2a2a2a
