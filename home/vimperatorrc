@@ -1,6 +1,6 @@
 " vi:ft=vim
 
-set editor='bash -lc "vim -gf \$*"'
+set editor='bash -lc "vim -gf \$*" vim -g'
 
 set gui=none,tabs,addons
 set animations
