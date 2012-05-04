@@ -1070,6 +1070,15 @@ augroup END
 
 " }}}
 
+" nagios {{{
+
+augroup ft_nagios
+  au!
+  autocmd BufNewFile,BufRead /*etc/nagios/*.cfg,*/nagios/trunk/*.cfg,*sample-config/template-object/*.cfg{,.in},/var/lib/nagios/objects.cache set ft=nagios
+augroup END
+
+" }}}
+
 " crontab {{{
 
 augroup ft_crontab
