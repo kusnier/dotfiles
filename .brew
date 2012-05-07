@@ -35,7 +35,6 @@ brews=(
   jasper
   jpeg
   libffi
-  libiconv
   libtiff
   libusb
   libusb-compat
@@ -70,3 +69,7 @@ brews=(
 for brew in ${brews[@]} ; do
   brew install $brew
 done
+
+# Disavbled brews:
+#   mosh
+
