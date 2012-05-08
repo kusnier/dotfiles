@@ -303,10 +303,10 @@ function! WinMove(key)
   endif
 endfunction
 " Split/Move to window with the same command
-nnoremap <c-h> :call WinMove('h')<cr>
-nnoremap <c-k> :call WinMove('k')<cr>
-nnoremap <c-l> :call WinMove('l')<cr>
-nnoremap <c-j> :call WinMove('j')<cr>
+nnoremap <silent> <c-h> :call WinMove('h')<cr>
+nnoremap <silent> <c-k> :call WinMove('k')<cr>
+nnoremap <silent> <c-l> :call WinMove('l')<cr>
+nnoremap <silent> <c-j> :call WinMove('j')<cr>
 map <leader>wc :wincmd q<cr>
 map <leader>wr <C-W>r
 map <leader>H  :wincmd H<cr>
