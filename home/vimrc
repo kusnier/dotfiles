@@ -107,7 +107,7 @@ augroup line_return
 augroup END
 
 " Paste toggle (,p)
-set pastetoggle=<leader>p
+set pastetoggle=<leader>\\p
 map <leader>p :set invpaste paste?<CR>
 
 " Save when losing focus
