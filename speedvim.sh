@@ -1,8 +1,8 @@
 #!/bin/bash
 MODE="copy"
 
-mkdir home/vim/bundle.merged;
 rm -r home/vim/bundle.merged/*
+mkdir -p home/vim/bundle.merged/all;
 cd home/vim/bundle
 for d in *;do
   cd $d
@@ -10,7 +10,7 @@ for d in *;do
   if [ $MODE == 'copy' ]; then
     #############################
     # Solution 1: Copy files
-    cp -i -r * ../../bundle.merged
+    cp -i -r * ../../bundle.merged/all
   fi
 
   if [ $MODE == 'hardlink' ]; then
@@ -19,7 +19,7 @@ for d in *;do
     #   SRC directory is root of tree you want to replicate.
     #   It should *not* be an absolute pathname.
     SRC=.
-    DSTDIR=../../bundle.merged
+    DSTDIR=../../bundle.merged/all
 
     # Replicate directory structure
     find $SRC -type d -exec mkdir -p $DSTDIR/{} \;
@@ -32,12 +32,12 @@ for d in *;do
 done
 
 # Generate doc/tags file
-vim -c ':helptags ../bundle.merged/doc/' -c ':q'
+vim -c ':helptags ../bundle.merged/all/doc/' -c ':q'
 
 # Create a copy on /dev/shm
 if [[ -d '/dev/shm' ]]; then
-  cd ../bundle.merged
-  mkdir -p /dev/shm/vim.bundle.merged
-  rm -r /dev/shm/vim.bundle.merged/*
-  cp -R * /dev/shm/vim.bundle.merged
+  cd ../bundle.merged/all
+  rm -r /dev/shm/vim.bundle.merged/
+  mkdir -p /dev/shm/vim.bundle.merged/all
+  cp -R * /dev/shm/vim.bundle.merged/all
 fi
