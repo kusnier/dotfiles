@@ -12,14 +12,12 @@
 " Preamble ---------------------------------------------------------------- {{{
 
 " Load a merged version of all bundles (Move this folder to a ramdisk)
+runtime bundle/vim-pathogen/autoload/pathogen.vim
 if isdirectory(expand("/dev/shm/vim.bundle.merged"))
-  set rtp-=~/.vim
-  let &rtp="~/.vim,/dev/shm/vim.bundle.merged,".&rtp
+  call pathogen#infect("/dev/shm/vim.bundle.merged")
 elseif isdirectory(expand("~/.vim/bundle.merged"))
-  set rtp-=~/.vim
-  let &rtp="~/.vim,~/.vim/bundle.merged,".&rtp
+  call pathogen#infect("~/.vim/bundle.merged")
 else
-  runtime bundle/vim-pathogen/autoload/pathogen.vim
   call pathogen#infect()
 endif
 
