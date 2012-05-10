@@ -28,16 +28,6 @@ node "${1:name}" inherits "${2:name}" {
 }
 endsnippet
 
-node "${1:name}" inherits "${2:name}" {
-	${3:# code}
-}
-endsnippet
-
-node "${1:name}" inherits "${2:name}" {
-	${3:# code}
-}
-endsnippet
-
 snippet if "if"
 if $${1:variable} ${2:==} ${3:"value"} {
 	${4:# code}
@@ -74,26 +64,6 @@ $${1:variable} ? {
 endsnippet
 
 snippet case "case"
-case $${1:variable} {
-	${2:value}: {
-		${3:# code}
-	}
-	default: {
-		${4:# code}
-	}
-}
-endsnippet
-
-case $${1:variable} {
-	${2:value}: {
-		${3:# code}
-	}
-	default: {
-		${4:# code}
-	}
-}
-endsnippet
-
 case $${1:variable} {
 	${2:value}: {
 		${3:# code}
