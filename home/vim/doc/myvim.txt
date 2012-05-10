@@ -79,7 +79,7 @@ See: |ins-special-special|
 Motion                                                         *myvim-motion*
 
   →  |  ←  |  description
-  ---|-----|-+-----------------------------------
+  ---+-----+-------------------------------------
   /  |  ?  |  Search for a pattern of text, jump to it by hitting Enter (<CR>)
   *  |  #  |  Search for the word under cursor
   n  |  N  |  Jump to the next match for the previous search
@@ -158,6 +158,11 @@ Speak to the editor in sentences     *myvim-speak-to-the-editor-in-sentences*
 =============================================================================
 Holding down |j| is a vim anti-pattern.                  *myvim-holdingdownj*
 
+
+  -          - lines upward, on the first non-blank character |linewise|.
+  +          - lines downward, on the first non-blank character |linewise|.
+   or CTRL-M
+   or <CR>
   |nG|         - jump to line n ("line 5, Go")
   <C-o>      - jump backwards ("out")
   <C-i>      - jump forwards ("in")
