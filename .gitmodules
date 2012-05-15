@@ -158,6 +158,3 @@
 [submodule "home/vim/bundle/gitv"]
 	path = home/vim/bundle/gitv
 	url = git://github.com/gregsexton/gitv.git
-[submodule "home/vim/bundle/vim-puppet"]
-	path = home/vim/bundle/vim-puppet
-	url = git://github.com/rodjek/vim-puppet.git
