@@ -596,6 +596,13 @@ map <F7> :set spell!<CR>
 " }}}
 " Plugin options ---------------------------------------------------------- {{{
 
+" bash-support {{{
+
+let g:BASH_Ctrl_j='off'
+"
+
+" }}}
+
 " Clam {{{
 
 nnoremap ! :Clam<space>
