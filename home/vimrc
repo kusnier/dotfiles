@@ -51,6 +51,11 @@ set mouse=a
 " focus follows mouse
 " set mousefocus
 
+if has("gui_running")
+  set nomousehide
+endif
+
+
 " No bell or flash wanted
 set noerrorbells
 set novisualbell
