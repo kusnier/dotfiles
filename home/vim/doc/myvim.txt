@@ -71,6 +71,8 @@ Special special keys:~
 CTRL-O          execute one command, return to Insert mode
 CTRL-\ CTRL-O   like CTRL-O but don't move the cursor
 CTRL-L          when 'insertmode' is set: go to Normal mode
+CTRL-A          Insert previously inserted text.
+
 
 See: |ins-special-special|
 
