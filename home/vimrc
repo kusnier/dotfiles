@@ -1339,6 +1339,16 @@ augroup END
 
 " }}}
 
+" puppet {{{
+
+augroup ft_puppet
+  au!
+  autocmd FileType puppet inoremap <buffer> <s-cr> <esc>A,<cr>
+augroup END
+
+" }}}
+
+
 " }}}
 " Spelling mistakes / abbreviations for Insert mode ----------------------- {{{
 
