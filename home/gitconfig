@@ -30,6 +30,8 @@
   vd = difftool -y -t gvimdiff
   p = !"git pull; git submodule foreach git pull origin master"
   undopush = push -f origin HEAD^:master
+  # Credit an author on the latest commit
+  credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
 
   # Show files ignored by git:
   ign = ls-files -o -i --exclude-standard
