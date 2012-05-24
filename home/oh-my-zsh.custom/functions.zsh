@@ -17,3 +17,12 @@ function new-scratch {
   cd $cur_dir
   echo "New scratch dir ready for grinding ;>"
 }
+
+function dswitch {
+  cur_dir=$PWD
+  if [[ $cur_dir =~ /share.devel/ ]]; then
+    cd ${cur_dir/\/share.devel\//\/devel\/}
+  elif [[ $cur_dir =~ /devel/ ]]; then
+    cd ${cur_dir/\/devel\//\/share.devel\/}
+  fi
+}
