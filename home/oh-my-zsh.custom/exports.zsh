@@ -19,3 +19,10 @@ export MANPAGER="sh -c \"col -bx | iconv -c | view -c 'set ft=man nomod nolist t
 
 # cd options
 export FIGNORE='.svn'
+
+GREP_OPTIONS='--color=auto'
+for PATTERN in .cvs .git .hg .svn target; do
+    GREP_OPTIONS="$GREP_OPTIONS --exclude-dir=$PATTERN"
+done
+GREP_OPTIONS="$GREP_OPTIONS --exclude=tags"
+export GREP_OPTIONS
