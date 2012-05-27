@@ -21,8 +21,15 @@ export MANPAGER="sh -c \"col -bx | iconv -c | view -c 'set ft=man nomod nolist t
 export FIGNORE='.svn'
 
 GREP_OPTIONS='--color=auto'
-for PATTERN in .cvs .git .hg .svn target; do
-    GREP_OPTIONS="$GREP_OPTIONS --exclude-dir=$PATTERN"
-done
+
+if grep --help | grep -- --exclude-dir &>/dev/null; then
+  for PATTERN in .cvs .git .hg .svn target; do
+      GREP_OPTIONS="$GREP_OPTIONS --exclude-dir=$PATTERN"
+  done
+else
+  GREP_OPTIONS='--exclude="*.svn" --exclude="*.svn-base"'
+fi
+
+
 GREP_OPTIONS="$GREP_OPTIONS --exclude=tags"
 export GREP_OPTIONS
