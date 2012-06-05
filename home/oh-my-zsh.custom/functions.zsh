@@ -18,6 +18,7 @@ function new-scratch {
   echo "New scratch dir ready for grinding ;>"
 }
 
+# Switch between vm.box and host
 function dswitch {
   cur_dir=$PWD
   if [[ $cur_dir =~ /share.devel/ ]]; then
@@ -25,4 +26,15 @@ function dswitch {
   elif [[ $cur_dir =~ /devel/ ]]; then
     cd ${cur_dir/\/devel\//\/share.devel\/}
   fi
+}
+
+# Rsync files between vm.box and host
+function dsync {
+  cur_dir=$PWD
+  if [[ $cur_dir =~ /share.devel/ ]]; then
+    target_dir=${cur_dir/\/share.devel\//\/devel\/}
+  elif [[ $cur_dir =~ /devel/ ]]; then
+    target_dir=${cur_dir/\/devel\//\/share.devel\/}
+  fi
+  rsync -av $cur_dir/. $target_dir/.
 }
