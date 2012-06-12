@@ -1,4 +1,5 @@
 # My aliases
+system=`uname -s`
 #
 # vim aliases
 alias c='clear'
@@ -9,20 +10,21 @@ alias vc='gvim -t'
 alias e='gvim .'
 alias vime="vim -g -u ~/.vimencrypt -x"
 
-[[ `uname -s` == 'Darwin' ]] && alias gvim="mvim"
-[[ `uname -s` == 'Darwin' ]] && alias gview="mview"
-[[ `uname -s` == 'Darwin' ]] && alias gvimdiff="mvimdiff"
-
+if [[ $system == 'Darwin' ]]; then
+  alias gvim="mvim"
+  alias gview="mview"
+  alias gvimdiff="mvimdiff"
+fi
 
 # Use MacVim in terminal too
 # or: brew install macvim --override-system-vim
 # [[ -x `which mvim` ]] && alias vim="mvim -v"
 # [[ -x `which mvim` ]] && alias vi="mvim -v"
 
-[[ `uname -s` == 'Darwin' ]] && alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+[[ $system == 'Darwin' ]] && alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
 # Get OS X Software Updates, update Homebrew itself, and upgrade installed Homebrew packages
-[[ `uname -s` == 'Darwin' ]] && alias update='sudo softwareupdate -i -a; brew update; brew upgrade'
+[[ $system == 'Darwin' ]] && alias update='sudo softwareupdate -i -a; brew update; brew upgrade'
 # Get Debian/Ubuntu Updates
 [[ -e "/etc/debian_version" ]] && alias update='sudo apt-get update; sudo apt-get upgrade'
 
@@ -34,7 +36,7 @@ alias -s php=gvim
 alias -s js=gvim
 
 # On linux use open like in macos
-[[ `uname -s` == 'Linux' ]] && alias open=xdg-open
+[[ $system == 'Linux' ]] && alias open=xdg-open
 
 # some more ls aliases
 alias la='ls -A'
@@ -115,7 +117,7 @@ alias wget-fullpage="wget -e robots=off --page-requisites --span-hosts --convert
 #When you want to call the command instead of the alias, then you have to escape it and call.
 # $ \aliasname
 
-if [[ `uname -s` == 'Darwin' ]]; then 
+if [[ $system == 'Darwin' ]]; then 
   alias airport="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport"
   alias wlan_scan="airport -s"
 fi
@@ -127,7 +129,7 @@ alias set_random_mac="echo sudo ifconfig en0 ether $(random_mac)"
 alias nodemoduleslist="npm list -g | grep '^.─' | sed 's/\W\|[0-9]//g'"
 
 # MacOS Spotlight
-if [[ `uname -s` == 'Darwin' ]]; then 
+if [[ $system == 'Darwin' ]]; then 
   alias spotlight-off='sudo mdutil -a -i off && sudo mv /System/Library/CoreServices/Search.bundle/ /System/Library/CoreServices/SearchOff.bundle/ && killall SystemUIServer'
   alias spotlight-on='sudo mdutil -a -i on && sudo mv /System/Library/CoreServices/SearchOff.bundle/ /System/Library/CoreServices/Search.bundle/ && killall SystemUIServer'
   alias spotlight-wat='sudo fs_usage -w -f filesys mdworker | grep "open"'
