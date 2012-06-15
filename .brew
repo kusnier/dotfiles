@@ -42,6 +42,7 @@ brews=(
   lynx
   markdown
   mercurial
+  mobile-shell
   mongodb
   mplayer
   ncftp
