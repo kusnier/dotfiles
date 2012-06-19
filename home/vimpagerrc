@@ -4,4 +4,6 @@
 " vi:ft=vim
 " -----------------------------------------------------------
 let vimpager_use_gvim = 1
-
+set hlsearch
+colorscheme molokai
+highlight Search guibg=#f0e600 guifg=black
