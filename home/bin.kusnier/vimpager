@@ -2,7 +2,7 @@
 
 # Script for using ViM as a PAGER.
 # Based on Bram's less.sh.
-# Version 1.6.8
+# Version 1.6.9
 # git://github.com/rkitover/vimpager.git
 
 # Just pass through if not on a tty
@@ -141,14 +141,16 @@ less_vim() {
 			if [ -n "$vimrc" ]; then
 				$vim_cmd \
 				--cmd 'let vimpager=1' \
+				--cmd 'runtime! macros/less.vim' \
 				-u $vimrc \
-				-c 'runtime! macros/less.vim | if $MYVIMRC != "" | source $MYVIMRC | endif | set scrolloff='${scrolloff:-5}' | set foldlevel=999 | set nonu | silent! set nornu' \
+				-c 'set scrolloff='${scrolloff:-5}' | set foldlevel=999 | set nonu | silent! set nornu' \
 				-c 'nmap <ESC>u :nohlsearch<cr> | nnoremap <Down> 1<C-d> | nnoremap <Up> 1<C-u>' \
 				"${@:--}"
 			else
 				$vim_cmd \
 				--cmd 'let vimpager=1' \
-				-c 'runtime! macros/less.vim | if $MYVIMRC != "" | source $MYVIMRC | endif | set scrolloff='${scrolloff:-5}' | set foldlevel=999 | set nonu | silent! set nornu' \
+				--cmd 'runtime! macros/less.vim' \
+				-c 'set scrolloff='${scrolloff:-5}' | set foldlevel=999 | set nonu | silent! set nornu' \
 				-c 'nmap <ESC>u :nohlsearch<cr> | nnoremap <Down> 1<C-d> | nnoremap <Up> 1<C-u>' \
 				"${@:--}"
 			fi
@@ -214,8 +216,9 @@ less_vim() {
 			if [ -n "$vimrc" ]; then
 				$vim_cmd \
 				--cmd 'let vimpager=1' \
+				--cmd 'runtime! macros/less.vim ' \
 				-u $vimrc \
-				-c 'runtime! macros/less.vim | if $MYVIMRC != "" | source $MYVIMRC | endif | if $MYGVIMRC != "" | source $MYGVIMRC | endif | set scrolloff='${scrolloff:-5}' | set foldlevel=999 | set nonu | silent! set nornu' \
+				-c 'set scrolloff='${scrolloff:-5}' | set foldlevel=999 | set nonu | silent! set nornu' \
 				-c 'nmap <ESC>u :nohlsearch<cr> | nnoremap <Down> 1<C-d> | nnoremap <Up> 1<C-u>' \
 				-c "${colors:-echo}" \
 				-c "${restore:-echo}" \
@@ -224,7 +227,8 @@ less_vim() {
 			else
 				$vim_cmd \
 				--cmd 'let vimpager=1' \
-				-c 'runtime! macros/less.vim | if $MYVIMRC != "" | source $MYVIMRC | endif | if $MYGVIMRC != "" | source $MYGVIMRC | endif | set scrolloff='${scrolloff:-5}' | set foldlevel=999 | set nonu | silent! set nornu' \
+				--cmd 'runtime! macros/less.vim ' \
+				-c 'set scrolloff='${scrolloff:-5}' | set foldlevel=999 | set nonu | silent! set nornu' \
 				-c 'nmap <ESC>u :nohlsearch<cr> | nnoremap <Down> 1<C-d> | nnoremap <Up> 1<C-u>' \
 				-c "${colors:-echo}" \
 				-c "${restore:-echo}" \
