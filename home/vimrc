@@ -200,6 +200,8 @@ set softtabstop=2 " if non-zero, number of spaces to insert for a <tab>
 " Split line (sister to [J]oin lines)
 " The normal use of S is covered by cc, so don't worry about shadowing it.
 nnoremap S i<cr><esc><right>
+" Join lines and restore cursor location (J)
+nnoremap J mjJ`j
 
 nnoremap <leader>Al :left<cr>
 nnoremap <leader>Ac :center<cr>
