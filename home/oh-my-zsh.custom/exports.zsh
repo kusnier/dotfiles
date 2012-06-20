@@ -33,3 +33,5 @@ fi
 
 GREP_OPTIONS="$GREP_OPTIONS --exclude=tags"
 export GREP_OPTIONS
+
+export FCEDIT='vim -g -f'
