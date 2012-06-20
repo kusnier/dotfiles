@@ -1,0 +1,4 @@
+#compdef ant
+
+_arguments "*:Targets:(clean compile install integration-test package pre-clean pre-validate prepare publish publish:tag test usage validate verify xp.upgrade)"
+
