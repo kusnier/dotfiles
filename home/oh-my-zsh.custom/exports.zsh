@@ -27,7 +27,7 @@ if grep --help | grep -- --exclude-dir &>/dev/null; then
       GREP_OPTIONS="$GREP_OPTIONS --exclude-dir=$PATTERN"
   done
 else
-  GREP_OPTIONS='--exclude="*.svn" --exclude="*.svn-base"'
+  GREP_OPTIONS="$GREP_OPTIONS --exclude='*.svn' --exclude='*.svn-base'"
 fi
 
 
