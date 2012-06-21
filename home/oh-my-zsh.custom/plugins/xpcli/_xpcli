@@ -1,0 +1,34 @@
+#compdef xpcli
+#
+
+_xpcli() { 
+    local curcontext="$curcontext" state line
+    typeset -A opt_args
+
+    _arguments \
+      '(-c)-c[Add the path to the PropertyManager sources.]: :->conf' \
+      '(-cp)-cp[Add the path value to the class path.]: :->cpath' \
+      '(-v)-v[Enable verbosity.]' \
+      '*: :_xpclasses'
+
+    case $state in
+    conf)
+        _arguments '*:Config path:_directories'
+    ;;
+    cpath)
+        _arguments '*:Class path:_directories'
+    ;;
+    esac 
+}
+
+_xpclasses() {
+  local i expl
+  local -a c
+
+  for i in `cat *.pth`; do
+    if [[ -d $i ]]; then
+      c+=( $i/**/*.class.php(.:r:s/.class//:s#$i/##:gs#/#.#) )
+    fi
+  done
+  _wanted classes expl 'xp-framework class' compadd "$@" -M 'r:|.=* r:|=*' -a - c
+}
