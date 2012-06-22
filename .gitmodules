@@ -161,3 +161,6 @@
 [submodule "home/vim/bundle/puppet-syntax-vim"]
 	path = home/vim/bundle/puppet-syntax-vim
 	url = git://github.com/kusnier/puppet-syntax-vim.git
+[submodule "home/oh-my-zsh.custom/plugins/zsh-xpframework"]
+	path = home/oh-my-zsh.custom/plugins/zsh-xpframework
+	url = git@github.com:kusnier/zsh-xpframework.git
