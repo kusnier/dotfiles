@@ -2,7 +2,7 @@
 
 # Script for using ViM as a PAGER.
 # Based on Bram's less.sh.
-# Version 1.6.9
+# Version 1.7.0
 # git://github.com/rkitover/vimpager.git
 
 # Just pass through if not on a tty
@@ -16,6 +16,7 @@ case `uname -s` in
         Darwin) osx=1; bsd=1 ;;
 	CYGWIN*) cygwin=1 ;;
 	MINGW*) msys=1 ;;
+	OpenBSD) openbsd=1; bsd=1 ;;
 	*) bsd=1 ;;
 esac
 
@@ -144,14 +145,14 @@ less_vim() {
 				--cmd 'runtime! macros/less.vim' \
 				-u $vimrc \
 				-c 'set scrolloff='${scrolloff:-5}' | set foldlevel=999 | set nonu | silent! set nornu' \
-				-c 'nmap <ESC>u :nohlsearch<cr> | nnoremap <Down> 1<C-d> | nnoremap <Up> 1<C-u>' \
+				-c 'nmap <ESC>u :nohlsearch<cr> | nnoremap <Down> 1<C-d> | nnoremap <Up> 1<C-u> | noremap q :q<CR>' \
 				"${@:--}"
 			else
 				$vim_cmd \
 				--cmd 'let vimpager=1' \
 				--cmd 'runtime! macros/less.vim' \
 				-c 'set scrolloff='${scrolloff:-5}' | set foldlevel=999 | set nonu | silent! set nornu' \
-				-c 'nmap <ESC>u :nohlsearch<cr> | nnoremap <Down> 1<C-d> | nnoremap <Up> 1<C-u>' \
+				-c 'nmap <ESC>u :nohlsearch<cr> | nnoremap <Down> 1<C-d> | nnoremap <Up> 1<C-u> | noremap q :q<CR>' \
 				"${@:--}"
 			fi
 			;;
@@ -219,7 +220,7 @@ less_vim() {
 				--cmd 'runtime! macros/less.vim ' \
 				-u $vimrc \
 				-c 'set scrolloff='${scrolloff:-5}' | set foldlevel=999 | set nonu | silent! set nornu' \
-				-c 'nmap <ESC>u :nohlsearch<cr> | nnoremap <Down> 1<C-d> | nnoremap <Up> 1<C-u>' \
+				-c 'nmap <ESC>u :nohlsearch<cr> | nnoremap <Down> 1<C-d> | nnoremap <Up> 1<C-u> | noremap q :q<CR>' \
 				-c "${colors:-echo}" \
 				-c "${restore:-echo}" \
 				-c "set lines=$lines | set columns=$cols" \
@@ -229,7 +230,7 @@ less_vim() {
 				--cmd 'let vimpager=1' \
 				--cmd 'runtime! macros/less.vim ' \
 				-c 'set scrolloff='${scrolloff:-5}' | set foldlevel=999 | set nonu | silent! set nornu' \
-				-c 'nmap <ESC>u :nohlsearch<cr> | nnoremap <Down> 1<C-d> | nnoremap <Up> 1<C-u>' \
+				-c 'nmap <ESC>u :nohlsearch<cr> | nnoremap <Down> 1<C-d> | nnoremap <Up> 1<C-u> | noremap q :q<CR>' \
 				-c "${colors:-echo}" \
 				-c "${restore:-echo}" \
 				-c "set lines=$lines | set columns=$cols" \
@@ -261,6 +262,8 @@ do_ptree() {
 		ptree $$
 	elif [ -n "$cygwin" -o -n "$msys" ]; then
 		ps | awk '{ print $1 "\t" $2 "\t" $NF }' | awk_pstree $$
+	elif [ -n "$openbsd" ]; then
+		ps awo pid=,ppid=,command= | awk_pstree $$
 	else
 		# Tested on Linux and OS X
 		ps awo pid=,ppid=,comm= | awk_pstree $$
