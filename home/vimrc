@@ -691,7 +691,7 @@ highlight phpClassesTag guifg=#ff0077
 " }}}
 " CtrlP {{{
 
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|target$'
 let g:ctrlp_extensions = ['tag', 'qfx', 'dir', 'buffertag', 'mixed']
 let g:ctrlp_working_path_mode = 2
 let g:ctrlp_root_markers = ['VERSION', 'xpinstall/', 'ivy.xml']
