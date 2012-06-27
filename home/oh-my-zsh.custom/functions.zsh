@@ -36,5 +36,5 @@ function dsync {
   elif [[ $cur_dir =~ /devel/ ]]; then
     target_dir=${cur_dir/\/devel\//\/share.devel\/}
   fi
-  rsync -av $cur_dir/. $target_dir/.
+  rsync -av --delete $cur_dir/. $target_dir/.
 }
