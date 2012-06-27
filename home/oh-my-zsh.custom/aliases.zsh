@@ -135,4 +135,10 @@ if [[ $system == 'Darwin' ]]; then
   alias spotlight-wat='sudo fs_usage -w -f filesys mdworker | grep "open"'
 fi
 
+# Paste
+if [[ $system == 'Darwin' ]]; then 
+  alias pbc='pbcopy'
+  alias pbp='pbpaste'
+fi
+
 alias hi='pygmentize'
