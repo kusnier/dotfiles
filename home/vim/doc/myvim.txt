@@ -4,6 +4,7 @@ Copyright (C) 2012 Sebastian Kusnier <seek@matrixcode.de>
 
 CONTENTS                                                       *myvim-contents*
 
+How to use help                                         |myvim-how-to-use-help|
 Must have help                                           |myvim-must-have-help|
 Learn to speak vim - verbs, nouns and modifiers                |myvim-speakvim|
 Speak to the editor in sentences       |myvim-speak-to-the-editor-in-sentences|
@@ -44,10 +45,33 @@ Bindings                                                       |myvim-bindings|
   Unimpaired                                                 |myvim-unimpaired|
 
 =============================================================================
+How to use help                                       *myvim-how-to-use-help*
+
+
+The most import thing to learn about in vim is...
+
+>
+  :help
+<
+and
+
+>
+  :help command
+<
+
+TAB    - cycles through possible command completions
+CTRL-d - lists possible command completions
+
+Also, when in the help pages, CTRL-] jumps to subjects between bars
+and CTRL-T jumps back
+
+=============================================================================
 Must have help                                         *myvim-must-have-help*
 
 :help cmdline-special        Ex special characters
 :help ins-completion         Insert mode completion
+
+Do :help i_ CTRL-d for insert commands, v_ for visual, etc.
 
 
 =============================================================================
