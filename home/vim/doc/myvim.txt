@@ -6,6 +6,8 @@ CONTENTS                                                       *myvim-contents*
 
 How to use help                                         |myvim-how-to-use-help|
 Must have help                                           |myvim-must-have-help|
+Enter insert mode                                     |myvim-enter-insert-mode|
+Motion                                                           |myvim-motion|
 Learn to speak vim - verbs, nouns and modifiers                |myvim-speakvim|
 Speak to the editor in sentences       |myvim-speak-to-the-editor-in-sentences|
 Holding down |j| is a vim anti-pattern.                      |myvim-holdingdownj|
@@ -96,6 +98,8 @@ CTRL-O          execute one command, return to Insert mode
 CTRL-\ CTRL-O   like CTRL-O but don't move the cursor
 CTRL-L          when 'insertmode' is set: go to Normal mode
 CTRL-A          Insert previously inserted text.
+CTRL-W          Delete the word before the cursor.
+CTRL-U          Delete all entered characters in the current line.
 
 
 See: |ins-special-special|
@@ -216,6 +220,21 @@ Holding down |j| is a vim anti-pattern.                  *myvim-holdingdownj*
 
 =============================================================================
 Search                                                         *myvim-search*
+
+For basic searching:
+
+  /pattern        - search forward for pattern
+  ?pattern        - search backward
+  n               - repeat forward search
+  N               - repeat backward
+
+More cool searching tricks:
+
+  *               - search for word currently under cursor
+  g*              - search for partial word under cursor
+                    (repeat with n)
+  ctrl-o, ctrl-i  - go through jump locations
+  [I              - show lines with matching word under cursor
 
 Vim has a so called "very magic" (/s\v) mode for regexes which allows you to
 use parenthesis, brackets, the alternative separator (i.e. ‘|’), pluses, etc.
@@ -466,6 +485,14 @@ The window will close when this is done, but you can close it with
 
   q:        - Open Ex command-line history
   q/ or q?  - Open search string history
+
+CTRL-U      - Remove all characters between the cursor position and
+              the beginning of the line.
+CTRL-W      - Delete the word before the cursor.
+
+
+See :help cmdline-editin
+
 
 DIFF                                                             *myvim-diff*
 ----
