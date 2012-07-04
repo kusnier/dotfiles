@@ -32,7 +32,7 @@ for d in *;do
 done
 
 # Generate doc/tags file
-vim -c ':helptags ../bundle.merged/all/doc/' -c ':q'
+vim -c ':helptags ../doc/'  -c ':helptags ../bundle.merged/all/doc/' -c ':q'
 
 # Create a copy on /dev/shm
 if [[ -d '/dev/shm' ]]; then
