@@ -40,3 +40,10 @@ function dsync {
   fi
   rsync -av --delete $cur_dir/. $target_dir/.
 }
+
+function inotifydsync {
+  inotifywait -e modify -e move -e create -e delete \
+    -r -m . | while read line ; do
+    dsync
+  done
+}
