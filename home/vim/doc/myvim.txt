@@ -135,9 +135,9 @@ Jump history:~
 Some of the above motions jump, and it is very useful to know how to backtrack
 those jumps. From the :help jump-motions documentation:
 >
-  A “jump” is one of the following commands:
+  A "jump" is one of the following commands:
   ', `, G, /, ?, n, N, %, (, ), [[, ]], {, }, :s, :tag, L, M, H and the
-  commands that start editing a new file. If you make the cursor “jump”
+  commands that start editing a new file. If you make the cursor "jump"
   with one of these commands, the position of the cursor before the
   jump is remembered.
 <
@@ -156,7 +156,7 @@ Bindings:~
 Learn to speak vim - verbs, nouns and modifiers              *myvim-speakvim*
 
 
-Using vim is like talking to your editor in ‘verb modifier object’ sentences
+Using vim is like talking to your editor in 'verb modifier object' sentences
 
   Verbs:~
     |v| (visual)
@@ -179,8 +179,8 @@ Speak to the editor in sentences     *myvim-speak-to-the-editor-in-sentences*
 
   Delete the current word:                     |diw|   (delete inside word)
   Change current sentence:                     |cis|   (change inside sentence)
-  Change a string inside quotes:               ci”   (change inside quote)
-  Change until next occurrence of ‘foo’:       |c/foo| (change search foo)
+  Change a string inside quotes:               ci"   (change inside quote)
+  Change until next occurrence of 'foo':       |c/foo| (change search foo)
   Change everything from here to the letter X: |ctX|
   Visually select this paragraph:              |vap|  (visual around paragraph)
 
@@ -237,7 +237,7 @@ More cool searching tricks:
   [I              - show lines with matching word under cursor
 
 Vim has a so called "very magic" (/s\v) mode for regexes which allows you to
-use parenthesis, brackets, the alternative separator (i.e. ‘|’), pluses, etc.
+use parenthesis, brackets, the alternative separator (i.e. '|'), pluses, etc.
 with their special meaning but without the need to escape those characters.
 
 Use <C-r>{register} to insert register content to pattern
@@ -260,7 +260,8 @@ Repeat                                                         *myvim-repeat*
   |n| or |N|         - for searches
   |&|              - Repeat substitution
   |@@|             - Repeat macro
-  |,| and |;|        - repeat last |f| or |F|
+  |;|              - Repeat latest f, t, F or T
+  |,|              - Repeat latest f, t, F or T in opposite direction
   :10,$ norm @a  - repeat macro in register a between line 10 and last line
 
 
@@ -298,7 +299,7 @@ TEXT FILTERS WITH G AND V                   *myvim-text-filters-with-g-and-v*
 
   :g/vim/ m0        - Move all lines matching the regular expression /vim/
                       to the top of the file
-  :v/vim/ m0        - retrieve a range of lines that don’t match a regular
+  :v/vim/ m0        - retrieve a range of lines that don't match a regular
                       expression with v
   :10,20 g/vim/ m0  - Combine fixed ranges with search ranges
   :g/vim/ norm A;   - Add a semicolon to every line matching /vim/
@@ -314,17 +315,18 @@ GENERAL                                                       *myvim-general*
   |,p|              - Toggle paste mode
   <ESC>           - Clear search highlight
   |:Hammer|         - Preview markup file in browser
-  <C-w>o          - Make the current window the only one on the screen
   <Space>         - Start command mode (normal mode)
   <Space><Space>` - Start shell command mode with (normal mode)
   <C-Space>       - Use tags completion
   |,S|              - Source selected code
   |,o|              - List the files that have marks stored in the viminfo file.
   |,cd|             - Switch to the directory of the opened file
-  |,tn|             - Open ne tab
+  |,tn|             - Open new tab
 
 WINDOW OR SPLIT                                       *myvim-window-or-split*
 ---------------
+
+  <C-w>o - Make the current window the only one on the screen
 
 Split:~
 
@@ -417,10 +419,10 @@ INSERT MODE COMPLETION                         *myvim-insert-mode-completion*
 CTRL-R                                                         *myvim-ctrl-r*
 ------
 
-{0-9a-z”%#:-=.} (INSER MODE)
+{0-9a-z"%#:-=.} (INSERT MODE)
 
 Insert the contents of a numbered or named register.
-Between typing `CTRL-R` and the second character `”` will be displayed to
+Between typing 'CTRL-R' and the second character '"' will be displayed to
 indicate that you are expected to enter the name of a register.
 
 Special registers:
@@ -440,10 +442,10 @@ Special registers:
   -      - the last small (less than a line) delete
   .      - the last inserted text
   =      - the expression register: you are prompted to enter an expression
-           (see |expression|) (doesn’t work at the expression prompt; some things
+           (see |expression|) (doesn't work at the expression prompt; some things
            such as changing the buffer or current window are not allowed to avoid
            side effects) When the result is a |List| the items are used as lines.
-           They can have line breaks inside too. When the result is a Float it’s
+           They can have line breaks inside too. When the result is a Float it's
            automatically converted to a String.
 
 
@@ -455,19 +457,19 @@ CTRL-R CTRL-A  the WORD under the cursor; see |WORD|
 
 See :help |registers| for the full reference.
 
-> In Insert or Command-line mode, `Ctrl-R plus a register name`, inserts the
+> In Insert or Command-line mode, 'Ctrl-R plus a register name', inserts the
 > contents of this register. If you want to insert them literally
 > (no auto-indenting, no conversion of control characters like 0x08 to
-> backspace, etc), you can use `Ctrl-R, Ctrl-O, register name`.
-> `See :help i_CTRL-R` and following paragraphs for more reference.
+> backspace, etc), you can use 'Ctrl-R, Ctrl-O, register name'.
+> 'See :help i_CTRL-R' and following paragraphs for more reference.
 
 
 > The expression register is very nice for calculating.
-> `CTRL-R =`, then type `5*5` and you will get the result in the buffer.
+> 'CTRL-R =', then type '5*5' and you will get the result in the buffer.
 
 Examples
 
-  `Vy:@"` - Vy will select whole line and yank it into the default register
+  'Vy:@"' - Vy will select whole line and yank it into the default register
             (also known as the unnamed register). The :@ Ex command plays
             Ex commands stored in the register given as argument, and " is
             how you refer to the unnamed register.
@@ -552,14 +554,18 @@ NOTES.VIM                                                   *myvim-notes.vim*
   gf                 - navigation between notes
 
   automatic curly quotes, arrows and list bullets
-  completion of note titles using `C-x C-u`
-  completion of tags using `C-x C-o`
+  completion of note titles using 'C-x C-u'
+  completion of tags using 'C-x C-o'
 
 
 CLAM                                                             *myvim-clam*
 ----
 
   |!| - Open command with !:Clam {cursor}
+
+To pipe visually selected text you can use the :ClamVisual command: >
+
+    :ClamVisual sort | uniq -c | sort -n
 
 Clam also defines two special mappings in the command output window for your
 convenience.
@@ -620,7 +626,7 @@ Bindings for the CtrlPDir view:~
   <cr>  - Change the local working directory for CtrlP and keep it open.
   <c-t> - Change the global working directory (exit).
   <c-v> - Change the local working directory for the current window (exit).
-  <c-x> - Change the global working directory to CtrlP’s current local
+  <c-x> - Change the global working directory to CtrlP's current local
           working directory (exit).
 
 Input Formats:~
@@ -628,13 +634,15 @@ Input Formats:~
   Simple String
   Vim regex
   End the string with a colon ':' followed by a Vim command to execute that
+    E.g. Use ':45' to jump to line 45.
+         Use ':/any\:string' to jump to the first instance of 'any:string'.
   .. go backward in the directory tree
   / or \ find and go to the project's root
 
-AUTOCLOSE                                                   *myvim-autoclose*
----------
+SMARTINPUT                                                 *myvim-smartinput*
+----------
 
-  <leader>a - Toogle autoclose
+  To disable smartinput temporarily hit |i_CTRL-V| and input the character.
 
 
 ACK MOTIONS                                               *myvim-ack-motions*
@@ -658,8 +666,8 @@ Add these lines in vimrc:~
 
 Ctags generation:~
 
-- for php `ctags -R --languages=php .`
-- for file lists (project.pth) use `ctags -R -L <filelist>`
+- for php 'ctags -R --languages=php .'
+- for file lists (project.pth) use 'ctags -R -L <filelist>'
 
 Commands and bindings                      *myvim-ctags-commands-and-bindings*
 ---------------------
