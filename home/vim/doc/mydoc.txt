@@ -3,6 +3,7 @@
 
 MY PERSONAL VIM DOC                                                     *mydoc*
 
+
 Copyright (C) 2012 Sebastian Kusnier <seek@matrixcode.de>
 
 ==============================================================================
@@ -50,9 +51,9 @@ Bindings                                                       |mydoc-bindings|
   Eunuch helpers for unix                       |mydoc-eunuch-helpers-for-unix|
   Unimpaired                                                 |mydoc-unimpaired|
 
-=============================================================================
-How to use help                                       *mydoc-how-to-use-help*
 
+=============================================================================
+HOW TO USE HELP                                       *mydoc-how-to-use-help*
 
 The most import thing to learn about in vim is...
 
@@ -71,8 +72,9 @@ CTRL-d - lists possible command completions
 Also, when in the help pages, CTRL-] jumps to subjects between bars
 and CTRL-T jumps back
 
+
 =============================================================================
-Must have help                                         *mydoc-must-have-help*
+MUSE HAVE HELP                                         *mydoc-muse-have-help*
 
 :help cmdline-special        Ex special characters
 :help ins-completion         Insert mode completion
@@ -81,7 +83,7 @@ Do :help i_ CTRL-d for insert commands, v_ for visual, etc.
 
 
 =============================================================================
-Enter insert mode                                   *mydoc-enter-insert-mode*
+ENTER INSERT MODE                                   *mydoc-enter-insert-mode*
 
   |i|   - Insert before character under cursor
   |a|   - Insert after cursor
@@ -105,12 +107,11 @@ CTRL-A          Insert previously inserted text.
 CTRL-W          Delete the word before the cursor.
 CTRL-U          Delete all entered characters in the current line.
 
-
 See: |ins-special-special|
 
 
 =============================================================================
-Motion                                                         *mydoc-motion*
+MOTION                                                         *mydoc-motion*
 
   →  |  ←  |  description
   ---+-----+-------------------------------------
@@ -157,8 +158,9 @@ Bindings:~
   ,x - Switch between the currently open buffer and the previous one
 
 =============================================================================
-Learn to speak vim - verbs, nouns and modifiers              *mydoc-speakvim*
+LERN TO SPEAK VIM                                             *mydoc-speakvim*
 
+... - verbs, nouns and modifiers
 
 Using vim is like talking to your editor in 'verb modifier object' sentences
 
@@ -178,8 +180,7 @@ Using vim is like talking to your editor in 'verb modifier object' sentences
     |t| (till..finds a character)
     |/| (search..find a string/regex)
 
-Speak to the editor in sentences     *mydoc-speak-to-the-editor-in-sentences*
---------------------------------
+Speak to the editor in sentences:~
 
   Delete the current word:                     |diw|   (delete inside word)
   Change current sentence:                     |cis|   (change inside sentence)
@@ -190,8 +191,7 @@ Speak to the editor in sentences     *mydoc-speak-to-the-editor-in-sentences*
 
 
 =============================================================================
-Holding down |j| is a vim anti-pattern.                  *mydoc-holdingdownj*
-
+HOLDING DOWN J IS A VIM ANTI-PATTERN                      *mydoc-holdingdownj*
 
   -          - lines upward, on the first non-blank character |linewise|.
   +          - lines downward, on the first non-blank character |linewise|.
@@ -223,7 +223,7 @@ Holding down |j| is a vim anti-pattern.                  *mydoc-holdingdownj*
 
 
 =============================================================================
-Search                                                         *mydoc-search*
+SEARCH                                                         *mydoc-search*
 
 For basic searching:
 
@@ -258,7 +258,7 @@ Use \=@{register} to use the register in the pattern
 
 
 =============================================================================
-Repeat                                                         *mydoc-repeat*
+REPEAT                                                         *mydoc-repeat*
 
   |@:|             - Repeat last command
   |n| or |N|         - for searches
@@ -270,7 +270,7 @@ Repeat                                                         *mydoc-repeat*
 
 
 =============================================================================
-Commands starting with g                     *mydoc-commands-starting-with-g*
+COMMANDS STARTING WITH G                     *mydoc-commands-starting-with-g*
 
 See :help g
 
@@ -310,7 +310,7 @@ TEXT FILTERS WITH G AND V                   *mydoc-text-filters-with-g-and-v*
 
 
 =============================================================================
-Bindings                                                     *mydoc-bindings*
+BINDINGS                                                     *mydoc-bindings*
 
 GENERAL                                                       *mydoc-general*
 -------
@@ -947,4 +947,5 @@ Mnenomic: encoding always comes before decoding; "[" always comes before "]".
 
 
 ==============================================================================
+
 vim:tw=78:ts=8:ft=help:norl:fen:fdl=0:fdm=marker:
