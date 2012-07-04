@@ -1,53 +1,53 @@
-*myvim.txt*     My vim shortcuts.       Last change: 2012-04-01
+*mydoc.txt*     My vim shortcuts.       Last change: 2012-04-01
 
 Copyright (C) 2012 Sebastian Kusnier <seek@matrixcode.de>
 
-CONTENTS                                                       *myvim-contents*
+CONTENTS                                                       *mydoc-contents*
 
-How to use help                                         |myvim-how-to-use-help|
-Must have help                                           |myvim-must-have-help|
-Enter insert mode                                     |myvim-enter-insert-mode|
-Motion                                                           |myvim-motion|
-Learn to speak vim - verbs, nouns and modifiers                |myvim-speakvim|
-Speak to the editor in sentences       |myvim-speak-to-the-editor-in-sentences|
-Holding down |j| is a vim anti-pattern.                      |myvim-holdingdownj|
-Search                                                           |myvim-search|
-Repeat                                                           |myvim-repeat|
-Commands starting with g                       |myvim-commands-starting-with-g|
-Ex                                                                   |myvim-ex|
-  Ranges                                                         |myvim-ranges|
-  Text filters with g and v                   |myvim-text-filters-with-g-and-v|
-Bindings                                                       |myvim-bindings|
-  General                                                       |myvim-general|
-  Window or split                                       |myvim-window-or-split|
-  Quickfix                                                     |myvim-quickfix|
-  Text manipulation and editing           |myvim-text-manipulation-and-editing|
-  Insert mode completion                         |myvim-insert-mode-completion|
-  Ctrl-r                                                         |myvim-ctrl-r|
-  Command-line                                             |myvim-command-line|
-    History:                                                    |myvim-history|
-  Diff                                                             |myvim-diff|
-  Rainbow parenthesis                               |myvim-rainbow-parenthesis|
-  Ultisnips                                                   |myvim-ultisnips|
-  Notes.vim                                                   |myvim-notes.vim|
-  Clam                                                             |myvim-clam|
-  Ctrlp                                                           |myvim-ctrlp|
-  Autoclose                                                   |myvim-autoclose|
-  Ack motions                                               |myvim-ack-motions|
-  Tags                                                             |myvim-tags|
-    Commands and bindings                   |myvim-ctags-commands-and-bindings|
-  Tagbar                                                         |myvim-tagbar|
-  Tagman                                                         |myvim-tagman|
-  Nerdtree                                                     |myvim-nerdtree|
-  Supertab                                                     |myvim-supertab|
-  Vim-fugitive                                             |myvim-vim-fugitive|
-  Easymotion                                                 |myvim-easymotion|
-  Indent guides                                           |myvim-indent-guides|
-  Eunuch helpers for unix                       |myvim-eunuch-helpers-for-unix|
-  Unimpaired                                                 |myvim-unimpaired|
+How to use help                                         |mydoc-how-to-use-help|
+Must have help                                           |mydoc-must-have-help|
+Enter insert mode                                     |mydoc-enter-insert-mode|
+Motion                                                           |mydoc-motion|
+Learn to speak vim - verbs, nouns and modifiers                |mydoc-speakvim|
+Speak to the editor in sentences       |mydoc-speak-to-the-editor-in-sentences|
+Holding down |j| is a vim anti-pattern.                      |mydoc-holdingdownj|
+Search                                                           |mydoc-search|
+Repeat                                                           |mydoc-repeat|
+Commands starting with g                       |mydoc-commands-starting-with-g|
+Ex                                                                   |mydoc-ex|
+  Ranges                                                         |mydoc-ranges|
+  Text filters with g and v                   |mydoc-text-filters-with-g-and-v|
+Bindings                                                       |mydoc-bindings|
+  General                                                       |mydoc-general|
+  Window or split                                       |mydoc-window-or-split|
+  Quickfix                                                     |mydoc-quickfix|
+  Text manipulation and editing           |mydoc-text-manipulation-and-editing|
+  Insert mode completion                         |mydoc-insert-mode-completion|
+  Ctrl-r                                                         |mydoc-ctrl-r|
+  Command-line                                             |mydoc-command-line|
+    History:                                                    |mydoc-history|
+  Diff                                                             |mydoc-diff|
+  Rainbow parenthesis                               |mydoc-rainbow-parenthesis|
+  Ultisnips                                                   |mydoc-ultisnips|
+  Notes.vim                                                   |mydoc-notes.vim|
+  Clam                                                             |mydoc-clam|
+  Ctrlp                                                           |mydoc-ctrlp|
+  Autoclose                                                   |mydoc-autoclose|
+  Ack motions                                               |mydoc-ack-motions|
+  Tags                                                             |mydoc-tags|
+    Commands and bindings                   |mydoc-ctags-commands-and-bindings|
+  Tagbar                                                         |mydoc-tagbar|
+  Tagman                                                         |mydoc-tagman|
+  Nerdtree                                                     |mydoc-nerdtree|
+  Supertab                                                     |mydoc-supertab|
+  Vim-fugitive                                             |mydoc-vim-fugitive|
+  Easymotion                                                 |mydoc-easymotion|
+  Indent guides                                           |mydoc-indent-guides|
+  Eunuch helpers for unix                       |mydoc-eunuch-helpers-for-unix|
+  Unimpaired                                                 |mydoc-unimpaired|
 
 =============================================================================
-How to use help                                       *myvim-how-to-use-help*
+How to use help                                       *mydoc-how-to-use-help*
 
 
 The most import thing to learn about in vim is...
@@ -68,7 +68,7 @@ Also, when in the help pages, CTRL-] jumps to subjects between bars
 and CTRL-T jumps back
 
 =============================================================================
-Must have help                                         *myvim-must-have-help*
+Must have help                                         *mydoc-must-have-help*
 
 :help cmdline-special        Ex special characters
 :help ins-completion         Insert mode completion
@@ -77,7 +77,7 @@ Do :help i_ CTRL-d for insert commands, v_ for visual, etc.
 
 
 =============================================================================
-Enter insert mode                                   *myvim-enter-insert-mode*
+Enter insert mode                                   *mydoc-enter-insert-mode*
 
   |i|   - Insert before character under cursor
   |a|   - Insert after cursor
@@ -106,7 +106,7 @@ See: |ins-special-special|
 
 
 =============================================================================
-Motion                                                         *myvim-motion*
+Motion                                                         *mydoc-motion*
 
   →  |  ←  |  description
   ---+-----+-------------------------------------
@@ -153,7 +153,7 @@ Bindings:~
   ,x - Switch between the currently open buffer and the previous one
 
 =============================================================================
-Learn to speak vim - verbs, nouns and modifiers              *myvim-speakvim*
+Learn to speak vim - verbs, nouns and modifiers              *mydoc-speakvim*
 
 
 Using vim is like talking to your editor in 'verb modifier object' sentences
@@ -174,7 +174,7 @@ Using vim is like talking to your editor in 'verb modifier object' sentences
     |t| (till..finds a character)
     |/| (search..find a string/regex)
 
-Speak to the editor in sentences     *myvim-speak-to-the-editor-in-sentences*
+Speak to the editor in sentences     *mydoc-speak-to-the-editor-in-sentences*
 --------------------------------
 
   Delete the current word:                     |diw|   (delete inside word)
@@ -186,7 +186,7 @@ Speak to the editor in sentences     *myvim-speak-to-the-editor-in-sentences*
 
 
 =============================================================================
-Holding down |j| is a vim anti-pattern.                  *myvim-holdingdownj*
+Holding down |j| is a vim anti-pattern.                  *mydoc-holdingdownj*
 
 
   -          - lines upward, on the first non-blank character |linewise|.
@@ -219,7 +219,7 @@ Holding down |j| is a vim anti-pattern.                  *myvim-holdingdownj*
 
 
 =============================================================================
-Search                                                         *myvim-search*
+Search                                                         *mydoc-search*
 
 For basic searching:
 
@@ -254,7 +254,7 @@ Use \=@{register} to use the register in the pattern
 
 
 =============================================================================
-Repeat                                                         *myvim-repeat*
+Repeat                                                         *mydoc-repeat*
 
   |@:|             - Repeat last command
   |n| or |N|         - for searches
@@ -266,7 +266,7 @@ Repeat                                                         *myvim-repeat*
 
 
 =============================================================================
-Commands starting with g                     *myvim-commands-starting-with-g*
+Commands starting with g                     *mydoc-commands-starting-with-g*
 
 See :help g
 
@@ -276,9 +276,9 @@ See :help g
 
 
 =============================================================================
-Ex                                                                 *myvim-ex*
+Ex                                                                 *mydoc-ex*
 
-RANGES                                                         *myvim-ranges*
+RANGES                                                         *mydoc-ranges*
 ------
 
   :%s/text/replacement/        - Global substitution
@@ -294,7 +294,7 @@ RANGES                                                         *myvim-ranges*
   :20,30 p                     - Print line between 20,30
 
 
-TEXT FILTERS WITH G AND V                   *myvim-text-filters-with-g-and-v*
+TEXT FILTERS WITH G AND V                   *mydoc-text-filters-with-g-and-v*
 -------------------------
 
   :g/vim/ m0        - Move all lines matching the regular expression /vim/
@@ -306,9 +306,9 @@ TEXT FILTERS WITH G AND V                   *myvim-text-filters-with-g-and-v*
 
 
 =============================================================================
-Bindings                                                     *myvim-bindings*
+Bindings                                                     *mydoc-bindings*
 
-GENERAL                                                       *myvim-general*
+GENERAL                                                       *mydoc-general*
 -------
 
   |;|               - Mapped to |:|
@@ -323,7 +323,7 @@ GENERAL                                                       *myvim-general*
   |,cd|             - Switch to the directory of the opened file
   |,tn|             - Open new tab
 
-WINDOW OR SPLIT                                       *myvim-window-or-split*
+WINDOW OR SPLIT                                       *mydoc-window-or-split*
 ---------------
 
   <C-w>o - Make the current window the only one on the screen
@@ -368,7 +368,7 @@ Tab:~
   <C-w> T - to change that split into a new tab.
 
 
-QUICKFIX                                                     *myvim-quickfix*
+QUICKFIX                                                     *mydoc-quickfix*
 --------
 
   |:cl|    - display the list of error
@@ -378,7 +378,7 @@ QUICKFIX                                                     *myvim-quickfix*
   |:cw|    - close it
 
 
-TEXT MANIPULATION AND EDITING           *myvim-text-manipulation-and-editing*
+TEXT MANIPULATION AND EDITING           *mydoc-text-manipulation-and-editing*
 -----------------------------
 
   |,q|  - Format text
@@ -396,7 +396,7 @@ TEXT MANIPULATION AND EDITING           *myvim-text-manipulation-and-editing*
   ~          - Change case of current letter (consider :set 'tildeop')
 
 
-INSERT MODE COMPLETION                         *myvim-insert-mode-completion*
+INSERT MODE COMPLETION                         *mydoc-insert-mode-completion*
 ----------------------
 
   <c-n>      - Keywords in 'complete' searching down.
@@ -416,7 +416,7 @@ INSERT MODE COMPLETION                         *myvim-insert-mode-completion*
   <c-x><c-c> - CamelCaseComplete completion. (plugin)
 
 
-CTRL-R                                                         *myvim-ctrl-r*
+CTRL-R                                                         *mydoc-ctrl-r*
 ------
 
 {0-9a-z"%#:-=.} (INSERT MODE)
@@ -477,10 +477,10 @@ Examples
 You can inspect the current state of all registers with :registers.
 See :help registers.
 
-COMMAND-LINE                                             *myvim-command-line*
+COMMAND-LINE                                             *mydoc-command-line*
 ------------
 
-History:                                                       *myvim-history*
+History:                                                       *mydoc-history*
 
 The window will close when this is done, but you can close it with 
 <C-w> + c the same as any other window if you change your mind.
@@ -496,7 +496,7 @@ CTRL-W      - Delete the word before the cursor.
 See :help cmdline-editin
 
 
-DIFF                                                             *myvim-diff*
+DIFF                                                             *mydoc-diff*
 ----
 
   |:diffthis|    - Make the current window part of the diff windows
@@ -517,13 +517,13 @@ Diff copying:~
   |dp|        - Same as ":diffput" without argument or range.
 
 
-RAINBOW PARENTHESIS                               *myvim-rainbow-parenthesis*
+RAINBOW PARENTHESIS                               *mydoc-rainbow-parenthesis*
 -------------------
 
   ,rp Toggle RainbowParenthesis
 
 
-ULTISNIPS                                                   *myvim-ultisnips*
+ULTISNIPS                                                   *mydoc-ultisnips*
 ---------
 
 Episode 1: What are snippets and do I need them?
@@ -541,7 +541,7 @@ Episode 4: Python Interpolation
   <C-k>   - previous tabstops mark
 
 
-NOTES.VIM                                                   *myvim-notes.vim*
+NOTES.VIM                                                   *mydoc-notes.vim*
 ---------
 
   :Note              - starting a new note
@@ -558,7 +558,7 @@ NOTES.VIM                                                   *myvim-notes.vim*
   completion of tags using 'C-x C-o'
 
 
-CLAM                                                             *myvim-clam*
+CLAM                                                             *mydoc-clam*
 ----
 
   |!| - Open command with !:Clam {cursor}
@@ -575,7 +575,7 @@ convenience.
                       the contents with its result.
 
 
-CTRLP                                                           *myvim-ctrlp*
+CTRLP                                                           *mydoc-ctrlp*
 -----
 
   <C-p>              - to invoke CtrlP
@@ -639,13 +639,13 @@ Input Formats:~
   .. go backward in the directory tree
   / or \ find and go to the project's root
 
-SMARTINPUT                                                 *myvim-smartinput*
+SMARTINPUT                                                 *mydoc-smartinput*
 ----------
 
   To disable smartinput temporarily hit |i_CTRL-V| and input the character.
 
 
-ACK MOTIONS                                               *myvim-ack-motions*
+ACK MOTIONS                                               *mydoc-ack-motions*
 -----------
 
 Motions to Ack for things.  Works with pretty much everything, including:~
@@ -654,7 +654,7 @@ Motions to Ack for things.  Works with pretty much everything, including:~
   <motion>\a - Search with ack
 
 
-TAGS                                                             *myvim-tags*
+TAGS                                                             *mydoc-tags*
 -----
 
 Add these lines in vimrc:~
@@ -669,7 +669,7 @@ Ctags generation:~
 - for php 'ctags -R --languages=php .'
 - for file lists (project.pth) use 'ctags -R -L <filelist>'
 
-Commands and bindings                      *myvim-ctags-commands-and-bindings*
+Commands and bindings                      *mydoc-ctags-commands-and-bindings*
 ---------------------
 
 Some of the tag match list commands:~
@@ -720,7 +720,7 @@ Some of the search commands:~
 
   :help tags-and-searches - Tags and special searches
 
-TAGBAR                                                         *myvim-tagbar*
+TAGBAR                                                         *mydoc-tagbar*
 ------
 
   ,tb     - Show/Hide Tagbar
@@ -732,14 +732,14 @@ TAGBAR                                                         *myvim-tagbar*
   q       - Close the Tagbar window
 
 
-TAGMAN                                                         *myvim-tagman*
+TAGMAN                                                         *mydoc-tagman*
 ------
 
   ,tm  - Toggle the TabMan window in the current tab
   ,ftm - Give focus to the TabMan window in the current tab
 
 
-NERDTREE                                                     *myvim-nerdtree*
+NERDTREE                                                     *mydoc-nerdtree*
 --------
 
   ,nt                        - Show/Hide NerdTree
@@ -792,13 +792,13 @@ Jump bindings:~
   <C-K> - Jump up to the previous sibling of the current directory
 
 
-SUPERTAB                                                       *myvim-supertab*
+SUPERTAB                                                       *mydoc-supertab*
 --------
 
   :SuperTabHelp - list all available completion types
 
 
-VIM-FUGITIVE                                               *myvim-vim-fugitive*
+VIM-FUGITIVE                                               *mydoc-vim-fugitive*
 ------------
 
 Screencasts:~
@@ -820,7 +820,7 @@ Commands:~
   :Gsplit! log - Opens the commit log in a split
   :Gbrowse     - Open the current file on GitHub (or git instaweb)
 
-EASYMOTION                                                 *myvim-easymotion*
+EASYMOTION                                                 *mydoc-easymotion*
 ----------
 
 Tutorial:
@@ -845,12 +845,12 @@ http://net.tutsplus.com/tutorials/other/vim-essential-plugin-easymotion/
   <Leader>j       - Line downward.
   <Leader>k       - Line upward.
 
-INDENT GUIDES                                           *myvim-indent-guides*
+INDENT GUIDES                                           *mydoc-indent-guides*
 -------------
 
   <Leader>ig - Toogle indent guides
 
-EUNUCH HELPERS FOR UNIX                       *myvim-eunuch-helpers-for-unix*
+EUNUCH HELPERS FOR UNIX                       *mydoc-eunuch-helpers-for-unix*
 -----------------------
 
   |:Unlink|     - Delete a buffer and the file on disk simultaneously.
@@ -861,7 +861,7 @@ EUNUCH HELPERS FOR UNIX                       *myvim-eunuch-helpers-for-unix*
   |:SudoWrite|  - Write a privileged file with sudo.
   |:W|          - Write every open file.
 
-UNIMPAIRED                                                 *myvim-unimpaired*
+UNIMPAIRED                                                 *mydoc-unimpaired*
 ----------
 
 Next and previous:~
