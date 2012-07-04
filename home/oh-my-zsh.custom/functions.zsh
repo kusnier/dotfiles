@@ -10,8 +10,10 @@ curl -sH "Accept-Encoding: gzip" "$@" | gunzip
 
 # http://ku1ik.com/2012/05/04/scratch-dir.html
 function new-scratch {
-  cur_dir="$HOME/scratch"
   new_dir="/tmp/scratch-`date +'%s'`"
+  [ -d "/dev/shm/" ] && new_dir="/dev/shm/scratch-`date +'%s'`"
+
+  cur_dir="$HOME/scratch"
   mkdir -p $new_dir
   ln -nfs $new_dir $cur_dir
   cd $cur_dir
