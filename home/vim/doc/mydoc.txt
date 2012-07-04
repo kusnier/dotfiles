@@ -1,4 +1,4 @@
-*mydoc.txt*     My vim shortcuts.       Last change: 2012-04-01
+*mydoc.txt*     My vim shortcuts.                       Last change: 2012-07-04
 
 
 MY PERSONAL VIM DOC                                                     *mydoc*
