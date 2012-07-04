@@ -1,7 +1,11 @@
 *mydoc.txt*     My vim shortcuts.       Last change: 2012-04-01
 
+
+MY PERSONAL VIM DOC                                                     *mydoc*
+
 Copyright (C) 2012 Sebastian Kusnier <seek@matrixcode.de>
 
+==============================================================================
 CONTENTS                                                       *mydoc-contents*
 
 How to use help                                         |mydoc-how-to-use-help|
