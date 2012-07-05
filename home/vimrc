@@ -606,6 +606,7 @@ map <F7> :set spell!<CR>
 " bash-support {{{
 
 let g:BASH_Ctrl_j='off'
+let g:BASH_GlobalTemplateFile = $HOME.'/.vim/bundle/bash-support/bash-support/templates/Templates'
 "
 
 " }}}
