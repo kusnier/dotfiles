@@ -47,3 +47,7 @@ function inotifydsync {
     dsync
   done
 }
+
+function cur_svn_revision() {
+  svn info | grep Revision: | cut -d' ' -f2
+}
