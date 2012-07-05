@@ -1,0 +1,54 @@
+# Snippets for jira
+#
+# Maintainer: Sebastian Kusnier <sebastian AT kusnier DOT net>
+
+# Text effects
+snippet b "Strong"
+*${1:${VISUAL:text}}*
+endsnippet
+
+snippet e "Emphasis"
+_${1:${VISUAL:text}}_
+endsnippet
+
+snippet c "Citation"
+??${1:${VISUAL:text}}??
+endsnippet
+
+snippet d "Deleted"
+-${1:${VISUAL:text}}-
+endsnippet
+
+snippet i "Inserted"
++${1:${VISUAL:text}}+
+endsnippet
+
+snippet super "Superscript"
+^${1:${VISUAL:text}}^
+endsnippet
+
+snippet sub "Subscript"
+~${1:${VISUAL:text}}~
+endsnippet
+
+snippet mono "Monospaced"
+{{${1:${VISUAL:text}}}}
+endsnippet
+
+snippet q "Quoted block (paragraph)"
+bq. ${1:${VISUAL:quotation until end of paragraph}}
+endsnippet
+
+snippet q "Quote block"
+{quote}
+${1:${VISUAL:text}}
+{quote}
+endsnippet
+
+snippet color "Color of text"
+{color:${1:name}}
+${2:${VISUAL:text}}
+{color}
+endsnippet
+
+# Headings
