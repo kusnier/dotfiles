@@ -1029,6 +1029,15 @@ augroup ft_twiki
 augroup END
 
 " }}}
+"
+" jira {{{
+
+augroup ft_jira
+  au!
+  autocmd FileType jira setlocal spell
+augroup END
+
+" }}}
 
 " svn {{{
 
