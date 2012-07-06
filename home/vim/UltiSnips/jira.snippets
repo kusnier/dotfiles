@@ -52,3 +52,177 @@ ${2:${VISUAL:text}}
 endsnippet
 
 # Headings
+snippet h "Header (h1)"
+h${1:1-6}. ${2:${VISUAL:text}}
+endsnippet
+
+# Text Breaks
+snippet hr "horizontal ruler" b
+----
+endsnippet
+
+# Links
+snippet link "Link"
+[${1:name}|${2:${VISUAL:link}}]
+endsnippet
+
+snippet mailto "Mail to"
+[mailto:${1:${VISUAL:address}}]
+endsnippet
+
+snippet user "Link to user"
+[~${1:${VISUAL:username}}]
+endsnippet
+
+# Lists
+snippet list "Bullet list (*)" b
+* ${1:text}
+* ${2:text}
+endsnippet
+
+snippet list "Indented bullet list (*)" b
+** ${2:text}
+endsnippet
+
+snippet list "Bullet list (square)"
+- ${1:text}
+- ${2:text}
+endsnippet
+
+snippet list "Numbered list" b
+# ${1:text}
+# ${2:text}
+endsnippet
+
+# Images
+snippet img "Image"
+!${1:${VISUAL:imgsrc or attached-image}}!
+endsnippet
+
+snippet img "Image +Thumbnail"
+!${1:${VISUAL:imgsrc or attached-image}}|${2:thumbnail}!
+endsnippet
+
+snippet img "Image +Style"
+!${1:${VISUAL:imgsrc or attached-image}}|${2:align=right, vspace=4}!
+endsnippet
+
+# Attachments
+snippet attach "Attachment (general)"
+!${1:${VISUAL:src}}!
+endsnippet
+
+snippet attach "Attachment Media +style"
+!${1:${VISUAL:link to media}}|${2:width=300,height=400}!
+endsnippet
+
+
+# Tables
+snippet table "Table" b
+|| ${1:head0} || ${2:head1} || ${3:head2} || ${4:head3} ||
+| ${5:data} | ${6:data} | ${7:data} | ${8:data} |
+| ${9:data} | ${10:data} | ${11:data} | ${12:data} |
+| ${13:data} | ${14:data} | ${15:data} | ${16:data} |
+endsnippet
+
+snippet ce "Table Cell"
+${1:cell} |$0
+endsnippet
+
+snippet ce "Table Cell" b
+| ${1:cell} |$0
+endsnippet
+
+snippet ro "Table Row"
+| ${1:data} | ${2:data} | ${3:data} | ${4:data} |
+endsnippet
+
+# Advanced Formatting
+snippet nf "No format"
+{noformat}
+*${1:${VISUAL:text}}*
+{noformat}
+endsnippet
+
+snippet panel "Panel" !b
+{panel:title=${1:title}
+| borderStyle=${2:dashed}
+| borderColor=${3:#ccc}
+| borderWidth=${4:1px}
+| titleBGColor=${5:#F7D6C1}
+| bgColor=${6:#FFFFCE}}
+${7:${VISUAL:text}}
+{panel}
+endsnippet
+
+snippet code "Source code"
+{code:${1:javascript, sql, xhtml, actionscript, none, html, xml, java}
+| title=${2:title}}
+${7:${VISUAL:text}}
+{code} 
+endsnippet
+
+# Icons
+snippet icon "+"
+(+)
+endsnippet
+
+snippet icon "-"
+(-)
+endsnippet
+
+snippet icon "?"
+(?)
+endsnippet
+
+snippet icon "on"
+(on)
+endsnippet
+
+snippet icon "off"
+(off)
+endsnippet
+
+snippet icon "star"
+(*)
+endsnippet
+
+snippet icon "star (red)"
+(*r)
+endsnippet
+
+snippet icon "star (green)"
+(*g)
+endsnippet
+
+snippet icon "star (blue)"
+(*b)
+endsnippet
+
+snippet icon "star (yellow)"
+(*y)
+endsnippet
+
+snippet icon "yes"
+(y)
+endsnippet
+
+snippet icon "no"
+(n)
+endsnippet
+
+snippet icon "info"
+(i)
+endsnippet
+
+snippet icon "done"
+(/)
+endsnippet
+
+snippet icon "undone"
+(x)
+endsnippet
+
+snippet icon "warning"
+(!)
+endsnippet
