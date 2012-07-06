@@ -2,6 +2,10 @@
 
 set editor='bash -lc "vim -gf \$*" vim -g'
 
+autocmd LocationChange .* :set editor='bash -lc "vim -gf \$*" vim -g'
+autocmd LocationChange .*/jira/.* :set editor='bash -lc "vim -c \"set ft=jira\" -gf \$*" vim -g'
+autocmd LocationChange .*/wiki.* :set editor='bash -lc "vim -c \"set ft=twiki\" -gf \$*" vim -g'
+
 set gui=none,tabs,addons
 set animations
 set visualbell
