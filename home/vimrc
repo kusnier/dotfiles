@@ -1025,8 +1025,7 @@ augroup END
 
 augroup ft_twiki
   au!
-  au BufNewFile,BufRead /tmp/vimperator-* setf twiki
-  au BufNewFile,BufRead /tmp/vimperator-* set spell
+  autocmd FileType twiki setlocal spell
 augroup END
 
 " }}}
