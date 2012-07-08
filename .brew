@@ -44,6 +44,7 @@ brews=(
   mercurial
   mobile-shell
   mongodb
+  moreutils
   mplayer
   ncftp
   netcat
