@@ -51,3 +51,8 @@ function inotifydsync {
 function cur_svn_revision() {
   svn info | grep Revision: | cut -d' ' -f2
 }
+
+# Requirements: moreutils (spinge, vipe)
+function hexedit() {
+xxd $1 | vipe | xxd -r | sponge $1
+}
