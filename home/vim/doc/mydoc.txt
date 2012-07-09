@@ -331,6 +331,7 @@ WINDOW OR SPLIT                                       *mydoc-window-or-split*
 ---------------
 
   <C-w>o - Make the current window the only one on the screen
+  <C-w>_ - Maximize current window
 
 Split:~
 
@@ -385,6 +386,10 @@ QUICKFIX                                                     *mydoc-quickfix*
 TEXT MANIPULATION AND EDITING           *mydoc-text-manipulation-and-editing*
 -----------------------------
 
+  |V=|  - select text, then reformat with =
+  |=|   - will correct alignment of code
+  |==|  - one line; 
+  |gq|  - reformat paragraph
   |,q|  - Format text
   |,Al| - Align left
   |,Ac| - Align center
