@@ -129,6 +129,32 @@ MEDIATOR                                                     *mydev-mediator*
 
 Defines simplified communication between classes
 
+Definition:~
+
+The essence of the Mediator Pattern is to "Define an object that encapsulates
+how a set of objects interact. Mediator promotes loose coupling by keeping
+objects from referring to each other explicitly, and it lets you vary their
+interaction independently."
+
+
+UML:~
+
+ +------------+                       +-------------+
+ |  Mediator  |                       |  Colleague  |
+ +------------+                       +-------------+
+        △                                    △
+        |                                    |
+        |                         +---------------------+
+        |                         |                     |
+ +------------------+  +--------------------+ +--------------------+
+ | ConcreteMediator |  | ConcreteColleagueA | | ConcreteColleagueB |
+ +------------------+  +--------------------+ +--------------------+
+         |        |              ^                      ^
+         |        +--------------+                      |
+         |                                              |
+         +----------------------------------------------+
+
+
 MEMENTO                                                       *mydev-memento*
 -------
 
@@ -160,7 +186,7 @@ UML:~
                +============+          | +registerObserver(observer)   |
                | +notify()  |          | +unregisterObserver(observer) |
                +------------+          | +notifyObserver()             |
-                      ^                | +getState()                   |
+                      △                | +getState()                   |
                       |                +-------------------------------+
                       |                                     .
                       |                                     .
