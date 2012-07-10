@@ -144,6 +144,39 @@ OBSERVER                                                     *mydev-observer*
 
 A way of notifying change to a number of classes
 
+Definition:~
+
+The essence of the Observer Pattern is to "Define a one-to-many dependency
+between objects so that when one object changes state, all its dependents
+are notified and updated automatically."
+
+UML:~
+
+                                       +-------------------------------+
+                                       |    Subject                    |
+                                       +-------------------------------+
+               +------------+          | +observerCollection           |
+               |  Observer  |--------<>+-------------------------------+
+               +============+          | +registerObserver(observer)   |
+               | +notify()  |          | +unregisterObserver(observer) |
+               +------------+          | +notifyObserver()             |
+                      ^                | +getState()                   |
+                      |                +-------------------------------+
+                      |                                     .
+                      |                                     .
+                      |                +------------------------------------\
+           +----------------------+    |notifyObserver()                    |
+           |                      |    | for observer in observerCollection |
+           |                      |    |   call observer.notify()           |
+           |                      |   +------------------------------------+
+           |                      |
+ +-------------------+  +-------------------+
+ | ConcreteObserverA |  | ConcreteObserverB |
+ +===================+  +===================+    +--------------------\
+ | +notify()         |  | +notify()         |....+ subject.getState() |
+ +-------------------+  +-------------------+    +--------------------+
+
+
 STATE                                                           *mydev-state*
 -----
 
