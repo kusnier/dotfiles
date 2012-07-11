@@ -1,0 +1,230 @@
+*mydev.txt*     Development and Design                  Last change: 2012-07-09
+
+=============================================================================
+MY COLLECTION FOR DEVELOPMENT           *mydev-my-collection-for-development*
+
+
+=============================================================================
+CREATIONAL DESIGN PATTERNS                                  *mydev-creational*
+
+This design patterns is all about class instantiation. This pattern can be
+further divided into class-creation patterns and object-creational patterns.
+While class-creation patterns use inheritance effectively in the instantiation
+process, object-creation patterns use delegation effectively to get
+the job done.
+
+ABSTRACT FACTORY                                     *mydev-abstract-factory*
+----------------
+
+Creates an instance of several families of classes
+
+BUILDER                                                       *mydev-builder*
+-------
+
+Separates object construction from its representation
+
+FACTORY METHOD                                         *mydev-factory-method*
+--------------
+
+Creates an instance of several derived classes
+
+OBJECT POOL                                               *mydev-object-pool*
+-----------
+
+Avoid expensive acquisition and release of resources by recycling objects
+that are no longer in use
+
+PROTOTYPE                                                   *mydev-prototype*
+---------
+
+A fully initialized instance to be copied or cloned
+
+SINGLETON                                                   *mydev-singleton*
+---------
+
+A class of which only a single instance can exist
+
+
+=============================================================================
+STRUCTURAL DESIGN PATTERNS                 *mydev-structural-design-patterns*
+
+This design patterns is all about Class and Object composition.
+Structural class-creation patterns use inheritance to compose interfaces.
+Structural object-patterns define ways to compose objects to obtain
+new functionality.
+
+
+ADAPTER                                                       *mydev-adapter*
+-------
+
+Match interfaces of different classes
+
+BRIDGE                                                         *mydev-bridge*
+------
+
+Separates an object’s interface from its implementation
+
+COMPOSITE                                                   *mydev-composite*
+---------
+
+A tree structure of simple and composite objects
+
+DECORATOR                                                   *mydev-decorator*
+---------
+
+Add responsibilities to objects dynamically
+
+FACADE                                                         *mydev-facade*
+------
+
+A single class that represents an entire subsystem
+
+FLYWEIGHT                                                   *mydev-flyweight*
+---------
+
+A fine-grained instance used for efficient sharing
+
+PRIVATE CLASS DATA                                 *mydev-private-class-data*
+------------------
+
+Restricts accessor/mutator access
+
+PROXY                                                           *mydev-proxy*
+-----
+
+An object representing another object
+
+
+=============================================================================
+BEHAVIORAL DESIGN PATTERNS                 *mydev-behavioral-design-patterns*
+
+This design patterns is all about Class's objects communication. Behavioral
+patterns are those patterns that are most specifically concerned with
+communication between objects.
+
+
+CHAIN OF RESPONSIBILITY                       *mydev-chain-of-responsibility*
+-----------------------
+
+A way of passing a request between a chain of objects
+
+
+COMMAND                                                       *mydev-command*
+-------
+
+Encapsulate a command request as an object
+
+INTERPRETER                                               *mydev-interpreter*
+-----------
+
+A way to include language elements in a program
+
+ITERATOR                                                     *mydev-iterator*
+--------
+
+Sequentially access the elements of a collection
+
+MEDIATOR                                                     *mydev-mediator*
+--------
+
+Defines simplified communication between classes
+
+Definition:~
+
+The essence of the Mediator Pattern is to "Define an object that encapsulates
+how a set of objects interact. Mediator promotes loose coupling by keeping
+objects from referring to each other explicitly, and it lets you vary their
+interaction independently."
+
+
+UML:~
+
+ +------------+                       +-------------+
+ |  Mediator  |                       |  Colleague  |
+ +------------+                       +-------------+
+        △                                    △
+        |                                    |
+        |                         +---------------------+
+        |                         |                     |
+ +------------------+  +--------------------+ +--------------------+
+ | ConcreteMediator |  | ConcreteColleagueA | | ConcreteColleagueB |
+ +------------------+  +--------------------+ +--------------------+
+         |        |              ^                      ^
+         |        +--------------+                      |
+         |                                              |
+         +----------------------------------------------+
+
+
+MEMENTO                                                       *mydev-memento*
+-------
+
+Capture and restore an object's internal state
+
+NULL OBJECT                                               *mydev-null-object*
+-----------
+
+Designed to act as a default value of an object
+
+OBSERVER                                                     *mydev-observer*
+--------
+
+A way of notifying change to a number of classes
+
+Definition:~
+
+The essence of the Observer Pattern is to "Define a one-to-many dependency
+between objects so that when one object changes state, all its dependents
+are notified and updated automatically."
+
+UML:~
+
+                                       +-------------------------------+
+                                       |    Subject                    |
+                                       +-------------------------------+
+               +------------+          | +observerCollection           |
+               |  Observer  |--------<>+-------------------------------+
+               +============+          | +registerObserver(observer)   |
+               | +notify()  |          | +unregisterObserver(observer) |
+               +------------+          | +notifyObserver()             |
+                      △                | +getState()                   |
+                      |                +-------------------------------+
+                      |                                     .
+                      |                                     .
+                      |                +------------------------------------\
+           +----------------------+    |notifyObserver()                    |
+           |                      |    | for observer in observerCollection |
+           |                      |    |   call observer.notify()           |
+           |                      |   +------------------------------------+
+           |                      |
+ +-------------------+  +-------------------+
+ | ConcreteObserverA |  | ConcreteObserverB |
+ +===================+  +===================+    +--------------------\
+ | +notify()         |  | +notify()         |....+ subject.getState() |
+ +-------------------+  +-------------------+    +--------------------+
+
+
+STATE                                                           *mydev-state*
+-----
+
+Alter an object's behavior when its state changes
+
+STRATEGY                                                     *mydev-strategy*
+--------
+
+Encapsulates an algorithm inside a class
+
+TEMPLATE METHOD                                       *mydev-template-method*
+---------------
+
+Defer the exact steps of an algorithm to a subclass
+
+VISITOR                                                       *mydev-visitor*
+-------
+
+Defines a new operation to a class without change
+
+
+
+==============================================================================
+
+vim:tw=78:ts=8:ft=help:norl:fen:fdl=0:fdm=marker:
