@@ -178,24 +178,35 @@ are notified and updated automatically."
 
 UML:~
 
+                           +------------------------------------\ 
+                           |notifyObserver()                    | 
+                           | for observer in observerCollection | 
+                           |   call observer.notify()           | 
+                           +------------------------------------+ 
+                                                  .
+                                                  .
                                        +-------------------------------+
-                                       |    Subject                    |
+                                       |  Subject                      |
                                        +-------------------------------+
-               +------------+          | +observerCollection           |
+               +------------+          | -observerCollection           |
                |  Observer  |--------<>+-------------------------------+
                +============+          | +registerObserver(observer)   |
                | +notify()  |          | +unregisterObserver(observer) |
                +------------+          | +notifyObserver()             |
-                      △                | +getState()                   |
+                      △                +-------------------------------+
+                      |                                △
+                      |                                |
                       |                +-------------------------------+
-                      |                                     .
-                      |                                     .
-                      |                +------------------------------------\
-           +----------------------+    |notifyObserver()                    |
-           |                      |    | for observer in observerCollection |
-           |                      |    |   call observer.notify()           |
-           |                      |   +------------------------------------+
-           |                      |
+                      |                |  ConcreteSubject              |
+                      |                +-------------------------------+
+                      |                | -subjectState                 |
+                      |                +-------------------------------+
+                      |                | +getState()                   |
+                      |                | +setState()                   |
+                      |                +-------------------------------+
+           +----------+-----------+       ^
+           |                      |       |
+           |                      |       |
  +-------------------+  +-------------------+
  | ConcreteObserverA |  | ConcreteObserverB |
  +===================+  +===================+    +--------------------\
