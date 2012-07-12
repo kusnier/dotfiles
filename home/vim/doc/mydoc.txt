@@ -74,10 +74,11 @@ and CTRL-T jumps back
 
 
 =============================================================================
-MUSE HAVE HELP                                         *mydoc-muse-have-help*
+MUST HAVE HELP                                         *mydoc-muse-have-help*
 
 :help cmdline-special        Ex special characters
 :help ins-completion         Insert mode completion
+:help complete-functions     functions for finding completions
 
 Do :help i_ CTRL-d for insert commands, v_ for visual, etc.
 
