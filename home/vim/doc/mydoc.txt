@@ -425,6 +425,9 @@ INSERT MODE COMPLETION                         *mydoc-insert-mode-completion*
   <c-x>s     - Spelling suggestions.
   <c-x><c-c> - CamelCaseComplete completion. (plugin)
 
+When completion widnow is open:~
+  <c-l> - Enter the next character from the selected word
+  <c-e> - Use selectd word and typo more
 
 CTRL-R                                                         *mydoc-ctrl-r*
 ------
