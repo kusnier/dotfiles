@@ -158,6 +158,16 @@ Bindings:~
 
   ,x - Switch between the currently open buffer and the previous one
 
+Text object motions:~
+
+( - sentences backward.  |exclusive| motion.
+) - sentences forward.  |exclusive| motion.
+{ - paragraphs backward.  |exclusive| motion.
+} - paragraphs forward.  |exclusive| motion.
+]]- sections forward or to the next '{' in the first column.
+[[- sections backward or to the previous '{' in the first column.
+
+
 =============================================================================
 LERN TO SPEAK VIM                                             *mydoc-speakvim*
 
