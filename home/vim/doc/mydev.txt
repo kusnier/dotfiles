@@ -219,40 +219,51 @@ are notified and updated automatically."
 
 UML:~
 
-                           +------------------------------------\ 
-                           |notifyObserver()                    | 
-                           | for observer in observerCollection | 
-                           |   call observer.notify()           | 
-                           +------------------------------------+ 
-                                                  .
-                                                  .
-                                       +-------------------------------+
-                                       |  Subject                      |
-                                       +-------------------------------+
-               +------------+          | -observerCollection           |
-               |  Observer  |--------<>+-------------------------------+
-               +============+          | +registerObserver(observer)   |
-               | +notify()  |          | +unregisterObserver(observer) |
-               +------------+          | +notifyObserver()             |
-                      △                +-------------------------------+
-                      |                                △
-                      |                                |
-                      |                +-------------------------------+
-                      |                |  ConcreteSubject              |
-                      |                +-------------------------------+
-                      |                | -subjectState                 |
-                      |                +-------------------------------+
-                      |                | +getState()                   |
-                      |                | +setState()                   |
-                      |                +-------------------------------+
-           +----------+-----------+       ^
-           |                      |       |
-           |                      |       |
- +-------------------+  +-------------------+
- | ConcreteObserverA |  | ConcreteObserverB |
- +===================+  +===================+    +--------------------\
- | +notify()         |  | +notify()         |....+ subject.getState() |
- +-------------------+  +-------------------+    +--------------------+
+  +-------------------+ observers               +------------+
+  |  Subject          |----------------------->*|  Observer  |
+  +-------------------+                         +============+
+  | +attach(observer) |                         | +update()  |
+  | +detach(observer) |                         +------------+
+  | +notify()         |...                             △
+  +-------------------+  .                             |
+       △                 .                             |
+       |     +--------------------------\              |
+       |     |notify()                  |              |
+       |     | for all o in obsevers    |              |
+       |     |   o->observer->update()  |              |
+       |     +--------------------------+              |
+       |                                               |
+       |                                     +-------------------+
+  +---------------------+                    | ConcreteObserver  |
+  | ConcreteSubject     |            subject +===================+
+  +---------------------+<-------------------| +update()         |...
+  | -subjectSate        |                    +-------------------+  .
+  +---------------------+                    | observerState     |  .
+  | +getState(observer) |...                 +-------------------+  .
+  | +setState(observer) |  .                                        .
+  +---------------------+  .                    +-----------------------\
+                           .                    | observerState=        |
+           +---------------------\              |   subject->getState() |
+           | return subjectState |              +-----------------------+
+           +---------------------+
+
+Subject~
+Keeps track of its observers.
+Provides an interface for attaching and detaching Observer objects.
+
+Observer~
+Defines an interface for update notification.
+
+ConcreteSubject~
+The object being observed.
+Stores state of interest to ConcreteObserver objects.
+Sends a notification to its observers when its state changes.
+
+ConcreteObserver~
+The observing object.
+Stores state that should stay consistent with the subject's.
+Implements the Observer update interface to keep its state consistent
+with the subject's.
 
 
 STATE                                                           *mydev-state*
