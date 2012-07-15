@@ -32,18 +32,21 @@ process can create different representations.
 
 UML:~
 
-  +-------------------+       +--------------+      +-----------------------+
-  | Director          |<>-----+ Builder      |◁-----| ConcreteBuilder       |
-  +-------------------+       +==============+      +=======================+
-  | -builder: Builder |       | +buildPart() |      | +buildPart()          |
-  +-------------------+       +--------------+      | +getResult(): Product |
-  | +construct()      |                             +-----------------------+
-  +-------------------+                                    .
-      .                                                    . <<create>>
-      .  +---------------------------\                     v
-      ...| foreach item in structure |                 +---------+
-         |   builder.buildPart()     |                 | Product |
-         +---------------------------+                 +=========+
+  +--------------+ builder                +--------------+
+  | Director     |<>----------------------+ Builder      |
+  +==============+                        +==============+
+  | +construct() |..                      | +buildPart() |
+  +--------------+ .                      +--------------+
+                   .                             △
+                   .                             |
+  +---------------------------\                  |
+  | foreach item in structure |                  |
+  |   builder->buildPart()    |      +-----------------------+
+  +---------------------------+      | ConcreteBuilder       |  <<create>>
+                                     +=======================+   +----------+
+                                     | +buildPart()          |..>+  Product |
+                                     | +getResult(): Product |   +----------+
+                                     +-----------------------+
 
 
 Builder~
