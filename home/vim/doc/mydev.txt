@@ -23,6 +23,47 @@ BUILDER                                                       *mydev-builder*
 
 Separates object construction from its representation
 
+Definition:~
+
+The intent of the Builder design pattern is to separate the construction of a
+complex object from its representation. By doing so, the same construction
+process can create different representations.
+
+
+UML:~
+
+  +-------------------+       +--------------+      +-----------------------+
+  | Director          |<>-----+ Builder      |◁-----| ConcreteBuilder       |
+  +-------------------+       +==============+      +=======================+
+  | -builder: Builder |       | +buildPart() |      | +buildPart()          |
+  +-------------------+       +--------------+      | +getResult(): Product |
+  | +construct()      |                             +-----------------------+
+  +-------------------+                                    .
+      .                                                    . <<create>>
+      .  +---------------------------\                     v
+      ...| foreach item in structure |                 +---------+
+         |   builder.buildPart()     |                 | Product |
+         +---------------------------+                 +=========+
+
+
+Builder~
+
+Abstract interface for creating objects (product).
+
+Concrete Builder~
+
+Provides implementation for Builder. It is an object able to construct
+other objects. Constructs and assembles parts to build the objects.
+
+Director~
+The Director class is responsible for managing the correct sequence of
+object creation. It receives a Concrete Builder as a parameter and executes
+the necessary operations on it.
+
+Product~
+The final object that will be created by the Director using Builder. 
+
+
 FACTORY METHOD                                         *mydev-factory-method*
 --------------
 
