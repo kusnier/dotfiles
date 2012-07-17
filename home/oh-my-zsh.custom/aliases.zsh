@@ -142,3 +142,5 @@ if [[ $system == 'Darwin' ]]; then
 fi
 
 alias hi='pygmentize'
+
+alias paththis='export PATH=$(pwd):$PATH'
