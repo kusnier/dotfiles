@@ -144,3 +144,6 @@ fi
 alias hi='pygmentize'
 
 alias paththis='export PATH=$(pwd):$PATH'
+
+alias vu 'vagrant up'
+alias vs 'vagrant suspend'
