@@ -1531,6 +1531,7 @@ nnoremap <leader>ed :e ~/dotfiles/<cr>
 nnoremap <leader>ec :e ~/.css<cr>
 nnoremap <leader>ej :e ~/.js<cr>
 nnoremap <leader>eq :e http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js<cr>
+nnoremap <leader>eV :e scp://vagrant//<cr>
 
 " }}}
 " vimrc helper ------------------------------------------------------------ {{{
