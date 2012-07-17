@@ -3,11 +3,11 @@ system=`uname -s`
 #
 # vim aliases
 alias c='clear'
-alias v='vim'
-alias gv='gvim'
-alias vt='gvim --remote-tab-silent'
-alias vc='gvim -t'
-alias e='gvim .'
+alias v='vim -g'
+alias gv='vim -g'
+alias vt='vim -g --remote-tab-silent'
+alias vc='vim -g -t'
+alias e='vim -g .'
 alias vime="vim -g -u ~/.vimencrypt -x"
 
 if [[ $system == 'Darwin' ]]; then
@@ -142,3 +142,8 @@ if [[ $system == 'Darwin' ]]; then
 fi
 
 alias hi='pygmentize'
+
+alias paththis='export PATH=$(pwd):$PATH'
+
+alias vu 'vagrant up'
+alias vs 'vagrant suspend'
