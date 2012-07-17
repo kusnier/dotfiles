@@ -42,7 +42,7 @@ function dsync {
 }
 
 function inotifydsync {
-  inotifywait -e modify -e move -e create -e delete \
+  inotifywait -e close_write -e move -e create -e delete \
     -r -m . | while read line ; do
     dsync
   done
