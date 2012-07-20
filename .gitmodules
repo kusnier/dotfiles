@@ -164,3 +164,6 @@
 [submodule "home/oh-my-zsh.custom/plugins/zsh-xpframework"]
 	path = home/oh-my-zsh.custom/plugins/zsh-xpframework
 	url = git@github.com:kusnier/zsh-xpframework.git
+[submodule "home/vim/bundle/textobj-word-column.vim"]
+	path = home/vim/bundle/textobj-word-column.vim
+	url = git://github.com/coderifous/textobj-word-column.vim.git
