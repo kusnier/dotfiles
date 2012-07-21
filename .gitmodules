@@ -167,3 +167,6 @@
 [submodule "home/vim/bundle/textobj-word-column.vim"]
 	path = home/vim/bundle/textobj-word-column.vim
 	url = git://github.com/coderifous/textobj-word-column.vim.git
+[submodule "home/vim/bundle/parameter-text-objects"]
+	path = home/vim/bundle/parameter-text-objects
+	url = git://github.com/kusnier/Parameter-Text-Objects.git
