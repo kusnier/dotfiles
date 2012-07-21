@@ -619,7 +619,6 @@ let g:BASH_GlobalTemplateFile = $HOME.'/.vim/bundle/bash-support/bash-support/te
 "
 
 " }}}
-
 " Clam {{{
 
 nnoremap ! :Clam<space>
@@ -934,6 +933,15 @@ let g:event_handler_attributes_complete = 0
 let g:rdfa_attributes_complete = 0
 let g:microdata_attributes_complete = 0
 let g:atia_attributes_complete = 0
+
+" }}}
+" Parameter-Text-Object {{{
+
+let g:no_parameter_object_maps = 1
+vmap     <silent> ia <Plug>ParameterObjectI
+omap     <silent> ia <Plug>ParameterObjectI
+vmap     <silent> aa <Plug>ParameterObjectA
+omap     <silent> aa <Plug>ParameterObjectA
 
 " }}}
 
