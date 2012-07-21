@@ -185,7 +185,7 @@ Using vim is like talking to your editor in 'verb modifier object' sentences
     |s| (sentence)
     |p| (paragraph)
     |b| (block/parentheses)
-    |a| (arguments) - plugin
+    |a| (arguments) -parameter-text-object  plugin
     |c| (column) - textobj-word-column plugin
       ac - "a column", a column based on "a word" |aw|.
       ic - "inner column", a column based on the "inner word" |iw|.
