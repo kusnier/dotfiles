@@ -18,6 +18,61 @@ ABSTRACT FACTORY                                     *mydev-abstract-factory*
 
 Creates an instance of several families of classes
 
+Definition:~
+
+The essence of the Abstract Factory method Pattern is to "Provide an interface
+for creating families of related or dependent objects without specifying their
+concrete classes".
+
+
+UML:~
+                                                   +--------+
+                            -----------------------| Client |---------------+
+                            v                      +--------+               |
+           +------------------+                                             |
+           | AbstractFactory  |                   +------------------+      |
+           +------------------+                   | AbstractProductA |<-----+
+           | CreateProductA() |                   +------------------+      |
+           | CreateProductB() |                            △                |
+           +------------------+                            |                |
+                    △                             +------------------+      |
+                    |                             |                  |      |
+         +----------------------+            +-----------+  +-----------+   |
+         |                      |            | ProductA2 |  | ProductA1 |<. |
++------------------+   +------------------+  +-----------+  +-----------+ . |
+| ConcreteFactory1 |   | ConcreteFactory2 |    ^                          . |
++------------------+   +------------------+    .                          . |
+| CreateProductA() |   | CreateProductA() |.....                          . |
+| CreateProductB() |   | CreateProductB() |    .  +------------------+    . |
++------------------+   +------------------+    .  | AbstractProductA |<-----+
+                .                              .  +------------------+    .
+                .                              .           △              .
+                .                              .           |              .
+                .                              .  +------------------+    .
+                .                              v  |                  |    .
+                .                            +-----------+  +-----------+ .
+                .                            | ProductA2 |  | ProductA1 |<.
+                .                            +-----------+  +-----------+ .
+                .                                                         .
+                ...........................................................
+
+AbstractFactory~
+Declares an interface for operations that create abstract product objects.
+
+ConcreteFactory~
+Implements the operations to create concrete product objects.
+
+AbstractProduct~
+Declares an interface for a type of product object.
+
+ConcreteProduct~
+Defines a product object to be created by the corresponding concrete factory.
+Implements the AbstractProduct interface.
+
+Client~
+Uses only interfaces declared by AbstractFactory and AbstractProduct classes.
+
+
 BUILDER                                                       *mydev-builder*
 -------
 
