@@ -391,6 +391,10 @@ nnoremap <silent> <leader><leader>? :execute "Ack! '" . substitute(substitute(su
 " Use tab jump between matches
 map <tab> %
 
+" next/previous word under cursor in same column
+nnoremap g* yiw:let c=col('.')<CR>:let @/="^.*\\%".c.'c\zs'.@"<CR>n
+nnoremap g# yiw:let c=col('.')<CR>:let @/="^.*\\%".c.'c\zs'.@"<CR>N
+
 " }}}
 " Spelling ---------------------------------------------------------------- {{{
 
