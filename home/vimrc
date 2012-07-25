@@ -833,6 +833,7 @@ au Filetype nerdtree setlocal nolist
 let NERDTreeChDirMode=2 "CWD is changed whenever the tree root is changed
 let NERDTreeDirArrows=1
 let NERDTreeMinimalUI=1
+let NERDChristmasTree=1
 
 " }}}
 " ftPlugin: xml {{{
