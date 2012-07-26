@@ -22,13 +22,9 @@ export FIGNORE='.svn'
 
 GREP_OPTIONS='--color=auto'
 
-if grep --help | grep -- --exclude-dir &>/dev/null; then
-  for PATTERN in .cvs .git .hg .svn target; do
-      GREP_OPTIONS="$GREP_OPTIONS --exclude-dir=$PATTERN"
-  done
-else
-  GREP_OPTIONS="$GREP_OPTIONS --exclude='*.svn' --exclude='*.svn-base'"
-fi
+for PATTERN in .cvs .git .hg .svn target; do
+    GREP_OPTIONS="$GREP_OPTIONS --exclude-dir=$PATTERN"
+done
 
 
 GREP_OPTIONS="$GREP_OPTIONS --exclude=tags"
