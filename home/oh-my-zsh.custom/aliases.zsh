@@ -28,6 +28,8 @@ fi
 # Get Debian/Ubuntu Updates
 [[ -e "/etc/debian_version" ]] && alias update='sudo apt-get update; sudo apt-get upgrade'
 
+alias npmup="npm update npm -g; npm update -g"
+
 #Suffix aliases
 # filename.md pressing return-key starts gvim
 alias -s md=gvim
