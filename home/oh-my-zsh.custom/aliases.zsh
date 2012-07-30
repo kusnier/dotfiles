@@ -149,3 +149,6 @@ alias paththis='export PATH=$(pwd):$PATH'
 
 alias vu 'vagrant up'
 alias vs 'vagrant suspend'
+
+# Launch iOS Simulator
+alias ios="open -a /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app"
