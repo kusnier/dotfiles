@@ -91,6 +91,9 @@ alias gap="git add --patch"
 # Use (g)vim to show log
 alias glog="git log -p | vim - -g -R -c 'set foldmethod=syntax'"
 
+# Navigate to root of git repository
+alias ..g='git rev-parse && cd "$(git rev-parse --show-cdup)"'
+
 # diff
 alias wdiff="wdiff -n -w $'\033[30;41m' -x $'\033[0m' -y $'\033[30;42m' -z $'\033[0m'"
 
