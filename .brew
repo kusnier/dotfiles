@@ -62,6 +62,7 @@ brews=(
   tree
   unrar
   watch
+  webkit2png
   wget
   xz
   yasm
