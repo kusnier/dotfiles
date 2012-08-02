@@ -90,6 +90,9 @@ set virtualedit+=block
 " remap j an k to jump to the rows in the smae line, if lines wraps
 nnoremap j gj
 nnoremap k gk
+" default behavior is sometimes useful
+nnoremap gj j
+nnoremap gk k
 
 " Fix linewise visual selection of various text objects
 nnoremap VV V
