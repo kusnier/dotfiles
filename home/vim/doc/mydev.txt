@@ -127,6 +127,48 @@ FACTORY METHOD                                         *mydev-factory-method*
 
 Creates an instance of several derived classes
 
+Definition:~
+
+The essence of the Factory method Pattern is to "Define an interface for
+creating an object, but let the classes that implement the interface decide
+which class to instantiate. The Factory method lets a class defer instantiation
+to subclasses."
+
+
+UML:~
+                     +-----------------------+
+    +---------+      | Creator               |
+    | Product |      +-----------------------|    +--------------------------\
+    +---------+      | FactoryMethod() {abs} |    | ...                      |
+         △           | AnOperation()        o-----| product= FactoryMethod() |
+         |           +-----------------------+    | ...                      |
+         |                       △                +--------------------------|
+         |                       |
++-----------------+     +------------------+
+| ConcreteProduct |<----+ ConcreteCreator  |
++-----------------+     +------------------+    +----------------------------\
+                        | FactoryMethod() o-----| return new ConcreteProduct |
+                        +------------------+    +----------------------------+
+
+
+Participants:~
+
+Product~
+Defines the interface of objects the factory method creates.
+
+ConcreteProduct~
+Implements the Product interface.
+
+Creator~
+Declares the factory method, which returns an object of type Product.
+  Creator may also define a default implementation of the factory
+  method that returns a default ConcreteProduct object.
+May call the factory method to create a Product object.
+
+ConcreteCreator~
+Overrides the factory method to return an instance of a ConcreteProduct.
+
+
 OBJECT POOL                                               *mydev-object-pool*
 -----------
 
