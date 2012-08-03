@@ -64,7 +64,6 @@ brews=(
   watch
   webkit2png
   wget
-  xz
   yasm
 )
 
