@@ -618,7 +618,8 @@ CTRLP                                                           *mydoc-ctrlp*
   :CtrlPDir          - Search for a directory and change the working directory
                        to it.
   :CtrlPBufTag       - Search for a tag within the current buffer and jump to
-                      the definition.
+                       the definition.
+  :CtrlPLastMode     - Open CtrlP in the last mode used.
 
 Once CtrlP is open:~
 
@@ -666,6 +667,7 @@ Input Formats:~
     E.g. Use ':45' to jump to line 45.
          Use ':/any\:string' to jump to the first instance of 'any:string'.
   .. go backward in the directory tree
+  @cd change to the directory of the current file.
   / or \ find and go to the project's root
 
 SMARTINPUT                                                 *mydoc-smartinput*
