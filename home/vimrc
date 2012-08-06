@@ -712,9 +712,8 @@ highlight phpClassesTag guifg=#ff0077
     \ 'file': '\.exe$\|\.so$\|\.dll$',
     \ }
 let g:ctrlp_extensions = ['tag', 'qfx', 'dir', 'buffertag', 'mixed']
-let g:ctrlp_working_path_mode = 2
+let g:ctrlp_working_path_mode = 'rc'
 let g:ctrlp_root_markers = ['VERSION', 'xpinstall/', 'ivy.xml']
-let g:ctrlp_mru_files = 1
 let g:ctrlp_dont_split = 'NERD_tree_2'
 
 nnoremap <Leader>bs :CtrlPBuffer<CR>
