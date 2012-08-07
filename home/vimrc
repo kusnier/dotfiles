@@ -708,7 +708,7 @@ highlight phpClassesTag guifg=#ff0077
 " CtrlP {{{
 
   let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|target/.*_.*RELEASE$\|target/classes$\|target/app$\|target/bootstrap$',
+    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|target/.*_.*RELEASE$\|target/.*classes$\|target/app$\|target/bootstrap$',
     \ 'file': '\.exe$\|\.so$\|\.dll$',
     \ }
 let g:ctrlp_extensions = ['tag', 'qfx', 'dir', 'buffertag', 'mixed']
