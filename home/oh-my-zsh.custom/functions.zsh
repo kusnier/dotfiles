@@ -56,3 +56,8 @@ function cur_svn_revision() {
 function hexedit() {
 xxd $1 | vipe | xxd -r | sponge $1
 }
+
+# Trailing whitespace elimination function for multiple files
+function removetrailingspaces() {
+find . -type f -name "$1" -exec sed --in-place 's/[[:space:]]\+$//' {} \+
+}
