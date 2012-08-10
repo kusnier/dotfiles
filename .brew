@@ -51,6 +51,7 @@ brews=(
   nmap
   node
   pango
+  phantomjs
   pixman
   pkg-config
   poppler
