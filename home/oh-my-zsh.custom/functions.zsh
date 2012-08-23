@@ -20,6 +20,20 @@ function new-scratch {
   echo "New scratch dir ready for grinding ;>"
 }
 
+# Determine size of a file or total size of a directory
+function fs() {
+  if du -shb /dev/null > /dev/null 2>&1; then
+    local arg=-sbh
+  else
+    local arg=-skh
+  fi
+  if [[ -n "$@" ]]; then
+    du $arg -- "$@"
+  else
+    du $arg .[^.]* *
+  fi
+}
+
 # Switch between vm.box and host
 function dswitch {
   cur_dir=$PWD
