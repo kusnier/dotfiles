@@ -1,0 +1,22 @@
+#!/bin/bash
+# Set low swappiness for linux
+# More info: https://help.ubuntu.com/community/SwapFaq
+sudo sysctl vm.swappiness=0
+
+# Even if you have lots of RAM and even if you have a low swappiness value,
+# it is possible that your computer swaps. This can hurt the multitasking
+# performance of your desktop system.
+function empty_swap() {
+  local err="not enough RAM to write swap back, nothing done"
+  local mem=`free|grep Mem:|awk '{print $4}'`
+  local swap=`free|grep Swap:|awk '{print $3}'`
+  test $mem -lt $swap && echo -e $err && exit 1
+  sudo swapoff -a && sudo swapon -a
+}
+empty_swap
+
+# Apple Keyboard
+# See: https://help.ubuntu.com/community/AppleKeyboard
+# 1. echo options hid_apple fnmode=2 | sudo tee -a /etc/modprobe.d/hid_apple.conf
+# 2. sudo update-initramfs -u
+# 3. sudo reboot
