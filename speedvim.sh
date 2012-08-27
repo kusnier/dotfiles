@@ -10,7 +10,7 @@ for d in *;do
   if [ $MODE == 'copy' ]; then
     #############################
     # Solution 1: Copy files
-    cp -i -r * ../../bundle.merged/all
+    cp -r * ../../bundle.merged/all
   fi
 
   if [ $MODE == 'hardlink' ]; then
