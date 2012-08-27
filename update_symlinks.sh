@@ -21,14 +21,52 @@ function realpath() {
   echo $callerpath
 }
 
+usage()
+{
+cat << EOF
+usage: $0 options
+
+This script updates the dotfile symlinks
+
+OPTIONS:
+   -h      Show this message
+   -f      Overwrite existing files
+EOF
+}
+
 base=false
+force=false
+
+while getopts "hf" OPTION
+do
+     case $OPTION in
+         h)
+             usage
+             exit 1
+             ;;
+         f)
+             force=true
+             ;;
+         ?)
+             usage
+             exit 1
+             ;;
+     esac
+done
+
+if [[ "$force" = 'true' ]]; then
+  rmopts=
+else
+  rmopts='-i'
+fi
+
 # ensure we're on the base of the dotfiles repo
 dotfilespath="$(git rev-parse --show-toplevel)" || exit
 
 for dotfile in ${dotfilespath}/home/* ; do
   echo $dotfile
   base=`basename $dotfile`
-  rm -ir ~/.$base
+  rm $rmopts -r ~/.$base
   ln -v -s $dotfile ~/.$base
 done
 
