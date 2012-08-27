@@ -60,6 +60,8 @@ else
   rmopts='-i'
 fi
 
+cd `dirname $0`
+
 # ensure we're on the base of the dotfiles repo
 dotfilespath="$(git rev-parse --show-toplevel)" || exit
 

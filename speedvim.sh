@@ -1,6 +1,8 @@
 #!/bin/bash
 MODE="copy"
 
+cd `dirname $0`
+
 rm -r home/vim/bundle.merged/*
 mkdir -p home/vim/bundle.merged/all;
 cd home/vim/bundle
