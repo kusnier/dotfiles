@@ -180,6 +180,55 @@ PROTOTYPE                                                   *mydev-prototype*
 
 A fully initialized instance to be copied or cloned
 
+Definition:~
+
+The prototype pattern is a creational design pattern used in software
+development when the type of objects to create is determined by a prototypical
+instance, which is cloned to produce new objects. This pattern is used to:
+
+* avoid subclasses of an object creator in the client application, like the
+  abstract factory pattern does.
+* avoid the inherent cost of creating a new object in the standard
+  way (e.g., using the new keyword) when it is prohibitively expensive for
+  a given application.
+
+
+UML:~
+                                          +-----------+
++---------------+ prototype               | Prototype |
+| Client        |------------------------>+-----------+
++---------------+                         | Clone()   |
+| Operation() o |                         +-----------+
++-------------.-+                               △
+              .                                 |
+              .                      +----------+------------+
++------------------------\           |                       |
+| p = prototype->Clone() |           |                       |
++------------------------+           |                       |
+                                     |                       |
+                           +--------------------+  +--------------------+
+                           | ConcretePrototype1 |  | ConcretePrototype2 |
+                           +--------------------+  +--------------------+
+                           | Clone() o          |  | Clone() o          |
+                           +---------.----------+  +---------.----------+
+                                     .                       .
+                         +---------------------\     +---------------------\
+                         | return copy of self |     | return copy of self |
+                         +---------------------+     +---------------------+
+
+
+Participants:~
+
+Prototype~
+Declares an interface for cloning itself.
+
+ConcretePrototype~
+Implements an operation for cloning itself.
+
+Client~
+Creates a new object by asking a prototype to clone itself.
+
+
 SINGLETON                                                   *mydev-singleton*
 ---------
 
