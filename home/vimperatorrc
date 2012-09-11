@@ -31,6 +31,9 @@ map <Leader>p :noscript toggleperm<CR>
 " Don't auto hide tab in fullscreen. finally!
 set! browser.fullscreen.autohide=false
 
+" Open links in background
+set! browser.tabs.loadDivertedInBackground=true
+
 " Speedup firefox
 set! network.http.pipelining=true
 set! network.http.pipelining.ssl=true
