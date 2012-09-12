@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Key: Delay until repeat
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
