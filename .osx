@@ -1,4 +1,86 @@
 #!/bin/bash
 
+# Set a blazingly fast keyboard repeat rate
+defaults write NSGlobalDomain KeyRepeat -int 0
+
 # Key: Delay until repeat
 defaults write NSGlobalDomain InitialKeyRepeat -int 15
+
+
+###############################################################################
+# Trackpad, mouse, keyboard, Bluetooth accessories, and input #
+###############################################################################
+
+# Trackpad: enable tap to click
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+
+# Trackpad: map bottom right corner to right-click
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
+
+###############################################################################
+# Finder #
+###############################################################################
+
+# Finder: show all filename extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Finder: show status bar
+defaults write com.apple.finder ShowStatusBar -bool true
+
+# Avoid creating .DS_Store files on network volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+####################
+#  BetterSnapTool  #
+####################
+
+defaults write com.hegenberg.BetterSnapTool registeredHotkeys \
+'{
+    0 =     {
+        keyCode = 40;
+        modifiers = 6400;
+    };
+    11 =     {
+        keyCode = 32;
+        modifiers = 6400;
+    };
+    12 =     {
+        keyCode = 31;
+        modifiers = 6400;
+    };
+    13 =     {
+        keyCode = 46;
+        modifiers = 6400;
+    };
+    14 =     {
+        keyCode = 47;
+        modifiers = 6400;
+    };
+    15 =     {
+        keyCode = 34;
+        modifiers = 6400;
+    };
+    16 =     {
+        keyCode = 43;
+        modifiers = 6400;
+    };
+    2 =     {
+        keyCode = 38;
+        modifiers = 6400;
+    };
+    4 =     {
+        keyCode = 37;
+        modifiers = 6400;
+    };
+}'
+
+
+###############################################################################
+# Kill affected applications #
+###############################################################################
+
+for app in "Dock" "Finder" "SystemUIServer"; do
+killall "$app" > /dev/null 2>&1
+done
+echo "Done. Note that some of these changes require a logout/restart to take effect."
