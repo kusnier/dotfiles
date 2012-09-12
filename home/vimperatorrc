@@ -28,6 +28,9 @@ map <Leader>n :noscript toggletemp<CR>
 " -Toggles scripts permanently on current page.
 map <Leader>p :noscript toggleperm<CR>
 
+" Remember last open tabs
+set! browser.startup.page=3
+
 " Don't auto hide tab in fullscreen. finally!
 set! browser.fullscreen.autohide=false
 
