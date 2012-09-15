@@ -219,7 +219,10 @@ inoremap <s-cr> <esc>A:<cr>
 
 set list listchars=tab:»·,trail:·,eol:¬,extends:❯,precedes:❮
 set showbreak=↪
-set fillchars=diff:⣿,vert:│
+" On MacVim this makes vim very slow
+if !has("gui_macvim")
+  set fillchars=diff:⣿,vert:│
+endif
 
 if !exists("g:colors_name")
   highlight NonText guifg=#2a2a2a
