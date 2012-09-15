@@ -484,7 +484,7 @@ if has("gui_running")
   if has("win32")
     set guifont=Bitstream_Vera_Sans_Mono:h8:cANSI
   elseif has("gui_macvim")
-    set guifont=DejaVu\ Sans\ Mono:h11
+    set guifont=Menlo:h11
     set transparency=2
   else
     "set guifont=Monospace\ 8
