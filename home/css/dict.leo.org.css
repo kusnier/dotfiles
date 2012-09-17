@@ -1,3 +1,7 @@
+#header {
+  display: none;
+}
+
 #main .sidebar {
   display: none;
 }
