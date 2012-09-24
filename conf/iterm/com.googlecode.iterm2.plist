@@ -2054,7 +2054,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/seek/dotfiles/conf/iterm</string>
+	<string>~/dotfiles/conf/iterm</string>
 	<key>PromptOnQuit</key>
 	<true/>
 	<key>QuitWhenAllWindowsClosed</key>
