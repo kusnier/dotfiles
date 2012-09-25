@@ -24,7 +24,7 @@ COMPLETION_WAITING_DOTS="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git github svn vi-mode node npm extract zsh-syntax-highlighting autojump vagrant xp-ant-ivy zsh-xpframework)
+plugins=(git github svn vi-mode node npm extract zsh-syntax-highlighting autojump vagrant xp-ant-ivy zsh-xpframework per-directory-history)
 [[ -e "/etc/zsh_command_not_found" ]] && plugins+=(command-not-found)
 [[ -e "/etc/debian_version" ]] && plugins+=(deb debian)
 [[ $(uname) == Darwin ]] && plugins+=(osx brew)
