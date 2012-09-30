@@ -27,9 +27,10 @@ SEGMENT_SEPARATOR='⮀'
 
 USERCOLOR=9
 HOSTCOLOR=172
-DIRCOLOR=190
+DIRCOLOR=69
 SEPARATOR=8
-PURPLE=141
+VCS=118
+VCS_DIRTY=201
 
 # Begin a segment
 # Takes two arguments, background and foreground. Both can be omitted,
@@ -109,9 +110,9 @@ prompt_git() {
     dirty=$(git_prompt_status)
     ref=$(git symbolic-ref HEAD 2> /dev/null) || ref="➦ $(git show-ref --head -s --abbrev |head -n1 2> /dev/null)"
     if [[ -n $dirty ]]; then
-      prompt_segment $PURPLE red
+      prompt_segment $VCS_DIRTY black
     else
-      prompt_segment $PURPLE black
+      prompt_segment $VCS black
     fi
     echo -n "${ref/refs\/heads\//⭠ }$dirty"
   fi
@@ -123,7 +124,7 @@ prompt_svn() {
     ZSH_THEME_SVN_PROMPT_SUFFIX=")"
     ZSH_THEME_SVN_PROMPT_DIRTY="%{$fg[red]%} ✘ %{$reset_color%}"
     ZSH_THEME_SVN_PROMPT_CLEAN=" "
-    prompt_segment $PURPLE black "$(svn_prompt_info)"
+    prompt_segment $VCS black "$(svn_prompt_info)"
   fi
 }
 
