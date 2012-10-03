@@ -170,3 +170,6 @@
 [submodule "home/oh-my-zsh.custom/plugins/zsh-xpframework"]
 	path = home/oh-my-zsh.custom/plugins/zsh-xpframework
 	url = git://github.com/kusnier/zsh-xpframework.git
+[submodule "home/vim/bundle/matchtagalways"]
+	path = home/vim/bundle/matchtagalways
+	url = git://github.com/Valloric/MatchTagAlways.git
