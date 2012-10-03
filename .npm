@@ -1,0 +1,43 @@
+#!/bin/bash
+# vim: ft=sh
+
+packages=(
+async
+capturejs
+commander
+csslint
+difflet
+dnode
+ejs
+ender
+express
+expresso
+forever
+generic-pool
+hashish
+html2jade
+http-agent
+jade
+jake
+jquery
+jsdom
+jshint
+lazy
+measured
+microtime
+mocha
+mongodb
+nodeunit
+ntwitter
+optimist
+procstreams
+read
+request
+seq
+underscore
+xml-mapping
+)
+
+for package in ${packages[@]} ; do
+  npm install $package -g
+done
