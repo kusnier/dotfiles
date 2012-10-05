@@ -149,21 +149,34 @@ nmap <leader>tn <Esc>:tabnew<CR>
 " map <leader>tn :tabnew %<cr>
 " map <leader>te :tabedit
 " map <leader>tc :tabclose<cr>
-" map <leader>tm :tabmove 
+" map <leader>tm :tabmove
 nnoremap <leader>x <c-^>
 
 " }}}
 " Store temporary vim files in a central spot ----------------------------- {{{
 
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set undodir=~/.vim-tmp/undo " undo files
+set backupdir=~/.vim-tmp/backup " backups
+set directory=~/.vim-tmp/swap " swap files
+
+set backup
 " Make Vim able to edit crontab files again.
 set backupskip=/tmp/*,/private/tmp/*" 
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set backup
 
 if v:version > 702
   set undofile
-  set undodir=~/.vim-undo
+  set undodir=~/.vim-tmp/undo
+endif
+
+" Make those folders automatically if they don't already exist.
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+endif
+if !isdirectory(expand(&backupdir))
+    call mkdir(expand(&backupdir), "p")
+endif
+if !isdirectory(expand(&directory))
+    call mkdir(expand(&directory), "p")
 endif
 
 " }}}
