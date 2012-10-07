@@ -118,3 +118,29 @@ function svn_gdiff_all {
   end
   gvim --servername svn_diff --remote-send '<ESC>:tabdo :VCSVimDiff<CR>'
 }
+
+function is_svn_dir() {
+  if [[ -d .svn ]]; then
+      echo 1
+  fi
+}
+
+function is_git_dir() {
+  if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
+    echo 1;
+  fi
+}
+
+function vcs_up () {
+  for dir in *; do
+    if [ -d $dir ]; then
+      pushd $dir &> /dev/null
+      tput setaf 141
+      echo "===> Update $dir"
+      echo "$reset_color"
+      [ $(is_svn_dir) ] && svn up
+      [ $(is_git_dir) ] && git pull
+      popd &> /dev/null
+    fi
+  done
+}
