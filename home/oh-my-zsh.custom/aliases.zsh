@@ -24,9 +24,9 @@ fi
 [[ $system == 'Darwin' ]] && alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
 # Get OS X Software Updates, update Homebrew itself, and upgrade installed Homebrew packages
-[[ $system == 'Darwin' ]] && alias update='sudo softwareupdate -i -a; brew update; brew upgrade'
+[[ $system == 'Darwin' ]] && alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm update npm -g; npm update -g; sudo gem update'
 # Get Debian/Ubuntu Updates
-[[ -e "/etc/debian_version" ]] && alias update='sudo apt-get update; sudo apt-get upgrade'
+[[ -e "/etc/debian_version" ]] && alias update='sudo apt-get update; sudo apt-get upgrade; npm update npm -g; npm update -g; sudo gem update'
 
 alias npmup="npm update npm -g; npm update -g"
 
