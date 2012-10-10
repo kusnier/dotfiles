@@ -13,6 +13,7 @@ export CDPATH=$CDPATH:~/devel/xp.private/trunk/xp5/worlds/
 export CDPATH=$CDPATH:~/devel/xp.private/trunk/xp5/libs
 export CDPATH=$CDPATH:~/devel/xp.private/trunk
 export CDPATH=$CDPATH:~/devel/bit_config/svc/config/
+export CDPATH=$CDPATH:~/devel
 export CDPATH=$CDPATH:/etc/
 
 # add personal bin path
