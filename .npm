@@ -17,6 +17,7 @@ generic-pool
 hashish
 html2jade
 http-agent
+superagent
 jade
 jake
 jquery
