@@ -107,12 +107,12 @@ function xpcs_one_space_after_comma() {
 
 # show for each file a diff in vim
 function svn_gdiff {
-  foreach f (`svn st | cut -d' ' -f 8`); gvim -geometry 500x500 -f $f +':normal ,cv'; end
+  foreach f (`svn st | cut -d' ' -f 8`); gvim -f $f +':normal ,cv'; end
 }
 
 # show for each file a diff in vim
 function svn_gdiff_all {
-  gvim -geometry 500x500 --servername svn_diff
+  gvim --servername svn_diff
   foreach f (`svn st | cut -d' ' -f 8`);
     gvim --servername svn_diff --remote-tab $f
   end
