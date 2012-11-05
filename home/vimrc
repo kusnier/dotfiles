@@ -636,6 +636,11 @@ map <F7> :set spell!<CR>
 " }}}
 " Plugin options ---------------------------------------------------------- {{{
 
+" Hammer {{{
+
+let g:HAMMER_TEMPLATE='default_inline'
+
+" }}}
 " bash-support {{{
 
 let g:BASH_Ctrl_j='off'
