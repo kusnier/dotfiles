@@ -3,6 +3,7 @@ lang=de
 str="$*"
 tmp="/tmp/gsay.$$.mp3"
 i=0
+cmd="vlc -I dummy --play-and-exit"
 
 if [ "$str" == "" ]; then
   while read -r line; do
@@ -13,6 +14,9 @@ fi
 fmt -w 100 <<< "$str" | while read -r line; do
   url="http://translate.google.com/translate_tts?ie=UTF-8&tl=$lang&q=${line//&/%26}"
   url="${url// /+}"
-  curl -sH 'User-Agent: Yes-Man' "$url" >| "$tmp" && vlc -I dummy --play-and-exit "$tmp" &> /dev/null
+  if [[ -x `which afplay` ]]; then
+    cmd="afplay"
+  fi
+  curl -sH 'User-Agent: Yes-Man' "$url" >| "$tmp" && $cmd "$tmp" &> /dev/null
 done
 rm -f "$tmp"
