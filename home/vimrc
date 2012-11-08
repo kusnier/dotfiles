@@ -505,41 +505,44 @@ if has("gui_running")
     set guifont=DejaVu\ Sans\ Mono\ 8
   endif
 
-colorscheme molokai
+  colorscheme molokai
 
 endif
+
 " Custom highlights
-if !exists("g:colors_name")
-  highlight Visual term=reverse cterm=reverse guibg=#051060
-  highlight Normal      guifg=gray      guibg=black
-  highlight Special     guifg=Red
-  highlight Folded      guifg=DarkRed   guibg=LightGrey
-  highlight FoldColumn  guifg=DarkGreen
-  highlight CursorLine guibg=Grey15
-  highlight LineNr guibg=#000040 ctermbg=4
-  highlight Folded guibg=Grey55
-  highlight ModeMsg guibg=#8b0036
-  highlight Pmenu guibg=#000050 ctermbg=12
-  highlight PmenuSel guibg=#000099 guifg=yellow
-endif
-if exists("g:colors_name") && g:colors_name == 'molokai'
-  " Autochange color in insert mode
-  highlight StatusLine guifg=#2b0036 guibg=white
-  highlight Search guibg=#f0e600 guifg=black
-  autocmd InsertEnter * highlight StatusLine guifg=#8b0036
-  autocmd InsertLeave * highlight StatusLine guifg=#2b0036
-else
-  " Autochange color in insert mode
-  highlight StatusLine guifg=#ae81ff guibg=white
-  autocmd InsertEnter * highlight StatusLine guifg=#f92672
-  autocmd InsertLeave * highlight StatusLine guifg=#ae81ff
-endif
+function! OverrideHighlights()
+  if !exists("g:colors_name")
+    highlight Visual term=reverse cterm=reverse guibg=#051060
+    highlight Normal      guifg=gray      guibg=black
+    highlight Special     guifg=Red
+    highlight Folded      guifg=DarkRed   guibg=LightGrey
+    highlight FoldColumn  guifg=DarkGreen
+    highlight CursorLine guibg=Grey15
+    highlight LineNr guibg=#000040 ctermbg=4
+    highlight Folded guibg=Grey55
+    highlight ModeMsg guibg=#8b0036
+    highlight Pmenu guibg=#000050 ctermbg=12
+    highlight PmenuSel guibg=#000099 guifg=yellow
+  endif
+  if exists("g:colors_name") && g:colors_name == 'molokai'
+    " Autochange color in insert mode
+    highlight StatusLine guifg=#2b0036 guibg=white
+    highlight Search guibg=#f0e600 guifg=black
+    autocmd InsertEnter * highlight StatusLine guifg=#8b0036
+    autocmd InsertLeave * highlight StatusLine guifg=#2b0036
+  else
+    " Autochange color in insert mode
+    highlight StatusLine guifg=#ae81ff guibg=white
+    autocmd InsertEnter * highlight StatusLine guifg=#f92672
+    autocmd InsertLeave * highlight StatusLine guifg=#ae81ff
+  endif
 
-" Override all colorscheme
-highlight ColorColumn guibg=#2d2d2d
-highlight DiffText guibg=#660000
-highlight Comment gui=italic
-
+  " Override all colorscheme
+  highlight ColorColumn guibg=#2d2d2d
+  highlight DiffText guibg=#660000
+  highlight Comment gui=italic
+endfunction
+:call OverrideHighlights()
 
 " how many lines to sync backwards
 syn sync minlines=10000 maxlines=10000
@@ -1015,6 +1018,59 @@ function! s:AckMotion(type) abort
 
     let @@ = reg_save
 endfunction
+
+" }}}
+" Presentation Mode {{{
+
+" toggle between working mode and presentation mode
+" font size change only work for GUI-version Vim
+
+function! PresentationModeOn()
+  colorscheme github
+
+  let g:org_guifont = &guifont
+  let g:org_listchars = &listchars
+  let g:org_wrap = &wrap
+  let g:org_fullscreen = &fullscreen
+
+  if has("gui_macvim")
+    set guifont=Menlo:h20            " for Mac
+  elseif has("gui_gtk")
+    set guifont=Monospace\ 20        " for ubuntu
+  end
+  set listchars=tab:»·,trail:·,extends:❯,precedes:❮
+  set nowrap
+  set fullscreen
+endfunction
+
+function! PresentationModeOff()
+  colorscheme molokai
+
+  if has("gui_macvim") || has("gui_gtk")
+    let &guifont= g:org_guifont
+    :call OverrideHighlights()
+  end
+  let &listchars= g:org_listchars
+  let &wrap= g:org_wrap
+  let &fullscreen= g:org_fullscreen
+endfunction
+
+function! TogglePresentationMode()
+  if !exists('g:presentationmode')
+    let g:presentationmode=0
+  endif
+
+  if g:presentationmode==0
+    call PresentationModeOn()
+    let g:presentationmode=1
+  else
+    call PresentationModeOff()
+    let g:presentationmode=0
+  endif
+endfunction
+
+map <leader>pp :call TogglePresentationMode()<CR>
+
 
 " }}}
 
