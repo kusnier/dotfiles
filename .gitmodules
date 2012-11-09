@@ -173,3 +173,6 @@
 [submodule "home/vim/bundle/matchtagalways"]
 	path = home/vim/bundle/matchtagalways
 	url = git://github.com/Valloric/MatchTagAlways.git
+[submodule "home/vim/bundle/vim-ragtag"]
+	path = home/vim/bundle/vim-ragtag
+	url = git://github.com/tpope/vim-ragtag.git
