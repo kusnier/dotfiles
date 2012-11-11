@@ -981,7 +981,11 @@ vmap     <silent> aa <Plug>ParameterObjectA
 omap     <silent> aa <Plug>ParameterObjectA
 
 " }}}
+" Ragtag {{{
 
+let g:ragtag_global_maps = 1
+
+" }}}
 " }}}
 
 " Mini-plugins ------------------------------------------------------------ {{{
