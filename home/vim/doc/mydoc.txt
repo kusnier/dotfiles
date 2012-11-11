@@ -50,6 +50,7 @@ Bindings                                                       |mydoc-bindings|
   Indent guides                                           |mydoc-indent-guides|
   Eunuch helpers for unix                       |mydoc-eunuch-helpers-for-unix|
   Unimpaired                                                 |mydoc-unimpaired|
+  Ragtag                                                         |mydoc-ragtag|
 
 
 =============================================================================
@@ -988,6 +989,33 @@ Mnenomic: encoding always comes before decoding; "[" always comes before "]".
   ]Y{motion}              Base64 decode
   ]YY                     Input length must be a multiple of 4.
   {Visual}]Y
+
+RAGTAG                                                          *mydoc-ragtag*
+------
+
+Ghetto XML/HTML mappings:~
+
+  <C-X><Space>  <foo>^</foo>
+  <C-X><CR>     <foo>\n^\n</foo>
+  <C-X>/        Last HTML tag closed
+  <C-X>!        <!DOCTYPE...>/<?xml ...?> (menu)
+  <C-X>@        <link rel="stylesheet" ...>
+  <C-X>#        <meta http-equiv="Content-Type" ... />
+  <C-X>$        <script src="/javascripts/^.js"></script>
+
+Encoding:~
+
+  <Plug>ragtagUrlV        URL encode the next character.
+  <C-V>%
+
+  <Plug>ragtagXmlV        XML encode the next character.
+  <C-V>&
+
+  <Plug>ragtagUrlEncode   Toggle a mode that automatically URL encodes unsafe
+  <C-X>%                  characters.
+
+  <Plug>ragtagXmlEncode   Toggle a mode that automatically XML encodes unsafe
+  <C-X>&                  characters.
 
 
 ==============================================================================
