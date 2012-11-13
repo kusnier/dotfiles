@@ -179,3 +179,6 @@
 [submodule "home/vim/bundle/vim-indent-object"]
 	path = home/vim/bundle/vim-indent-object
 	url = git://github.com/michaeljsmith/vim-indent-object.git
+[submodule "home/vim/bundle/tabular"]
+	path = home/vim/bundle/tabular
+	url = git://github.com/godlygeek/tabular.git
