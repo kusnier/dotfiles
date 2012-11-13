@@ -193,6 +193,11 @@ Using vim is like talking to your editor in 'verb modifier object' sentences
       aC - "a COLUMN", a column based on "a WORD" |aW|.
       iC - "inner COLUMN", a column based on "inner WORD" |iW|.
       More: |textobj--word-column-examples|
+    |i| (indent)
+      <count>ai  (A)n (I)ndentation level and line above.
+      <count>ii  (I)nner (I)ndentation level (no line above).
+      <count>aI  (A)n (I)ndentation level and lines above/below.
+      <count>iI  (I)nner (I)ndentation level (no lines above/below).
   Modifiers:~
     |i| (inside), a (around)
     |t| (till..finds a character)
