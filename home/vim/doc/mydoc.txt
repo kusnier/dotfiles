@@ -1041,6 +1041,12 @@ Doing the following will generate a diff window.
   |\dj| - Diff next: (think j for down) 
   |\dk| - Diff previous: (think k for up)
 
+TABULAR                                                        *mydoc-tabular*
+-------
+
+|,a=|   Align by =
+|,a:|   Align by :
+
 ==============================================================================
 
 vim:tw=78:ts=8:ft=help:norl:fen:fdl=0:fdm=marker:
