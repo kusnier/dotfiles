@@ -1022,6 +1022,24 @@ Encoding:~
   <Plug>ragtagXmlEncode   Toggle a mode that automatically XML encodes unsafe
   <C-X>&                  characters.
 
+DIRDIFF                                                        *mydoc-dirdiff*
+-------
+
+Doing the following will generate a diff window.
+
+  :DirDiff <A:Src Directory> <B:Src Directory>
+
+  |u| - Diff update: update the diff window
+  |x| - Sets the exclude pattern, separated by ','
+  |i| - Sets the ignore pattern, separated by ','
+  |a| - Sets additional arguments for diff, eg. -w to ignore white space, etc.
+  |q| - Quit DirDiff
+
+  The following comamnds can be used in the Vim diff mode
+  |\dg| - Diff get: maps to :diffget<CR>
+  |\dp| - Diff put: maps to :diffput<CR>
+  |\dj| - Diff next: (think j for down) 
+  |\dk| - Diff previous: (think k for up)
 
 ==============================================================================
 
