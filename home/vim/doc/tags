@@ -182,6 +182,7 @@ mydoc-ctags-commands-and-bindings	mydoc.txt	/*mydoc-ctags-commands-and-bindings*
 mydoc-ctrl-r	mydoc.txt	/*mydoc-ctrl-r*
 mydoc-ctrlp	mydoc.txt	/*mydoc-ctrlp*
 mydoc-diff	mydoc.txt	/*mydoc-diff*
+mydoc-dirdiff	mydoc.txt	/*mydoc-dirdiff*
 mydoc-easymotion	mydoc.txt	/*mydoc-easymotion*
 mydoc-enter-insert-mode	mydoc.txt	/*mydoc-enter-insert-mode*
 mydoc-eunuch-helpers-for-unix	mydoc.txt	/*mydoc-eunuch-helpers-for-unix*
@@ -197,6 +198,7 @@ mydoc-muse-have-help	mydoc.txt	/*mydoc-muse-have-help*
 mydoc-nerdtree	mydoc.txt	/*mydoc-nerdtree*
 mydoc-notes.vim	mydoc.txt	/*mydoc-notes.vim*
 mydoc-quickfix	mydoc.txt	/*mydoc-quickfix*
+mydoc-ragtag	mydoc.txt	/*mydoc-ragtag*
 mydoc-rainbow-parenthesis	mydoc.txt	/*mydoc-rainbow-parenthesis*
 mydoc-ranges	mydoc.txt	/*mydoc-ranges*
 mydoc-repeat	mydoc.txt	/*mydoc-repeat*
@@ -204,6 +206,7 @@ mydoc-search	mydoc.txt	/*mydoc-search*
 mydoc-smartinput	mydoc.txt	/*mydoc-smartinput*
 mydoc-speakvim	mydoc.txt	/*mydoc-speakvim*
 mydoc-supertab	mydoc.txt	/*mydoc-supertab*
+mydoc-tabular	mydoc.txt	/*mydoc-tabular*
 mydoc-tagbar	mydoc.txt	/*mydoc-tagbar*
 mydoc-tagman	mydoc.txt	/*mydoc-tagman*
 mydoc-tags	mydoc.txt	/*mydoc-tags*
