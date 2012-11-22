@@ -25,6 +25,7 @@ Ex                                                                   |mydoc-ex|
 Bindings                                                       |mydoc-bindings|
   General                                                       |mydoc-general|
   Window or split                                       |mydoc-window-or-split|
+  Folding                                                       |mydoc-folding|
   Quickfix                                                     |mydoc-quickfix|
   Text manipulation and editing           |mydoc-text-manipulation-and-editing|
   Insert mode completion                         |mydoc-insert-mode-completion|
@@ -395,6 +396,35 @@ Tab:~
 
   <C-w> T - to change that split into a new tab.
 
+FOLDING                                                        *mydoc-folding*
+-------
+
+Essential folding commands:~
+
+  |zi| - switch folding on or off
+  |za| - toggle current fold open/closed
+  |zc| - close current fold
+  |zR| - open all folds
+  |zM| - close all folds
+  |zv| - expand folds to reveal cursor
+
+Navigating the unfoled document:~
+
+  |zj| - move down to top of next fold
+  |zk| - move up to bottom of previous fold
+
+More folding commands:~
+
+  |zo| - open current fold
+  |zO| - recursively open current fold
+  |zc| - close current fold
+  |zC| - recursively close current fold
+  |za| - toggle current fold
+  |zA| - recursively open/close current fold
+  |zm| - reduce `foldlevel` by one
+  |zM| - close all folds
+  |zr| - increase `foldlevel` by one
+  |zR| - open all folds
 
 QUICKFIX                                                     *mydoc-quickfix*
 --------
