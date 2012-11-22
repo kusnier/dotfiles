@@ -182,3 +182,6 @@
 [submodule "home/vim/bundle/tabular"]
 	path = home/vim/bundle/tabular
 	url = git://github.com/godlygeek/tabular.git
+[submodule "home/vim/bundle/vim-markdown-folding"]
+	path = home/vim/bundle/vim-markdown-folding
+	url = git://github.com/nelstrom/vim-markdown-folding.git
