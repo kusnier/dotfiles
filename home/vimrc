@@ -123,8 +123,6 @@ au FocusLost * :silent! wall
 " General Bindings -------------------------------------------------------- {{{
 
 " Use space for something useful
-nnoremap <Space> :
-nnoremap <Space><Space> :!
 inoremap <C-Space> <C-X><C-]>
 
 " Source
@@ -249,8 +247,8 @@ endif
 set foldlevelstart=0
 
 " Space to toggle folds.
-nnoremap <s-Space> za
-vnoremap <s-Space> za
+nnoremap <Space> za
+vnoremap <Space> za
 
 " Make zO recursively open whatever top level fold we're in, no matter where the
 " cursor happens to be.
