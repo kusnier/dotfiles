@@ -1133,6 +1133,7 @@ augroup END
 
 augroup ft_vim
     au!
+    autocmd FileType vim setlocal foldcolumn=3
     autocmd FileType vim setlocal foldmethod=marker
     autocmd FileType vim setlocal foldlevelstart=0
     autocmd FileType vim setlocal foldenable
@@ -1251,6 +1252,7 @@ augroup END
 augroup ft_markdown
   au!
   autocmd FileType markdown setlocal spell spelllang=en complete+=k
+  autocmd FileType markdown setlocal foldcolumn=3
 augroup END
 
 " }}}
@@ -1271,6 +1273,7 @@ augroup ft_php
   " Folding classes and functions
   autocmd FileType php let php_folding=1
   autocmd FileType php setlocal foldmethod=syntax
+  autocmd FileType php setlocal foldcolumn=3
   " For highlighting baselib functions
   autocmd FileType php let php_baselib = 1
   " Disable short tags
