@@ -4,6 +4,7 @@
 packages=(
 async
 capturejs
+coffee-script
 commander
 csslint
 difflet
