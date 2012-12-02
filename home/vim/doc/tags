@@ -187,6 +187,7 @@ mydoc-easymotion	mydoc.txt	/*mydoc-easymotion*
 mydoc-enter-insert-mode	mydoc.txt	/*mydoc-enter-insert-mode*
 mydoc-eunuch-helpers-for-unix	mydoc.txt	/*mydoc-eunuch-helpers-for-unix*
 mydoc-ex	mydoc.txt	/*mydoc-ex*
+mydoc-folding	mydoc.txt	/*mydoc-folding*
 mydoc-general	mydoc.txt	/*mydoc-general*
 mydoc-history	mydoc.txt	/*mydoc-history*
 mydoc-holdingdownj	mydoc.txt	/*mydoc-holdingdownj*
