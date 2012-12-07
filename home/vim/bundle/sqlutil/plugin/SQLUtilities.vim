@@ -1,8 +1,8 @@
 " SQLUtilities:   Variety of tools for writing SQL
 "   Author:	      David Fishburn <dfishburn dot vim at gmail dot com>
 "   Date:	      Nov 23, 2002
-"   Last Changed: 2012 Oct 09
-"   Version:	  6.0.0
+"   Last Changed: 2012 Dec 04
+"   Version:	  7.0.0
 "   Script:	      http://www.vim.org/script.php?script_id=492
 "   License:      GPL (http://www.gnu.org/licenses/gpl.html)
 "
@@ -18,7 +18,7 @@
 if exists("g:loaded_sqlutilities")
     finish
 endif
-let g:loaded_sqlutilities = 600
+let g:loaded_sqlutilities = 700
 
 " Turn on support for line continuations when creating the script
 let s:cpo_save = &cpo
@@ -32,16 +32,32 @@ if !exists('g:sqlutil_align_comma')
     let g:sqlutil_align_comma = 0
 endif
 
-if !exists('g:sqlutil_wrap_expressions')
-    let g:sqlutil_wrap_expressions = 0
-endif
-
 if !exists('g:sqlutil_align_first_word')
     let g:sqlutil_align_first_word = 1
 endif
 
 if !exists('g:sqlutil_align_keyword_right')
     let g:sqlutil_align_keyword_right = 1
+endif
+
+if !exists('g:sqlutil_indent_nested_blocks')
+    let g:sqlutil_indent_nested_blocks = 1
+endif
+
+if !exists('g:sqlutil_wrap_long_lines')
+    let g:sqlutil_wrap_long_lines = 1
+endif
+
+if !exists('g:sqlutil_wrap_function_calls')
+    let g:sqlutil_wrap_function_calls = 1
+endif
+
+if !exists('g:sqlutil_wrap_width')
+    let g:sqlutil_wrap_width = (&textwidth > 0 ? &textwidth : 76)
+endif
+
+if !exists('g:sqlutil_split_unbalanced_paran')
+    let g:sqlutil_split_unbalanced_paran = 1
 endif
 
 if !exists('g:sqlutil_cmd_terminator')
@@ -114,14 +130,28 @@ if !exists('g:sqlutil_use_syntax_support')
     " determine if keywords are within strings
     " and therefore not aligning them.
     let g:sqlutil_use_syntax_support = 1
+else
+    if exists('g:syntax_on') 
+        let g:sqlutil_use_syntax_support = 1
+    else
+        let g:sqlutil_use_syntax_support = 0
+    endif
 endif
 
 if !exists('g:sqlutil_syntax_elements')
     " This controls how SQLUtilities determines if
     " the keyword found is within a string or not.
     " This is a comma separated list of values.
-    " The default is Constant,sqlString.
-    let g:sqlutil_syntax_elements = 'Constant,sqlString'
+    " Items within these syntax groups will 
+    " typically be ignored.
+    " The default is Constant,sqlString,sqlComment,Comment.
+    let g:sqlutil_syntax_elements = 'Constant,sqlString,sqlComment,Comment'
+endif
+
+if !exists('g:sqlutil_non_line_break_keywords')
+    " These keywords will be affected by the sqlutil_keyword_case
+    " option.
+    let g:sqlutil_non_line_break_keywords = 'is,as,in,to,of,at,all,first,top,start,limit,offset,recursive,local,temporary,table,read,only,window,over,like,desc,asc,then,not,exists,between,null,any,distinct,similar,contains,only,true,false,unknown'
 endif
 
 " Determines which menu items will be recreated
@@ -271,6 +301,24 @@ function! SQLU_Menu()
         exec 'noremenu  <script> '.menuPriority.' '.menuRoot.'.Default\ Case\ Keywords'.
                     \ (g:sqlutil_keyword_case==''?'<TAB>(on) ':' ').
                     \ ':SQLUToggleValue g:sqlutil_keyword_case default<CR>'
+        silent! exec 'aunmenu '.menuPriority.' '.menuRoot.'.-Debug-'
+        exec 'noremenu  <script> '.menuPriority.' '.menuRoot.'.-Debug- :'
+        silent! exec 'aunmenu '.menuPriority.' '.menuRoot.'.Toggle\ Indent\ Nested\ Blocks'
+        exec 'noremenu  <script> '.menuPriority.' '.menuRoot.'.Toggle\ Indent\ Nested\ Blocks'.
+                    \ (g:sqlutil_indent_nested_blocks=='1'?'<TAB>(on) ':'<TAB>(off) ').
+                    \ ':SQLUToggleValue g:sqlutil_indent_nested_blocks<CR>'
+        silent! exec 'aunmenu '.menuPriority.' '.menuRoot.'.Toggle\ Wrap\ Long\ Lines'
+        exec 'noremenu  <script> '.menuPriority.' '.menuRoot.'.Toggle\ Wrap\ Long\ Lines'.
+                    \ (g:sqlutil_wrap_long_lines=='1'?'<TAB>(on) ':'<TAB>(off) ').
+                    \ ':SQLUToggleValue g:sqlutil_wrap_long_lines<CR>'
+        silent! exec 'aunmenu '.menuPriority.' '.menuRoot.'.Toggle\ Wrap\ Function\ Calls'
+        exec 'noremenu  <script> '.menuPriority.' '.menuRoot.'.Toggle\ Wrap\ Function\ Calls'.
+                    \ (g:sqlutil_wrap_function_calls=='1'?'<TAB>(on) ':'<TAB>(off) ').
+                    \ ':SQLUToggleValue g:sqlutil_wrap_function_calls<CR>'
+        silent! exec 'aunmenu '.menuPriority.' '.menuRoot.'.Toggle\ Split\ Unbalanced\ Paranthesis'
+        exec 'noremenu  <script> '.menuPriority.' '.menuRoot.'.Toggle\ Split\ Unbalanced\ Paranthesis'.
+                    \ (g:sqlutil_split_unbalanced_paran=='1'?'<TAB>(on) ':'<TAB>(off) ').
+                    \ ':SQLUToggleValue g:sqlutil_split_unbalanced_paran<CR>'
     endif
 endfunction
 

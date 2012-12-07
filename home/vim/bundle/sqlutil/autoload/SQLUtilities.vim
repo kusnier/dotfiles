@@ -1,8 +1,8 @@
 " SQLUtilities:   Variety of tools for writing SQL
 "   Author:	      David Fishburn <dfishburn dot vim at gmail dot com>
 "   Date:	      Nov 23, 2002
-"   Last Changed: 2012 Oct 09
-"   Version:	  6.0.0
+"   Last Changed: 2012 Dec 03
+"   Version:	  7.0.0
 "   Script:	      http://www.vim.org/script.php?script_id=492
 "   License:      GPL (http://www.gnu.org/licenses/gpl.html)
 "
@@ -22,7 +22,7 @@ if v:version < 700
     echomsg "SQLUtilities: Version 2.0.0 or higher requires Vim7.  Version 1.4.1 can stil be used with Vim6."
     finish
 endif
-let g:loaded_sqlutilities_auto = 600
+let g:loaded_sqlutilities_auto = 700
 
 " Turn on support for line continuations when creating the script
 let s:cpo_save = &cpo
@@ -63,14 +63,8 @@ function! SQLUtilities#SQLU_Formatter(...) range
     " of the lines
     let ret = s:SQLU_ReformatStatement()
     if ret > -1
-        if g:sqlutil_wrap_expressions == 1
-            let ret = s:SQLU_WrapExpressions()
-        endif
-        if ret > -1
+        if g:sqlutil_indent_nested_blocks == 1
             let ret = s:SQLU_IndentNestedBlocks()
-            if ret > -1
-                let ret = s:SQLU_WrapLongLines()
-            endif
         endif
     endif
 
@@ -205,6 +199,8 @@ function! s:SQLU_WrapperStart( beginline, endline, mode )
     let b:curline     = line(".")
     let b:curcol      = virtcol(".")
     let b:keepsearch  = @/
+    let b:keepline_mr = line("'r")
+    let b:keepcol_mr  = virtcol("'r")
     let b:keepline_my = line("'y")
     let b:keepcol_my  = virtcol("'y")
     let b:keepline_mz = line("'z")
@@ -229,8 +225,9 @@ function! s:SQLU_WrapperEnd(mode)
     if (a:mode != 'n')
         " Reselect the visual area, so the user can us gv
         " to operate over the region again
-        exec 'normal! '.(line("'y")+1).'gg'.'|'.
-                    \ 'V'.(line("'z")-2-line("'y")).'j|'."\<Esc>"
+        " exec 'normal! '.(line("'y+1").'gg'.'|'.
+        "             \ 'V'.(line("'z")-2-line("'y")).'j|'."\<Esc>"
+        exec 'normal! gv'."\<Esc>"
     endif
 
     " Delete blanks lines added around the visually selected range
@@ -242,19 +239,30 @@ function! s:SQLU_WrapperEnd(mode)
     silent! exe 'normal! '.b:curline."G\<bar>".(b:curcol-1).
 				\ ((b:curcol-1)>0 ? 'l' : '' )
 
+    unlet b:keepline_mr b:keepcol_mr
     unlet b:keepline_my b:keepcol_my
     unlet b:keepline_mz b:keepcol_mz
     unlet b:curline     b:curcol
 endfunction
 
 " Generic Search and Replace uses syntax ID {{{
-function! s:SQLU_SearchReplace(exp_find_str, exp_rplc_str)
+function! s:SQLU_SearchReplace(exp_find_str, before_rplc_str, after_rplc_str, exp_srch_rplc_str)
+    call cursor( line("'y"), 1 )
+
+    let keepline_mo = line("'o")
+    let keepcol_mo  = virtcol("'o")
+    let keepline_mp = line("'p")
+    let keepcol_mp  = virtcol("'p")
 
     " Find the string index position of the first match
     " 'c'	accept a match at the cursor position
     " 'W'	don't wrap around the end of the file
-    let index = search(a:exp_find_str, 'cW', (line("'z")))
+    let search_flags = 'cW'
+    let index = search(a:exp_find_str, search_flags, (line("'z")))
     while index > 0
+        " Reset to default, as the bottom repeat searches 
+        " can change the default
+        let search_flags = 'cW'
         " Verify the cursor is within the range
         if index >= line("'y") && index <= line("'z")
 
@@ -283,15 +291,195 @@ function! s:SQLU_SearchReplace(exp_find_str, exp_rplc_str)
                     " Advance the cursor 1 position since we use 
                     " 'c' in the flags
                     call cursor( line("."), (col(".") + 1) )
-                    let index = search(a:exp_find_str, 'cW', (line("'z")))
+                    let index = search(a:exp_find_str, search_flags, (line("'z")))
                     continue
                 endif
             endif
 
-            " At the current cursor position
-            exec 's/\%#/' . a:exp_rplc_str
+            " Mark the current position 
+            exec 'normal! mo'
 
-            let index = search(a:exp_find_str, 'cW', (line("'z")))
+            " Find the string index position of the end of the match
+            " 'c'	accept a match at the cursor position
+            " 'e'	move to the End of the match
+            " 'W'	don't wrap around the end of the file
+            let search_flags = 'ceW'
+            let index = search(a:exp_find_str, search_flags, (line("'z")))
+
+            " Verify the cursor is within the range
+            if index >= line("'y") && index <= line("'z")
+                " Start a newline at the end of the match 
+                " and create the mark "p".  The mark needs to be
+                " on a newline since substitutions on a line
+                " with the mark looses the mark position which 
+                " prevents us from coming back to it after 
+                " our align first word option.
+                silent! exec "normal! a\<CR>\<Esc>mp"
+                " Return to the start of the match
+                exec 'normal! `o'
+                " Between the beginning mark "o" and the 
+                " ending mark "p" execute the regex expression 
+                " with the supplied substitution.
+                " For debugging:
+                "     echo line(".") col(".") index strpart(getline("."), col(".")-1, 5) getline(".")
+                try
+                    exec "s/\\%'o\\(".a:after_rplc_str."\\)\\%'p/" . a:before_rplc_str
+                catch /.*/
+                    call s:SQLU_WarningMsg(
+                                \ 'SQLU_SR: Match not found on line #:' . 
+                                \ line("'o") .
+                                \ ' Error:' .
+                                \ v:errmsg .
+                                \ ' Line:' .
+                                \ getline("'o")
+                                \ )
+                endtry
+                " Return to the beginning of the match
+                exec 'normal! `o'
+                " Execute last search and and replace based on 
+                " the beginning mark.
+                " For debugging:
+                "     echo line(".") col(".") index strpart(getline("."), col(".")-1, 5) getline(".")
+                try
+                    exec 's/' . a:exp_srch_rplc_str
+                catch /.*/
+                    call s:SQLU_WarningMsg(
+                                \ 'SQLU_SR: Match not found on line #:' . 
+                                \ line("'o") .
+                                \ ' Error:' .
+                                \ v:errmsg .
+                                \ ' Line:' .
+                                \ getline("'o")
+                                \ )
+                endtry
+                " Join the current line just substituted on
+                " and the line where we put the "p" mark.
+                " This effectively places the cursor at the end 
+                " of the initial match (regardless of align first word).
+                exec 'normal! J'
+                " Reset to default, as the bottom repeat searches 
+                " can change the default
+                let search_flags = 'cW'
+            else 
+                return
+            endif
+
+            let index = search(a:exp_find_str, search_flags, (line("'z")))
+        endif
+    endwhile
+    
+endfunction 
+
+" Generic Search and Replace uses syntax ID {{{
+function! s:SQLU_SearchReplaceOld(exp_find_str, before_rplc_str, after_rplc_str, exp_srch_rplc_str)
+    call cursor( line("'y"), 1 )
+
+    let keepline_mo = line("'o")
+    let keepcol_mo  = virtcol("'o")
+    let keepline_mp = line("'p")
+    let keepcol_mp  = virtcol("'p")
+
+    " Find the string index position of the first match
+    " 'c'	accept a match at the cursor position
+    " 'W'	don't wrap around the end of the file
+    let search_flags = 'cW'
+    let index = search(a:exp_find_str, search_flags, (line("'z")))
+    while index > 0
+        " Reset to default, as the bottom repeat searches 
+        " can change the default
+        let search_flags = 'cW'
+        " Verify the cursor is within the range
+        if index >= line("'y") && index <= line("'z")
+
+            " Useful debug statment to see where on the line 
+            " and which keyword you are working on
+            " echo line(".") strpart(getline("."), col(".")-1)
+
+            let syn_element_list = split(g:sqlutil_syntax_elements, ',')
+            
+            if !empty(syn_element_list)
+                let found_in_str = 0
+                for syn_element_name in syn_element_list
+                    " Determine the ID for the name in the CSV list
+                    let syn_element_id = hlID(syn_element_name)
+
+                    " Grab the current syntax ID of the match
+                    let childsynid  = synID(line("."),col("."),1)
+                    let parentsynid = synIDtrans(synID(line("."),col("."),1)) 
+
+                    if childsynid == syn_element_id || parentsynid == syn_element_id
+                        let found_in_str = 1
+                        break
+                    endif
+                endfor
+                if found_in_str == 1
+                    " Advance the cursor 1 position since we use 
+                    " 'c' in the flags
+                    call cursor( line("."), (col(".") + 1) )
+                    let index = search(a:exp_find_str, search_flags, (line("'z")))
+                    continue
+                endif
+            endif
+
+            " Mark the current position 
+            exec 'normal! mo'
+
+            " At the current cursor position \%#
+            exec 's/\%#/' . a:before_rplc_str
+
+            " Return to the start of the current match
+            exec 'normal! `o'
+
+            if a:after_rplc_str != ''
+                " Find the string index position of the end of the match
+                " 'c'	accept a match at the cursor position
+                " 'e'	move to the End of the match
+                " 'W'	don't wrap around the end of the file
+                let search_flags = 'ceW'
+                let index = search(a:exp_find_str, search_flags, (line("'z")))
+
+                " Verify the cursor is within the range
+                if index >= line("'y") && index <= line("'z")
+                    " Mark the current position 
+                    exec 'normal! mp'
+                    " Return to the start of the current match
+                    exec 'normal! ``'
+                    " At the current cursor position \%#
+                    exec 's/\%#/' . a:after_rplc_str
+                    " Remove the 'c' to find the next match
+                    let search_flags = 'W'
+                    " Advance to the end of the current match
+                    exec 'normal! `p'
+                    " Move ahead the size of the replace text
+                    exec 'normal! '.strlen(a:after_rplc_str).'l'
+                endif
+            elseif a:exp_srch_rplc_str != ''
+                " Find the string index position of the end of the match
+                " 'c'	accept a match at the cursor position
+                " 'e'	move to the End of the match
+                " 'W'	don't wrap around the end of the file
+                let search_flags = 'ceW'
+                let index = search(a:exp_find_str, search_flags, (line("'z")))
+
+                " Verify the cursor is within the range
+                if index >= line("'y") && index <= line("'z")
+                    " Mark the current position 
+                    exec 'normal! mp'
+                    " Return to the start of the current match
+                    exec 'normal! ``'
+                    " At the current cursor position \%#
+                    exec 's/\%#' . a:exp_srch_rplc_str
+                    " Remove the 'c' to find the next match
+                    let search_flags = 'W'
+                    " Advance to the end of the current match
+                    exec 'normal! `p'
+                endif
+            else
+                " Advance past the match
+                exec 'normal! w'
+            endif
+
+            let index = search(a:exp_find_str, search_flags, (line("'z")))
         endif
     endwhile
     
@@ -306,37 +494,93 @@ endfunction
 " 4. Operators are lined up
 " 
 function! s:SQLU_ReformatStatement()
-    " Remove any lines that have comments on them since the comments
-    " could spill onto new lines and no longer have comment markers
-    " which would result in syntax errors
-    " Comments could also contain keywords, which would be split
-    " on to new lines
-    let srch_exp = '.*\zs--.*'
     if exists("b:current_syntax") == 0 || g:sqlutil_use_syntax_support == 0
-        let cmd = "'y+1,'z-1s/". srch_exp .
-                    \ '//ge'
-        " Decho cmd
-        silent! exec cmd
-    else
-        " This uses Vim's syntax support to determine if
-        " a match is found within a string or not.
-        " Therefore only do it if syntax support is on
-        " which can be tested checking for the existance
-        " of the buffer local variable b:current_syntax
-        call s:SQLU_SearchReplace(srch_exp,  '')
+        " Remove any lines that have comments on them since the comments
+        " could spill onto new lines and no longer have comment markers
+        " which would result in syntax errors
+        " Comments could also contain keywords, which would be split
+        " on to new lines
+        call cursor( line("'y"), 0 )
+        " Find the string index position of the first match
+        " 'W'	don't wrap around the end of the file
+        let search_flags = 'W'
+        let index = search('--', search_flags, (line("'z")))
+        if index > 0 
+            " Comments found, confirm with user to delete them
+            let choice = confirm( 
+                        \ 'SQLU: Comments found, without syntax support these must be ' .
+                        \ 'removed before formatting.  Is this Ok?'
+                        \ , "&No\n&Yes\n&Cancel"
+                        \ , 1
+                        \ )
+            if choice != 2
+                return -1
+            endif
+            if exists("b:current_syntax") == 0 || g:sqlutil_use_syntax_support == 0
+                " First remove only comment lines
+                silent! 'y+1,'z-1g/^\s*--/d
+                " Now remove comments from the end of lines
+                silent! 'y+1,'z-1s/--.*$//ge
+            endif
+        endif
     endif
 
-    " Join block of text into 1 line
-    silent! 'y+1,'z-1j
+    " Check to see if multiple statements have been specified 
+    " by checking for ;.  If more than 1, show an error message.
+    call cursor( line("'y"), 0 )
+    " Find the string index position of the first match
+    " 'W'	don't wrap around the end of the file
+    let search_flags = 'W'
+    let index = search('\(;\|^go\>\)', search_flags, (line("'z")))
+    if index > 0 
+        let index = search('\(;\|^go\>\)', search_flags, (line("'z")))
+        if index > 0 
+            call s:SQLU_WarningMsg(
+                        \ 'SQLU: You can only reformat one statement at a time, found multiple ";" or "go" '
+                        \ )
+            return -1
+        endif
+    endif
+
+    " Removed in SQLUtilities 7.0
+    if exists("b:current_syntax") == 0 || g:sqlutil_use_syntax_support == 0
+        " Join block of text into 1 line
+        " All comments were removed earlier
+        silent! 'y+1,'z-1j
+    else
+        " If the line is only a comment, we leave it.
+        " If the comment is at the end of a line, we join
+        " as many lines as possible prior to it.
+        let only_comments = 1
+        let linenum = line("'y")+1
+        while linenum < line("'z")-1
+            if getline(linenum) !~ '--'
+                let only_comments = 0
+                exec 'silent! '.linenum.'j'
+            else
+                if only_comments == 1 && getline(linenum) =~ '^\s*--'
+                    silent! s/^\s*\zs--/-@---/
+                elseif only_comments == 0 && getline(linenum) =~ '^\s*--'
+                    silent! s/^\s*\zs--/-@- --/
+                endif
+                let linenum = linenum + 1
+            endif
+        endwhile
+    endif
     " Reformat the commas, to remove any spaces before them
-    silent! 'y+1,'z-1s/\s*,/,/ge
-    " And add a space following them, this allows the line to be
-    " split using gqq
-    silent! 'y+1,'z-1s/,\(\w\)/, \1/ge
+    " As long as the line is not a comment
+    silent! 'y+1,'z-1v/^\s*--/s/\s*,/,/ge
     " Change more than 1 space with just one except spaces at
     " the beginning of the range
-    " silent! 'y+1,'z-1s/\s\+/ /ge
-    silent! 'y+1,'z-1s/\(\S\+\)\(\s\+\)/\1 /g
+    silent! 'y+1,'z-1v/^\s*--/s/\(\S\+\)\(\s\+\)/\1 /g
+    " Place a special marker at the start of the line
+    " of a comment for formatting purposes
+    " Don't do this as this will mess up the alignment 
+    " of comments.  Now, when we join the lines ignoring 
+    " comments, we will either put the marker in front 
+    " of the line, or the marker with a space following it 
+    " that will allow us to align properly.
+    " silent! 'y+1,'z-1s/^\s*\zs--/-@---/
     " Go to the start of the block
     silent! 'y+1
 
@@ -430,7 +674,7 @@ function! s:SQLU_ReformatStatement()
     " [ KEY | NATURAL ] [ join_type ] JOIN
     " | CROSS JOIN
     " force each keyword onto a newline
-    let sql_keywords =  '\<\%(create\|drop\|call\|select\|set\|values\|' .
+    let sql_keywords =  '\<\%(create\|drop\|call\|select\|set\|values\|declare\|cursor\|' .
                 \ sql_update_keywords . '\|' .
                 \ sql_into_keywords . '\|' .
                 \ sql_and_between_keywords . '\|' .
@@ -442,7 +686,7 @@ function! s:SQLU_ReformatStatement()
                 \ sql_ora_keywords . '\|' .
                 \ 'on\|where\|or\|\%(order\|group\)\s\+\%(\w\+\s\+\)\?\<by\>\|'.
                 \ sql_window_keywords . '\|' .
-                \ 'having\|for\|insert\|using\|' .
+                \ 'having\|for\|insert\%(\s\+\|-@-\)into\|delete\%(\s\+\|-@-\)from\|using\|' .
                 \ 'intersect\|except\|window\|' .
                 \ '\%(union\%(\s\+all\)\?\)\|' .
                 \ 'start\s\+with\|' .
@@ -457,10 +701,15 @@ function! s:SQLU_ReformatStatement()
     "           select
     "             from
     "            union all
-    let srch_exp = '\c\%(^\s*\)\@<!\zs\<\(' .
+    let srch_exp = '\c\%(^\s*\)\?\zs\<\(' .
                 \ sql_keywords .
                 \ '\)\>\s*'
 
+    " Place all SQL keywords on a newline.
+    " The position of the -@- depends on the setting of 
+    " the g:sqlutil_align_first_word option.
+    " If 0, the -@- is at the start of the line.
+    " If 1, the -@- is after the first word.
     if exists("b:current_syntax") == 0 || g:sqlutil_use_syntax_support == 0
         let cmd = "'y+1,'z-1s/". srch_exp .
                     \ '/\r\1' .
@@ -468,29 +717,30 @@ function! s:SQLU_ReformatStatement()
                     \ '/ge'
         " Decho cmd
         silent! exec cmd
+        " Ensure keywords at the beginning of a line have a space after them
+        " This will ensure the Align program lines them up correctly
+        silent! 'y+1,'z-1s/^\([a-zA-Z0-9_]*\)(/\1 (/e
+
+        if g:sqlutil_align_first_word == 1
+            silent! 'y+1,'z-1s/^\s*\zs\([a-zA-Z0-9_]\+\)\>\s*/\1-@-/
+        endif
     else
         " This uses Vim's syntax support to determine if
-        " a match is found within a string or not.
+        " a match is found within a string (or comment) or not.
         " Therefore only do it if syntax support is on
         " which can be tested checking for the existance
         " of the buffer local variable b:current_syntax
-        call s:SQLU_SearchReplace(srch_exp,  '\r\1' .  (g:sqlutil_align_first_word==0 ? '-@-' : ' ') )
+        "    call s:SQLU_SearchReplace(srch_exp
+        "                \ , '\r\1'
+        "                \ , (g:sqlutil_align_first_word==0 ? '-@-' : '')
+        "                \ , (g:sqlutil_align_first_word==1 ? '\(\w\+\)\s*/\1-@-' : '')
+        "                \ )
+        if g:sqlutil_align_first_word == 0
+            call s:SQLU_SearchReplace(srch_exp, '\1-@-', '.*\n.*', '\(^\s*\)\@<!\%'."'".'o/\r/e' )
+        else
+            call s:SQLU_SearchReplace(srch_exp, '\2-@-\3', '\(\w\+\)\(.*\n.*\)', '\(^\s*\)\@<!\%'."'".'o/\r/e' )
+        endif
     endif
-
-    " Ensure keywords at the beginning of a line have a space after them
-    " This will ensure the Align program lines them up correctly
-    " silent! 'y+1,'z-1s/^\([a-zA-Z0-9_]*\)(/\1 (/e
-    " Delete any non empty lines
-    " Do NOT delete empty lines, since that can affect the marks
-    " and change which lines get formatted
-    " 'y+1,'z-1g/^\s*$/d
-
-    " If g:sqlutil_align_first_word == 0, then we need only add the -@-
-    " on the first word, else we need to do it to the first word
-    " on each line
-    silent! exec "'y+1," .  
-                \ ( g:sqlutil_align_first_word==0 ? "'y+1" : "'z-1" ) .  
-                \ 's/^\s*\<\w\+\>\zs\s*/-@-'
 
     " Ensure CASE statements also start on new lines
     " CASE statements can also be nested, but we want these to align
@@ -516,6 +766,8 @@ function! s:SQLU_ReformatStatement()
                 \ sql_case_keywords.
                 \ '\)\>'
 
+    " For all CASE keywords, place them on a new line followed by the 
+    " alignment marker
     if exists("b:current_syntax") == 0 || g:sqlutil_use_syntax_support == 0
         let cmd = "'y+1,'z-1s/". srch_exp .
                     \ '/\r-@-\1' .
@@ -528,8 +780,18 @@ function! s:SQLU_ReformatStatement()
         " Therefore only do it if syntax support is on
         " which can be tested checking for the existance
         " of the buffer local variable b:current_syntax
-        call s:SQLU_SearchReplace(srch_exp,  '\r-@-\1' )
+        " call s:SQLU_SearchReplace(srch_exp, '\r-@-\1', '.*', '' )
+        " call s:SQLU_SearchReplace(srch_exp, '\2-@-\3', '\(\w\+\)\(.*\n\)', '\(^\s*\)\@<!\%'."'".'o/\r/e' )
+        call s:SQLU_SearchReplace(srch_exp, '-@-\2', '\(.*\n.*\)', '\(^\s*\)\@<!\%'."'".'o/\r/e' )
     endif
+
+    " If g:sqlutil_align_first_word == 0, then we need only add the -@-
+    " on the first word, else we need to do it to the first word
+    " on each line
+    " silent! exec "'y+1," .  
+    "             \ ( g:sqlutil_align_first_word==0 ? "'y+1" : "'z-1" ) .  
+    "             \ 's/^\s*\<\w\+\>\zs\s*/-@-'
+    silent! exec "'y+1,'z-1".'v/-@-/s/^\s*\zs/-@-'
 
     " AlignPush
 
@@ -541,17 +803,60 @@ function! s:SQLU_ReformatStatement()
         call s:SQLU_WrapAtCommas()
     endif
 
-    call s:SQLU_WrapFunctionCalls()
-
-    let ret = s:SQLU_SplitUnbalParan()
-    if ret < 0
-        " Undo any changes made so far since an error occurred
-        " silent! exec 'u'
-        return ret
+    if g:sqlutil_wrap_function_calls == 1 
+        call s:SQLU_WrapFunctionCalls()
     endif
+
+    if g:sqlutil_split_unbalanced_paran == 1 
+        let ret = s:SQLU_SplitUnbalParan()
+        if ret < 0
+            " Undo any changes made so far since an error occurred
+            " silent! exec 'u'
+            return ret
+        endif
+    endif
+
+    if g:sqlutil_wrap_long_lines == 1
+        let ret = s:SQLU_WrapLongLines( '^'.sql_keywords )
+        if ret < 0
+            " Undo any changes made so far since an error occurred
+            " silent! exec 'u'
+            return ret
+        endif
+    endif
+
+    " Removed in SQLUtilities 7.0
+    if exists("b:current_syntax") == 1 || g:sqlutil_use_syntax_support == 1
+        " Comments before the first statement must be formatted 
+        " differently that comments within the SQL being formatted.
+        " To achieve this, any comment line beginning with -@--- 
+        " within a SQL statement should be changed to -@- --
+        " so that the formatting will change.  The fact the comment 
+        " is indented 1 additional space cannot be helped.
+        let only_comments = 1
+        let linenum = line("'y")+1
+        while linenum < line("'z")-1
+            if getline(linenum) !~ '^\s*-@---'
+                let only_comments = 0
+            else
+                if only_comments == 0 && getline(linenum) =~ '^\s*-@---'
+                    silent! exec linenum.','.linenum.'s/-@---/-@- --/'
+                endif
+            endif
+            let linenum = linenum + 1
+        endwhile
+    endif
+
+    " When formatting, ignore lines beginning with a comment
+    AlignCtrl v ^\s*-@---
 
     " Align these based on the special charater
     " and the column names are LEFT justified
+    " Ip0P0l
+    "   I : retain only the first line's initial white space and
+    "       re-use it for subsequent lines
+    " p0P0: put no spaces both before and after separators
+    "   l : left-justify fields between separators, cyclically. Ie. llllllll...
     let align_ctrl = 'Ip0P0'.(g:sqlutil_align_keyword_right==1?'r':'l').'l:'
     silent! exec 'AlignCtrl '.align_ctrl
     silent! 'y+1,'z-1Align -@-
@@ -567,6 +872,8 @@ function! s:SQLU_ReformatStatement()
                     \ sql_case_keywords .
                     \ '\|' .
                     \ sql_join_type_keywords .
+                    \ '\|' .
+                    \ substitute(g:sqlutil_non_line_break_keywords, ',', '\\|', 'g') .
                     \ '\)\>/' .
                     \ g:sqlutil_keyword_case .
                     \ '\1/gei'
@@ -576,17 +883,49 @@ function! s:SQLU_ReformatStatement()
     " Now align the operators 
     " and the operators are CENTER justified
     if g:sqlutil_align_where == 1
+        " If I may explain what you're doing with the commands you've given:
+        "     AlignCtrl default
+        "         This resets AlignCtrl to default settings
+        "     AlignCtrl g [!<>=]
+        "         This command says to only consider aligning lines containing
+        "         one of the characters matching [!<>=].  Lines without those
+        "         characters are ignored.
+        "     AlignCtrl Wp1P1l
+        "         W    : retain all selected lines' initial white space
+        "         p1P1 : put one space both before and after separators
+        "         l    : left-justify fields between separators, cyclically. Ie. llllllll...
+        " 
+        "     * The separators are  =  <  >  <>
+        "     * you only want the first separator to be active
+        " 
+        " So, to do this:
+        "     AlignCtrl default
+        "     AlignCtrl g [!<>=]
+        "     AlignCtrl Wp1P1l:
+        "     [range]Align =\|[!<>]\ze[^<>=]\|<>\|<=\|>=\|!>\|!<\|!=
+        " 
+        " I've added a ":" to the AlignCtrl field control pattern; this means
+        " that only one separator (ie. field - separator - field) is to be
+        " aligned.
+        " I've set up the separator pattern to recognize = < > and <> as
+        " separators.
+        " 
+        " This won't do the "< parameter >" conversion to "<parameter>"; it
+        " will preserve it whichever way its written.
         AlignCtrl default
         AlignCtrl g [!<>=]
-        AlignCtrl Wp1P1l
+        AlignCtrl Wp1P1l:
 
         " Change this to only attempt to align the last WHERE clause
         " and not the entire SQL statement
         " Valid operators are: 
-        "      =, =, >, <, >=, <=, !=, !<, !>, <> 
-        " The align below was extended to allow the last character
-        " to be either =,<,>
-        silent! 'y+1,'z-1Align [!<>=]\(<\|>\|=\)\=
+        "      =, >, <, >=, <=, !=, !<, !>, <> 
+        if search('\c\%(\%>'.line("'y").'l\%<'.line("'z").'l\)\&\<WHERE\>')
+            " v17.00 
+            " silent! exec line(".").",'z-1".'Align [!<>=]\(<\|>\|=\)'
+            " v18.00
+            silent! exec line(".").",'z-1".'Align =\|[!<>]\ze[^<>=]\|<>\|<=\|>=\|!>\|!<\|!='
+        endif
     endif
 
     " Reset back to defaults
@@ -595,6 +934,12 @@ function! s:SQLU_ReformatStatement()
     " Reset the alignment to what it was prior to 
     " this function
     " AlignPop
+
+    " Remove any trailing spaces which can be added 
+    " after aligning.
+    silent! 'y+1,'z-1s/\s\+$//
+    " Delete any blank lines
+    silent! 'y+1,'z-1g/^$/d
 
     return 1
 endfunction
@@ -613,8 +958,8 @@ function! s:SQLU_IndentNestedBlocks()
                 \ '\|order\|group\|having\|return\|call\)\>'
 
     " Indent nested blocks surrounded by ()s.
-    let linenum = line("'y+1")
-    while linenum <= line("'z-1")
+    let linenum = line("'y")+1
+    while linenum <= line("'z")-1
         let line = getline(linenum)
         if line =~ '(\s*$'
             let begin_paran = match( line, '(\s*$' )
@@ -637,7 +982,7 @@ function! s:SQLU_IndentNestedBlocks()
                 " indent one additional time.  This is necessary since 
                 " keywords are right justified, so they need an extra
                 " indent
-                if getline(linenum+1) =~? '^\s*\('.sql_keywords.'\)'
+                if getline(linenum+1) =~? '\c^\s*\('.sql_keywords.'\)'
                     silent! exe 'normal! .'
                 endif
                 " echom 'SQLU_IndentNestedBlocks - from: '.line("'<").' to: ' .
@@ -654,7 +999,7 @@ function! s:SQLU_IndentNestedBlocks()
     "
     " Indent nested CASE blocks
     "
-    let linenum = line("'y+1")
+    let linenum = line("'y")+1
     " Search for the beginning of a CASE statement
     let begin_case = '\<\(\<end\s\+\)\@<!case\>'
 
@@ -666,15 +1011,15 @@ function! s:SQLU_IndentNestedBlocks()
             continue
         endif
         let curline = line(".")
-        if( (curline < line("'y+1"))  || (curline > line("'z-1" )) )
+        if( (curline < line("'y")+1)  || (curline > line("'z")-1) )
             " echom 'No case statements, leaving loop'
-            silent! exe 'normal! '.line("'y+1")."G\<bar>0\<bar>"
+            silent! exe 'normal! '.(line("'y")+1)."G\<bar>0\<bar>"
             break
         endif
         " echom 'begin CASE found at: '.curline
         let curline = curline + 1
         let end_of_case = s:SQLU_IndentNestedCase( begin_case, curline, 
-                    \ line("'z-1") )
+                    \ line("'z")-1 )
         let end_of_case = end_of_case + 1
         let ret = end_of_case
         if( ret < 0 )
@@ -686,7 +1031,7 @@ function! s:SQLU_IndentNestedBlocks()
     "
     " Indent Oracle nested MERGE blocks
     "
-    let linenum = line("'y+1")
+    let linenum = line("'y")+1
     " Search for the beginning of a CASE statement
     let begin_merge = '\<merge\s\+into\>'
 
@@ -694,9 +1039,9 @@ function! s:SQLU_IndentNestedBlocks()
 
     if( search( begin_merge, 'W' ) > 0 )
         let curline = line(".")
-        if( (curline < line("'y+1"))  || (curline > line("'z-1" )) )
+        if( (curline < line("'y")+1)  || (curline > line("'z")-1) )
             " echom 'No case statements, leaving loop'
-            silent! exe 'normal! '.line("'y+1")."G\<bar>0\<bar>"
+            silent! exe 'normal! '.(line("'y")+1)."G\<bar>0\<bar>"
         else
             " echom 'begin CASE found at: '.curline
             let curline = curline + 1
@@ -769,12 +1114,10 @@ endfunction
 " Ensure the lines fit in the textwidth (or default 80), wrap
 " the lines where necessary and left justify the column names
 function! s:SQLU_WrapFunctionCalls()
-    " Check if this is a statement that can often by longer than 80 characters
+    " Check if this is a statement that can often be longer than 80 characters
     " (select, set and so on), if so, ensure the column list is broken over as
     " many lines as necessary and lined up with the other columns
-    let linenum = line("'y+1")
-
-    return 
+    let linenum = line("'y")+1
 
     let org_textwidth = &textwidth
     if org_textwidth == 0 
@@ -784,7 +1127,7 @@ function! s:SQLU_WrapFunctionCalls()
         let curr_textwidth = org_textwidth
     endif
 
-    let sql_keywords = '\<\%(select\|set\|\%(insert\(-@-\)\?\)into' .
+    let sql_keywords = '\<\%(select\|set\|\%(insert\(-@-\s*\)\?\)into' .
                 \ '\|from\|values'.
                 \ '\|order\|group\|having\|return\|with\)\>'
 
@@ -795,7 +1138,7 @@ function! s:SQLU_WrapFunctionCalls()
 
     " call Decho(" Before column splitter 'y+1=".line("'<").
     " \ ":".col("'<")."  'z-1=".line("'>").":".col("'>"))
-    while linenum <= line("'z-1")
+    while linenum <= line("'z")-1
         let line = getline(linenum)
 
         if strlen(line) < curr_textwidth
@@ -810,7 +1153,7 @@ function! s:SQLU_WrapFunctionCalls()
         " so when calculating where to split, we must take that into
         " account
         let keyword_str = matchstr(
-                    \ getline(linenum), '^\s*\('.sql_keywords.'\)' )
+                    \ getline(linenum), '\c^\s*\('.sql_keywords.'\)' )
 
         let line_textwidth = curr_textwidth - strlen(keyword_str)
         let func_call = 0
@@ -861,10 +1204,10 @@ function! s:SQLU_WrapFunctionCalls()
                         " parameters is longer than a line
                         silent! exe "normal! i\r-@-\<esc>"
                     endif
-                    " If the SQL keyword preceeds the function name dont
+                    " If the SQL keyword preceeds the function name don't
                     " bother placing it on a new line
                     let preceeded_by_keyword = 
-                                \ '^\s*' .
+                                \ '\c^\s*' .
                                 \ '\(' .
                                 \ sql_keywords .
                                 \ '\|,' .
@@ -877,7 +1220,6 @@ function! s:SQLU_WrapFunctionCalls()
                     " character:"'.getline(linenum)[virtcol(func_call)].'"  - 
                     " '.getline(linenum)
                     if getline(linenum) !~? preceeded_by_keyword
-                        " if line =~? '^\s*\('.sql_keywords.'\)'
                         " Place the function name on a new line
                         silent! exe linenum.'s/\%'.(func_call+1).'c/\r-@-'
                         let linenum = linenum + 1
@@ -917,85 +1259,439 @@ endfunction
 "          , c2
 "          , c3
 function! s:SQLU_WrapAtCommas()
-    let linenum = line("'y+1")
+    let linenum    = line("'y")+1
+    let paran_done = 0
 
-    let sql_keywords = '\<\%(select\|set\|into\|from\|values\|insert\)\>'
+    " These keywords typically have column lists:
+    " SELECT c1, c2, c3 
+    " SET c1 = 1, c2 = 2
+    " INTO var1, var2 
+    " FROM t1, t2
+    " VALUES( var1, var2 )
+    " INSERT INTO T1 (c1, c2)
+    " , - If we have already broken the line up
+    let sql_keywords = '\c^\s*\<\%(select\|set\|into\|from\|values\|insert\|,\)\>'
 
     " call Decho(" Before column splitter 'y+1=".line("'<").
     " \ ":".col("'<")."  'z-1=".line("'>").":".col("'>"))
     while linenum <= line("'z-1")
         let line = getline(linenum)
-        " if line =~? '^\s*\('.sql_keywords.'\)'
         if line =~? '\w'
-            " if line =~? '^\s*\<\('.sql_keywords.'\)\>'
-                silent! exec linenum 
-                " Mark the start of the line
-                silent! exec "normal! mb"
-                " echom "line b - ".getline("'b")
-                " Mark the next line
-                silent! exec "normal! jmek"
+            silent! exec linenum 
+            " Mark the start of the line
+            silent! exec "normal! mb"
+            " echom "line b - ".getline("'b")
+            " Mark the next line
+            silent! exec "normal! jmek"
 
-                let saved_linenum = linenum
-                " let index = match(getline(linenum), '[,(]')
-                " Find the first , or (
-                let index = match(getline(linenum), (g:sqlutil_align_comma==1?'[,(]':'[,]'))
-                while index > -1
-                    " Go to the , or (
-                    call cursor(linenum, (index+1))
+            let saved_linenum = linenum
+            " let index = match(getline(linenum), '[,(]')
+            " Find the first , or (
+            let index = match(getline(linenum), (g:sqlutil_align_comma==1?'[,(]':'[,]'))
+            while index > -1
+                " Go to the , or (
+                call cursor(linenum, (index+1))
 
-                    " Assuming syntax is on, check to ensure the , or (
-                    " is not a string
-                    if getline(linenum)[col(".")-1] == '(' &&
-                                \ synID(line("."),col("."),1) == 0
+                " Assuming syntax is on, check to ensure the , or (
+                " is not a string
+                if getline(linenum)[col(".")-1] == '(' 
+                    if synID(line("."),col("."),1) == 0
+                        " When paran_done was set, it was for a particular keyword 
+                        " as we move through the lines, the ending ) for that 
+                        " keyword should reset the value for future keywords.
+                        " Classic case is:
+                        "     INSERT INTO T1 () <-- reset on closing )
+                        "     VALUES ()
+                        if line('"r') <= linenum
+                            let paran_done = 0
+                        endif
+
+                        " Only do this once and only in the special cases of 
+                        "    1.  INSERT INTO [owner].t1 (
+                        "    2.  VALUES (
+                        " If the opening ( is found after these cases, ignore
+                        " the special processing of them
+                        "     Starting at this linenum 
+                        "     Look for the VALUES or INSERT patterns 
+                        "     Followed by the ( at the exact column position
+                        " Flags - Do not move cursor
+                        if search( '\c^\%'.linenum.'l\s*\<\%(values\%(\s*\|-@-\)\|insert\%(\s\+\|-@-\)into\s\+\S\+\s*\)\%'.(index+1).'v(', 'n' ) == 0
+                            let paran_done = 1
+                        endif
+
+                        " The paran is not part of a string.
+                        " There can be 2 cases now.
+                        "    1.  It is part of a statement (INSERT)
+                        "    2.  It is the start of a function()
+
+                        " Case 1
+                        " Check if we are at a point where we expect commas
+                        if paran_done == 0 && line =~? sql_keywords
+                            " In case 1, we want to move to the matched 
+                            " closing paran and place it on a newline so that 
+                            " it will align with the commas.
+                            if searchpair( '(', '', ')', '',
+                                        \ 'synID(line("."),col("."),1)>0' ) > 0
+                                let matched_linenum = line(".")
+                                let matched_index   = col(".")
+
+                                " But only do this if there is at least 1 comma 
+                                " between these matched ()s.
+                                " The pattern uses :h \%l
+                                if search('\%(\%(\%'.linenum.'l\%>'.(index+1).'v\)\|\%(\%'.matched_linenum.'l\%<'.(matched_index+1).'v\)\)\&,')
+                                    " Found a comma between these ()s,
+                                    " therefore at the closing paran, move it 
+                                    " on to a separate line
+                                    silent! exec matched_linenum . ',' . matched_linenum . 
+                                                \ 's/\%' . (matched_index) . 'c)\s*' .
+                                                \ '/\r' .
+                                                \ ')-@- '
+                                                " \ (g:sqlutil_align_keyword_right == 1 ? ')-@-' : '-@-) ')
+                                    let paran_done = 1
+                                    silent! exec (matched_linenum+1).','.(matched_linenum+1).'mark r'
+                                endif
+                            endif
+
+                            " Now that we have moved to the end of the matched 
+                            " paranthesis, check again for our comma or paran
+                            let index = index + 1
+                            let index = match( getline(linenum), '[,(]', index )
+
+                            continue
+                        endif
+
+                        " Case 2
+                        " If part of a function skip to the end 
+                        " of the paranthesis
+
                         " if searchpair( '(', '', ')', '' ) > 0
                         " Ignore parans that are inside of strings
                         if searchpair( '(', '', ')', '',
                                     \ 'synID(line("."),col("."),1)>0' ) > 0
                             let linenum = line(".")
                             let index   = col(".")
+
+                            " Now that we have moved to the end of the matched 
+                            " paranthesis, check again for our comma or paran
+                            let index = match( getline(linenum), '[,(]', index )
+
+                            continue
                         endif
                     else
-                        " Only do this if the comma at this offset
-                        " is not already at the start of the line
-                        if match(getline(linenum), '\S') != index
-                            " Given the current cursor position, replace
-                            " the , and any following whitespace
-                            " with a newline and the special -@- character
-                            " for Align
-                            silent! exec linenum . ',' . linenum . 
-                                        \ 's/\%' . (index + 1) . 'c,\s*' .
-                                        \ '/\r' .
-                                        \ (g:sqlutil_align_keyword_right == 1 ? ',-@-' : '-@-, ')
-                            let linenum = linenum + 1
+                        " The ( found was within a comment, so advance
+                        " the match, and find the next match
+                        let index = index + 1
+                        let index = match( getline(linenum), '[,(]', index )
 
-                            let index = 0
-                            if g:sqlutil_align_keyword_right == 0
-                                " If aligning the commas with the left justified 
-                                " column names, we must skip ahead the index
-                                " to be infront of the -@-
-                                let index = 3
+                        continue
+                    endif
+                elseif getline(linenum)[col(".")-1] == ','
+                    if synID(line("."),col("."),1) != 0
+                        " If the , is within a comment or string
+                        let index = index + 1
+                        let index = match( getline(linenum), '[,(]', index )
+                        continue
+                    endif
+                endif
+
+                " Only do this if the comma at this offset
+                " is not already at the start of the line
+                if match(getline(linenum), '\S') != index
+                    " Given the current cursor position, replace
+                    " the , and any following whitespace
+                    " with a newline and the special -@- character
+                    " for Align
+                    silent! exec linenum . ',' . linenum . 
+                                \ 's/\%' . (index + 1) . 'c,\s*' .
+                                \ '/\r' .
+                                \ (g:sqlutil_align_keyword_right == 1 ? ',-@-' : '-@-, ')
+                    let linenum = linenum + 1
+
+                    let index = 0
+                    if g:sqlutil_align_keyword_right == 0
+                        " If aligning the commas with the left justified 
+                        " column names, we must skip ahead the index
+                        " to be infront of the -@-
+                        let index = 3
+                    endif
+                endif
+                " Find the index of the first non-white space
+                " which should be the , we just put on the 
+                " newline
+                let index = match(getline(linenum), '\S', index)
+                let index = index + 1
+
+                " then continue on for the remainder of the line
+                " looking for the next , or (
+                "
+                " Must figure out what index value to start from
+                let index = match( getline(linenum), '[,(]', index )
+            endwhile
+            let linenum = saved_linenum 
+
+            " Go to the end of the new lines
+            silent! exec "'e-" 
+            let linenum = line("'e")-1
+        endif
+
+        let linenum = linenum + 1
+    endwhile
+
+    return linenum
+endfunction
+
+" For certain keyword lines (SELECT, SET, INTO, FROM, VALUES)
+" put each comma on a new line and align it with the keyword 
+"     SELECT c1
+"          , c2
+"          , c3
+function! s:SQLU_WrapLongLines( sql_keywords )
+    let linenum           = line("'y")+1
+    let paran_done        = 0
+    let restart_main_loop = 0
+    let max_width         = g:sqlutil_wrap_width
+    let comma_pattern     = '\c\(,\|(\|--\|\<\%(END\s\+\)\@<!CASE\>\|\<\%(END\s\+\)\@<!IF\>\)'
+
+    " These keywords typically have column lists:
+    " SELECT c1, c2, c3 
+    " SET c1 = 1, c2 = 2
+    " INTO var1, var2 
+    " FROM t1, t2
+    " VALUES( var1, var2 )
+    " INSERT INTO T1 (c1, c2)
+    " , - If we have already broken the line up
+    let sql_keywords = a:sql_keywords
+
+    " call Decho(" Before column splitter 'y+1=".line("'<").
+    " \ ":".col("'<")."  'z-1=".line("'>").":".col("'>"))
+    while linenum <= line("'z-1")
+        let line = getline(linenum)
+        if strlen(getline(linenum)) < max_width
+            let linenum = linenum + 1
+            continue
+        endif
+        
+        " If the line does not start with a keyword it is a good 
+        " candidate to wrap.
+        " Experimentation with wrapping using Vim's qp results 
+        " in ugly code which is as bad as unformatted code.
+        " So instead, we are going to look for various special
+        " markers (, (, CASE, IF) and split the lines there.  
+        " But in this case, we will 
+        " leave the commas on the end of the lines as there 
+        " is a special option to put those at the start of the line.
+        silent! exec linenum 
+        " Mark the start of the line
+        silent! exec "normal! mb"
+        " echom "line b - ".getline("'b")
+        " Mark the next line
+        silent! exec "normal! jmek"
+
+        let saved_linenum = linenum
+        " Find the first , 
+        let index = match(getline(linenum), comma_pattern)
+        " Check to see if there is another , closer to 
+        " the max_width
+        while index > -1
+            let prev_match = line[index]
+            let prev_index = index 
+
+            " Check next match if current match is a ,
+            " Since a match on a ( can easily find a closing ) 
+            " on or near the end of the line
+            if getline(linenum)[index] != ','
+                break
+            endif
+
+            let index = match(getline(linenum), comma_pattern, (index+1))
+            if index > -1
+                let curr_match = line[index]
+
+                if synID(getline(linenum),index,1) != 0
+                    " If within a comment, skip this match
+                    let index = prev_index 
+                    break
+                endif
+
+                if prev_match != curr_match
+                    " If the match between a ( and , changes
+                    " go back to the previous match
+                    let index = prev_index 
+                    break
+                endif
+                if index > max_width
+                    " Use first match as this one is beyond 
+                    " screen size
+                    let index = prev_index 
+                    break
+                else
+                    continue
+                endif
+            else 
+                " Use previous match as no more are found
+                let index = prev_index
+                break 
+            endif
+        endwhile
+
+        while index > -1
+            " Go to the , or (
+            call cursor(linenum, (index+1))
+
+            " Assuming syntax is on, check to ensure the , or (
+            " is not a string
+            if getline(linenum)[col(".")-1] == '(' 
+                if synID(line("."),col("."),1) == 0
+                    " Find closing paran
+                    if searchpair( '(', '', ')', '',
+                                \ 'synID(line("."),col("."),1)>0' ) > 0
+                        let matched_linenum = line(".")
+                        let matched_index   = col(".")
+
+                        if matched_index > max_width
+                            " But only do this if there is at least 1 comma 
+                            " between these matched ()s.
+                            " The pattern uses :h \%l
+                            if search('\%(\%(\%'.linenum.'l\%>'.(index+1).'v\)\|\%(\%'.matched_linenum.'l\%<'.(matched_index+1).'v\)\)\&,')
+                                " Found a comma between these ()s,
+                                " therefore at the closing paran, move it 
+                                " on to a separate line
+                                silent! exec matched_linenum . ',' . matched_linenum . 
+                                            \ 's/\%' . (matched_index) . 'c)\s*' .
+                                            \ '/\r' .
+                                            \ ')-@- '
+                                            " \ (g:sqlutil_align_keyword_right == 1 ? ')-@-' : '-@-) ')
+                                let paran_done = 1
+                                silent! exec (matched_linenum+1).','.(matched_linenum+1).'mark r'
+                            endif
+                        else 
+                            " We are at the closing ) 
+                            " And we still have not exceeded line
+                            " length 
+                            " So continue searching from this point forward
+                            " only if we are stil on the same line
+                            if linenum == line(".")
+                                let index = matched_index
                             endif
                         endif
-                        " Find the index of the first non-white space
-                        " which should be the , we just put on the 
-                        " newline
-                        let index = match(getline(linenum), '\S', index)
-                        let index = index + 1
                     endif
 
-                    " then continue on for the remainder of the line
-                    " looking for the next , or (
-                    "
-                    " Must figure out what index value to start from
-                    let index = match( getline(linenum), '[,(]', index )
-                endwhile
-                let linenum = saved_linenum 
+                    " Now that we have moved to the end of the matched 
+                    " paranthesis, check again for our comma or paran
+                    let index = index + 1
+                    let index = match( getline(linenum), comma_pattern, index )
 
-                " Go to the end of the new lines
-                silent! exec "'e-" 
-                let linenum = line("'e")-1
-            " endif
+                    continue
+                else
+                    " The ( found was within a comment, so advance
+                    " the match, and find the next match
+                    let index = index + 1
+                    let index = match( getline(linenum), comma_pattern, index )
+
+                    continue
+                endif
+            elseif matchstr(getline(linenum), '\%'.(index+1).'v.\{4}') =~? '^CASE' 
+                " Moved to the CASE keywords to newlines
+                silent! exec linenum . ',' . linenum . 
+                            \ 's/\<\(\%(END\s\+\)\@<!CASE\|WHEN\|ELSE\|END\%(\s\+CASE\)\?\)\>/\r-@-&/gi'
+
+                let index = index + 1
+                let index = match( getline(linenum), comma_pattern, index )
+                continue
+            elseif matchstr(getline(linenum), '\%'.(index+1).'v.\{4}') =~? '^IF' 
+                " Moved to the CASE keywords to newlines
+                silent! exec linenum . ',' . linenum . 
+                            \ 's/\<\%(END\s\+\)\@<!IF\|ELSEIF\|ELSIF\|ELSE\|END\%(IF\|\s\+IF\)\>/\r-@-&/gi'
+
+                let index = index + 1
+                let index = match( getline(linenum), comma_pattern, index )
+                continue
+            elseif matchstr(getline(linenum), '\%'.(index+1).'v.\{4}') =~? '^--' 
+                " Start of a comment, ignore rest of line and move on
+                " to the next match
+                let index = match( getline(linenum), comma_pattern, index )
+                let linenum = linenum + 1
+                break
+            endif
+
+            " Only do this if the comma at this offset
+            " is not already at the start of the line
+            if match(getline(linenum), '\S') != index
+                " Given the current cursor position, replace
+                " the , and any following whitespace
+                " with a newline and the special -@- character
+                " for Align
+                silent! exec linenum . ',' . linenum . 
+                            \ 's/\%' . (index + 1) . 'c,\s*' .
+                            \ '/,\r' .
+                            \ '-@-'
+                let linenum = linenum + 1
+
+                " If the newline is no longer long, kick
+                " out of the loop and work on the next line
+                if strlen(getline(linenum)) < max_width
+                    let linenum = linenum + 1
+                    break
+                else
+                    let index = 0
+                    let index = match( getline(linenum), comma_pattern, index )
+
+                    if matchstr(getline(linenum), '\%'.(index+1).'v.\{1}') =~? '^,' 
+                        " If our match is another comma, break out of this
+                        " loop and perform the check to determine which comma
+                        " to split the line on
+                        let restart_main_loop = 1
+                        break
+                    endif
+                endif
+            else
+                let linenum = linenum + 1
+                let index = match( getline(linenum), comma_pattern, index )
+            endif
+            "          " Find the index of the first non-white space
+            "          " which should the substitute we just made
+            "          " newline
+            "          let index = match(getline(linenum), '\S', index)
+            "          let index = index + 1
+
+            "          " then continue on for the remainder of the line
+            "          " looking for the next , or (
+            "          "
+            "          " Must figure out what index value to start from
+            "          let index = match( getline(linenum), comma_pattern, index )
+            "          " Check to see if there is another , closer to 
+            "          " the max_width
+            "          while index > -1
+            "              let prev_index = index 
+            "              " Check next match
+            "              let index = match(getline(linenum), comma_pattern, (index+1))
+            "              if index > -1
+            "                  if index > max_width
+            "                      " Use first match as this one is beyond 
+            "                      " screen size
+            "                      let index = prev_index 
+            "                      break
+            "                  else
+            "                      continue
+            "                  endif
+            "              else 
+            "                  " Use previous match as no more are found
+            "                  let index = prev_index
+            "                  break 
+            "              endif
+            "          endwhile
+        endwhile
+
+        if restart_main_loop == 1
+            let restart_main_loop = 0
+            continue
         endif
+
+        let linenum = saved_linenum 
+
+        " Go to the end of the new lines
+        silent! exec "'e-" 
+        let linenum = line("'e")-1
 
         let linenum = linenum + 1
     endwhile
@@ -1010,7 +1706,7 @@ function! s:SQLU_WrapExpressions()
     " Check if this is a statement that can often by longer than 80 characters
     " (select, set and so on), if so, ensure the column list is broken over as
     " many lines as necessary and lined up with the other columns
-    let linenum = line("'y+1")
+    let linenum = line("'y")+1
 
     return 
 
@@ -1024,55 +1720,52 @@ function! s:SQLU_WrapExpressions()
     " \ ":".col("'<")."  'z-1=".line("'>").":".col("'>"))
     while linenum <= line("'z-1")
         let line = getline(linenum)
-        " if line =~? '^\s*\('.sql_keywords.'\)'
         if line =~? '\w'
-            " if line =~? '^\s*\('.sql_keywords.'\)'
-                " Decho 'linenum: ' . linenum . ' strlen: ' .
-                " \ strlen(line) . ' textwidth: ' . &textwidth .
-                " \ '  line: ' . line
-                " go to the current line
-                silent! exec linenum 
-                " Mark the start of the wide line
-                silent! exec "normal! mb"
-                let markb = linenum
-                " echom "line b - ".getline("'b")
-                " Mark the next line
-                silent! exec "normal! jmek"
-                " echom "line e - ".getline("'e")
+            " Decho 'linenum: ' . linenum . ' strlen: ' .
+            " \ strlen(line) . ' textwidth: ' . &textwidth .
+            " \ '  line: ' . line
+            " go to the current line
+            silent! exec linenum 
+            " Mark the start of the wide line
+            silent! exec "normal! mb"
+            let markb = linenum
+            " echom "line b - ".getline("'b")
+            " Mark the next line
+            silent! exec "normal! jmek"
+            " echom "line e - ".getline("'e")
 
 
-                if line =~? '\('.sql_expression_operator.'\)'
-                    silent! exec linenum . ',' . linenum . 
-                                \ 's/^\s*\('.sql_keywords.'\)\s*'.
-                                \ '/\1-@-'
-                    " Create a special marker for Align.vim
-                    " to line up the columns with
-                    silent! exec linenum . ',' . linenum . 
-                                \ 's/'.sql_expression_operator.'/'.
-                                \ '\r-@-&'
+            if line =~? '\('.sql_expression_operator.'\)'
+                silent! exec linenum . ',' . linenum . 
+                            \ 's/\c^\s*\('.sql_keywords.'\)\s*'.
+                            \ '/\1-@-'
+                " Create a special marker for Align.vim
+                " to line up the columns with
+                silent! exec linenum . ',' . linenum . 
+                            \ 's/\c'.sql_expression_operator.'/'.
+                            \ '\r-@-&'
 
-                endif
+            endif
 
-                " echom "end_line_nbr - ".end_line_nbr
-                " echom "normal! end_line_nbr - ".line(end_line_nbr)
+            " echom "end_line_nbr - ".end_line_nbr
+            " echom "normal! end_line_nbr - ".line(end_line_nbr)
 
-                " Append the special marker to the beginning of the line
-                " for Align.vim
-                " silent! exec "'b+," .end_line_nbr. 's/\s*\(.*\)/-@-\1'
-                " silent! exec "'b+," .end_line_nbr. 's/^\s*/-@-'
-                silent! exec ''.(markb+1)."," .end_line_nbr. 's/^\s*/-@-/g'
-                " silent! exec "'b+,'e-" . 's/\s*\(.*\)/-@-\1'
-                AlignCtrl Ip0P0rl:
-                " silent! 'b,'e-Align -@-
-                " silent! exec "'b,".end_line_nbr.'Align -@-'
-                silent! exec markb.",'e".'Align -@-'
-                " silent! 'b,'e-s/-@-/ /
-                silent! exec markb.",'e".'s/-@-/ /ge'
-                AlignCtrl default
+            " Append the special marker to the beginning of the line
+            " for Align.vim
+            " silent! exec "'b+," .end_line_nbr. 's/\s*\(.*\)/-@-\1'
+            " silent! exec "'b+," .end_line_nbr. 's/^\s*/-@-'
+            silent! exec ''.(markb+1)."," .end_line_nbr. 's/^\s*/-@-/g'
+            " silent! exec "'b+,'e-" . 's/\s*\(.*\)/-@-\1'
+            AlignCtrl Ip0P0rl:
+            " silent! 'b,'e-Align -@-
+            " silent! exec "'b,".end_line_nbr.'Align -@-'
+            silent! exec markb.",'e".'Align -@-'
+            " silent! 'b,'e-s/-@-/ /
+            silent! exec markb.",'e".'s/-@-/ /ge'
+            AlignCtrl default
 
-                " Advance the linenum to the end of the range
-                let linenum = line("'e") 
-            " endif
+            " Advance the linenum to the end of the range
+            let linenum = line("'e") 
         endif
 
         let linenum = linenum + 1
@@ -1081,16 +1774,17 @@ function! s:SQLU_WrapExpressions()
     return linenum
 endfunction
 
+
 " For certain keyword lines (SELECT, ORDER BY, GROUP BY, ...)
 " Ensure the lines fit in the textwidth (or default 80), wrap
 " the lines where necessary and left justify the column names
-function! s:SQLU_WrapLongLines()
+function! s:SQLU_WrapLongLinesQPP()
     " Check if this is a statement that can often by longer than 80 characters
     " (select, set and so on), if so, ensure the column list is broken over as
     " many lines as necessary and lined up with the other columns
-    let linenum = line("'y+1")
+    let linenum = line("'y")+1
 
-    return
+    " return
 
     let org_textwidth = &textwidth
     if &textwidth == 0 
@@ -1105,7 +1799,6 @@ function! s:SQLU_WrapLongLines()
     " \ ":".col("'<")."  'z-1=".line("'>").":".col("'>"))
     while linenum <= line("'z-1")
         let line = getline(linenum)
-        " if line =~? '^\s*\('.sql_keywords.'\)'
         if line =~? '\w'
             " Set the textwidth to current value
             " minus an adjustment for select and set
@@ -1165,7 +1858,11 @@ function! s:SQLU_WrapLongLines()
                                         \ 's/^\s*\zs,\s*/-@-, '
                         endif
                     else
-                        silent! exec linenum . ',' . linenum . 's/\S/-@-&'
+                        if line !~ '-@-'
+                            " If there is not a special marker on the line 
+                            " yet, then add one
+                            silent! exec linenum . ',' . linenum . 's/\S/-@-&'
+                        endif
                     endif
                 endif
 
@@ -1236,8 +1933,8 @@ endfunction
 
 " Finds unbalanced paranthesis and put each one on a new line
 function! s:SQLU_SplitUnbalParan()
-    let linenum = line("'y+1")
-    while linenum <= line("'z-1")
+    let linenum = line("'y")+1
+    while linenum <= line("'z")-1
         let line = getline(linenum)
         " echom 'SQLU_SplitUnbalParan: l: ' . linenum . ' t: '. getline(linenum)
         if line !~ '('
@@ -1303,11 +2000,10 @@ function! s:SQLU_SplitUnbalParan()
 
             " If the match is on a DIFFERENT line
             if indent_to != linenum
-                " If a ) is NOT the only thing on the line
-                " I have relaxed this, so it must be the first
-                " thing on the line 
-                " if getline(indent_to) !~ '^\s*\(-@-\)\?)\s*$'
-                if getline(indent_to) !~ '^\s*\(-@-\)\?)'
+                " If there are any characters before the matching
+                " ) place it on a newline
+                let index = match(getline(indent_to), '\S')
+                if index == -1 || index < col('.') 
                     " Place the paranethesis on a new line
                     silent! exec "normal! i\n\<Esc>"
                     let indent_to = indent_to + 1
@@ -1375,6 +2071,19 @@ function! s:SQLU_SplitUnbalParan()
     " Never found matching close parenthesis
     " return end of range
     return linenum
+endfunction
+
+" If a comment is found, skip it
+function! SQLUtilities#SQLU_AlignSkip( lineno, indx )
+    if getline(a:lineno) =~ '^\s*--'
+        return 1
+    endif
+    return 0
+
+    let synid   = synID(a:lineno,a:indx+1,1)
+    let synname = synIDattr(synIDtrans(synid),"name")
+    let ret= (synname == "String")? 1 : 0
+    return ret
 endfunction
 
 " Puts a command separate list of columns given a table name

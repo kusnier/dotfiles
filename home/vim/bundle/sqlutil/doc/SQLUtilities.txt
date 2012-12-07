@@ -1,9 +1,9 @@
 *SQLUtilities.txt*      For Vim version 7.0. 
 
-Author:	        David Fishburn                             October 10, 2012
+Author:	        David Fishburn                             December 3, 2012
 
 SQLUtilities:   Variety of tools for working with SQL
-Version:        6.0.0
+Version:        7.0.0
 Homepage:       http://www.vim.org/scripts/script.php?script_id=492
 Feedback:	    David Fishburn <dfishburn dot vim at gmail dot com>
 
@@ -14,37 +14,42 @@ For instructions on installing this file, type
 ==============================================================================
 1. Contents                                      *sqlutil* *sqlutil-contents*
 
-    1. Contents...............................: |sqlutil-contents|
-    2. Tutorial...............................: |sqlutil-tutorial|
-    3. Commands...............................: |sqlutil-commands|
-       3.1 SQLUFormatter......................: |sqlutil-formatter|
-           3.1.1 Formatting Examples..........: |sqlutil-examples|
-           3.1.2 Formatting Options...........: |sqlutil-format-options|
-                 3.1.2.1 Align Where Clause...: |sqlutil-align-where|
-                 3.1.2.2 Align Comma..........: |sqlutil-align-comma|
-                 3.1.2.3 Align First Word.....: |sqlutil-align-first-word|
-                 3.1.2.4 Align Keyword Right..: |sqlutil-align-keyword-right|
-                 3.1.2.5 Change Keyword Case..: |sqlutil-change_keyword-case|
-       3.2 SQLUCreateColumnList...............: |sqlutil-column-list|
-       3.3 SQLUGetColumnDef...................: |sqlutil-column-definition|
-           SQLUGetColumnDataType..............: |sqlutil-column-datatype|
-       3.4 SQLUCreateProcedure................: |sqlutil-procedure|
-    4. Suggested Mappings.....................: |sqlutil-mappings|
-    5. Global Options.........................: |sqlutil-options|
-    6. Customization..........................: |sqlutil-customization|
-        6.1 Cmd Terminator....................: |sqlutil-customization|
-        6.2 Vim Menu..........................: |sqlutil-customization|
-        6.3 Vim's Syntax Support..............: |sqlutil-customization|
-    7. History................................: |sqlutil-history|
-    8. Dependencies...........................: |sqlutil-dependencies|
-    9. Complementary Plugins..................: |sqlutil-complementary-plugins|
-    10.TODO...................................: |sqlutil-todo|
+    1. Contents.......................................: |sqlutil-contents|
+    2. Tutorial.......................................: |sqlutil-tutorial|
+    3. Commands.......................................: |sqlutil-commands|
+       3.1 SQLUFormatter..............................: |sqlutil-formatter|
+           3.1.1 Formatting Examples..................: |sqlutil-examples|
+           3.1.2 Formatting Options...................: |sqlutil-format-options|
+                 3.1.2.1  Align Where Clause..........: |sqlutil-align-where|
+                 3.1.2.2  Align Comma.................: |sqlutil-align-comma|
+                 3.1.2.3  Align First Word............: |sqlutil-align-first-word|
+                 3.1.2.4  Align Keyword Right.........: |sqlutil-align-keyword-right|
+                 3.1.2.5  Change Keyword Case.........: |sqlutil-change_keyword-case|
+                 3.1.2.6  Indent Nested Blocks........: |sqlutil-indent_nested|
+                 3.1.2.7  Wrap Width..................: |sqlutil-wrap-wdith|
+                 3.1.2.8  Wrap Long Lines.............: |sqlutil-wrap-long-lines|
+                 3.1.2.9  Wrap Function Calls.........: |sqlutil-wrap-function-calls|
+                 3.1.2.10 Split Unbalanced Parentheses: |sqlutil-split_unbalanced-paran|
+       3.2 SQLUCreateColumnList.......................: |sqlutil-column-list|
+       3.3 SQLUGetColumnDef...........................: |sqlutil-column-definition|
+           SQLUGetColumnDataType......................: |sqlutil-column-datatype|
+       3.4 SQLUCreateProcedure........................: |sqlutil-procedure|
+    4. Suggested Mappings.............................: |sqlutil-mappings|
+    5. Global Options.................................: |sqlutil-options|
+    6. Customization..................................: |sqlutil-customization|
+        6.1 Cmd Terminator............................: |sqlutil-customization|
+        6.2 Vim Menu..................................: |sqlutil-customization|
+        6.3 Vim's Syntax Support......................: |sqlutil-customization|
+    7. History........................................: |sqlutil-history|
+    8. Dependencies...................................: |sqlutil-dependencies|
+    9. Complementary Plugins..........................: |sqlutil-complementary-plugins|
+    10.TODO...........................................: |sqlutil-todo|
 
 
 ==============================================================================
 2. Tutorial                                      *sqlutil-tutorial*
 
-My most used command is the formatting capability of SQLUtil.  Please
+My most used command is the formatting capability of SQLUtilities.  Please
 ensure the Align.vim plugin has already been installed see
 |sqlutil-dependencies|.
 
@@ -98,7 +103,7 @@ reformat the statement: >
     WHERE  t1.c1 = 'hello'
     AND    t2.column2 = 'goodbye';
 <    
-Using the menu Plugin -> SQLUtil -> Toggle Align Comma and retoggle
+Using the menu Plugin -> SQLUtil -> Toggle Align Comma and re-toggle
 Plugin -> SQLUtil -> Toggle Right Align Keywords and reformat the
 statement: >
     SELECT t1.c1
@@ -499,6 +504,92 @@ database.  See |sqlutil-complementary-plugins| for more details.
           and PCat.RevID = intRevID
           aND P.RevID = PCat.RevID
           and CATHDR.CATEGORYID = PCAT.CATEGORYID
+<
+
+3.1.2.6 Indent Nested Blocks                     *sqlutil-indent_nested*
+
+  sqlutil_indent_nested_blocks is used to shift blocks right
+  to show indent level. >
+       let g:sqlutil_indent_nested_blocks = 1
+
+       SELECT CategoryID
+            , CategoryName
+            , CategorySystemName
+            , (
+               SELECT nested block
+                 FROM CATEGORY B
+                WHERE intCategoryID IS NULL
+              ) tmp
+
+
+3.1.2.7 Wrap Width                               *sqlutil-wrap-wdith*
+
+  sqlutil_wrap_width defaults to the Vim option |'textwidth'|.
+  If this option is set, it will be used.  The formatter
+  will look at all lines longer than sqlutil_wrap_width and 
+  attempt to shorten it based on some rules.  For those
+  details see |sqlutil_wrap_long_lines|.
+  sqlutil_wrap_long_lines option. >
+       let g:sqlutil_wrap_function_calls = 1
+
+
+3.1.2.8 Wrap Long Lines                          *sqlutil-wrap-long-lines*
+
+  sqlutil_wrap_long_lines is try to fit text on one line in Vim
+  while maintaining shifted text.  Long lines will be detected
+  if the Vim option textwidth is set.  If this option is not 
+  set, then it will default to 80 characters.  See the 
+  |sqlutil_wrap_width| option for more details. 
+  When this option is enabled, the formatter will only attempt 
+  splitting lines when either ()'s or a , is found. >
+       let g:sqlutil_wrap_long_lines = 1
+
+       INSERT INTO rev_comment_header(rev_comment_header_id, rev_comment_header_id, rev_comment_header_id, rev_comment_header_id, project_id)
+
+       INSERT INTO rev_comment_header(
+                  rev_comment_header_id, rev_comment_header_id, rev_comment_header_id,
+                  rev_comment_header_id, project_id
+              )
+
+
+3.1.2.9 Wrap Function Calls                      *sqlutil-wrap-function-calls*
+
+  sqlutil_wrap_function_calls looks for a word followed by
+  a ( and a closing ).  It will leave the ( on the same line
+  but the closing ) will be placed on it's own line.  The 
+  function parameters will be formatted based on the 
+  sqlutil_wrap_long_lines option. >
+       let g:sqlutil_wrap_function_calls = 1
+
+        SELECT XMLELEMENT(
+                   'Alerts', XMLELEMENT( 'Alert_alert_id', alert_id ),
+                   XMLELEMENT( 'Alert_agent_id', agent_id ),
+                   XMLELEMENT( 'Alert_alert_type_id', alert_type_desc),
+                   XMLELEMENT( 'Alert_alert_date', alert_date),
+                   XMLELEMENT(
+                       'Alert_url_reference', url_reference
+                    ), XMLELEMENT( 'Alert_read_status', read_status )
+               ) 
+          FROM MESSAGES m
+
+
+3.1.2.10 Split Unbalanced Parantheses            *sqlutil-split_unbalanced-paran*
+
+  g:sqlutil_split_unbalanced_paran finds all (.  It then checks the 
+  closing ) position.  If the closing ) is on a separate line, it will 
+  make sure the ( stays where it is, anything following it is placed 
+  on a newline, and the closing ) is also placed on it's own line. >
+
+        SELECT XMLELEMENT(
+                   'Alerts', XMLELEMENT( 'Alert_alert_id', alert_id ),
+                   XMLELEMENT( 'Alert_agent_id', agent_id ),
+                   XMLELEMENT( 'Alert_alert_type_id', alert_type_desc),
+                   XMLELEMENT( 'Alert_alert_date', alert_date),
+                   XMLELEMENT(
+                       'Alert_url_reference', url_reference
+                    ), XMLELEMENT( 'Alert_read_status', read_status )
+               ) 
+          FROM MESSAGES m
 
 
 3.2 SQLUCreateColumnList                         *sqlutil-column-list*
@@ -689,7 +780,7 @@ database.  See |sqlutil-complementary-plugins| for more details.
   so just search for it.
 
   Many of these options can be controlled via the SQLUtil menu, which is often 
-  far more convienent that tweaking these variables.
+  far more convenient that tweaking these variables.
 
   Global variables: >
     sqlutil_align_where
@@ -708,12 +799,6 @@ database.  See |sqlutil-complementary-plugins| for more details.
 <       - See |sqlutil-align-keyword-right|
         - Default: 1 >
         let g:sqlutil_align_keyword_right = 1
-    sqlutil_wrap_expressions
-<       - By default, when formatting a statement if a column is an expression 
-          or function call which is very long, break it apart and indent 
-          portions of it to make it clear.
-        - Default: 0 >
-        let g:sqlutil_wrap_expressions = 0
     sqlutil_cmd_terminator
 <       - Certain SQL statements require cmd terminators.  Different databases
           have different defaults.  This is important when parsing SQL files.
@@ -739,8 +824,23 @@ database.  See |sqlutil-complementary-plugins| for more details.
         let g:g:sqlutil_use_syntax_support = 1
     sqlutil_syntax_elements
 <       - See |sqlutil-column-list|
-        - Default: 'Constant,sqlString' >
-        let g:sqlutil_syntax_elements = 'Constant,sqlString'
+        - This controls how SQLUtilities determines if the keyword found is
+          within a string or not.  This is a comma separated list of values.
+          Items within these syntax groups will typically be ignored.
+        - Default: 'Constant,sqlString,sqlComment,Comment' >
+        let g:sqlutil_syntax_elements = 'Constant,sqlString,sqlComment,Comment'
+    sqlutil_non_line_break_keywords
+<       - These words will be UPPER or lower cased based on the setting of
+          sqlutil_keyword_case.  These keywords are different from typical`
+          ones (i.e. SELECT, FROM) as those special words should be placed 
+          on their own lines.  These should stay where they are but should
+          their case should be changed.  This allows these options to be
+          extended without having to release a new version of the plugin. 
+          The keywords which should be formatted require extensive testing 
+          and the regex's used for those are based on the SQL grammar 
+          and therefore cannot easily be extended. 
+        - Default: 'Constant,sqlString,sqlComment,Comment' >
+        let g:sqlutil_non_line_break_keywords = 'is,as,like,desc,asc,then'
     sqlutil_col_list_terminators
 <       - See |sqlutil-change_keyword-case| >
         let g:sqlutil_col_list_terminators = 
@@ -797,7 +897,7 @@ database.  See |sqlutil-complementary-plugins| for more details.
             let  g:sqlutil_default_menu_mode = 3
 <
  You can also control where (and the name of) the SQLUtil menu is created
- using the g:sqlutil_menu_root option.  It can be used in conjuction with
+ using the g:sqlutil_menu_root option.  It can be used in conjunction with
  g:sqlutil_default_menu_mode = 3.  To create the menu: 'MyPlugins -> SQLUtil'
  you can create the following variable: >
             let  g:sqlutil_menu_root = 'MyPlugin.&SQLUtil'
@@ -855,6 +955,46 @@ database.  See |sqlutil-complementary-plugins| for more details.
 ==============================================================================
 7. History                                       *sqlutil-history*
 
+  7.0.0: December 3, 2012: 
+         NF: Comments in your SQL are now allowed and will be formatted
+             appropriately (which usually means ignored).
+             If you Vim does not have syntax support, all comments 
+             will be removed prior to formatting (you are asked to confirm).
+         NF: A major overhaul to how SQL is formatted.  
+             Fixed a few bugs which crept up while testing 
+             the new methods.
+             The main change was how long lines are handled.
+             Now, long lines are only split when a comma or open
+             parenthesis is found.  This can still leave lines long
+             but the previous method could leave the new SQL nearly
+             unreadable depending on it's content.  Thanks to
+             Jeremey Hustman for providing the ColdFusion code
+             samples.
+         NF: Added new options which allow you to override
+             which (small set of) keywords are flipped to 
+             UPPER or lower case.  This means if a few keywords
+             are missing they can easily be added to your 
+             .vimrc while waiting for an update to the plugin. 
+             See help on: >
+                g:sqlutil_non_line_break_keywords
+<        NF: Added new options which allows you to turn off
+             different formatting options.  This is really 
+             only useful for debugging, but if you run into 
+             an issue you can turn off that piece of formatting.
+             See help for more details, the new options are: >
+                g:sqlutil_indent_nested_blocks
+                g:sqlutil_wrap_long_lines
+                g:sqlutil_wrap_function_calls
+                g:sqlutil_wrap_width
+                g:sqlutil_split_unbalanced_paran
+<        BF: Long lines were not wrapped appropriately (Don Parker).
+         BF: Based on certain conditions, the formatter could get
+             into an endless loop (Don Parker).
+         BF: ColdFusion placeholders were incorrectly formatted (Jeremy Hustman).
+         BF: Some keywords (i.e. LIKE, AS, ASC, DESC, ...) were not UPPER cased
+             (Jeremy Hustman).
+         BF: Delete statements were not formatted (Jeremy Hustman).
+ 
   6.0.0: October 10, 2012: 
          NF: When formatting INSERT statements, the sqlutil_align_comma
              is also respected to place each column on a newline.
