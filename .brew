@@ -48,6 +48,7 @@ brews=(
   mplayer
   ncftp
   netcat
+  ngrep
   nmap
   node
   pango
