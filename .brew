@@ -34,6 +34,7 @@ brews=(
   intltool
   jasper
   jpeg
+  jq
   libtiff
   libusb
   libusb-compat

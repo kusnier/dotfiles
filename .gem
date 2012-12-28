@@ -1,0 +1,20 @@
+#!/bin/bash
+# vim: ft=sh
+
+gems=(
+  albino
+  cheat
+  childprocess
+  github-markup
+  highline
+  htty
+  localtunnel
+  pygmentize
+  redcarpet
+  tilt
+  vimgolf
+)
+
+for gem in ${gems[@]} ; do
+  sudo gem install $gem
+done
