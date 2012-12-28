@@ -335,7 +335,7 @@ nnoremap N Nzzzv
 au VimResized * wincmd =
 
 " }}}
-" Buffer ------------------------------------------------------------------ {{
+" Buffer ------------------------------------------------------------------ {{{
 
 map <Leader>ls :buffers<CR>
 " cycle thru buffers ...
