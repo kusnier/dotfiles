@@ -702,9 +702,7 @@ let g:user_zen_settings = {
 " }}}
 " Powerline {{{
 
-if has("gui_running")
-  let g:Powerline_symbols = 'fancy'
-endif
+let g:Powerline_symbols = 'fancy'
 
 " }}}
 " Cope {{{
