@@ -472,13 +472,8 @@ map <leader>] :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 " }}}
 " Highlighting, colors, fonts --------------------------------------------- {{{
 
-if has("gui_running")
-  set t_Co=256
-else
-  set t_Co=16
-endif
-
 set background=dark
+colorscheme molokai
 
 " when we have a colored terminal or gui...
 if &t_Co > 2 || has("gui_running")
@@ -502,9 +497,6 @@ if has("gui_running")
     "set guifont=Monospace\ 8
     set guifont=DejaVu\ Sans\ Mono\ 8
   endif
-
-  colorscheme molokai
-
 endif
 
 " Custom highlights
