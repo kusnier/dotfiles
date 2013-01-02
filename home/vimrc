@@ -388,7 +388,7 @@ set matchpairs+=<:> " these tokens belong together
 
 " highlight all matches..., remove hl on esc
 set hlsearch
-nnoremap <silent> <esc> :nohlsearch<return><esc>
+nnoremap <silent> <leader><space> :nohlsearch<return><esc>
 " ...and also during entering the pattern
 set incsearch
 
