@@ -1667,6 +1667,3 @@ inoremap  <Right>  <NOP>
 "noremap   <Right>  <NOP>
 
 " }}}
-
-" xp:cs: Empty line before comment line
-command! XpcsEmptyLineBeforeCommentLine %s#^\(\s\+[^*/]\+\)[^*/]\+\n\zs\ze\s*//#\r#
