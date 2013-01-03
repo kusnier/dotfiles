@@ -987,7 +987,6 @@ let g:ragtag_global_maps = 1
 
 " }}}
 " }}}
-
 " Mini-plugins ------------------------------------------------------------ {{{
 " Source: http://bitbucket.org/sjl/dotfiles/src/tip/vim/
 
@@ -1080,7 +1079,6 @@ map <leader>pp :call TogglePresentationMode()<CR>
 
 
 " }}}
-
 " Various filetype-specific stuff ----------------------------------------- {{{
 
 " C {{{
