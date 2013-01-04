@@ -6,6 +6,8 @@
 " by Wimer Hazenberg and its darker variant 
 " by Hamish Stuart Macpherson
 "
+" Changelog: Make terminal colors more gui like - Sebastian Kusnier (2013-01-04)
+"
 
 hi clear
 
@@ -129,7 +131,7 @@ if &t_Co > 255
    hi Boolean         ctermfg=135
    hi Character       ctermfg=144
    hi Number          ctermfg=135
-   hi String          ctermfg=144
+   hi String          ctermfg=185
    hi Conditional     ctermfg=161               cterm=bold
    hi Constant        ctermfg=135               cterm=bold
    hi Cursor          ctermfg=16  ctermbg=253
@@ -147,8 +149,8 @@ if &t_Co > 255
    hi ErrorMsg        ctermfg=199 ctermbg=16    cterm=bold
    hi Exception       ctermfg=118               cterm=bold
    hi Float           ctermfg=135
-   hi FoldColumn      ctermfg=67  ctermbg=16
-   hi Folded          ctermfg=67  ctermbg=16
+   hi FoldColumn      ctermfg=59  ctermbg=16
+   hi Folded          ctermfg=59  ctermbg=16
    hi Function        ctermfg=118
    hi Identifier      ctermfg=208
    hi Ignore          ctermfg=244 ctermbg=232
@@ -202,10 +204,10 @@ if &t_Co > 255
    hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
    hi WildMenu        ctermfg=81  ctermbg=16
 
-   hi Normal          ctermfg=252 ctermbg=233
+   hi Normal          ctermfg=252 ctermbg=0
    hi Comment         ctermfg=59
    hi CursorLine                  ctermbg=234   cterm=none
    hi CursorColumn                ctermbg=234
    hi LineNr          ctermfg=250 ctermbg=234
-   hi NonText         ctermfg=250 ctermbg=234
+   hi NonText         ctermfg=250 ctermbg=0
 end
