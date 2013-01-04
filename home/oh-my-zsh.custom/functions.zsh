@@ -8,6 +8,24 @@ function gurl() {
 curl -sH "Accept-Encoding: gzip" "$@" | gunzip
 }
 
+# Simple calculator
+function calc() {
+  local result=""
+  result="$(printf "scale=10;$*\n" | bc --mathlib | tr -d '\\\n')"
+  #                       └─ default (when `--mathlib` is used) is 20
+  #
+  if [[ "$result" == *.* ]]; then
+    # improve the output for decimal numbers
+    printf "$result" |
+    sed -e 's/^\./0./'        `# add "0" for cases like ".5"` \
+        -e 's/^-\./-0./'      `# add "0" for cases like "-.5"`\
+        -e 's/0*$//;s/\.$//'   # remove trailing zeros
+  else
+    printf "$result"
+  fi
+  printf "\n"
+}
+
 # http://ku1ik.com/2012/05/04/scratch-dir.html
 function new-scratch {
   new_dir="/tmp/scratch-`date +'%s'`"

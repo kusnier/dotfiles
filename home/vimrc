@@ -528,8 +528,8 @@ function! OverrideHighlights()
   endif
 
   " Override all colorscheme
-  highlight ColorColumn guibg=#2d2d2d
-  highlight DiffText guibg=#660000
+  highlight ColorColumn guibg=#2d2d2d ctermbg=234
+  highlight DiffText guibg=#660000 ctermbg=52
   highlight Comment gui=italic
 endfunction
 :call OverrideHighlights()
@@ -821,8 +821,12 @@ let g:notes_directory = '~/.vim-notes'
 " Indent Guides {{{
 
 let g:indent_guides_color_change_percent = 6
-if has("gui_running")
-  let g:indent_guides_enable_on_vim_startup = 0
+let g:indent_guides_enable_on_vim_startup = 0
+
+if !has("gui_running")
+  let g:indent_guides_auto_colors = 0
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=233
 endif
 
 nmap <silent> <Leader>ie <Plug>IndentGuidesEnable
