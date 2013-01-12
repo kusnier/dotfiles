@@ -1,6 +1,6 @@
 function zle-line-init zle-keymap-select {
     local normal insert
-    insert="%{%K{yellow}%}%{%F{black}%}"
+    insert="%{%K{226}%}%{%F{black}%}"
     normal="%{%K{green}%}%{%F{black}%}"
     RPS1="${${KEYMAP/vicmd/${normal}[N]}/(main|viins)/${insert}[I]}"
     RPS2=$RPS1
