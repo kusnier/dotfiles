@@ -58,7 +58,7 @@ endif
 
 " No bell or flash wanted
 set noerrorbells
-set novisualbell
+set visualbell
 set t_vb=
 
 " Trailing whitespace will be highlighted automatically
