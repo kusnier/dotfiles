@@ -1669,3 +1669,5 @@ inoremap  <Right>  <NOP>
 "noremap   <Right>  <NOP>
 
 " }}}
+
+map <leader>R :silent execute '!_refresh_firefox_macvim'<CR>

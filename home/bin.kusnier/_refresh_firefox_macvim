@@ -1,0 +1,8 @@
+#!/usr/bin/osascript
+# vim:ft=applescript
+
+tell application "System Events"
+  tell application "Firefox" to activate
+  keystroke "r"
+  tell application "MacVim" to activate
+end tell
