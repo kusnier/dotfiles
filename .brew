@@ -52,6 +52,7 @@ brews=(
   ngrep
   nmap
   node
+  optipng
   pango
   phantomjs
   pixman

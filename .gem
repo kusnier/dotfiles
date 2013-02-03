@@ -5,6 +5,7 @@ gems=(
   albino
   cheat
   childprocess
+  compass
   github-markup
   highline
   htty
