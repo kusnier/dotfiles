@@ -337,7 +337,7 @@ if !(exists(":SearchReinit") == 2)
 endif
 
 " Set the current search pattern to the next one in the list
-nnoremap <silent> <Leader>n :call <SID>SearchNext(0)<CR>
+nnoremap <silent> <Leader><Leader>n :call <SID>SearchNext(0)<CR>
 "
 " Set the current search pattern to the previous one in the list
-nnoremap <silent> <Leader>N :call <SID>SearchNext(1)<CR>
+nnoremap <silent> <Leader><Leader>N :call <SID>SearchNext(1)<CR>
