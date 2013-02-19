@@ -561,6 +561,7 @@ set wildignore+=*/target/app/*
 set wildignore+=*/target/classes/*
 set wildignore+=*/target/bootstrap/*
 set wildignore+=*/target/*_RELEASE/*
+set wildignore+=*/target/checkout/*
 " remember last 2000 typed commands
 set history=200
 if has('cmdline_info')
@@ -733,7 +734,7 @@ highlight phpClassesTag guifg=#ff0077
 " CtrlP {{{
 
   let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|target/.*_.*RELEASE$\|target/.*classes$\|target/app$\|target/bootstrap$',
+    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|target/.*_.*RELEASE$\|target/.*classes$\|target/app$\|target/bootstrap\|target/checkout$\|target/xsl$',
     \ 'file': '\.exe$\|\.so$\|\.dll$',
     \ }
 let g:ctrlp_extensions = ['tag', 'qfx', 'dir', 'buffertag', 'mixed']
