@@ -3,6 +3,7 @@
 
 packages=(
 async
+bower
 capturejs
 coffee-script
 commander
@@ -14,7 +15,9 @@ ender
 express
 expresso
 forever
+generator-angular
 generic-pool
+grunt-cli
 hashish
 html2jade
 http-agent
@@ -39,7 +42,7 @@ superagent
 testacular
 underscore
 xml-mapping
-yeoman
+yo
 )
 
 for package in ${packages[@]} ; do
