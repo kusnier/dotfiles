@@ -1508,7 +1508,6 @@ iab @@r @return
 " }}}
 " Special commands -------------------------------------------------------- {{{
 
-command! Ointernmail :o scp://internmail/~/httpd/
 map <F8> :!gksudo "gvim -u /home/$USER/.vimrc /etc/apache2/sites-enabled/"<CR>
 map <F9> :!gksudo /etc/init.d/apache2 restart<CR>
 
@@ -1672,3 +1671,8 @@ inoremap  <Right>  <NOP>
 " }}}
 
 map <leader>R :silent execute '!_refresh_firefox_macvim'<CR>
+
+
+if filereadable(expand("~/.vimrc.custom"))
+  so ~/.vimrc.custom
+endif
