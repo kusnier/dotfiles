@@ -21,6 +21,7 @@ brews=(
   gdk-pixbuf
   gettext
   git
+  git-extras
   glib
   growlnotify
   gtk+
