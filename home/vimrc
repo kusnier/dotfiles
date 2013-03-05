@@ -991,6 +991,14 @@ omap     <silent> aa <Plug>ParameterObjectA
 let g:ragtag_global_maps = 1
 
 " }}}
+" quickfixsigns {{{
+
+highlight QFSdel guifg=#ff0000 ctermfg=15
+highlight QFSadd guifg=#00ff00 ctermfg=11
+highlight QFSchange guifg=#6666ff ctermfg=10
+let g:quickfixsigns#vcsdiff#highlight = {'DEL': 'QFSdel', 'ADD': 'QFSadd', 'CHANGE': 'QFSchange'}
+
+" }}}
 " }}}
 " Mini-plugins ------------------------------------------------------------ {{{
 " Source: http://bitbucket.org/sjl/dotfiles/src/tip/vim/
