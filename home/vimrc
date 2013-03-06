@@ -630,6 +630,11 @@ map <F7> :set spell!<CR>
 " }}}
 " Plugin options ---------------------------------------------------------- {{{
 
+" Mark {{{
+
+let g:mwIgnoreCase = 0
+
+" }}}
 " Tabular {{{
 
 " Don't use mappings of alignmaps
