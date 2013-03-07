@@ -1468,6 +1468,13 @@ augroup ft_xml
 
   " Formatting XML in Vim with indent command
   autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+
+  " Spell check for all content
+  autocmd FileType xml set spell
+  autocmd FileType xml syntax spell toplevel
+  autocmd FileType xml syn region  xmlString contained start=+"+ end=+"+ contains=xmlEntity,@NoSpell display
+  autocmd FileType xml syn region  xmlString contained start=+'+ end=+'+ contains=xmlEntity,@NoSpell display
+
 augroup END
 
 " }}}
