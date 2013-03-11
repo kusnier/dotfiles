@@ -1,7 +1,9 @@
-#header {
+#topBranding, #moreDictionaries, #leftColumn, #rightColumn, #forumResults {
   display: none;
 }
 
-#main .sidebar {
-  display: none;
+#centerColumn {
+  left: 0;
+  right: 0;
+  top: 163px;
 }
