@@ -1,0 +1,19 @@
+*myregex.txt* My regex        Last change: 2013-03-11
+
+==============================================================================
+Random Regex                                            *myregex-random-regex*
+
+
+(?=) - Positive look ahead assertion foo(?=bar) matches foo when followed by bar
+(?!) - Negative look ahead assertion foo(?!bar) matches foo when not followed by bar
+(?<=) - Positive look behind assertion (?<=foo)bar matches bar when preceded by foo
+(?<!) - Negative look behind assertion (?<!foo)bar matches bar when NOT preceded by foo
+(?>) - Once-only subpatterns (?>\d+)bar Performance enhancing when bar not present
+(?(x)) - Conditional subpatterns
+(?(3)foo|fu)bar - Matches foo if 3rd subpattern has matched, fu if not
+(?#) - Comment (?# Pattern does x y or z)
+
+
+==============================================================================
+
+vim:tw=78:ts=8:ft=help:norl:fen:fdl=0:fdm=marker:
