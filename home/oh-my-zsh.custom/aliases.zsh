@@ -81,6 +81,7 @@ alias -- -="cd -"
 
 # svn
 alias svnup='find . -depth -maxdepth 1 -type d -not -name '.svn' -exec svn up {} \;'
+alias svnbase='svn diff -rBASE:HEAD'
 
 # git
 # Undo a `git push`
