@@ -544,11 +544,11 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>769 73 445 270 0 0 1280 778 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>104 153 924 485 0 0 1280 778 </string>
+	<string>291 362 924 485 0 0 1920 1178 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 92 1280 686 0 0 1280 778 </string>
+	<string>830 598 955 559 0 0 1920 1178 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 0 960 1178 0 0 1920 1178 </string>
+	<string>640 465 640 713 0 0 1920 1178 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>173 99 570 351 0 0 1280 800 </string>
 	<key>New Bookmarks</key>
@@ -2080,7 +2080,9 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2013-01-19T19:47:04Z</date>
+	<date>2013-03-14T22:15:33Z</date>
+	<key>SUSkippedVersion</key>
+	<string>1.0.0.20130302</string>
 	<key>SavePasteHistory</key>
 	<true/>
 	<key>Show Toolbelt</key>
