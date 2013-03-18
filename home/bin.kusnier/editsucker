@@ -9,7 +9,9 @@ exec      = require('child_process').exec
 server = http.createServer (request, response) ->
   response.writeHead 200, {"Content-Type": "text/plain"}
   query = url.parse(request.url, true).query
-  if query.file
+  if request.url = '/icon'
+    # ignore this request, IDE Connectors (Atlassian)
+  else if query.file
     console.log "Open file: " + query.file
     exec('mvim ' + localroot + query.file)
   else
