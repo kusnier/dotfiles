@@ -955,10 +955,13 @@ endif
 " }}}
 " VCSCommand {{{
 
-let VCSCommandSVKExec = 'no_svk'
-let VCSCommandDeleteOnHide = 'yes'
-" VCSCommandEnableBufferSetup is not working
-let VCSCommandEnableBufferSetup = 'yes'
+let g:VCSCommandSVKExec = 'no_svk'
+let g:VCSCommandDeleteOnHide = 'yes'
+let g:VCSCommandEnableBufferSetup = 'yes'
+
+augroup VCSCommand
+  au User VCSBufferCreated silent! nmap <unique> <buffer> q :bwipeout<cr>:ed<cr>
+augroup END
 
 " }}}
 " Syntastic {{{
