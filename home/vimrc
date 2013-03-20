@@ -479,6 +479,7 @@ colorscheme molokai
 if &t_Co > 2 || has("gui_running")
     " ...then use highlighting
     syntax on
+    set synmaxcol=120
 endif
 
 if has("gui_running")
