@@ -852,18 +852,18 @@ augroup END
 " NERDCommenter {{{
 
 let g:NERDCreateDefaultMappings = 0
-nmap <leader>ccc <plug>NERDCommenterComment
-nmap <leader>cc<space> <plug>NERDCommenterToggle
-nmap <leader>ccm <plug>NERDCommenterMinimal
-nmap <leader>ccs <plug>NERDCommenterSexy
-nmap <leader>cci <plug>NERDCommenterInvert
-nmap <leader>ccy <plug>NERDCommenterYank
-nmap <leader>ccl <plug>NERDCommenterAlignLeft
-nmap <leader>ccb <plug>NERDCommenterAlignBoth
-nmap <leader>ccn <plug>NERDCommenterNest
-nmap <leader>ccu <plug>NERDCommenterUncomment
-nmap <leader>cc$ <plug>NERDCommenterToEOL
-nmap <leader>ccA <plug>NERDCommenterAppend
+map <leader>kcc <plug>NERDCommenterComment
+map <leader>kc<space> <plug>NERDCommenterToggle
+map <leader>kcm <plug>NERDCommenterMinimal
+map <leader>kcs <plug>NERDCommenterSexy
+map <leader>kci <plug>NERDCommenterInvert
+map <leader>kcy <plug>NERDCommenterYank
+map <leader>kcl <plug>NERDCommenterAlignLeft
+map <leader>kcb <plug>NERDCommenterAlignBoth
+map <leader>kcn <plug>NERDCommenterNest
+map <leader>kcu <plug>NERDCommenterUncomment
+map <leader>kc$ <plug>NERDCommenterToEOL
+map <leader>kcA <plug>NERDCommenterAppend
 
 " }}}
 " NERDTree {{{
