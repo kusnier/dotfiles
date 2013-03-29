@@ -59,8 +59,7 @@ highlight HintActive background: rgba(145,197,43,0.8) !important;
 highlight HintElem background: rgba(255, 209, 20, 0.7) !important;
 
 " pass through
-autocmd LocationChange www\\.google\\.com js modes.passAllKeys = /www\.google\.com\/reader/.test(buffer.URL)
-autocmd LocationChange mail\\.google\\.com js modes.passAllKeys = /mail\.google\.com\//.test(buffer.URL)
+autocmd LocationChange .* js modes.passAllKeys = /(www\.google\.com\/reader|mail\.google\.com)/.test(buffer.URL)
 
 source ~/devel/gcode/conf/firefox/vimperator/vimperatorrc
 
