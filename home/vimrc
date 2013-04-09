@@ -14,9 +14,9 @@
 " Load a merged version of all bundles (Move this folder to a ramdisk)
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 if isdirectory(expand("/dev/shm/vim.bundle.merged"))
-  call pathogen#infect("/dev/shm/vim.bundle.merged")
+  call pathogen#infect("/dev/shm/vim.bundle.merged/{}")
 elseif isdirectory(expand("~/.vim/bundle.merged"))
-  call pathogen#infect("~/.vim/bundle.merged")
+  call pathogen#infect("~/.vim/bundle.merged/{}")
 else
   call pathogen#infect()
 endif
