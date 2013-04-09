@@ -692,7 +692,7 @@ autocmd FileType *
 
 " http://code.google.com/p/zen-coding/
 " Plugin is installed. Learn it Bitch!!! :)
-let g:user_zen_leader_key = '<C-m>'
+let g:user_zen_leader_key = '<d-y>'
 let g:user_zen_settings = {
 \  'indentation' : '  ',
 \  'perl' : {
