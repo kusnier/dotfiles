@@ -444,6 +444,7 @@ TEXT MANIPULATION AND EDITING           *mydoc-text-manipulation-and-editing*
   |==|  - one line; 
   |gq|  - reformat paragraph
   |,q|  - Format text
+  |=%|  - Auto indent current html tag
   |,Al| - Align left
   |,Ac| - Align center
   |,Ar| - Align right
@@ -1076,6 +1077,52 @@ TABULAR                                                        *mydoc-tabular*
 
 |,a=|   Align by =
 |,a:|   Align by :
+
+HTML-EDITING                                              *mydoc-html-editing*
+------------
+
+  |=%|  - Auto indent current html tag
+
+Adding/removing surrounding tags:~
+
+  For starters, let's suppose we have a title we want to surround with a h1 tag.
+
+>
+  Hello there mister
+<
+  1. Select the whole line using V (shift+v)
+  2. Hit S. You can see than a prompt waiting for you to type something in it.
+  3. Type in <h1 class="my-title"> and hit enter.
+>
+  <h1 class="my-title">
+    Hello there mister
+  </h1>
+<
+
+Change surrounding tag |cst|
+
+  1. Position your cursor anywhere but outside the tag (it can be inside the
+     tag or on the tag itself, it doesn't matter).
+  2. Now hit cst, meaning change surrounding tag. A prompt appears.
+  3. Type in <p> and hit enter.
+>
+  <p>
+          Hello there mister
+  </p>
+<
+
+Delete surrounding tag |dst|
+
+Delete the surrounding tag.
+
+Format:~
+
+quickly indent your whole file with |gg=G|
+
+    |gg| Takes you to the top of your file
+    |=|  Indents everyting from current position to next postion of the cursor
+    |G|  Takes your cursor to the end of the file
+
 
 ==============================================================================
 

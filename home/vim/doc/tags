@@ -192,6 +192,7 @@ mydoc-general	mydoc.txt	/*mydoc-general*
 mydoc-history	mydoc.txt	/*mydoc-history*
 mydoc-holdingdownj	mydoc.txt	/*mydoc-holdingdownj*
 mydoc-how-to-use-help	mydoc.txt	/*mydoc-how-to-use-help*
+mydoc-html-editing	mydoc.txt	/*mydoc-html-editing*
 mydoc-indent-guides	mydoc.txt	/*mydoc-indent-guides*
 mydoc-insert-mode-completion	mydoc.txt	/*mydoc-insert-mode-completion*
 mydoc-motion	mydoc.txt	/*mydoc-motion*
