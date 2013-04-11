@@ -1701,3 +1701,14 @@ map <leader>R :silent execute '!_refresh_firefox_macvim'<CR>
 if filereadable(expand("~/.vimrc.custom"))
   so ~/.vimrc.custom
 endif
+
+
+function! SVNStatus() 
+  execute 'new'
+  execute 'read!svn status'
+  setlocal buftype=nofile
+  setlocal bufhidden=hide
+  setlocal noswapfile
+endfunction
+
+map <leader>cS :call SVNStatus()<cr>
