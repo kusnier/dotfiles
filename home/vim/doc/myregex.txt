@@ -1,5 +1,10 @@
 *myregex.txt* My regex        Last change: 2013-03-11
 
+
+Search wildcard match first occurance:~
+
+  .\{-} instead of .*
+
 ==============================================================================
 Random Regex                                            *myregex-random-regex*
 
