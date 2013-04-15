@@ -68,6 +68,7 @@
 [submodule "home/vim/bundle/tagbar"]
 	path = home/vim/bundle/tagbar
 	url = git://github.com/majutsushi/tagbar.git
+	ignore = dirty
 [submodule "home/vim/bundle/ctrlp"]
 	path = home/vim/bundle/ctrlp
 	url = git://github.com/kien/ctrlp.vim.git
