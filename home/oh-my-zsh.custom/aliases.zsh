@@ -156,3 +156,6 @@ alias vs 'vagrant suspend'
 
 # Launch iOS Simulator
 alias ios="open -a /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app"
+
+# Ack / Ag
+alias ag="ag --color-match '1;31' --color-path '0;35'"
