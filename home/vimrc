@@ -817,6 +817,11 @@ let g:EasyMotion_leader_key='\'
 " Ack {{{
 
 let g:ackprg="ack -H --nocolor --nogroup --column"
+" Use Ag (https://github.com/ggreer/the_silver_searcher) instead of Grep when available
+if executable("ag")
+  let g:ackprg = 'ag --nogroup --nocolor --column'
+endif
+
 nnoremap <leader>a :Ack!<space>
 
 " }}}
@@ -1351,6 +1356,7 @@ augroup END
 augroup ft_java
     au!
     autocmd FileType java setlocal foldmethod=marker
+    autocmd FileType java setlocal foldmethod=marker
     autocmd FileType java setlocal foldmarker={,}
 augroup END
 
@@ -1635,6 +1641,11 @@ nnoremap <leader>! :Shell
 
 let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
 set grepprg=grep\ -nH
+
+" Use Ag (https://github.com/ggreer/the_silver_searcher) instead of Grep when available
+if executable("ag")
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
 
 " }}}
 " Quickfix ---------------------------------------------------------------- {{{
