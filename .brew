@@ -7,7 +7,7 @@ brew update && brew upgrade
 brew install macvim --override-system-vim
 
 brews=(
-  ack
+  ag
   atk
   autojump
   autossh
