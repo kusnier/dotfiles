@@ -28,7 +28,7 @@ server = http.createServer (request, response) ->
     exec('mvim ' + opts + ' ' + localroot + file)
   else
     console.log "Unsupported command."
-    response.end "All done.\n"
+  response.end "All done.\n"
 
 server.listen 51235
 
