@@ -64,3 +64,6 @@ autocmd LocationChange .* js modes.passAllKeys = /(www\.google\.com\/reader|mail
 source ~/devel/gcode/conf/firefox/vimperator/vimperatorrc
 
 :bmark -keyword=vrm https://github.com/kusnier/dotfiles/blob/master/home/vim/README.md
+
+" Switch between the last two tabs
+nnoremap <leader><leader> <c-^>
