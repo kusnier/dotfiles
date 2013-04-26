@@ -195,3 +195,6 @@
 [submodule "home/vim/bundle/vim-characterize"]
 	path = home/vim/bundle/vim-characterize
 	url = git://github.com/tpope/vim-characterize.git
+[submodule "home/vim/bundle/vim-vagrant"]
+	path = home/vim/bundle/vim-vagrant
+	url = git://github.com/markcornick/vim-vagrant.git
