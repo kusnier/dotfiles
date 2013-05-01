@@ -198,3 +198,6 @@
 [submodule "home/vim/bundle/vim-vagrant"]
 	path = home/vim/bundle/vim-vagrant
 	url = git://github.com/markcornick/vim-vagrant.git
+[submodule "home/vim/bundle/vim-startify"]
+	path = home/vim/bundle/vim-startify
+	url = git://github.com/mhinz/vim-startify.git
