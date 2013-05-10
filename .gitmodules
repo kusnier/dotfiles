@@ -202,3 +202,6 @@
 [submodule "home/vim/bundle/vim-startify"]
 	path = home/vim/bundle/vim-startify
 	url = git://github.com/mhinz/vim-startify.git
+[submodule "home/vim/bundle/vim-relops"]
+	path = home/vim/bundle/vim-relops
+	url = git://github.com/vim-scripts/RelOps.git
