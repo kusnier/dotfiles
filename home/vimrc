@@ -1445,7 +1445,7 @@ augroup ft_html
   autocmd FileType html,xsl setlocal foldmethod=manual
   autocmd FileType html,xsl setlocal omnifunc=htmlcomplete#CompleteTags
   " todo: test this option
-  autocmd FileType xml,xsl nnoremap <buffer> <localleader>qf exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
+  autocmd FileType xml,xsl nnoremap <buffer> <localleader>qf exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"<CR>
 
   " Use <localleader>tf to fold the current tag.
   au FileType html,xsl nnoremap <buffer> <localleader>tf Vatzf
