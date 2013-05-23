@@ -205,3 +205,6 @@
 [submodule "home/vim/bundle/vim-relops"]
 	path = home/vim/bundle/vim-relops
 	url = git://github.com/vim-scripts/RelOps.git
+[submodule "home/vim/bundle/bootstrap-snippets"]
+	path = home/vim/bundle/bootstrap-snippets
+	url = git://github.com/kusnier/bootstrap-snippets.git
