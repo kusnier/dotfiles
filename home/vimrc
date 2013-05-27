@@ -630,7 +630,12 @@ map <F7> :set spell!<CR>
 
 " }}}
 " Plugin options ---------------------------------------------------------- {{{
+" harmode {{{
 
+autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+nnoremap <leader>hm <Esc>:call ToggleHardMode()<CR>
+
+" }}}
 " Mark {{{
 
 let g:mwIgnoreCase = 0
