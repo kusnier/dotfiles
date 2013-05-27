@@ -16,8 +16,13 @@
   ui = auto
 
 [alias]
-  st = status
+  ds = diff --staged
+  st = status -sb
+  standup = log --since '1 day ago' --oneline --author sebastian@kusnier.net
+  lastweek = log --since '1 week ago' --oneline
   ci = commit
+  amend = commit --amend -C HEAD
+  undo = reset --soft HEAD^
   co = checkout
   br = branch
   df = diff
@@ -26,6 +31,7 @@
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
   l = log --pretty=oneline -n 20 --graph
+  graph = log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset'
   ls = ls-files
   g  = grep -I
   vd = difftool -y -t gvimdiff

@@ -86,7 +86,7 @@ alias svnbase='svn diff -rBASE:HEAD'
 # git
 # Undo a `git push`
 alias undopush="echo Use new git alias: git undopush"
-alias undocomit="git reset --soft HEAD^"
+alias undocomit="echo Use new git alias: git undo"
 # choose changes for staging
 alias gap="git add --patch"
 # Use (g)vim to show log
