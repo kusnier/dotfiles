@@ -382,16 +382,9 @@ Scrolling                                                    *mydoc-scrolling*
 
 3. Scrolling relative to cursor~
 
-  z<CR> - Redraw, line [count] at top of window (default cursor line).
-          Put cursor at first non-blank in the line.
-  zt - Like "z<CR>", but leave the cursor in the same column.
-  z. - Redraw, line [count] at center of window (default cursor line).
-       Put cursor at first non-blank in the line.
-  zz - Like "z.", but leave the cursor in the same column.
-       Careful: If caps-lock is on, this command becomes
-  z- - Redraw, line [count] at bottom of window (default
-       cursor line).  Put cursor at first non-blank in the line.
-  zb - Like "z-", but leave the cursor in the same column.
+  zt - Redraw, line [count] at top of window (default cursor line).
+  zz - Redraw, line [count] at center of window (default cursor line).
+  zb - Redraw, line [count] at bottom of window (default cursor line).
 
 WINDOW OR SPLIT                                       *mydoc-window-or-split*
 ---------------
