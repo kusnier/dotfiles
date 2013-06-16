@@ -26,6 +26,7 @@ jake
 jquery
 jsdom
 jshint
+jsontool
 lazy
 measured
 microtime
@@ -34,6 +35,7 @@ mongodb
 nodeunit
 ntwitter
 optimist
+prettyjson
 procstreams
 read
 request
