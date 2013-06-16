@@ -351,6 +351,48 @@ GENERAL                                                       *mydoc-general*
   |,cd|             - Switch to the directory of the opened file
   |,tn|             - Open new tab
 
+Scrolling                                                    *mydoc-scrolling*
+---------
+
+1. Scrolling downward~
+  CTRL-E - Scroll window [count] lines downwards in the buffer.
+           Mnemonic: Extra lines.
+  CTRL-D - Scroll window Downwards in the buffer.  The number of
+           lines comes from the 'scroll' option (default: half a screen).
+           If [count] given, first set 'scroll' option to [count].
+  CTRL-F - Scroll window [count] pages Forwards (downwards) in the buffer.
+  z+     - Without [count]: Redraw with the line just below the
+           window at the top of the window.  Put the cursor in
+           that line, at the first non-blank in the line.
+           With [count]: just like "z<CR>".
+2. Scrolling upwards~
+
+  CTRL-Y - Scroll window [count] lines upwards in the buffer.
+
+                                                          *CTRL-U*
+  CTRL-U - Scroll window Upwards in the buffer.  The number of lines comes
+           from the 'scroll' option (default: half a screen).
+           If [count] given, first set the 'scroll' option to [count].
+  CTRL-B - Scroll window [count] pages Backwards (upwards) in the buffer.
+  z^     - Without [count]: Redraw with the line just above the
+           window at the bottom of the window.  Put the cursor in
+           that line, at the first non-blank in the line.
+           With [count]: First scroll the text to put the [count]
+           line at the bottom of the window, then redraw.
+
+3. Scrolling relative to cursor~
+
+  z<CR> - Redraw, line [count] at top of window (default cursor line).
+          Put cursor at first non-blank in the line.
+  zt - Like "z<CR>", but leave the cursor in the same column.
+  z. - Redraw, line [count] at center of window (default cursor line).
+       Put cursor at first non-blank in the line.
+  zz - Like "z.", but leave the cursor in the same column.
+       Careful: If caps-lock is on, this command becomes
+  z- - Redraw, line [count] at bottom of window (default
+       cursor line).  Put cursor at first non-blank in the line.
+  zb - Like "z-", but leave the cursor in the same column.
+
 WINDOW OR SPLIT                                       *mydoc-window-or-split*
 ---------------
 
