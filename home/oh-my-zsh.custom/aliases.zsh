@@ -159,3 +159,6 @@ alias ios="open -a /Applications/Xcode.app/Contents/Applications/iPhone\ Simulat
 
 # Ack / Ag
 alias ag="ag --color-match '1;31' --color-path '0;35'"
+
+# json
+alias json="jq '.'"
