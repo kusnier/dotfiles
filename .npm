@@ -26,6 +26,7 @@ jake
 jquery
 jsdom
 jshint
+karma
 lazy
 measured
 microtime
@@ -40,7 +41,6 @@ read
 request
 seq
 superagent
-testacular
 underscore
 xml-mapping
 yo
