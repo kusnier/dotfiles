@@ -120,6 +120,7 @@
 'width'	css21.txt	/*'width'*
 'word-spacing'	css21.txt	/*'word-spacing'*
 'z-index'	css21.txt	/*'z-index'*
+CTRL-U	mydoc.txt	/*CTRL-U*
 css	css21.txt	/*css*
 css-about	css21.txt	/*css-about*
 css-box	css21.txt	/*css-box*
@@ -204,6 +205,7 @@ mydoc-ragtag	mydoc.txt	/*mydoc-ragtag*
 mydoc-rainbow-parenthesis	mydoc.txt	/*mydoc-rainbow-parenthesis*
 mydoc-ranges	mydoc.txt	/*mydoc-ranges*
 mydoc-repeat	mydoc.txt	/*mydoc-repeat*
+mydoc-scrolling	mydoc.txt	/*mydoc-scrolling*
 mydoc-search	mydoc.txt	/*mydoc-search*
 mydoc-smartinput	mydoc.txt	/*mydoc-smartinput*
 mydoc-speakvim	mydoc.txt	/*mydoc-speakvim*
