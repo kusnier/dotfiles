@@ -558,11 +558,6 @@ set wildmode=list:longest,list:full
 " ignore some files for filename completion
 set wildignore=*.o,*.r,*.so,*.sl,*.tar,*.tgz,*.svn
 set wildignore+=*.DS_Store                       " OSX bullshit
-set wildignore+=*/target/app/*
-set wildignore+=*/target/classes/*
-set wildignore+=*/target/bootstrap/*
-set wildignore+=*/target/*_RELEASE/*
-set wildignore+=*/target/checkout/*
 " remember last 2000 typed commands
 set history=200
 if has('cmdline_info')
@@ -745,7 +740,7 @@ highlight phpClassesTag guifg=#ff0077
 " CtrlP {{{
 
   let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|target/.*_.*RELEASE$\|target/.*classes$\|target/app$\|target/bootstrap\|target/checkout$\|target/xsl$',
+    \ 'dir':  '\.git$\|\.hg$\|\.svn$',
     \ 'file': '\.exe$\|\.so$\|\.dll$',
     \ }
 let g:ctrlp_extensions = ['tag', 'qfx', 'dir', 'buffertag', 'mixed']
