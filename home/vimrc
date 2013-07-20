@@ -625,10 +625,12 @@ map <F7> :set spell!<CR>
 
 " }}}
 " Plugin options ---------------------------------------------------------- {{{
-" harmode {{{
+" hardtime {{{
 
+let g:hardtime_showmsg = 0
+let g:hardtime_default_on = 1
 autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
-nnoremap <leader>hm <Esc>:call ToggleHardMode()<CR>
+nnoremap <leader>hm :HardTimeToggle<CR>
 
 " }}}
 " Mark {{{
