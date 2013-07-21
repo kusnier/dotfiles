@@ -126,7 +126,7 @@ au FocusLost * :silent! wall
 inoremap <C-Space> <C-X><C-]>
 
 " Source
-vnoremap <leader>S y:execute @@<cr>
+xnoremap <leader>S y:execute @@<cr>
 nnoremap <leader>S ^vg_y:execute @@<cr>
 
 " List previous opened files
@@ -218,9 +218,9 @@ nnoremap J mjJ`j
 nnoremap <leader>Al :left<cr>
 nnoremap <leader>Ac :center<cr>
 nnoremap <leader>Ar :right<cr>
-vnoremap <leader>Al :left<cr>
-vnoremap <leader>Ac :center<cr>
-vnoremap <leader>Ar :right<cr>
+xnoremap <leader>Al :left<cr>
+xnoremap <leader>Ac :center<cr>
+xnoremap <leader>Ar :right<cr>
 
 " Quickreturn
 inoremap <c-cr> <esc>A<cr>
@@ -248,7 +248,7 @@ set foldlevelstart=0
 
 " Space to toggle folds.
 nnoremap <Space> za
-vnoremap <Space> za
+xnoremap <Space> za
 
 " Make zO recursively open whatever top level fold we're in, no matter where the
 " cursor happens to be.
@@ -354,7 +354,7 @@ if has("gui_macvim")
       exe 'noremap <silent> <D-' . s:wins[s:windowmapnr] . '> ' . (s:windowmapnr + 1) . 'gt'
       exe 'inoremap <silent> <D-' . s:wins[s:windowmapnr] . '> <C-O>' . (s:windowmapnr + 1) . 'gt'
       exe 'cnoremap <silent> <D-' . s:wins[s:windowmapnr] . '> <C-C>' . (s:windowmapnr + 1) . 'gt'
-      exe 'vnoremap <silent> <D-' . s:wins[s:windowmapnr] . '> <C-C>' . (s:windowmapnr + 1) . 'gt'
+      exe 'xnoremap <silent> <D-' . s:wins[s:windowmapnr] . '> <C-C>' . (s:windowmapnr + 1) . 'gt'
       let s:windowmapnr += 1
   endwhile
   unlet s:windowmapnr s:wins
@@ -384,7 +384,8 @@ set wrapscan
 " jump to matches during entering the pattern
 set showmatch
 set matchtime=3
-set matchpairs+=<:> " these tokens belong together
+" these tokens belong together>
+set matchpairs+=<:
 
 " highlight all matches..., remove hl on esc
 set hlsearch
@@ -533,7 +534,7 @@ function! OverrideHighlights()
   highlight DiffText guibg=#660000 ctermbg=52
   highlight Comment gui=italic
 endfunction
-:call OverrideHighlights()
+call OverrideHighlights()
 
 " how many lines to sync backwards
 syn sync minlines=10000 maxlines=10000
@@ -643,11 +644,11 @@ let g:mwIgnoreCase = 0
 " Don't use mappings of alignmaps
 let g:loaded_AlignMapsPlugin = "yes"
 nmap <Leader>a= :Tabularize /=>\?<CR>
-vmap <Leader>a= :Tabularize /=>\?<CR>
+xmap <Leader>a= :Tabularize /=>\?<CR>
 nmap <Leader>a: :Tabularize /:\zs<CR>
-vmap <Leader>a: :Tabularize /:\zs<CR>
+xmap <Leader>a: :Tabularize /:\zs<CR>
 nmap <Leader>a<bar> :Tabularize /\|<CR>
-vmap <Leader>a<bar> :Tabularize /\|<CR>
+xmap <Leader>a<bar> :Tabularize /\|<CR>
 
 " }}}
 " Hammer {{{
@@ -665,7 +666,7 @@ let g:BASH_GlobalTemplateFile = $HOME.'/.vim/bundle/bash-support/bash-support/te
 " Clam {{{
 
 nnoremap ! :Clam<space>
-vnoremap ! :ClamVisual<space>
+xnoremap ! :ClamVisual<space>
 
 " }}}
 " CamelCaseComplete {{{
@@ -936,7 +937,7 @@ let g:dbext_default_buffer_lines = 10
 let g:dbext_default_use_sep_result_buffer = 1
 let g:dbext_default_DBI_split_on_pattern = ';'
 let g:dbext_default_dict_show_owner = 0
-:let  g:dbext_default_DBI_max_rows = 1000
+let g:dbext_default_DBI_max_rows = 1000
 "let  g:dbext_default_DBI_column_delimiter = "|"
 " will be called automatically each time the Result buffer is updated
 function! DBextPostResult(db_type, buf_nr)
@@ -996,9 +997,9 @@ let g:atia_attributes_complete = 0
 " Parameter-Text-Object {{{
 
 let g:no_parameter_object_maps = 1
-vmap     <silent> ia <Plug>ParameterObjectI
+xmap     <silent> ia <Plug>ParameterObjectI
 omap     <silent> ia <Plug>ParameterObjectI
-vmap     <silent> aa <Plug>ParameterObjectA
+xmap     <silent> aa <Plug>ParameterObjectA
 omap     <silent> aa <Plug>ParameterObjectA
 
 " }}}
@@ -1080,7 +1081,7 @@ function! PresentationModeOff()
 
   if has("gui_macvim") || has("gui_gtk")
     let &guifont= g:org_guifont
-    :call OverrideHighlights()
+    call OverrideHighlights()
   end
   let &listchars= g:org_listchars
   let &wrap= g:org_wrap
@@ -1159,7 +1160,7 @@ endfunction
 command! -range=% FormatXML <line1>,<line2>call DoFormatXML()
 
 nmap <silent> <leader>qf :%FormatXML<CR>
-vmap <silent> <leader>qf :FormatXML<CR>
+xmap <silent> <leader>qf :FormatXML<CR>
 
 " }}}
 
@@ -1605,12 +1606,12 @@ map <F9> :!gksudo /etc/init.d/apache2 restart<CR>
 
 " get rid of menu
 set guioptions-=m
-:let g:toggleMenu = 0
+let g:toggleMenu = 0
 map <silent> <S-F1> :if g:toggleMenu == 1<CR>:set guioptions-=m<CR>:set lines+=1<CR>:let g:toggleMenu = 0<CR>:else<CR>:set guioptions+=m<CR>:let g:toggleMenu = 1<CR>:endif<CR>
 
 " get rid of toolbar
 set guioptions-=T
-:let g:toggleTool = 0
+let g:toggleTool = 0
 map <silent> <S-F2> :if g:toggleTool == 1<CR>:set guioptions-=T<CR>:set lines+=3<CR>:let g:toggleTool = 0<CR>:else<CR>:set lines-=3<CR>:set guioptions+=T<CR>:let g:toggleTool = 1<CR>:endif<CR>
 
 " get rid of scrollbar
@@ -1693,7 +1694,7 @@ function! s:ExecuteInShell(command) " {{{
     echo 'Shell command ' . command . ' executed.'
 endfunction " }}}
 command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
-nnoremap <leader>! :Shell 
+nnoremap <leader>! :Shell<space>
 
 " }}}
 " Vim grep ---------------------------------------------------------------- {{{
