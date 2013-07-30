@@ -880,6 +880,8 @@ nmap  <leader>nmt :NERDTreeMirror<cr>
 nmap  <leader>nft :NERDTreeFind<cr>
 
 au Filetype nerdtree setlocal nolist
+au Filetype nerdtree HardTimeOff
+
 let NERDTreeChDirMode=2 "CWD is changed whenever the tree root is changed
 let NERDTreeDirArrows=1
 let NERDTreeMinimalUI=1
