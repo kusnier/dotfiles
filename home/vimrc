@@ -384,8 +384,7 @@ set wrapscan
 " jump to matches during entering the pattern
 set showmatch
 set matchtime=3
-" these tokens belong together>
-set matchpairs+=<:
+set matchpairs+=<:> " these tokens belong together
 
 " highlight all matches..., remove hl on esc
 set hlsearch
