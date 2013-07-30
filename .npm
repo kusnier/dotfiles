@@ -16,6 +16,7 @@ express
 expresso
 forever
 generator-angular
+generator-webapp
 generic-pool
 grunt-cli
 hashish
