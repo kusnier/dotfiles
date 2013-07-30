@@ -1291,6 +1291,7 @@ augroup ft_apache
   autocmd BufNewFile,BufRead */sites-available/00* set ft=apache
   autocmd BufNewFile,BufRead */config/*/apache/* set ft=apache
   autocmd BufNewFile,BufRead */config/*/apache2/* set ft=apache
+  autocmd BufNewFile,BufRead */deploy/apache/*.conf set ft=apache
 augroup END
 
 " }}}
