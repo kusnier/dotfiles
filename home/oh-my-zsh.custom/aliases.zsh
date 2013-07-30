@@ -158,7 +158,7 @@ alias vs 'vagrant suspend'
 alias ios="open -a /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app"
 
 # Ack / Ag
-alias ag="ag --color-match '1;31' --color-path '0;35' --skip-vcs-ignores"
+alias ag="ag --color-match '1;31' --color-path '0;35' --skip-vcs-ignores --ignore-case"
 
 # json
 alias json="jq '.'"
