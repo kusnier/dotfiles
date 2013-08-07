@@ -26,9 +26,6 @@
 [submodule "home/vim/bundle/vim-indent-guides"]
 	path = home/vim/bundle/vim-indent-guides
 	url = git://github.com/nathanaelkane/vim-indent-guides.git
-[submodule "home/vim/bundle/zencoding-vim"]
-	path = home/vim/bundle/zencoding-vim
-	url = git://github.com/mattn/zencoding-vim.git
 [submodule "home/vim/bundle/xmledit"]
 	path = home/vim/bundle/xmledit
 	url = git://github.com/sukima/xmledit.git
@@ -215,3 +212,6 @@
 [submodule "home/vim/bundle/vim-node"]
 	path = home/vim/bundle/vim-node
 	url = git@github.com:moll/vim-node.git
+[submodule "home/vim/bundle/emmet"]
+	path = home/vim/bundle/emmet
+	url = git@github.com:mattn/emmet-vim.git
