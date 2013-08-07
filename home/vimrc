@@ -829,7 +829,7 @@ nnoremap <leader>a :Ack!<space>
 " }}}
 " notes.vim {{{
 
-let g:notes_directory = '~/.vim-notes'
+let g:notes_directories = ['~/.vim-notes']
 
 " }}}
 " Indent Guides {{{

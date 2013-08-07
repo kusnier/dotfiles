@@ -215,3 +215,6 @@
 [submodule "home/vim/bundle/emmet"]
 	path = home/vim/bundle/emmet
 	url = git@github.com:mattn/emmet-vim.git
+[submodule "home/vim/bundle/vim-misc"]
+	path = home/vim/bundle/vim-misc
+	url = git@github.com:xolox/vim-misc.git
