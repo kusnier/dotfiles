@@ -1,0 +1,9 @@
+.sidebarToggle {
+  top: 0;
+  bottom: 0;
+  background: GhostWhite;
+}
+
+.sidebarToggleOpen, .sidebarToggleClose {
+  height: 100%;
+}

@@ -1,0 +1,1 @@
+$(".sidebarToggleClose").trigger('click');
