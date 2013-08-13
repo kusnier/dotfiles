@@ -110,10 +110,6 @@
 [submodule "home/vim/bundle/xp-framework.vim"]
 	path = home/vim/bundle/xp-framework.vim
 	url = git://github.com/kusnier/xp-framework.vim.git
-[submodule "home/vim/bundle/vim-powerline"]
-	path = home/vim/bundle/vim-powerline
-	url = https://github.com/Lokaltog/vim-powerline.git
-  ignore = dirty
 [submodule "home/vim/bundle/html5"]
 	path = home/vim/bundle/html5
 	url = git://github.com/othree/html5.vim.git
@@ -223,3 +219,6 @@
 [submodule "home/vim/bundle/vim-misc"]
 	path = home/vim/bundle/vim-misc
 	url = git@github.com:xolox/vim-misc.git
+[submodule "libs/powerline"]
+	path = libs/powerline
+	url = git@github.com:Lokaltog/powerline.git
