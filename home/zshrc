@@ -51,3 +51,6 @@ bindkey '^?' backward-delete-char
 
 # Show completion description
 zstyle ":completion:*:descriptions" format "%B%d%b"
+
+
+#. $HOME/Documents/src/powerline/powerline/bindings/zsh/powerline.zsh
