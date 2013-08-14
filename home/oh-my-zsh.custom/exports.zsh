@@ -31,3 +31,7 @@ GREP_OPTIONS="$GREP_OPTIONS --exclude=tags"
 export GREP_OPTIONS
 
 export FCEDIT='vim -g -f'
+
+# jboss
+export JBOSS_HOME=/usr/local/opt/jboss-as/libexec
+export PATH=${PATH}:${JBOSS_HOME}/bin
