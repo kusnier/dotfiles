@@ -1,0 +1,46 @@
+*mytmux.txt*     My tmux                  Last change: 2013-08-13
+
+==============================================================================
+TMUX KEYS                                                   *mytmux-tmux-keys*
+
+Creating Panes:~
+
+<Ctrl-b>%  - to split the window in vertically
+<Ctrl-b>"  - to split the window in horizontal
+
+Moving From One Pane to Another and Positioning Panes:~
+
+<Ctrl-b>[Up, Down, Right, Left]
+<Ctrl-b>[j, k, l, h]
+
+<Ctrl-b>; - switch to previous pane
+
+Resizing Panes:~
+
+<Ctrl-b><Ctrl-Up[Down][Left][Right]>
+<Ctrl-b><Meta-Up[Down][Left][Right]>  (five cels)
+
+Closing a Pane:~
+
+<Ctrl-b>x
+
+Create a New Window:~
+
+<Ctrl-b>c - Create
+<Ctrl-b>n - Next Window
+<Ctrl-b>p - Previous Window
+<Ctrl-b>w - Select window interactively
+
+Closing a Window:~
+
+<Ctrl-b>&
+
+Copy Mode:~
+
+<Ctrl-b>[ - Move around, find, visual select and copy
+<Ctrl-b>] - Paste yanked text
+
+Help:~
+
+<Ctrl-b>? - Show all other command of tmux
+
