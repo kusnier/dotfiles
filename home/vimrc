@@ -951,7 +951,7 @@ let g:dbext_default_use_sep_result_buffer = 1
 let g:dbext_default_DBI_split_on_pattern = ';'
 let g:dbext_default_dict_show_owner = 0
 let g:dbext_default_DBI_max_rows = 1000
-"let  g:dbext_default_DBI_column_delimiter = "|"
+let  g:dbext_default_DBI_column_delimiter = "	"
 " will be called automatically each time the Result buffer is updated
 function! DBextPostResult(db_type, buf_nr)
   " If dealing with a MYSQL database
