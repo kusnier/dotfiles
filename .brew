@@ -19,7 +19,6 @@ brews=(
   figlet
   fontforge
   gdk-pixbuf
-  gettext
   git
   git-extras
   glib
@@ -37,8 +36,6 @@ brews=(
   jpeg
   jq
   libtiff
-  libusb
-  libusb-compat
   links
   little-cms
   lynx
@@ -60,7 +57,6 @@ brews=(
   poppler
   potrace
   rtmpdump
-  sane-backends
   spark
   ssh-copy-id
   tree
