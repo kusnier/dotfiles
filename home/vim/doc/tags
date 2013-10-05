@@ -223,6 +223,8 @@ mydoc-window-or-split	mydoc.txt	/*mydoc-window-or-split*
 mydoc.txt	mydoc.txt	/*mydoc.txt*
 myregex-random-regex	myregex.txt	/*myregex-random-regex*
 myregex.txt	myregex.txt	/*myregex.txt*
+mytmux-tmux-keys	mytmux.txt	/*mytmux-tmux-keys*
+mytmux.txt	mytmux.txt	/*mytmux.txt*
 pcr	reloaded.txt	/*pcr*
 pcr-contents	reloaded.txt	/*pcr-contents*
 pcr-custom-data	reloaded.txt	/*pcr-custom-data*
