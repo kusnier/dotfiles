@@ -713,6 +713,7 @@ let g:user_zen_settings = {
 
 let g:airline_powerline_fonts = 1
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+let g:airline#extensions#tabline#enabled = 1
 
 
 " }}}
