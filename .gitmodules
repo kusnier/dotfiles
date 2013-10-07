@@ -222,3 +222,6 @@
 [submodule "libs/powerline"]
 	path = libs/powerline
 	url = git@github.com:Lokaltog/powerline.git
+[submodule "home/vim/bundle/vim-airline"]
+	path = home/vim/bundle/vim-airline
+	url = git@github.com:bling/vim-airline.git
