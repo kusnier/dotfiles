@@ -203,9 +203,6 @@
 [submodule "home/vim/bundle/bootstrap-snippets"]
 	path = home/vim/bundle/bootstrap-snippets
 	url = git://github.com/kusnier/bootstrap-snippets.git
-[submodule "home/vim/bundle/vim-hardtime"]
-	path = home/vim/bundle/vim-hardtime
-	url = git@github.com:takac/vim-hardtime.git
 [submodule "home/vim/bundle/vim-lint"]
 	path = home/vim/bundle/vim-lint
 	url = git@github.com:dbakker/vim-lint.git
