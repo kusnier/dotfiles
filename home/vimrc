@@ -625,14 +625,6 @@ map <F7> :set spell!<CR>
 
 " }}}
 " Plugin options ---------------------------------------------------------- {{{
-" hardtime {{{
-
-let g:hardtime_showmsg = 0
-let g:hardtime_default_on = 1
-autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
-nnoremap <leader>hm :HardTimeToggle<CR>
-
-" }}}
 " Mark {{{
 
 let g:mwIgnoreCase = 0
@@ -883,7 +875,6 @@ nmap  <leader>nmt :NERDTreeMirror<cr>
 nmap  <leader>nft :NERDTreeFind<cr>
 
 au Filetype nerdtree setlocal nolist
-au Filetype nerdtree HardTimeOff
 
 let NERDTreeChDirMode=2 "CWD is changed whenever the tree root is changed
 let NERDTreeDirArrows=1
