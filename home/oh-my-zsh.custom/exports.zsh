@@ -32,6 +32,9 @@ export GREP_OPTIONS
 
 export FCEDIT='vim -g -f'
 
+# java
+export JAVA_HOME=`/usr/libexec/java_home -v 1.6`
+
 # jboss
 export JBOSS_HOME=/usr/local/opt/jboss-as/libexec
 export PATH=${PATH}:${JBOSS_HOME}/bin
