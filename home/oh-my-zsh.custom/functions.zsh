@@ -168,3 +168,8 @@ function finder-clear-open-with() {
   killall Finder
   echo "Open With has been rebuilt, Finder will relaunch"
 }
+
+function port {
+  local PORT=$1
+  sudo lsof -iTCP:$PORT -sTCP:LISTEN
+}
