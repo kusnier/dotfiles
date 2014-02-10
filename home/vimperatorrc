@@ -15,7 +15,7 @@ hi Bell display: none;
 map ZZ :echo('zz disabled');<CR>
 set hlsearch
 
-set runtimepath=$HOME/.vimperator,$HOME/devel/gcode/conf/firefox/vimperator/home
+set runtimepath=$HOME/.vimperator,$HOME/pdotfiles/conf/firefox/vimperator/home
 
 let mapleader = ","
 " Firebug
@@ -53,7 +53,7 @@ highlight HintElem background: rgba(255, 209, 20, 0.7) !important;
 " pass through
 autocmd LocationChange .* js modes.passAllKeys = /(www\.google\.com\/reader|mail\.google\.com|feedly\.com)/.test(buffer.URL)
 
-source ~/devel/gcode/conf/firefox/vimperator/vimperatorrc
+source ~/pdotfiles/conf/firefox/vimperator/vimperatorrc
 
 :bmark -keyword=vrm https://github.com/kusnier/dotfiles/blob/master/home/vim/README.md
 

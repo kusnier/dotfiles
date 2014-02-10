@@ -21,19 +21,19 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 if [ `uname` == 'Darwin' ] ; then
-  if [ -d "$HOME/devel/gcode/scripts/bin/macosx" ] ; then
-      PATH="$HOME/devel/gcode/scripts/bin/macosx:$PATH"
+  if [ -d "$HOME/devel/pdotfiles/scripts/bin/macosx" ] ; then
+      PATH="$HOME/devel/pdotfiles/scripts/bin/macosx:$PATH"
   fi
 fi
 
 if [ `uname` == 'Linux' ] ; then
-  if [ -d "$HOME/devel/gcode/scripts/bin/linux" ] ; then
-      PATH="$HOME/devel/gcode/scripts/bin/linux:$PATH"
+  if [ -d "$HOME/pdotfiles/scripts/bin/linux" ] ; then
+      PATH="$HOME/pdotfiles/scripts/bin/linux:$PATH"
   fi
 fi
 
-if [ -d "$HOME/devel/gcode/scripts/bin/all" ] ; then
-    PATH="$HOME/devel/gcode/scripts/bin/all:$PATH"
+if [ -d "$HOME/pdotfiles/scripts/bin/all" ] ; then
+    PATH="$HOME/pdotfiles/scripts/bin/all:$PATH"
 fi
 
 . "$HOME/.bash/paths"

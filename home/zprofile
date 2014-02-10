@@ -2,15 +2,15 @@
 [[ -d "$HOME/bin" ]] && PATH="$HOME/bin:$PATH"
 
 [[ $(uname) == 'Darwin' ]] && \
-  [[ -d "$HOME/devel/gcode/scripts/bin/macosx" ]] && \
-  PATH="$HOME/devel/gcode/scripts/bin/macosx:$PATH"
+  [[ -d "$HOME/pdotfiles/scripts/bin/macosx" ]] && \
+  PATH="$HOME/pdotfiles/scripts/bin/macosx:$PATH"
 
 [[ `uname -s` == 'Linux' ]] && \
-  [[ -d "$HOME/devel/gcode/scripts/bin/linux" ]] && \
-      PATH="$HOME/devel/gcode/scripts/bin/linux:$PATH"
+  [[ -d "$HOME/pdotfiles/scripts/bin/linux" ]] && \
+      PATH="$HOME/pdotfiles/scripts/bin/linux:$PATH"
 
-[[ -d "$HOME/devel/gcode/scripts/bin/all" ]] && \
-    PATH="$HOME/devel/gcode/scripts/bin/all:$PATH"
+[[ -d "$HOME/pdotfiles/scripts/bin/all" ]] && \
+    PATH="$HOME/pdotfiles/scripts/bin/all:$PATH"
 
 
 # xp on macosx
