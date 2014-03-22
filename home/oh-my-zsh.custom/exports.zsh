@@ -36,5 +36,6 @@ export FCEDIT='vim -g -f'
 export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
 
 # jboss
-export JBOSS_HOME=/usr/local/opt/jboss-as/libexec
+#export JBOSS_HOME=/usr/local/opt/jboss-as/libexec
+export JBOSS_HOME=/usr/local/opt/wildfly/libexec
 export PATH=${PATH}:${JBOSS_HOME}/bin
