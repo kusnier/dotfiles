@@ -1584,7 +1584,7 @@ iab perosn_id person_id
 iab vdvars var_dump(xdebug_get_declared_vars());
 iab vdstack var_dump(xdebug_get_function_stack());
 iab skpid 21240455
-cab dbiall let dbext_default_DBI_max_rows=0
+cab dbiall :DBSetOption DBI_max_rows=0
 iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 iab cdate <c-r>=strftime("%y-%m-%d")<cr>
 iab @@p @param
