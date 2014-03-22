@@ -50,8 +50,14 @@ highlight Hint font-size: 14px; background: rgba(41,112,166,0.8) !important; bor
 highlight HintActive background: rgba(145,197,43,0.8) !important;
 highlight HintElem background: rgba(255, 209, 20, 0.7) !important;
 
+" Provides search engine results from suggestengine:
+set complete+='S' 
+
 " pass through
-autocmd LocationChange .* js modes.passAllKeys = /(www\.google\.com\/reader|mail\.google\.com|feedly\.com)/.test(buffer.URL)
+ignorekeys add 'feedly.com/index.html'
+ignorekeys add 'development/jira'
+ignorekeys add -except=<C-p>,<C-n>,<C-d>,<C-u>,H,L,d,t,o 'google.com/search'
+ignorekeys add -except=<C-p>,<C-n>,<C-d>,<C-u>,t 'mail.google.com'
 
 source ~/pdotfiles/conf/firefox/vimperator/vimperatorrc
 
