@@ -3,7 +3,7 @@
 set editor='bash -lc "vim -gf \$*" vim -g'
 
 autocmd LocationChange .* :set editor='bash -lc "vim -gf \$*" vim -g'
-autocmd LocationChange .*/jira/.* :set editor='bash -lc "vim -c \"set ft=jira\" -gf \$*" vim -g'
+autocmd LocationChange .*jira.* :set editor='bash -lc "vim -c \"set ft=jira\" -gf \$*" vim -g'
 autocmd LocationChange .*/issue.* :set editor='bash -lc "vim -c \"set ft=jira\" -gf \$*" vim -g'
 autocmd LocationChange .*/wiki.* :set editor='bash -lc "vim -c \"set ft=twiki\" -gf \$*" vim -g'
 
@@ -55,7 +55,7 @@ set complete+='S'
 
 " pass through
 ignorekeys add 'feedly.com/index.html'
-ignorekeys add 'development/jira'
+ignorekeys add -except=<C-i>'jira'
 ignorekeys add -except=<C-p>,<C-n>,<C-d>,<C-u>,H,L,d,t,o 'google.com/search'
 ignorekeys add -except=<C-p>,<C-n>,<C-d>,<C-u>,t 'mail.google.com'
 
