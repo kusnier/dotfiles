@@ -222,3 +222,6 @@
 [submodule "home/vim/bundle/vim-airline"]
 	path = home/vim/bundle/vim-airline
 	url = git@github.com:bling/vim-airline.git
+[submodule "home/vim/bundle/vim-snippets"]
+	path = home/vim/bundle/vim-snippets
+	url = git@github.com:honza/vim-snippets.git
