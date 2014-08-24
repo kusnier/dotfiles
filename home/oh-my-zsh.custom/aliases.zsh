@@ -165,3 +165,6 @@ alias json="jq '.'"
 
 # java
 alias jvisualvm='eval $JAVA_HOME/bin/jvisualvm -cp $JBOSS_HOME/libexec/bin/client/jboss-client.jar'
+
+# cron
+alias crontab="EDITOR=/usr/bin/vim crontab"
