@@ -162,3 +162,6 @@ alias ag="ag --color-match '1;31' --color-path '0;35' --skip-vcs-ignores --ignor
 
 # json
 alias json="jq '.'"
+
+# java
+alias jvisualvm='eval $JAVA_HOME/bin/jvisualvm -cp $JBOSS_HOME/libexec/bin/client/jboss-client.jar'
