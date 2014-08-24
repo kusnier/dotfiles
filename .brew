@@ -23,6 +23,7 @@ brews=(
   git
   git-extras
   glib
+  gnu-tar
   growlnotify
   gtk+
   htmldoc
