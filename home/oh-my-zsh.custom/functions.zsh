@@ -173,3 +173,8 @@ function port {
   local PORT=$1
   sudo lsof -iTCP:$PORT -sTCP:LISTEN
 }
+
+function pxml {
+  local FILE=$1
+  xmlformat $1 2>> /dev/null | hi -l xml
+}
