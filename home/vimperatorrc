@@ -40,6 +40,10 @@ set! browser.tabs.loadDivertedInBackground=true
 " Do dns through socks proxy
 set! network.proxy.socks_remote_dns=true
 
+" Disable SSL 3.0
+" See: https://www.bsi-fuer-buerger.de/BSIFB/DE/Wissenswertes_Hilfreiches/Service/Aktuell/Meldungen/Poodle_SSL_15102014.html
+set! security.tls.version.min=1
+
 " google translate plugin
 " :tr[anslate] [-l[angpair from|to] word or phrase
 let g:translate_langpair="en|de"
