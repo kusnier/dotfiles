@@ -14,6 +14,7 @@ brews=(
   cairo
   cmake
   colordiff
+  crash
   csvprintf
   ctags
   dia
