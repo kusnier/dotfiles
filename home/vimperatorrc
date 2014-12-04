@@ -58,7 +58,7 @@ highlight HintElem background: rgba(255, 209, 20, 0.7) !important;
 set complete+='S' 
 
 " pass through
-ignorekeys add 'feedly.com/index.html'
+ignorekeys add 'feedly.com'
 ignorekeys add -except=<C-i>,<C-f>,<C-b>,y,d,/,j,n,r,g,G 'jira'
 ignorekeys add -except=<C-i>,<C-f>,<C-b>,y,d,/,r,g,G 'jira.*/RapidBoard'
 ignorekeys add -except=<C-p>,<C-n>,<C-d>,<C-u>,H,L,d,t,o 'google.com/search'
