@@ -204,10 +204,10 @@ set copyindent
 set smartindent
 
 " Tab options
-set tabstop=2 " number of spaces the tab stands for
+set tabstop=4 " number of spaces the tab stands for
 set expandtab
-set shiftwidth=2 " number of spaces used for (auto)indenting
-set softtabstop=2 " if non-zero, number of spaces to insert for a <tab>
+set shiftwidth=4 " number of spaces used for (auto)indenting
+set softtabstop=4 " if non-zero, number of spaces to insert for a <tab>
 
 " Split line (sister to [J]oin lines)
 " The normal use of S is covered by cc, so don't worry about shadowing it.
