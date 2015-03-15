@@ -26,7 +26,6 @@ brews=(
   glib
   gnu-tar
   growlnotify
-  gtk+
   htmldoc
   htop
   hub
@@ -47,6 +46,7 @@ brews=(
   mongodb
   moreutils
   mplayer
+  mysql
   ncftp
   netcat
   ngrep
@@ -77,3 +77,27 @@ done
 # Disavbled brews:
 #   mosh
 
+# “To install, drag this icon…” no more!
+brew install caskroom/cask/brew-cask
+
+casks=(
+  1password
+  alfred
+  atom
+  cyberduck
+  firefox
+  gimp
+  google-chrome
+  grandperspective
+  iterm2
+  openoffice
+  sequel-pro
+  transmission
+  vagrant
+  virtualbox
+  vlc
+)
+
+for cask in ${casks[@]} ; do
+  brew cask install $cask
+done
