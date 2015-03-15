@@ -168,3 +168,6 @@ alias jvisualvm='eval $JAVA_HOME/bin/jvisualvm -cp $JBOSS_HOME/libexec/bin/clien
 
 # cron
 alias crontab="EDITOR=/usr/bin/vim crontab"
+
+# brew
+alias cask="brew cask"
