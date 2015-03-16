@@ -68,6 +68,7 @@ brews=(
   webkit2png
   wget
   yasm
+  z
 )
 
 for brew in ${brews[@]} ; do
