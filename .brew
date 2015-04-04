@@ -93,6 +93,7 @@ casks=(
   iterm2
   openoffice
   sequel-pro
+  spectacle
   transmission
   vagrant
   virtualbox
