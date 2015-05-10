@@ -28,6 +28,7 @@ brews=(
   growlnotify
   htmldoc
   htop
+  httpie
   hub
   id3lib
   id3v2
