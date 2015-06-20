@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# “To install, drag this icon…” no more!
+brew install caskroom/cask/brew-cask
+
+casks=(
+  1password
+  alfred
+  atom
+  cyberduck
+  firefox
+  gimp
+  google-chrome
+  grandperspective
+  iterm2
+  openoffice
+  sequel-pro
+  spectacle
+  transmission
+  vagrant
+  virtualbox
+  vlc
+)
+
+for cask in ${casks[@]} ; do
+  brew cask install $cask
+done
