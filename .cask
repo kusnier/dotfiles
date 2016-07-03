@@ -5,7 +5,6 @@ brew install caskroom/cask/brew-cask
 
 casks=(
   1password
-  alfred
   atom
   cyberduck
   firefox
@@ -14,6 +13,7 @@ casks=(
   grandperspective
   iterm2
   openoffice
+  scribus
   sequel-pro
   spectacle
   transmission
