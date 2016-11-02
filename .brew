@@ -4,7 +4,7 @@
 # vim: ft=sh
 brew update && brew upgrade
 
-brew install macvim --override-system-vim
+brew reinstall macvim --with-python3 -v --override-system-vim --force
 
 brews=(
   ag
