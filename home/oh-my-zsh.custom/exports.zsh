@@ -35,6 +35,9 @@ export FCEDIT='vim -g -f'
 # java
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 
+# groovy
+export GROOVY_HOME=/usr/local/opt/groovy/libexec
+
 # jboss
 #export JBOSS_HOME=/usr/local/opt/jboss-as/libexec
 export JBOSS_HOME=/usr/local/opt/wildfly-as/libexec
