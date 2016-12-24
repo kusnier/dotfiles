@@ -178,3 +178,10 @@ function pxml {
   local FILE=$1
   xmlformat $1 2>> /dev/null | hi -l xml
 }
+
+function jar_file_search {
+    local PATTERN=$1
+    for f in `ls **/*.jar`; do
+        echo "$f: "; unzip -l $f | grep "$PATTERN";
+    done
+}
