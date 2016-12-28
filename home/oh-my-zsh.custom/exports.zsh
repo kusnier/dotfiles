@@ -20,16 +20,6 @@ export MANPAGER=vimpager
 # cd options
 export FIGNORE='.svn'
 
-GREP_OPTIONS='--color=auto'
-
-for PATTERN in .cvs .git .hg .svn target; do
-    GREP_OPTIONS="$GREP_OPTIONS --exclude-dir=$PATTERN"
-done
-
-
-GREP_OPTIONS="$GREP_OPTIONS --exclude=tags"
-export GREP_OPTIONS
-
 export FCEDIT='vim -g -f'
 
 # java
