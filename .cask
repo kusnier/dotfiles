@@ -11,10 +11,12 @@ casks=(
   gimp
   google-chrome
   grandperspective
+  hex-fiend
   iterm2
   openoffice
   scribus
   sequel-pro
+  skim
   spectacle
   transmission
   vagrant

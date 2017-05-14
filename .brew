@@ -14,16 +14,21 @@ brews=(
   cairo
   cmake
   colordiff
+  coreutils
+  cowsay
   crash
   csvprintf
   ctags
   dia
+  ffind
   figlet
   fontforge
+  fzf
   gdk-pixbuf
   git
   git-extras
   glib
+  gnu-sed
   gnu-tar
   growlnotify
   htmldoc
@@ -41,6 +46,7 @@ brews=(
   libtiff
   links
   little-cms
+  lolcat
   lynx
   markdown
   mobile-shell
@@ -62,12 +68,14 @@ brews=(
   rtmpdump
   spark
   ssh-copy-id
+  translate-shell
   tree
   unrar
   watch
   webkit2png
   wget
   yasm
+  youtube-dl
   z
 )
 
