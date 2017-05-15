@@ -1,4 +1,4 @@
-function v-next -d "Set next version for pom.xml" --wraps "mvn"
+function v-next -d "Set next minor version for pom.xml" --wraps "mvn"
     mvn build-helper:parse-version org.codehaus.mojo:versions-maven-plugin:2.3:set -DnewVersion='${parsedVersion.majorVersion}.${parsedVersion.nextMinorVersion}.0.1-SNAPSHOT'; \
     and mvn versions:update-child-modules; \
     and mvn versions:commit; \
