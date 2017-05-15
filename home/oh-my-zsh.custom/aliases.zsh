@@ -67,17 +67,6 @@ alias less=$PAGER
 alias psg="ps -aux ¦ grep bash"
 
 #To navigate to the different directories
-alias ..="cd .."
-alias ..2="cd ../.."
-alias ..3="cd ../../.."
-alias ..4="cd ../../../.."
-alias ..5="cd ../../../../.."
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ......="cd ../../../../.."
-alias -- -="cd -"
 
 # svn
 alias svnup='find . -depth -maxdepth 1 -type d -not -name '.svn' -exec svn up {} \;'
@@ -131,15 +120,6 @@ fi
 alias random_mac="ruby -e 'puts (\"%02x\"%((rand 64)*4|2))+(0..4).inject(\"\"){|s,x|s+\":%02x\"%(rand 256)}'"
 alias set_random_mac="echo sudo ifconfig en0 ether $(random_mac)"
 
-# node/npm
-alias nodemoduleslist="npm list -g | grep '^.─' | sed 's/\W\|[0-9]//g'"
-
-# MacOS Spotlight
-if [[ $system == 'Darwin' ]]; then 
-  alias spotlight-off='sudo mdutil -a -i off && sudo mv /System/Library/CoreServices/Search.bundle/ /System/Library/CoreServices/SearchOff.bundle/ && killall SystemUIServer'
-  alias spotlight-on='sudo mdutil -a -i on && sudo mv /System/Library/CoreServices/SearchOff.bundle/ /System/Library/CoreServices/Search.bundle/ && killall SystemUIServer'
-  alias spotlight-wat='sudo fs_usage -w -f filesys mdworker | grep "open"'
-fi
 
 # Paste
 if [[ $system == 'Darwin' ]]; then 
@@ -147,21 +127,8 @@ if [[ $system == 'Darwin' ]]; then
   alias pbp='pbpaste'
 fi
 
-alias hi='pygmentize'
 
 alias paththis='export PATH=$(pwd):$PATH'
-
-alias vu 'vagrant up'
-alias vs 'vagrant suspend'
-
-# Launch iOS Simulator
-alias ios="open -a /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app"
-
-# Ack / Ag
-alias ag="ag --color-match '1;31' --color-path '0;35' --skip-vcs-ignores --ignore-case"
-
-# json
-alias json="jq '.'"
 
 # java
 alias jvisualvm='eval $JAVA_HOME/bin/jvisualvm -cp $JBOSS_HOME/libexec/bin/client/jboss-client.jar'

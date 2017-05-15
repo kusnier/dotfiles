@@ -17,6 +17,7 @@ function ..;    cd ..; end
 function ...;   cd ../..; end
 function ....;  cd ../../..; end
 function .....; cd ../../../..; end
+abbr -a -- -- 'cd -'
 
 # I give up
 alias :q exit

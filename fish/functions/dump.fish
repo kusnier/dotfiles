@@ -1,5 +1,7 @@
 function dump -d "dump to/from the internet"
 
+    git -C ~/dotfiles pull
+
     git -C ~/Documents/src/vaadin pull
     git -C ~/Documents/src/vaadin-lazyquerycontainer pull
     git -C ~/Documents/src/deltaspike pull
