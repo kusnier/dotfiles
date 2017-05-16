@@ -69,6 +69,7 @@ for dotfile in ${dotfilespath}/home/* ; do
   echo $dotfile
   base=`basename $dotfile`
   rm $rmopts -r $HOME/.$base
-  ln -v -s $dotfile $HOME/.$base
+  ln -v -s -T $dotfile $HOME/.$base
 done
 
+ln -v -s -T $dotfilespath/fish $HOME/.config/fish
