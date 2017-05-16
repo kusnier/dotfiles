@@ -8,10 +8,10 @@ fish_vi_key_bindings
 #function eg; nvim ~/.gitconfig; end
 #function ev; nvim ~/.vimrc; end
 
-function ef; nvim ~/.config/fish/config.fish; end
-function eff; nvim ~/.config/fish/functions; end
-function eg; nvim ~/.gitconfig; end
-function ev; nvim ~/.vimrc; end
+function ef; vim ~/.config/fish/config.fish; end
+function eff; vim ~/.config/fish/functions; end
+function eg; vim ~/.gitconfig; end
+function ev; vim ~/.vimrc; end
 
 function ..;    cd ..; end
 function ...;   cd ../..; end
