@@ -18,6 +18,8 @@ function ...;   cd ../..; end
 function ....;  cd ../../..; end
 function .....; cd ../../../..; end
 abbr -a -- -- 'cd -'
+abbr -a -- -- 'cd -'
+abbr -a ..g 'set cdto (git rev-parse --show-cdup); and git rev-parse; and cd "$cdto"'
 
 # I give up
 alias :q exit
