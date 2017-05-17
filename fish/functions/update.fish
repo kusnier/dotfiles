@@ -19,4 +19,6 @@ function update -d "Update mac, brew, npm and gem"
 
     end
 
+    wget -O ~/bin/trans git.io/trans
+
 end

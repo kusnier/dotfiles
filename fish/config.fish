@@ -59,8 +59,12 @@ prepend_to_path "/usr/local/bin"
 prepend_to_path "/usr/local/sbin"
 prepend_to_path "/usr/local/share/npm/bin"
 
-set -gx PATH "$HOME/bin" $PATH
-set -gx PATH "$HOME/.fzf/bin" $PATH
+set _home $HOME
+set -gx PATH "$_home/bin" $PATH
+
+if test ! -f /usr/local/bin/fzf
+    set -gx PATH "$_home/.fzf/bin" $PATH
+end
 
 set BROWSER open
 
