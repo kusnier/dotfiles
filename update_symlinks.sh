@@ -62,15 +62,22 @@ fi
 
 cd `dirname $0`
 
+
+function createLink() {
+  local dotfile=$1
+  local suffix=$2
+  echo $dotfile
+  base=`basename $dotfile`
+  rm $rmopts -r $HOME/$suffix$base
+  ln -v -s $dotfile $HOME/$suffix$base
+}
+
 # ensure we're on the base of the dotfiles repo
 dotfilespath="$(git rev-parse --show-toplevel)" || exit
 
 for dotfile in ${dotfilespath}/home/* ; do
-  echo $dotfile
-  base=`basename $dotfile`
-  rm $rmopts -r $HOME/.$base
-  ln -v -s -T $dotfile $HOME/.$base
+  createLink $dotfile "."
 done
 
-ln -v -s -T $dotfilespath/fish $HOME/.config/fish
-ln -v -s -T $dotfilespath/home/bin $HOME/bin
+createLink $dotfilespath/fish ".config/"
+createLink $dotfilespath/home/bin ""
