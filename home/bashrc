@@ -89,3 +89,5 @@ done
 
 # Custom (system dependent, secrets, etc.)
 [[ -s "$HOME/.customrc" ]] && source "$HOME/.customrc"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
