@@ -73,3 +73,4 @@ for dotfile in ${dotfilespath}/home/* ; do
 done
 
 ln -v -s -T $dotfilespath/fish $HOME/.config/fish
+ln -v -s -T $dotfilespath/home/bin $HOME/bin
