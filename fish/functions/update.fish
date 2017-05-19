@@ -20,5 +20,6 @@ function update -d "Update mac, brew, npm and gem"
     end
 
     wget -O ~/bin/trans git.io/trans
+    wget -O ~/bin/ffind raw.githubusercontent.com/sjl/friendly-find/master/ffind
 
 end
