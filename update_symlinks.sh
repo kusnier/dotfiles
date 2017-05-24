@@ -80,4 +80,4 @@ for dotfile in ${dotfilespath}/home/* ; do
 done
 
 createLink $dotfilespath/fish ".config/"
-createLink $dotfilespath/home/bin ""
+createLink $dotfilespath/bin ""

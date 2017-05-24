@@ -61,7 +61,14 @@ prepend_to_path "/usr/local/sbin"
 prepend_to_path "/usr/local/share/npm/bin"
 
 set _home $HOME
-set -gx PATH "$_home/bin" $PATH
+set -gx PATH "$_home/bin/all" $PATH
+
+switch (uname)
+  case 'Darwin'
+    set -gx PATH "$_home/bin/macos" $PATH
+  case 'Linux'
+    set -gx PATH "$_home/bin/linux" $PATH
+end
 
 if test ! -f /usr/local/bin/fzf
     set -gx PATH "$_home/.fzf/bin" $PATH
