@@ -3,7 +3,7 @@ function v-next -d "Set next minor version for pom.xml" --wraps "mvn"
     and mvn versions:update-child-modules; \
     and mvn versions:commit; \
     and if read_confirm
-        pom-commit-all
+        pom-commit-all "Setting snapshot versions for next release"
     end
 
 end
