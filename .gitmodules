@@ -12,7 +12,7 @@
 	url = https://github.com/digitaltoad/vim-jade.git
 [submodule "home/vim/bundle/vcscommand"]
 	path = home/vim/bundle/vcscommand
-	url = git://repo.or.cz/vcscommand
+	url = https://repo.or.cz/vcscommand.git
 	ignore = dirty
 [submodule "home/vim/bundle/nerdtree"]
 	path = home/vim/bundle/nerdtree
