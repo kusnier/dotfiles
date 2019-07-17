@@ -1,218 +1,218 @@
 [submodule "home/vim/bundle/ack.vim"]
 	path = home/vim/bundle/ack.vim
-	url = git://github.com/mileszs/ack.vim.git
+	url = https://github.com/mileszs/ack.vim.git
 [submodule "home/vim/bundle/vim-repeat"]
 	path = home/vim/bundle/vim-repeat
-	url = git://github.com/tpope/vim-repeat.git
+	url = https://github.com/tpope/vim-repeat.git
 [submodule "home/vim/bundle/vim-surround"]
 	path = home/vim/bundle/vim-surround
-	url = git://github.com/tpope/vim-surround.git
+	url = https://github.com/tpope/vim-surround.git
 [submodule "home/vim/bundle/vim-jade"]
 	path = home/vim/bundle/vim-jade
-	url = git://github.com/digitaltoad/vim-jade.git
+	url = https://github.com/digitaltoad/vim-jade.git
 [submodule "home/vim/bundle/vcscommand"]
 	path = home/vim/bundle/vcscommand
 	url = git://repo.or.cz/vcscommand
 	ignore = dirty
 [submodule "home/vim/bundle/nerdtree"]
 	path = home/vim/bundle/nerdtree
-	url = git://github.com/scrooloose/nerdtree.git
+	url = https://github.com/scrooloose/nerdtree.git
 [submodule "home/vim/bundle/nerdcommenter"]
 	path = home/vim/bundle/nerdcommenter
-	url = git://github.com/scrooloose/nerdcommenter.git
+	url = https://github.com/scrooloose/nerdcommenter.git
 [submodule "home/vim/bundle/supertab"]
 	path = home/vim/bundle/supertab
-	url = git://github.com/ervandew/supertab.git
+	url = https://github.com/ervandew/supertab.git
 [submodule "home/vim/bundle/vim-indent-guides"]
 	path = home/vim/bundle/vim-indent-guides
-	url = git://github.com/nathanaelkane/vim-indent-guides.git
+	url = https://github.com/nathanaelkane/vim-indent-guides.git
 [submodule "home/vim/bundle/xmledit"]
 	path = home/vim/bundle/xmledit
-	url = git://github.com/sukima/xmledit.git
+	url = https://github.com/sukima/xmledit.git
 	ignore = dirty
 [submodule "home/vim/bundle/vim-coffee-script"]
 	path = home/vim/bundle/vim-coffee-script
-	url = git://github.com/kchmck/vim-coffee-script.git
+	url = https://github.com/kchmck/vim-coffee-script.git
 [submodule "home/vim/bundle/vim-css-color"]
 	path = home/vim/bundle/vim-css-color
-	url = git://github.com/gf3/vim-css-color.git
+	url = https://github.com/gf3/vim-css-color.git
 [submodule "home/vim/bundle/hammer.vim"]
 	path = home/vim/bundle/hammer.vim
-	url = git://github.com/matthias-guenther/hammer.vim.git
+	url = https://github.com/matthias-guenther/hammer.vim.git
 [submodule "home/vim/bundle/vim-git"]
 	path = home/vim/bundle/vim-git
-	url = git://github.com/tpope/vim-git.git
+	url = https://github.com/tpope/vim-git.git
 	ignore = dirty
 [submodule "home/vim/bundle/vim-pathogen"]
 	path = home/vim/bundle/vim-pathogen
-	url = git://github.com/tpope/vim-pathogen.git
+	url = https://github.com/tpope/vim-pathogen.git
 [submodule "home/vim/bundle/vim-fugitive"]
 	path = home/vim/bundle/vim-fugitive
-	url = git://github.com/tpope/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git
 [submodule "home/vim/bundle/vim-speeddating"]
 	path = home/vim/bundle/vim-speeddating
-	url = git://github.com/tpope/vim-speeddating.git
+	url = https://github.com/tpope/vim-speeddating.git
 	ignore = dirty
 [submodule "home/vim/bundle/vim-easymotion"]
 	path = home/vim/bundle/vim-easymotion
-	url = git://github.com/Lokaltog/vim-easymotion.git
+	url = https://github.com/Lokaltog/vim-easymotion.git
 [submodule "home/vim/bundle/vim-markdown"]
 	path = home/vim/bundle/vim-markdown
-	url = git://github.com/tpope/vim-markdown.git
+	url = https://github.com/tpope/vim-markdown.git
 [submodule "home/vim/bundle/tagbar"]
 	path = home/vim/bundle/tagbar
-	url = git://github.com/majutsushi/tagbar.git
+	url = https://github.com/majutsushi/tagbar.git
 	ignore = dirty
 [submodule "home/vim/bundle/ctrlp"]
 	path = home/vim/bundle/ctrlp
-	url = git://github.com/kien/ctrlp.vim.git
+	url = https://github.com/kien/ctrlp.vim.git
 	ignore = dirty
 [submodule "home/vim/bundle/vim-notes"]
 	path = home/vim/bundle/vim-notes
-	url = git://github.com/xolox/vim-notes.git
+	url = https://github.com/xolox/vim-notes.git
 	ignore = dirty
 [submodule "home/vim/bundle/phpcomplete.vim"]
 	path = home/vim/bundle/phpcomplete.vim
-	url = git://github.com/shawncplus/phpcomplete.vim.git
+	url = https://github.com/shawncplus/phpcomplete.vim.git
 	ignore = dirty
 [submodule "home/vim/bundle/gundo.vim"]
 	path = home/vim/bundle/gundo.vim
-	url = git://github.com/sjl/gundo.vim.git
+	url = https://github.com/sjl/gundo.vim.git
 [submodule "home/vim/bundle/vim-jquery"]
 	path = home/vim/bundle/vim-jquery
-	url = git://github.com/kusnier/vim-jquery.git
+	url = https://github.com/kusnier/vim-jquery.git
 [submodule "home/vim/bundle/syntastic"]
 	path = home/vim/bundle/syntastic
-  url = git://github.com/scrooloose/syntastic.git
+  url = https://github.com/scrooloose/syntastic.git
 	ignore = dirty
 [submodule "home/vim/bundle/vim-mediawiki"]
 	path = home/vim/bundle/vim-mediawiki
-	url = git://github.com/kusnier/vim-mediawiki.git
+	url = https://github.com/kusnier/vim-mediawiki.git
 [submodule "home/vim/bundle/tabman.vim"]
 	path = home/vim/bundle/tabman.vim
-	url = git://github.com/kien/tabman.vim.git
+	url = https://github.com/kien/tabman.vim.git
 	ignore = dirty
 [submodule "home/vim/bundle/inline_edit.vim"]
 	path = home/vim/bundle/inline_edit.vim
-	url = git://github.com/AndrewRadev/inline_edit.vim.git
+	url = https://github.com/AndrewRadev/inline_edit.vim.git
   ignore = dirty
 [submodule "home/vim/bundle/vim-eunuch"]
 	path = home/vim/bundle/vim-eunuch
-	url = git://github.com/tpope/vim-eunuch.git
+	url = https://github.com/tpope/vim-eunuch.git
   ignore = dirty
 [submodule "home/vim/bundle/csv.vim"]
 	path = home/vim/bundle/csv.vim
-	url = git://github.com/chrisbra/csv.vim.git
+	url = https://github.com/chrisbra/csv.vim.git
   ignore = dirty
 [submodule "home/vim/bundle/xp-framework.vim"]
 	path = home/vim/bundle/xp-framework.vim
-	url = git://github.com/kusnier/xp-framework.vim.git
+	url = https://github.com/kusnier/xp-framework.vim.git
 [submodule "home/vim/bundle/html5"]
 	path = home/vim/bundle/html5
-	url = git://github.com/othree/html5.vim.git
+	url = https://github.com/othree/html5.vim.git
 [submodule "home/vim/bundle/ultisnips"]
 	path = home/vim/bundle/ultisnips
-	url = git://github.com/SirVer/ultisnips.git
+	url = https://github.com/SirVer/ultisnips.git
   ignore = dirty
 [submodule "home/vim/bundle/vim-javascript-syntax"]
 	path = home/vim/bundle/vim-javascript-syntax
-	url = git://github.com/jelera/vim-javascript-syntax.git
+	url = https://github.com/jelera/vim-javascript-syntax.git
 [submodule "home/vim/bundle/nodeunit.vim"]
 	path = home/vim/bundle/nodeunit.vim
-	url = git://github.com/lambdalisue/nodeunit.vim.git
+	url = https://github.com/lambdalisue/nodeunit.vim.git
 [submodule "home/vim/bundle/vim-makegreen"]
 	path = home/vim/bundle/vim-makegreen
-	url = git://github.com/reinh/vim-makegreen.git
+	url = https://github.com/reinh/vim-makegreen.git
 [submodule "home/vim/bundle/vim-unimpaired"]
 	path = home/vim/bundle/vim-unimpaired
-	url = git://github.com/tpope/vim-unimpaired.git
+	url = https://github.com/tpope/vim-unimpaired.git
 [submodule "home/vim/bundle/vim-smartinput"]
 	path = home/vim/bundle/vim-smartinput
-	url = git://github.com/kana/vim-smartinput.git
+	url = https://github.com/kana/vim-smartinput.git
 	ignore = dirty
 [submodule "home/vim/bundle/clam.vim"]
 	path = home/vim/bundle/clam.vim
-	url = git://github.com/sjl/clam.vim.git
+	url = https://github.com/sjl/clam.vim.git
 	ignore = dirty
 [submodule "home/vim/bundle/vim-slime"]
 	path = home/vim/bundle/vim-slime
-	url = git://github.com/jpalardy/vim-slime.git
+	url = https://github.com/jpalardy/vim-slime.git
 [submodule "home/vim/bundle/vitality"]
 	path = home/vim/bundle/vitality
-	url = git://github.com/sjl/vitality.vim.git
+	url = https://github.com/sjl/vitality.vim.git
 	ignore = dirty
 [submodule "home/vim/bundle/splice"]
 	path = home/vim/bundle/splice
-	url = git://github.com/sjl/splice.vim.git
+	url = https://github.com/sjl/splice.vim.git
 [submodule "home/vim/bundle/gitv"]
 	path = home/vim/bundle/gitv
-	url = git://github.com/gregsexton/gitv.git
+	url = https://github.com/gregsexton/gitv.git
 [submodule "home/vim/bundle/puppet-syntax-vim"]
 	path = home/vim/bundle/puppet-syntax-vim
-	url = git://github.com/kusnier/puppet-syntax-vim.git
+	url = https://github.com/kusnier/puppet-syntax-vim.git
 [submodule "home/vim/bundle/textobj-word-column.vim"]
 	path = home/vim/bundle/textobj-word-column.vim
-	url = git://github.com/coderifous/textobj-word-column.vim.git
+	url = https://github.com/coderifous/textobj-word-column.vim.git
 [submodule "home/vim/bundle/parameter-text-objects"]
 	path = home/vim/bundle/parameter-text-objects
-	url = git://github.com/kusnier/Parameter-Text-Objects.git
+	url = https://github.com/kusnier/Parameter-Text-Objects.git
 [submodule "home/vim/bundle/matchtagalways"]
 	path = home/vim/bundle/matchtagalways
-	url = git://github.com/Valloric/MatchTagAlways.git
+	url = https://github.com/Valloric/MatchTagAlways.git
 	ignore = dirty
 [submodule "home/vim/bundle/vim-ragtag"]
 	path = home/vim/bundle/vim-ragtag
-	url = git://github.com/tpope/vim-ragtag.git
+	url = https://github.com/tpope/vim-ragtag.git
 	ignore = dirty
 [submodule "home/vim/bundle/vim-indent-object"]
 	path = home/vim/bundle/vim-indent-object
-	url = git://github.com/michaeljsmith/vim-indent-object.git
+	url = https://github.com/michaeljsmith/vim-indent-object.git
 [submodule "home/vim/bundle/tabular"]
 	path = home/vim/bundle/tabular
-	url = git://github.com/godlygeek/tabular.git
+	url = https://github.com/godlygeek/tabular.git
 [submodule "home/vim/bundle/vim-markdown-folding"]
 	path = home/vim/bundle/vim-markdown-folding
-	url = git://github.com/nelstrom/vim-markdown-folding.git
+	url = https://github.com/nelstrom/vim-markdown-folding.git
 [submodule "home/vim/bundle/vimux"]
 	path = home/vim/bundle/vimux
-	url = git://github.com/benmills/vimux.git
+	url = https://github.com/benmills/vimux.git
 [submodule "home/vim/bundle/quickfixsigns"]
 	path = home/vim/bundle/quickfixsigns
-	url = git://github.com/tomtom/quickfixsigns_vim.git
+	url = https://github.com/tomtom/quickfixsigns_vim.git
 [submodule "home/vim/bundle/vim-characterize"]
 	path = home/vim/bundle/vim-characterize
-	url = git://github.com/tpope/vim-characterize.git
+	url = https://github.com/tpope/vim-characterize.git
 [submodule "home/vim/bundle/vim-vagrant"]
 	path = home/vim/bundle/vim-vagrant
-	url = git://github.com/markcornick/vim-vagrant.git
+	url = https://github.com/markcornick/vim-vagrant.git
 [submodule "home/vim/bundle/vim-startify"]
 	path = home/vim/bundle/vim-startify
-	url = git://github.com/mhinz/vim-startify.git
+	url = https://github.com/mhinz/vim-startify.git
 [submodule "home/vim/bundle/vim-visual-star-search"]
 	path = home/vim/bundle/vim-visual-star-search
-	url = git://github.com/nelstrom/vim-visual-star-search.git
+	url = https://github.com/nelstrom/vim-visual-star-search.git
 [submodule "home/vim/bundle/bootstrap-snippets"]
 	path = home/vim/bundle/bootstrap-snippets
-	url = git://github.com/kusnier/bootstrap-snippets.git
+	url = https://github.com/kusnier/bootstrap-snippets.git
 [submodule "home/vim/bundle/vim-lint"]
 	path = home/vim/bundle/vim-lint
-	url = git@github.com:dbakker/vim-lint.git
+	url = https://github.com/dbakker/vim-lint.git
 	ignore = dirty
 [submodule "home/vim/bundle/vim-node"]
 	path = home/vim/bundle/vim-node
-	url = git@github.com:moll/vim-node.git
+	url = https://github.com/moll/vim-node.git
 [submodule "home/vim/bundle/emmet"]
 	path = home/vim/bundle/emmet
-	url = git@github.com:mattn/emmet-vim.git
+	url = https://github.com/mattn/emmet-vim.git
 [submodule "home/vim/bundle/vim-misc"]
 	path = home/vim/bundle/vim-misc
-	url = git@github.com:xolox/vim-misc.git
+	url = https://github.com/xolox/vim-misc.git
 [submodule "libs/powerline"]
 	path = libs/powerline
-	url = git@github.com:Lokaltog/powerline.git
+	url = https://github.com/Lokaltog/powerline.git
 [submodule "home/vim/bundle/vim-airline"]
 	path = home/vim/bundle/vim-airline
-	url = git@github.com:bling/vim-airline.git
+	url = https://github.com/bling/vim-airline.git
 [submodule "home/vim/bundle/vim-snippets"]
 	path = home/vim/bundle/vim-snippets
-	url = git@github.com:honza/vim-snippets.git
+	url = https://github.com/honza/vim-snippets.git
