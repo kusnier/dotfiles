@@ -1,6 +1,6 @@
-# Defined in /tmp/fish.Qz1lOB/m-release-ejbframework.fish @ line 2
+# Defined in /tmp/fish.FJZZmE/m-release-ejbframework.fish @ line 2
 function m-release-ejbframework
-	set URL "Release%20EJB%20Framework"
+	set URL "portal-ejbframework-parent.trunk"
 
     m-release-job-url $URL
 end
