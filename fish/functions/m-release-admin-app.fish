@@ -1,6 +1,6 @@
-# Defined in /tmp/fish.lLL5EJ/m-release-admin-app.fish @ line 2
+# Defined in /tmp/fish.pC3XyX/m-release-admin-app.fish @ line 2
 function m-release-admin-app
-	set URL "portal-admin-app.trunk"
+	set URL "/job/next-de/job/admin-app/job/master"
 
     m-release-job-url $URL
 end

@@ -1,6 +1,6 @@
-# Defined in /tmp/fish.ytlC9U/m-release-p4m.fish @ line 2
+# Defined in /tmp/fish.FMUXfI/m-release-p4m.fish @ line 2
 function m-release-p4m
-	set URL "portal-p4m.next.trunk"
+	set URL "/job/next-de/job/p4m-next/job/master"
 
     m-release-job-url $URL
 end
