@@ -52,7 +52,8 @@ function prepend_to_path -d "Prepend the given dir to PATH if it exists and is n
         end
     end
 end
-set -gx PATH "/sbin"
+
+prepend_to_path "/sbin"
 prepend_to_path "/usr/sbin"
 prepend_to_path "/bin"
 prepend_to_path "/usr/bin"
