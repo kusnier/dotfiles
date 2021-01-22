@@ -87,7 +87,7 @@ set -g -x VIM_BINARY "/usr/local/bin/vim"
 set -g -x MVIM_BINARY "/usr/local/bin/mvim"
 
 set -g -x MAVEN_OPTS "-Xmx512M -XX:MaxPermSize=512M"
-set -g -x _JAVA_OPTIONS "-Djava.awt.headless=true"
+#set -g -x _JAVA_OPTIONS "-Djava.awt.headless=true"
 
 function headed_java -d "Put Java into headed mode"
     echo "Changing _JAVA_OPTIONS"
