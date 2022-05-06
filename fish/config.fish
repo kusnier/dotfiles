@@ -21,10 +21,14 @@ abbr -a -- -- 'cd -'
 abbr -a -- -- 'cd -'
 abbr -a ..g 'set cdto (git rev-parse --show-cdup); and git rev-parse; and cd "$cdto"'
 abbr -a mci 'mvn clean install -DskipTests=true'
+abbr -a dpm 'mvn wildfly:deploy -pl p4m.next-ears-parent/p4m.next-ear-jee7'
+abbr -a dad 'mvn wildfly:deploy -pl admin-app-ears/admin-app-ear-jee7'
+abbr -a python python3
 
 # I give up
 alias :q exit
 alias :qa exit
+alias j! jbang 
 
 # }}}
 # Completions {{{
@@ -60,6 +64,7 @@ prepend_to_path "/usr/bin"
 prepend_to_path "/usr/local/bin"
 prepend_to_path "/usr/local/sbin"
 prepend_to_path "/usr/local/share/npm/bin"
+prepend_to_path "$HOME/.jbang/bin"
 
 set _home $HOME
 set -gx PATH "$_home/bin/all" $PATH

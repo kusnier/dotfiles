@@ -9,7 +9,7 @@ function serve-this -d "Launch a webserver on 8000 serving the cwd"
     end
 
     echo "Open browser: http://localhost:$port/"
-    python -m SimpleHTTPServer $port &
+    python3 -m http.server
     open "http://localhost:$port/"
     fg
 end

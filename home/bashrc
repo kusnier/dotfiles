@@ -91,3 +91,7 @@ done
 [[ -s "$HOME/.customrc" ]] && source "$HOME/.customrc"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Add JBang to environment
+alias j!=jbang
+export PATH="$HOME/.jbang/bin:$PATH"
