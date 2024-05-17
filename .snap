@@ -1,0 +1,2 @@
+sudo snap install powershell --classic
+sudo snap install node --classic
