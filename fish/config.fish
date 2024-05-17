@@ -65,6 +65,7 @@ prepend_to_path "/usr/local/bin"
 prepend_to_path "/usr/local/sbin"
 prepend_to_path "/usr/local/share/npm/bin"
 prepend_to_path "$HOME/.jbang/bin"
+prepend_to_path "$HOME/.npm/bin"
 
 set _home $HOME
 set -gx PATH "$_home/bin/all" $PATH
