@@ -145,3 +145,5 @@ set fish_pager_color_completion 75715E # the color of the completion itself
 set fish_pager_color_description 49483E # the color of the completion description
 set fish_pager_color_progress F8F8F2 # the color of the progress bar at the bottom left corner
 set fish_pager_color_secondary F8F8F2 # the background color of the every second completion
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
