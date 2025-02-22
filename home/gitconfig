@@ -5,7 +5,7 @@
 
 [core]
   excludesfile = ~/.gitignore
-  editor = vim -g -f
+  editor = code --wait
   pager = cat
 
 [color]
