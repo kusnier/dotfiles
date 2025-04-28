@@ -1,0 +1,64 @@
+#!/usr/bin/env pwsh
+
+param (
+    [string]$Pod
+)
+
+# Funktion zum Kürzen des Loggernamens
+function Get-LoggerName {
+    param (
+        [String]
+        $loggerName
+    )
+
+    # Splitte den LoggerName anhand des Punkts (.)
+    $parts = $loggerName -split '\.'
+
+    # Gib den letzten Teil zurück
+    return $parts[-1]
+}
+
+# Funktion zum Abrufen der Logs
+function Get-Openshift-Logs {
+    param (
+        [String]
+        $pod
+    )
+
+    $processStartInfo = New-Object System.Diagnostics.ProcessStartInfo
+    $processStartInfo.FileName = "oc"
+    $processStartInfo.Arguments = "logs --tail=0 -f $pod"
+    $processStartInfo.RedirectStandardOutput = $true
+    $processStartInfo.UseShellExecute = $false
+    $processStartInfo.CreateNoWindow = $true
+
+    $process = New-Object System.Diagnostics.Process
+    $process.StartInfo = $processStartInfo
+    $process.Start() | Out-Null
+
+    # Hier die Ausgabe des Prozesses lesen
+    while (!$process.StandardOutput.EndOfStream) {
+        $line = $process.StandardOutput.ReadLine()
+        if ($line -match '{.*}') {
+            $jsonObject = $line | ConvertFrom-Json
+            if ($jsonObject.message -notlike '*X-B3-TraceId was null*') {
+                $timestamp = [datetimeoffset]::FromUnixTimeSeconds($jsonObject.instant.epochSecond).DateTime.ToString("HH:mm:ss")
+                $loggerName = Get-LoggerName -loggerName $jsonObject.loggerName
+                Write-Output "$timestamp [$loggerName] - $($jsonObject.message)"
+            }
+        }
+    }
+
+    # Zum Stoppen des Prozesses (zum Beispiel bei Bedarf):
+    # $process.CloseMainWindow()
+    $process.WaitForExit()
+}
+
+# Hauptlogik
+if (-not $Pod) {
+    Write-Error "Bitte geben Sie den Namen des Pods mit dem Parameter -Pod an."
+    exit 1
+}
+
+# Logs abrufen
+Get-Openshift-Logs -pod $Pod
