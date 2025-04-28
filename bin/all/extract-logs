@@ -37,20 +37,18 @@ $reader = if ($InputFile) {
     [Console]::In
 }
 
-# Ergebnisse speichern
-$results = @()
+# Zeilen verarbeiten und direkt ausgeben
 try {
     while (($line = $reader.ReadLine()) -ne $null) {
         $processedLine = Process-Line $line
-        if ($processedLine) { $results += $processedLine }
+        if ($processedLine) {
+            if ($OutputFile) {
+                $processedLine | Out-File -FilePath $OutputFile -Encoding UTF8 -Append
+            } else {
+                Write-Output $processedLine
+            }
+        }
     }
 } finally {
     if ($InputFile) { $reader.Close() }
-}
-
-# Ergebnisse ausgeben oder in eine Datei schreiben
-if ($OutputFile) {
-    $results | Out-File -FilePath $OutputFile -Encoding UTF8
-} else {
-    $results | ForEach-Object { Write-Output $_ }
 }
