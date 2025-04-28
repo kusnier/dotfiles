@@ -12,70 +12,40 @@ function Shorten-LoggerName($loggerName) {
     return "$shortened.$($parts[-1])"
 }
 
-# Ergebnisse speichern
-$results = @()
+# Funktion zum Verarbeiten einer Zeile
+function Process-Line($line) {
+    try {
+        $json = $line | ConvertFrom-Json
+        $loggerName = if ($json.loggerName) { Shorten-LoggerName $json.loggerName } else { $null }
+        $level = $json.level
+        $message = $json.message
+        if ($message) { return "[${level} | ${loggerName}] $message" }
+    } catch {
+        Write-Host "Fehler beim Parsen der Zeile: $line" -ForegroundColor Yellow
+    }
+    return $null
+}
 
-# Eingabe lesen (entweder aus Datei oder stdin)
-if ($InputFile) {
+# Eingabequelle bestimmen
+$reader = if ($InputFile) {
     if (-not (Test-Path $InputFile)) {
         Write-Error "Die Eingabedatei '$InputFile' wurde nicht gefunden."
         exit 1
     }
-
-    # Datei zeilenweise lesen
-    $reader = [System.IO.StreamReader]::new($InputFile)
-    try {
-        while (($line = $reader.ReadLine()) -ne $null) {
-            try {
-                # JSON-Daten parsen
-                $json = $line | ConvertFrom-Json
-
-                # LoggerName, LogLevel und Message extrahieren
-                $loggerName = $json.loggerName
-                $level = $json.level
-                $message = $json.message
-
-                # LoggerName kürzen
-                if ($loggerName) {
-                    $loggerName = Shorten-LoggerName $loggerName
-                }
-
-                if ($message) {
-                    $results += "[${level} | ${loggerName}] $message"
-                }
-            } catch {
-                # Fehler beim Parsen ignorieren
-                Write-Host "Fehler beim Parsen der Zeile: $line" -ForegroundColor Yellow
-            }
-        }
-    } finally {
-        $reader.Close()
-    }
+    [System.IO.StreamReader]::new($InputFile)
 } else {
-    # Lesen von stdin
-    while ($line = [Console]::In.ReadLine()) {
-        try {
-            # JSON-Daten parsen
-            $json = $line | ConvertFrom-Json
+    [Console]::In
+}
 
-            # LoggerName, LogLevel und Message extrahieren
-            $loggerName = $json.loggerName
-            $level = $json.level
-            $message = $json.message
-
-            # LoggerName kürzen
-            if ($loggerName) {
-                $loggerName = Shorten-LoggerName $loggerName
-            }
-
-            if ($message) {
-                $results += "[${level} | ${loggerName}] $message"
-            }
-        } catch {
-            # Fehler beim Parsen ignorieren
-            Write-Host "Fehler beim Parsen der Zeile: $line" -ForegroundColor Yellow
-        }
+# Ergebnisse speichern
+$results = @()
+try {
+    while (($line = $reader.ReadLine()) -ne $null) {
+        $processedLine = Process-Line $line
+        if ($processedLine) { $results += $processedLine }
     }
+} finally {
+    if ($InputFile) { $reader.Close() }
 }
 
 # Ergebnisse ausgeben oder in eine Datei schreiben
