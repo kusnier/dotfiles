@@ -12,45 +12,69 @@ function Shorten-LoggerName($loggerName) {
     return "$shortened.$($parts[-1])"
 }
 
+# Ergebnisse speichern
+$results = @()
+
 # Eingabe lesen (entweder aus Datei oder stdin)
 if ($InputFile) {
     if (-not (Test-Path $InputFile)) {
         Write-Error "Die Eingabedatei '$InputFile' wurde nicht gefunden."
         exit 1
     }
-    $content = Get-Content -Path $InputFile
-} else {
-    $content = @()
-    while ($line = [Console]::In.ReadLine()) {
-        $content += $line
-    }
-}
 
-# Ergebnisse speichern
-$results = @()
-
-# Zeilen durchgehen und JSON-Daten parsen
-foreach ($line in $content) {
+    # Datei zeilenweise lesen
+    $reader = [System.IO.StreamReader]::new($InputFile)
     try {
-        # JSON-Daten parsen
-        $json = $line | ConvertFrom-Json
+        while (($line = $reader.ReadLine()) -ne $null) {
+            try {
+                # JSON-Daten parsen
+                $json = $line | ConvertFrom-Json
 
-        # LoggerName, LogLevel und Message extrahieren
-        $loggerName = $json.loggerName
-        $level = $json.level
-        $message = $json.message
+                # LoggerName, LogLevel und Message extrahieren
+                $loggerName = $json.loggerName
+                $level = $json.level
+                $message = $json.message
 
-        # LoggerName kürzen
-        if ($loggerName) {
-            $loggerName = Shorten-LoggerName $loggerName
+                # LoggerName kürzen
+                if ($loggerName) {
+                    $loggerName = Shorten-LoggerName $loggerName
+                }
+
+                if ($message) {
+                    $results += "[${level} | ${loggerName}] $message"
+                }
+            } catch {
+                # Fehler beim Parsen ignorieren
+                Write-Host "Fehler beim Parsen der Zeile: $line" -ForegroundColor Yellow
+            }
         }
+    } finally {
+        $reader.Close()
+    }
+} else {
+    # Lesen von stdin
+    while ($line = [Console]::In.ReadLine()) {
+        try {
+            # JSON-Daten parsen
+            $json = $line | ConvertFrom-Json
 
-        if ($message) {
-            $results += "[${level} | ${loggerName}] $message"
+            # LoggerName, LogLevel und Message extrahieren
+            $loggerName = $json.loggerName
+            $level = $json.level
+            $message = $json.message
+
+            # LoggerName kürzen
+            if ($loggerName) {
+                $loggerName = Shorten-LoggerName $loggerName
+            }
+
+            if ($message) {
+                $results += "[${level} | ${loggerName}] $message"
+            }
+        } catch {
+            # Fehler beim Parsen ignorieren
+            Write-Host "Fehler beim Parsen der Zeile: $line" -ForegroundColor Yellow
         }
-    } catch {
-        # Fehler beim Parsen ignorieren
-        Write-Host "Fehler beim Parsen der Zeile: $line" -ForegroundColor Yellow
     }
 }
 
