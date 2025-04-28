@@ -35,8 +35,9 @@ foreach ($line in $content) {
         # JSON-Daten parsen
         $json = $line | ConvertFrom-Json
 
-        # Loggername und Message extrahieren
+        # Loggername, LogLevel und Message extrahieren
         $loggername = $json.loggerName
+        $logLevel = $json.logLevel
         $message = $json.message
 
         # Loggername kürzen
@@ -44,9 +45,9 @@ foreach ($line in $content) {
             $loggername = Shorten-LoggerName $loggername
         }
 
-        # Ergebnis mit gekürztem Loggername als Präfix speichern
-        if ($loggername -and $message) {
-            $results += "${loggername}: $message"
+        # Ergebnis mit LogLevel und gekürztem Loggername als Präfix speichern
+        if ($logLevel -and $loggername -and $message) {
+            $results += "${logLevel} ${loggername}: $message"
         }
     } catch {
         # Fehler beim Parsen ignorieren
