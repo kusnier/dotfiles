@@ -1,0 +1,62 @@
+#!/usr/bin/env pwsh
+
+param (
+    [string]$InputFile,
+    [string]$OutputFile
+)
+
+# Funktion zum Kürzen des Loggernamens
+function Shorten-LoggerName($loggerName) {
+    $parts = $loggerName -split '\.'
+    $shortened = ($parts[0..($parts.Length - 2)] | ForEach-Object { $_.Substring(0, 1) }) -join '.'
+    return "$shortened.$($parts[-1])"
+}
+
+# Eingabe lesen (entweder aus Datei oder stdin)
+if ($InputFile) {
+    if (-not (Test-Path $InputFile)) {
+        Write-Error "Die Eingabedatei '$InputFile' wurde nicht gefunden."
+        exit 1
+    }
+    $content = Get-Content -Path $InputFile
+} else {
+    $content = @()
+    while ($line = [Console]::In.ReadLine()) {
+        $content += $line
+    }
+}
+
+# Ergebnisse speichern
+$results = @()
+
+# Zeilen durchgehen und JSON-Daten parsen
+foreach ($line in $content) {
+    try {
+        # JSON-Daten parsen
+        $json = $line | ConvertFrom-Json
+
+        # Loggername und Message extrahieren
+        $loggername = $json.loggerName
+        $message = $json.message
+
+        # Loggername kürzen
+        if ($loggername) {
+            $loggername = Shorten-LoggerName $loggername
+        }
+
+        # Ergebnis mit gekürztem Loggername als Präfix speichern
+        if ($loggername -and $message) {
+            $results += "${loggername}: $message"
+        }
+    } catch {
+        # Fehler beim Parsen ignorieren
+        Write-Host "Fehler beim Parsen der Zeile: $line" -ForegroundColor Yellow
+    }
+}
+
+# Ergebnisse ausgeben oder in eine Datei schreiben
+if ($OutputFile) {
+    $results | Out-File -FilePath $OutputFile -Encoding UTF8
+} else {
+    $results | ForEach-Object { Write-Output $_ }
+}
