@@ -1,7 +1,9 @@
 #!/usr/bin/env pwsh
 
 param (
-    [string]$Pod
+    [string]$Pod,
+    [string]$LogLevel,       # Optional: Filter für Log-Level (z. B. "INFO", "ERROR")
+    [string]$LoggerFilter    # Optional: Filter für Logger-Namen (z. B. "service")
 )
 
 # Funktion zum Kürzen des Loggernamens
@@ -44,7 +46,14 @@ function Get-Openshift-Logs {
             if ($jsonObject.message -notlike '*X-B3-TraceId was null*') {
                 $timestamp = [datetimeoffset]::FromUnixTimeSeconds($jsonObject.instant.epochSecond).DateTime.ToString("HH:mm:ss")
                 $loggerName = Get-LoggerName -loggerName $jsonObject.loggerName
-                Write-Output "$timestamp [$loggerName] - $($jsonObject.message)"
+                $logLevel = $jsonObject.level
+
+                # Filter anwenden
+                if (($LogLevel -and $logLevel -ne $LogLevel) -or ($LoggerFilter -and $loggerName -notlike "*$LoggerFilter*")) {
+                    continue
+                }
+
+                Write-Output "$timestamp [$logLevel | $loggerName] - $($jsonObject.message)"
             }
         }
     }
