@@ -1,16 +1,15 @@
 #!/usr/bin/env pwsh
 
 param (
-    [string]$Pod,
-    [string]$LogLevel,       # Optional: Filter für Log-Level (z. B. "INFO", "ERROR")
-    [string]$LoggerFilter    # Optional: Filter für Logger-Namen (z. B. "service")
+    [string]$Pod,                # Name des Pods
+    [string]$FilterLogLevel,     # Optional: Filter für Log-Level (z. B. "INFO", "ERROR")
+    [string]$FilterLoggerName    # Optional: Filter für Logger-Namen (z. B. "service")
 )
 
 # Funktion zum Kürzen des Loggernamens
 function Get-LoggerName {
     param (
-        [String]
-        $loggerName
+        [string]$loggerName
     )
 
     # Splitte den LoggerName anhand des Punkts (.)
@@ -23,8 +22,9 @@ function Get-LoggerName {
 # Funktion zum Abrufen der Logs
 function Get-Openshift-Logs {
     param (
-        [String]
-        $pod
+        [string]$pod,
+        [string]$filterLogLevel,
+        [string]$filterLoggerName
     )
 
     $processStartInfo = New-Object System.Diagnostics.ProcessStartInfo
@@ -49,7 +49,7 @@ function Get-Openshift-Logs {
                 $logLevel = $jsonObject.level
 
                 # Filter anwenden
-                if (($LogLevel -and $logLevel -ne $LogLevel) -or ($LoggerFilter -and $loggerName -notlike "*$LoggerFilter*")) {
+                if (($filterLogLevel -and $logLevel.ToLower() -ne $filterLogLevel.ToLower()) -or ($filterLoggerName -and $loggerName -notlike "*$filterLoggerName*")) {
                     continue
                 }
 
@@ -70,4 +70,4 @@ if (-not $Pod) {
 }
 
 # Logs abrufen
-Get-Openshift-Logs -pod $Pod
+Get-Openshift-Logs -pod $Pod -filterLogLevel $FilterLogLevel -filterLoggerName $FilterLoggerName
