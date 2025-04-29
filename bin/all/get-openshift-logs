@@ -41,20 +41,26 @@ function Get-Openshift-Logs {
     # Hier die Ausgabe des Prozesses lesen
     while (!$process.StandardOutput.EndOfStream) {
         $line = $process.StandardOutput.ReadLine()
-        if ($line -match '{.*}') {
-            $jsonObject = $line | ConvertFrom-Json
-            if ($jsonObject.message -notlike '*X-B3-TraceId was null*') {
-                $timestamp = [datetimeoffset]::FromUnixTimeSeconds($jsonObject.instant.epochSecond).DateTime.ToString("HH:mm:ss")
-                $loggerName = Get-LoggerName -loggerName $jsonObject.loggerName
-                $logLevel = $jsonObject.level
+        try {
+            if ($line -match '{.*}') {
+                $jsonObject = $line | ConvertFrom-Json
+                if ($jsonObject.message -notlike '*X-B3-TraceId was null*') {
+                    $timestamp = [datetimeoffset]::FromUnixTimeSeconds($jsonObject.instant.epochSecond).DateTime.ToString("HH:mm:ss")
+                    $loggerName = Get-LoggerName -loggerName $jsonObject.loggerName
+                    $logLevel = $jsonObject.level
 
-                # Filter anwenden
-                if (($filterLogLevel -and $logLevel.ToLower() -ne $filterLogLevel.ToLower()) -or ($filterLoggerName -and $loggerName -notlike "*$filterLoggerName*")) {
-                    continue
+                    # Filter anwenden
+                    if (($filterLogLevel -and $logLevel.ToLower() -ne $filterLogLevel.ToLower()) -or ($filterLoggerName -and $loggerName -notlike "*$filterLoggerName*")) {
+                        continue
+                    }
+
+                    Write-Output "$timestamp [$logLevel | $loggerName] - $($jsonObject.message)"
                 }
-
-                Write-Output "$timestamp [$logLevel | $loggerName] - $($jsonObject.message)"
             }
+        } catch {
+            # Fehler abfangen und die problematische Zeile loggen
+            Write-Host "Fehler beim Parsen der Zeile: $line" -ForegroundColor Yellow
+            Write-Host "Fehlerdetails: $_" -ForegroundColor Red
         }
     }
 
