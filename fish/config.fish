@@ -147,3 +147,6 @@ set fish_pager_color_progress F8F8F2 # the color of the progress bar at the bott
 set fish_pager_color_secondary F8F8F2 # the background color of the every second completion
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+alias tcopy="pbcopy"
+alias tpaste="pbpaste"
