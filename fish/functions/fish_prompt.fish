@@ -43,9 +43,9 @@ function fish_prompt
     and echo (set_color red)"#"
 
     # git status
-    printf '%s ' (__fish_git_prompt)
+    printf '%s'(__fish_git_prompt)
     echo ""
-    echo -n "🐠  "
+    echo -n "😄 "
     set_color normal
 
     # Main
