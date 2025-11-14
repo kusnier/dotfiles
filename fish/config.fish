@@ -119,6 +119,11 @@ if test -f $HOME/.local.fish
     . $HOME/.local.fish
 end
 
+if test -d $HOME/.local.fish.bin
+    prepend_to_path "$HOME/.local.fish.bin"
+end
+
+
 true
 
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
