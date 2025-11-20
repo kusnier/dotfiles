@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+if [ -z "$1" ]; then
+  echo "Usage: find-txt <pattern>"
+  exit 1
+fi
+
+PID=$$
+TMP_DIR="/tmp"
+TMP_FILES="$TMP_DIR/findtxt_${PID}_files.list"
+TMP_PATTERN="$TMP_DIR/findtxt_${PID}_pattern.txt"
+TMP_PIDFILE="$TMP_DIR/findtxt_latest.pid"
+
+# Dateien erzeugen
+ag -l "$1" | sed 's|^\./||' > "$TMP_FILES"
+echo "$1" > "$TMP_PATTERN"
+
+# aktuelle PID speichern
+echo "$PID" > "$TMP_PIDFILE"
+
+echo "Gefundene Dateien (PID: $PID):"
+cat "$TMP_FILES"
+
+echo
+echo "→ Dateien:"
+echo "  $TMP_FILES"
+echo "  $TMP_PATTERN"
+echo "→ PID gespeichert in: $TMP_PIDFILE"
+echo
+echo "Erledigt. Nutze jetzt:"
+echo "add-txt '<text>'"

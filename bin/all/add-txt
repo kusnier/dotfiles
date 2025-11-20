@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+if [ -z "$1" ]; then
+  echo "Usage: add-txt <text>"
+  exit 1
+fi
+
+TMP_DIR="/tmp"
+TMP_PIDFILE="$TMP_DIR/findtxt_latest.pid"
+
+if [ ! -f "$TMP_PIDFILE" ]; then
+  echo "Bitte zuerst find-txt ausführen."
+  exit 1
+fi
+
+PID=$(cat "$TMP_PIDFILE")
+TMP_FILES="$TMP_DIR/findtxt_${PID}_files.list"
+TMP_PATTERN="$TMP_DIR/findtxt_${PID}_pattern.txt"
+
+if [ ! -f "$TMP_FILES" ] || [ ! -f "$TMP_PATTERN" ]; then
+  echo "Temp-Dateien fehlen. Bitte erneut find-txt ausführen."
+  exit 1
+fi
+
+PATTERN=$(cat "$TMP_PATTERN")
+NEW_TEXT="$1"
+
+echo "PID:      $PID"
+echo "Pattern:  '$PATTERN'"
+echo "Text:     '$NEW_TEXT'"
+echo
+
+# Jede Datei einzeln behandeln
+while IFS= read -r FILE; do
+  # jede Trefferzeile finden
+  grep -n -E "^[[:space:]]*$PATTERN" "$FILE" | cut -d: -f1 | while read -r LINENUM; do
+    # führende Whitespaces extrahieren
+    INDENT=$(sed -n "${LINENUM}p" "$FILE" | sed -E 's|^([[:space:]]*).*|\1|')
+
+    # Text mit gleichem Indent
+    FULL_TEXT="${INDENT}${NEW_TEXT}"
+
+    # sed inline einfügen ohne Backup
+    sed -i "${LINENUM}a\\
+$FULL_TEXT
+" "$FILE"
+  done
+done < "$TMP_FILES"
+
+echo "Done."
