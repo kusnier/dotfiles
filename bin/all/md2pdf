@@ -7,7 +7,7 @@ error() {
 }
 
 command -v pandoc >/dev/null 2>&1 || error "pandoc nicht installiert!"
-command -v xelatex >/dev/null 2>&1 || error "xelatex nicht installiert! (texlive-xetex)"
+command -v wkhtmltopdf >/dev/null 2>&1 || error "wkhtmltopdf nicht installiert! (texlive-xetex)"
 
 if [ $# -lt 1 ]; then
   error "Bitte eine Markdown-Datei angeben!"
@@ -19,10 +19,10 @@ INPUT="$1"
 BASENAME="${INPUT%.*}"
 OUTPUT="${BASENAME}.pdf"
 
-echo "➡️  Erzeuge PDF (Pandoc → XeLaTeX)…"
+echo "➡️  Erzeuge PDF (Pandoc → wkhtmltopdf)…"
 
 pandoc "$INPUT" \
-  --pdf-engine=xelatex \
+  --pdf-engine=wkhtmltopdf \
   --from markdown \
   -o "$OUTPUT"
 
