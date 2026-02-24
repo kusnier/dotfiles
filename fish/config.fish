@@ -66,6 +66,9 @@ prepend_to_path "/usr/local/sbin"
 prepend_to_path "/usr/local/share/npm/bin"
 prepend_to_path "$HOME/.jbang/bin"
 prepend_to_path "$HOME/.npm/bin"
+prepend_to_path "$HOME/.local/bin"
+prepend_to_path "$HOME/.local/node/bin"
+prepend_to_path "$HOME/.local/maven/bin"
 
 set _home $HOME
 set -gx PATH "$_home/bin/all" $PATH
@@ -119,11 +122,6 @@ if test -f $HOME/.local.fish
     . $HOME/.local.fish
 end
 
-if test -d $HOME/.local.fish.bin
-    prepend_to_path "$HOME/.local.fish.bin"
-end
-
-
 true
 
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
@@ -151,7 +149,9 @@ set fish_pager_color_description 49483E # the color of the completion descriptio
 set fish_pager_color_progress F8F8F2 # the color of the progress bar at the bottom left corner
 set fish_pager_color_secondary F8F8F2 # the background color of the every second completion
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+if test -f /home/linuxbrew/.linuxbrew/bin/brew
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+end
 
 alias tcopy="pbcopy"
 alias tpaste="pbpaste"
