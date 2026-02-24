@@ -57,3 +57,4 @@
   trustExitCode = true
 [push]
 	default = simple
+	autoSetupRemote = true

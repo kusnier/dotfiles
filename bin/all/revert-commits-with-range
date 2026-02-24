@@ -1,0 +1,48 @@
+#!/bin/bash
+
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <commit-range> <JIRA-ID>"
+    echo "Example: $0 dbf96405..HEAD ID-123"
+    exit 1
+fi
+
+RANGE="$1"
+JIRA_ID="$2"
+
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+echo "Aktueller Branch: $CURRENT_BRANCH"
+echo "Commit-Range: $RANGE"
+echo "Jira-ID: $JIRA_ID"
+
+# Alle Merge-Commits im Range, neueste zuerst
+MERGE_COMMITS=$(git log --merges --pretty=format:"%H" $RANGE)
+
+if [ -z "$MERGE_COMMITS" ]; then
+    echo "Keine Merge-Commits im angegebenen Range gefunden."
+    exit 0
+fi
+
+for COMMIT in $MERGE_COMMITS; do
+    ORIGINAL_MSG=$(git log -1 --pretty=%B $COMMIT)
+    NEW_MSG="$JIRA_ID Revert \"$ORIGINAL_MSG\""
+    
+    echo "Reverting Merge-Commit $COMMIT"
+    
+    # Revert Merge-Commit
+    git revert -m 1 $COMMIT --no-edit
+
+    if [ $? -ne 0 ]; then
+        echo "⚠️ Merge-Konflikt oder Fehler bei Revert von $COMMIT!"
+        echo "Bitte Konflikte manuell lösen."
+        read -p "Fortfahren nachdem Konflikte gelöst wurden? (Enter drücken)"
+        git revert --continue
+    fi
+
+    # Commit-Message anpassen
+    git commit --amend -m "$NEW_MSG"
+
+    echo "Merge-Commit $COMMIT erfolgreich reverted."
+    read -p "Taste drücken um fortzufahren..."
+done
+
+echo "Alle Merge-Commits im Range wurden verarbeitet."
