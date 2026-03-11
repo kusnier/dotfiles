@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-VERSION="v4.44.3"   # ggf. anpassen
+VERSION="v4.52.4"   # ggf. anpassen
 FILE="yq_darwin_arm64"
 URL="https://github.com/mikefarah/yq/releases/download/${VERSION}/${FILE}"
 
