@@ -56,6 +56,11 @@ function Get-Openshift-Logs {
 
                     Write-Output "$timestamp [$logLevel | $loggerName] - $($jsonObject.message)"
                 }
+                if ($null -ne $jsonObject.thrown) {
+                    $thrownJson = $jsonObject.thrown | ConvertTo-Json -Depth 10
+                    Write-Output "$timestamp [$logLevel | $loggerName] -"
+                    Write-Output $thrownJson
+                }
             }
         } catch {
             # Fehler abfangen und die problematische Zeile loggen
