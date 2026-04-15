@@ -138,7 +138,7 @@ def walk(dir_path, prefix, depth, opt):
 def main():
     opt = parse_args(sys.argv[1:])
     root = os.path.normpath(opt["path"])
-    walk(root, "", 0, opt)
+    walk(root, "  ", 0, opt)
 
 if __name__ == "__main__":
     main()
