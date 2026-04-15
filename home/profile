@@ -59,3 +59,6 @@ if [ -d "/usr/local/lib/node_modules" ] ; then
 fi
 
 export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
