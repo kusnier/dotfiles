@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-VERSION="v20.20.0"
+VERSION="v22.22.1"
 FILE="node-$VERSION-darwin-arm64.tar.gz"
 URL="https://nodejs.org/dist/$VERSION/$FILE"
 
