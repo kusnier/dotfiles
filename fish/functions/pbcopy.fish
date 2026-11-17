@@ -1,4 +1,9 @@
 function pbcopy
-    xsel --clipboard --input
+    if test (uname) = Darwin
+        command pbcopy
+    else
+        xsel --clipboard --input
+    end
 end
+
 alias tcopy="pbcopy"
