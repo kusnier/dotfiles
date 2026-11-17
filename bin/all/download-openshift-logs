@@ -1,0 +1,136 @@
+#!/usr/bin/env pwsh
+<#
+.SYNOPSIS
+    Lädt die vollständigen Logs eines OpenShift-Pods in eine Datei herunter.
+
+.DESCRIPTION
+    Ruft `oc logs` für alle Container des angegebenen Pods auf und speichert
+    die Ausgabe mit Zeitstempeln in einer Logdatei. Standardmäßig werden die
+    aktuellen Logs verwendet; mit -Previous können stattdessen die Logs des
+    vorherigen Containerstarts abgerufen werden.
+
+.PARAMETER Pod
+    Name des Pods. Kann auch mit Präfix `pod/` oder `pods/` angegeben werden.
+
+.PARAMETER OutputDirectory
+    Zielverzeichnis für die Logdatei. Wird es nicht angegeben, wird das
+    aktuelle Verzeichnis verwendet. Das Verzeichnis wird bei Bedarf angelegt.
+
+.PARAMETER Namespace
+    OpenShift-Namespace, in dem sich der Pod befindet. Ohne Angabe verwendet
+    `oc` den aktuell konfigurierten Namespace.
+
+.PARAMETER Previous
+    Lädt die Logs des vorherigen Containerstarts statt der aktuellen Logs.
+
+.PARAMETER Help
+    Zeigt die Kurzbeschreibung und beendet das Skript.
+
+.EXAMPLE
+    ./download-openshift-logs mein-pod
+
+    Lädt die aktuellen Logs aller Container von `mein-pod` in das aktuelle
+    Verzeichnis.
+
+.EXAMPLE
+    ./download-openshift-logs mein-pod ./logs -Namespace mein-namespace
+
+    Lädt die Logs des Pods im angegebenen Namespace nach `./logs`.
+
+.EXAMPLE
+    ./download-openshift-logs mein-pod ./logs -Namespace mein-namespace -Previous
+
+    Lädt die Logs des vorherigen Containerstarts.
+
+.EXAMPLE
+    ./download-openshift-logs -Help
+
+    Zeigt die Aufrufsyntax und die verfügbaren Optionen.
+
+.NOTES
+    Erfordert das OpenShift-CLI `oc` und eine gültige Anmeldung mit
+    ausreichenden Berechtigungen zum Lesen der Pod-Logs.
+#>
+[CmdletBinding()]
+param(
+    [Parameter(Position = 0)]
+    [string]$Pod,
+
+    [Parameter(Position = 1)]
+    [string]$OutputDirectory = (Get-Location).Path,
+
+    [string]$Namespace,
+
+    [switch]$Previous,
+    [switch]$Help
+)
+
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+
+if ($Help) {
+    @'
+Usage:
+  ./download-openshift-logs <Pod> [OutputDirectory] [-Namespace <Namespace>] [-Previous]
+  ./download-openshift-logs -Help
+
+Options:
+  -Namespace <Namespace>  OpenShift-Namespace (Standard: aktuell konfigurierter Namespace)
+  -Previous               Logs des vorherigen Containerstarts herunterladen
+  -Help                   Diese Hilfe anzeigen
+
+Examples:
+  ./download-openshift-logs mein-pod
+  ./download-openshift-logs mein-pod ./logs -Namespace mein-namespace
+  ./download-openshift-logs mein-pod ./logs -Namespace mein-namespace -Previous
+'@
+    return
+}
+
+if ([string]::IsNullOrWhiteSpace($Pod)) {
+    throw "Der Pod-Name ist erforderlich. Verwenden Sie -Help für die Aufrufsyntax."
+}
+
+if (-not (Get-Command oc -ErrorAction SilentlyContinue)) {
+    throw "Das OpenShift CLI 'oc' wurde nicht gefunden."
+}
+
+if (-not (Test-Path -LiteralPath $OutputDirectory)) {
+    New-Item -ItemType Directory -Path $OutputDirectory -Force | Out-Null
+}
+
+$podRef = if ($Pod -match '^(pod|pods)/') { $Pod } else { "pod/$Pod" }
+$safePodName = $Pod -replace '[^\p{L}\p{Nd}_.-]', '_'
+$timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
+$suffix = if ($Previous) { "previous" } else { "current" }
+$outputFile = Join-Path $OutputDirectory "$safePodName-$suffix-$timestamp.log"
+
+$ocArgs = @()
+
+if (-not [string]::IsNullOrWhiteSpace($Namespace)) {
+    $ocArgs += @("-n", $Namespace)
+}
+
+$ocArgs += @(
+    "logs",
+    $podRef,
+    "--all-containers=true",
+    "--timestamps=true",
+    "--tail=-1"
+)
+
+if ($Previous) {
+    $ocArgs += "--previous=true"
+}
+
+Write-Host "Lade vollständige Logs von '$podRef' nach '$outputFile' ..."
+
+& oc @ocArgs *> $outputFile
+$exitCode = $LASTEXITCODE
+
+if ($exitCode -ne 0) {
+    $tail = Get-Content -LiteralPath $outputFile -Tail 20 -ErrorAction SilentlyContinue | Out-String
+    throw "oc logs fehlgeschlagen mit Exit-Code $exitCode.`n$tail"
+}
+
+Write-Host "Fertig: $outputFile"
