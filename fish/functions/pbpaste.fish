@@ -1,4 +1,9 @@
 function pbpaste
-    xsel --clipboard --output
+    if test (uname) = Darwin
+        command pbpaste
+    else
+        xsel --clipboard --input
+    end
 end
+
 alias tpaste="pbpaste"
